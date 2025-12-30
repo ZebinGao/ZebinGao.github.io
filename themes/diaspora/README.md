@@ -196,24 +196,24 @@ mathjax: false
 
 # Gitalk 评论插件（https://github.com/gitalk/gitalk）
 gitalk:
-    # 是否启用评论功能
-    enable: false
-    # 是否自动展开评论框
-    autoExpand: false
-    # 应用编号
-    clientID: ''
-    # 应用秘钥
-    clientSecret: ''
-    # issue仓库名
-    repo: ''
-    # Github名
-    owner: ''
-    # Github名
-    admin: ['']
-    # Ensure uniqueness and length less than 50
-    id: location.pathname
-    # Facebook-like distraction free mode
-    distractionFreeMode: false
+  # 是否启用评论功能
+  enable: false
+  # 是否自动展开评论框
+  autoExpand: false
+  # 应用编号
+  clientID: ''
+  # 应用秘钥
+  clientSecret: ''
+  # issue仓库名
+  repo: ''
+  # Github名
+  owner: ''
+  # Github名
+  admin: ['']
+  # Ensure uniqueness and length less than 50
+  id: location.pathname
+  # Facebook-like distraction free mode
+  distractionFreeMode: false
 
 # 网站关键字
 keywords: Fechin
