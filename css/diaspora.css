@@ -207,8 +207,23 @@ h1.title {font-size:30px;color:#333;line-height:1.3;position:relative;font-weigh
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Facebook 图标定义 */
+.icon-facebook::before {
+    content: "\f09a" !important; /* Facebook 的图标代码 */
+    font-family: "Font Awesome 6 Brands" !important; /* 指定使用 FA 库 */
+    font-weight: 400 !important;
+}
+/* 如果你更喜欢带圆圈或方框的 Facebook 图标，可以改用下面这个编码 */
+/* content: "\f082"; */
+
 .icon-github:before {
   content: "\e7d1";
+}
+
+.icon-instagram:before {
+  content: "\f16d"; /* Instagram 的图标代码 */
+  font-family: "Font Awesome 6 Brands"; /* 指定使用 FA 库 */
+  font-weight: 400;
 }
 
 .icon-email:before {
@@ -219,8 +234,11 @@ h1.title {font-size:30px;color:#333;line-height:1.3;position:relative;font-weigh
   content: "\e7e3";
 }
 
-.icon-twitter:before {
-  content: "\e7e2";
+/* twitter 图标定义 */
+.icon-twitter::before {
+    content: "\f099"; /* twitter 的图标代码 \xe61b (或 \f099)*/
+    font-family: "Font Awesome 6 Brands"; /* 指定使用 FA 库 */
+    font-weight: 400;
 }
 
 
