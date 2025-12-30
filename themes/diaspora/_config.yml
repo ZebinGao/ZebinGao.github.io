@@ -8,6 +8,10 @@ menu:
   关于: /about
 
 # 是否显示目录
+# 决定了是否在你的文章页面生成 Table of Contents（文章目录）。
+# 默认抓取：只要你文章里用了 ## 或 ### 这种标题语法，目录就会自动出现。
+# 即使你在全局 _config.yml 里设置了 TOC: false，
+# 你依然可以在单篇文章的开头（Front-matter）里单独开启它。
 TOC: false
 
 # 是否自动播放音乐
@@ -15,7 +19,7 @@ autoplay: false
 
 # 默认音乐（随机播放）
 mp3: 
-  - http://link.hhtjim.com/163/425570952.mp3
+  - /music/sakura-michi.mp3
   - http://link.hhtjim.com/163/425570952.mp3
 
 # 首页封面图, 为空时取文章的cover作为封面(注意跨域问题,建议使用同源图片)

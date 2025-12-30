@@ -135,6 +135,7 @@ menu:
   关于: /about
 
 # 是否显示目录
+# 决定了是否在你的文章页面生成 Table of Contents（文章目录）。
 TOC: false
 
 # 是否自动播放音乐
