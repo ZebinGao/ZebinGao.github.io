@@ -99,15 +99,18 @@ gitalk:
     distractionFreeMode: false
 
 # 网站关键字
-keywords: Fechin
+# 告诉 Google、百度、Bing 等搜索引擎，你的网站主要是关于什么的。
+keywords: Zebin, Blog, 编程, 生活, 技术
 
 # 要使用google_analytics进行统计的话，这里需要配置ID
-google_analytics: 
+google_analytics: G-PWRM0QDS7E
 
 # 网站ico
 favicon: /img/favicon.png
 
 # rss文件
+# RSS 或 Atom 是一种内容同步协议。它像是一个“自动投递报纸”的服务：
+# 对于你：你发布新文章后，Hexo 会自动把文章标题、链接和摘要更新到 atom.xml 这个文件里。
 rss: atom.xml
 
 # 要使用版权信息可以在这配置并设定许可方式，可以从 https://creativecommons.org/about/cclicenses/ 查询
