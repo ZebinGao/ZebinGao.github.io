@@ -57,19 +57,19 @@ hitokoto: true
 
 # 链接(可选:facebook,twitter,github,wechat,email)
 links:
+    email: mailto:1368219312@qq.com
     facebook: https://www.facebook.com/profile.php?id=100021977747592
-    facebook_alt: https://www.facebook.com/gao.zebin.3
+    #facebook_alt: https://www.facebook.com/gao.zebin.3
     twitter: https://x.com/zebin_gao
     github: https://github.com/ZebinGao
     instagram: https://www.instagram.com/nath.anann/
-    instagram_alt: https://www.instagram.com/zebin.gao/
+    #instagram_alt: https://www.instagram.com/zebin.gao/
     wechat: /img/wechat_code.png
-    email: mailto:1368219312@qq.com
   
 # 备案
 beian: 
     # 是否显示备案信息
-    enable: true
+    enable: false
     # 是否在主页面最底下显示备案信息(虽然丑，但是完全满足规定要求)
     enableFooter: false
     # 备案号
