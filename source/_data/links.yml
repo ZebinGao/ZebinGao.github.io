@@ -4,11 +4,12 @@
   description: "永远的技术大佬"
 
 - name: "Gemini"
-  url: "https://example.com"
-  avatar: "https://via.placeholder.com/150"
+  url: "https://gemini.google.com"
+  avatar: "https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://gemini.google.com&size=128"
   description: "一个有趣的 AI 伙伴"
+  
+- name: "李新野"
+  url: "https://sinyalee.com/blog/"
+  avatar: "https://github.com/sinyalee.png?size=100"
+  description: "一个无父无母的技术狂人"
 
-- name: "Hexo"
-  url: "https://hexo.io"
-  avatar: "https://hexo.io/icon.png"
-  description: "快速、简洁且高效的博客框架"
