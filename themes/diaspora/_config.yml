@@ -48,7 +48,9 @@ scrollbar: true
 search:
   path: search.xml
   field: post
+  content: true
   format: html
+  #limit: 10000 是一个安全阀，用来限制搜索数据库抓取的文章数量上限。
   limit: 10000
 
 # 本地搜索,请将索引文件放在网站根目录,或修改主题js文件的path值,前端显示用
