@@ -14,11 +14,13 @@
   description: "一个无父无母的技术狂人"
 
 - name: "王垠"
-  url: "https://yinwang-wiki.github.io/site/
+  url: "https://yinwang-wiki.github.io/site/"
   avatar: "https://www.google.com/favicon.ico"
-  description: "川大退学，清华退学，康奈尔大学退学，印第安纳大学退学，谷歌离职，现为自由职业。"
+  description: "川大退学，清华退学，康奈尔大学退学，印第安纳大学退学，谷歌离职，现为自由职业"
 
 - name: "睡前小语"
   url: "https://yumaiguihuatongzaijiu.blogspot.com/"
-  avatar: "https://www.google.com/favicon.ico"
+  #将路径改为相对于网站根目录的绝对路径：
+  #以下划线 _ 开头的文件夹（如 _data, _posts）在执行 hexo generate 时，会被视为私有数据或源文件
+  avatar: "/img/friends/phd-chemist.png"
   description: "大学老师的孩子, PHD chemist working in biotech, 波士顿旅居人"
