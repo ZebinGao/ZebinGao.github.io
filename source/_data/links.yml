@@ -3,7 +3,7 @@
   site: https://xxx.com
   info: 这是一个超酷的个人博客
 
-  - name: "Gemini"
+- name: "Gemini"
   url: "https://example.com"
   avatar: "https://via.placeholder.com/150"
   description: "一个有趣的 AI 伙伴"
