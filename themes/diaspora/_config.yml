@@ -20,7 +20,7 @@ autoplay: false
 # 默认音乐（随机播放）
 mp3: 
   #Linux 服务器和某些 Hexo 插件对大小写非常敏感。
-  - /music/sakura-michi.mp3
+  - music/sakura-michi.mp3
   - http://link.hhtjim.com/163/425570952.mp3
 
 # 首页封面图, 为空时取文章的cover作为封面(注意跨域问题,建议使用同源图片)
