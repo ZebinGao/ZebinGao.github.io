@@ -1,7 +1,7 @@
-- nickname: 友人A
-  avatar: https://xxx.png
-  site: https://xxx.com
-  info: 这是一个超酷的个人博客
+- name: '陈皓'
+  avatar: "https://github.com/haoel.png?size=100"
+  site: "https://github.com/haoel"
+  description: "永远的技术大佬"
 
 - name: "Gemini"
   url: "https://example.com"
