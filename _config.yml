@@ -127,4 +127,13 @@ backup:
   theme: material-x-1.2.1
   message: this is my blog backup 
   repository: 
-    github: git@github.com:ZebinGao/ZebinGao.github.io.git,backup1
+    github: git@github.com:ZebinGao/ZebinGao.github.io.git,
+    
+#确保全局配置存在，给插件用
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+  #limit: 10000 是一个安全阀，用来限制搜索数据库抓取的文章数量上限。
+  limit: 10000
