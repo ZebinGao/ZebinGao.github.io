@@ -40,4 +40,15 @@
   avatar: "/img/friends/hisherry.png"
   description: "我生长于江南小镇，目前住加拿大渥太华。我的学历普通，上学的时候也没怎么用心，可能大部分时间用来谈恋爱或者仰望心仪的男生了。"
 
+- name: "优秀个人独立博客导航"
+  url: "http://www.jetli.com.cn/"
+  avatar: "/img/friends/onojyun.png"
+  description: "博客志 / 只收藏有价值的优秀博客 / 你关注的人，决定你看到的世界"
+
+- name: "一个神秘的新世界"
+  url: "https://www.travellings.cn/go.html"
+  avatar: "/img/friends/travellings.png"
+  description: "让传统友链“活跃”，让网页相互接力，让流量相互流动，让网络开放起来"
+
+
 
