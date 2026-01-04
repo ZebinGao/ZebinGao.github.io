@@ -1,3 +1,4 @@
+[![Hexo Deploy](https://github.com/ZebinGao/ZebinGao.github.io/actions/workflows/deploy.yml/badge.svg)](https://github.com/ZebinGao/ZebinGao.github.io/actions/workflows/deploy.yml)
 # hexo new 文章标题
 >>> hexo new 如何在hexo博客写作
 # 或者是
