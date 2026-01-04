@@ -28,6 +28,16 @@
   avatar: "https://github.com/yinwang0.png?size=100"
   description: "川大退学，清华退学，康奈尔大学退学，印第安纳大学退学，谷歌离职，现为自由职业"
 
+- name: 'Allen'
+  url: 'https://jiangmiemie.com/'
+  avatar: "https://github.com/jiangyangcreate.png?size=100"
+  description: "个人的美好生活只有自己争取：子女不应寄希望于父母，父母亦不应寄希望于子女。伴侣不应当寄希望于对方，公民不应当寄希望于政府。"
+
+- name: '肖宗林'
+  url: 'https://www.xiaozonglin.cn/'
+  avatar: "https://github.com/linlinzzong.png?size=100"
+  description: "负责开往服务器的运维工作（用 ChatGPT 对开往服务器出现的问题进行定位和处理，例如 Node.js Cluster 模块使用不当导致进程不断创建子进程等）"
+
 - name: "睡前小语"
   url: "https://yumaiguihuatongzaijiu.blogspot.com/"
   #将路径改为相对于网站根目录的绝对路径：
