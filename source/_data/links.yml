@@ -3,6 +3,11 @@
   avatar: "/img/friends/travellings.png"
   description: "让传统友链“活跃”，让网页相互接力，让流量相互流动，让网络开放起来"
 
+- name: "无聊湾"
+  url: "https://boringbay.com/"
+  avatar: "https://github.com/cantoblanco.png?size=100"
+  description: "NAiVe · 无聊人的中继站。图标修改自熊大的 https://the.boring.studio"
+
 - name: "优秀个人独立博客导航"
   url: "http://www.jetli.com.cn/"
   avatar: "/img/friends/jetli.png"
@@ -12,6 +17,11 @@
   url: 'https://github.com/haoel'
   avatar: "https://github.com/haoel.png?size=100"
   description: "永远的技术大佬"
+
+- name: '橙梓'
+  url: 'https://blog.orangii.cn/'
+  avatar: "https://github.com/Jiaocz.png?size=100"
+  description: "快手，支付业务部，前端开发"
 
 - name: "Gemini"
   url: "https://gemini.google.com"
