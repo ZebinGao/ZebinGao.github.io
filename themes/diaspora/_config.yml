@@ -6,7 +6,8 @@ menu:
   归档: /archives  
   友链: /links
   关于: /about
-#  开往: https://www.travellings.cn/go.html
+  番茄钟定时器: /pomodoro
+  2048小游戏: /smallgame/2048
 
 # 是否显示目录
 # 决定了是否在你的文章页面生成 Table of Contents（文章目录）。
