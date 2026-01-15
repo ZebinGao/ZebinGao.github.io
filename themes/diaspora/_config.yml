@@ -6,13 +6,14 @@ menu:
   归档: /archives  
   友链: /links
   关于: /about
+#  开往: https://www.travellings.cn/go.html
 
 # 是否显示目录
 # 决定了是否在你的文章页面生成 Table of Contents（文章目录）。
 # 默认抓取：只要你文章里用了 ## 或 ### 这种标题语法，目录就会自动出现。
 # 即使你在全局 _config.yml 里设置了 TOC: false，
 # 你依然可以在单篇文章的开头（Front-matter）里单独开启它。
-TOC: false
+TOC: true
 
 # 是否自动播放音乐
 autoplay: false
