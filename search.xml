@@ -160,17 +160,6 @@
       </tags>
   </entry>
   <entry>
-    <title>如何在hexo博客写作</title>
-    <url>/post/%E5%A6%82%E4%BD%95%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C.html</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>编程技术</category>
-      </categories>
-      <tags>
-        <tag>编程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>婚姻的本质</title>
     <url>/post/%E5%A9%9A%E5%A7%BB%E7%9A%84%E6%9C%AC%E8%B4%A8.html</url>
     <content><![CDATA[<p>婚姻是人生的缩影，痛苦和快乐是分不开的，你怎么看</p>
@@ -228,6 +217,17 @@
       </categories>
       <tags>
         <tag>杂记, 日子</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>如何在hexo博客写作</title>
+    <url>/post/%E5%A6%82%E4%BD%95%E5%9C%A8hexo%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C.html</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>编程技术</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -603,6 +603,117 @@
 ]]></content>
       <categories>
         <category>想法杂记</category>
+      </categories>
+      <tags>
+        <tag>杂记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>烦恼即菩提</title>
+    <url>/post/%E8%AF%AD%E5%A2%83%E4%B8%8E%E6%83%85%E7%BB%AA%E7%9A%84%E7%A2%B0%E6%92%9E.html</url>
+    <content><![CDATA[<h1 id="🚌-“早晨公交站冲突”复盘与深度分析报告"><a href="#🚌-“早晨公交站冲突”复盘与深度分析报告" class="headerlink" title="🚌 “早晨公交站冲突”复盘与深度分析报告"></a>🚌 “早晨公交站冲突”复盘与深度分析报告</h1><h2 id="1-事件回溯"><a href="#1-事件回溯" class="headerlink" title="1. 事件回溯"></a>1. 事件回溯</h2><ul>
+<li><strong>场景</strong>：上海早高峰，公交站。</li>
+<li><strong>触发点</strong>：太太看手机说“还有5分钟” $\rightarrow$ 先生反问“什么还有5分钟” $\rightarrow$ 太太瞬间爆发（斥责“脑子有问题”、“没法沟通”）。</li>
+<li><strong>表象</strong>：一次关于“主语缺失”的沟通误会。</li>
+<li><strong>本质</strong>：<strong>高压状态下的“语境错位”与情绪溢出。</strong></li>
+</ul>
+<h2 id="2-核心矛盾剖析"><a href="#2-核心矛盾剖析" class="headerlink" title="2. 核心矛盾剖析"></a>2. 核心矛盾剖析</h2><h3 id="A-语境差异（频道不同）"><a href="#A-语境差异（频道不同）" class="headerlink" title="A. 语境差异（频道不同）"></a>A. 语境差异（频道不同）</h3><table>
+<thead>
+<tr>
+<th align="left">角色</th>
+<th align="left">状态</th>
+<th align="left">视角</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>太太</strong></td>
+<td align="left"><strong>高语境 &#x2F; 高压 &#x2F; 单线程</strong></td>
+<td align="left">脑中只有“赶车”这一主线任务。认为“5分钟”显而易见，默认双方共享上下文。</td>
+</tr>
+<tr>
+<td align="left"><strong>先生</strong></td>
+<td align="left"><strong>低语境 &#x2F; 放松 &#x2F; 多线程</strong></td>
+<td align="left">刚买完咖啡，处于放松状态。需要明确的主语来加载信息。</td>
+</tr>
+</tbody></table>
+<h3 id="B-角色模式差异（剧本不同）"><a href="#B-角色模式差异（剧本不同）" class="headerlink" title="B. 角色模式差异（剧本不同）"></a>B. 角色模式差异（剧本不同）</h3><table>
+<thead>
+<tr>
+<th align="left">维度</th>
+<th align="left">先生（清醒躺平流）</th>
+<th align="left">太太（焦虑死磕流）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>岗位属性</strong></td>
+<td align="left">明白职场本质（都是耗材），但心态平和，不卷不比。</td>
+<td align="left"><strong>顶级技术专家 + 光杆司令（无下属）。</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>心态</strong></td>
+<td align="left">“工作就是交易，只要性价比合适就行，拒绝精神内耗。”</td>
+<td align="left"><strong>“我是系统的单点故障（SPOF），我不干就崩盘，责任全在我。”</strong></td>
+</tr>
+<tr>
+<td align="left"><strong>对“绕着走”的看法</strong></td>
+<td align="left">是合理的避险策略。</td>
+<td align="left">是<strong>职业耻辱</strong>，也是<strong>现实不可能</strong>（没人接盘）。</td>
+</tr>
+<tr>
+<td align="left"><strong>底气来源</strong></td>
+<td align="left">低欲望、稳固的内心秩序。</td>
+<td align="left">完美的交付结果（被“技术洁癖”和“责任感”绑架）。</td>
+</tr>
+</tbody></table>
+<h3 id="C-环境背景（上海特供版压力）"><a href="#C-环境背景（上海特供版压力）" class="headerlink" title="C. 环境背景（上海特供版压力）"></a>C. 环境背景（上海特供版压力）</h3><ul>
+<li><strong>坐标上海</strong>：高薪意味着高强度的“内卷”和“不进则退”的恐惧。</li>
+<li><strong>公交站的隐喻</strong>：那“5分钟”不仅是时间，更是这座城市**“争分夺秒”的压迫感**。</li>
+<li><strong>收入悖论</strong>：太太拥有<strong>极具竞争力的薪资</strong>，但这笔钱成了她的**“金手铐”<strong>和</strong>“专业度量衡”**，导致她不敢松懈，怕遭遇职场滑坡。</li>
+</ul>
+<hr>
+<h2 id="3-为什么常规劝解无效？"><a href="#3-为什么常规劝解无效？" class="headerlink" title="3. 为什么常规劝解无效？"></a>3. 为什么常规劝解无效？</h2><ul>
+<li><strong>劝“对自己要求低点”</strong> ❌<ul>
+<li><strong>无效原因</strong>：作为顶级专家，她有“技术洁癖”。低要求等于让她交付垃圾代码，伤害职业自尊。</li>
+</ul>
+</li>
+<li><strong>劝“遇到困难绕着走”</strong> ❌<ul>
+<li><strong>无效原因</strong>：她是“光杆司令”，绕开 &#x3D; 暴雷。她没有手下背锅，绕开会直接导致问责。</li>
+</ul>
+</li>
+<li><strong>劝“家里不需要你挣那么多钱”</strong> ❌<ul>
+<li><strong>无效原因</strong>：高薪是她价值的量化。她担心一旦收入降级，在这座城市的抗风险能力会崩塌。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="4-建议策略（从“劝解”转向“运维”）"><a href="#4-建议策略（从“劝解”转向“运维”）" class="headerlink" title="4. 建议策略（从“劝解”转向“运维”）"></a>4. 建议策略（从“劝解”转向“运维”）</h2><h3 id="策略一：降低沟通成本（做她的“外部缓存”）"><a href="#策略一：降低沟通成本（做她的“外部缓存”）" class="headerlink" title="策略一：降低沟通成本（做她的“外部缓存”）"></a>策略一：降低沟通成本（做她的“外部缓存”）</h3><ul>
+<li><strong>减少中断</strong>：早晨或她焦虑时，避免反问句（“什么？”、“为什么？”）。即使没听清，先应承，再自行观察环境补全信息。</li>
+<li><strong>接管琐事</strong>：在那段时间，把她当成“生活低能儿”照顾。主动屏蔽需要她决策的家务琐事，做静默的守护进程（Daemon）。</li>
+</ul>
+<h3 id="策略二：转换话术逻辑（用技术语言沟通）"><a href="#策略二：转换话术逻辑（用技术语言沟通）" class="headerlink" title="策略二：转换话术逻辑（用技术语言沟通）"></a>策略二：转换话术逻辑（用技术语言沟通）</h3><ul>
+<li><strong>不劝“偷懒”，劝“性能优化”</strong>：<blockquote>
+<p>“你是家里的核心服务器，现在负载过高，为了防止宕机，今晚必须强制执行**‘服务熔断’**（休息）。”</p>
+</blockquote>
+</li>
+<li><strong>不谈“放弃”，谈“SLA（服务等级协议）”</strong>：<blockquote>
+<p>“公司不扩容（不配人），我们就只能<strong>降级服务</strong>。这是物理规律，不是你的错。”</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="策略三：重新定义“高薪”的意义"><a href="#策略三：重新定义“高薪”的意义" class="headerlink" title="策略三：重新定义“高薪”的意义"></a>策略三：重新定义“高薪”的意义</h3><ul>
+<li><strong>Fuck You Money</strong>：告诉她，家里有底气（有你兜底），她赚的这笔溢价工资，是用来买**“随时可以掀桌子的勇气”**，而不是买“忍气吞声”。</li>
+<li><strong>提升体验</strong>：既然在上海且不差钱，考虑<strong>购买“通勤体验”</strong>（如打车&#x2F;接送）来物理降噪，减少早高峰带来的路怒值。</li>
+</ul>
+<h3 id="策略四：做她的“安全阀”"><a href="#策略四：做她的“安全阀”" class="headerlink" title="策略四：做她的“安全阀”"></a>策略四：做她的“安全阀”</h3><ul>
+<li>承认她的难处，不把你的“躺平逻辑”强加给她。</li>
+<li>当她发火时，理解这是**“职场压力在家庭端的溢出”**。</li>
+<li><strong>核心态度</strong>：你在上海能保持“不攀比、不焦虑”的心态是非常宝贵的能量。请继续保持定力，做那个在她被城市节奏甩飞时，能一把拽住她的**“安全绳”**。</li>
+</ul>
+<hr>
+<p><strong>一句话总结：</strong><br>她现在是在**“极高压环境”<strong>下运行的</strong>“高性能且过热的主机”<strong>。不需要给她输入更多指令（讲道理），只需要帮她</strong>散热**（包容情绪）甚至<strong>断网重启</strong>（强制休息）。</p>
+]]></content>
+      <categories>
+        <category>家庭生活</category>
       </categories>
       <tags>
         <tag>杂记</tag>
