@@ -10,8 +10,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
-    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,DeepSeek R1历史梳理TransformerTransformer 模型虽然整体结构看着复杂，但如果从数学公式的功能来分类，其实可以非常清晰地划分为四大类。
-如果把一个单词向量通过 Tran,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,SoftmaxSoftmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。
+$$\text{softmax}(x_i) &amp;#x3D; \fr,"> 
     <meta name="author" content="Zebin Gao"> 
     <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -22,8 +22,8 @@
     
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content=" - 与买桂花同载酒"/>
-    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,DeepSeek R1历史梳理TransformerTransformer 模型虽然整体结构看着复杂，但如果从数学公式的功能来分类，其实可以非常清晰地划分为四大类。
-如果把一个单词向量通过 Tran,"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,SoftmaxSoftmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。
+$$\text{softmax}(x_i) &amp;#x3D; \fr,"/>
     
     
     
@@ -31,8 +31,8 @@
     <meta property="og:site_name" content="与买桂花同载酒"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content=" - 与买桂花同载酒"/>
-    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,DeepSeek R1历史梳理TransformerTransformer 模型虽然整体结构看着复杂，但如果从数学公式的功能来分类，其实可以非常清晰地划分为四大类。
-如果把一个单词向量通过 Tran,"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,SoftmaxSoftmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。
+$$\text{softmax}(x_i) &amp;#x3D; \fr,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -73,37 +73,19 @@
 
         </div>
         <div class="content markdown">
-            <h1 id="DeepSeek-R1"><a href="#DeepSeek-R1" class="headerlink" title="DeepSeek R1"></a>DeepSeek R1</h1><h2 id="历史梳理"><a href="#历史梳理" class="headerlink" title="历史梳理"></a>历史梳理</h2><h3 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h3><p>Transformer 模型虽然整体结构看着复杂，但如果从<strong>数学公式的功能</strong>来分类，其实可以非常清晰地划分为<strong>四大类</strong>。</p>
-<p>如果把一个单词向量通过 Transformer 的过程比作**“刚入职员工的成长史”**，这四类公式的关系如下：</p>
-<ol>
-<li><strong>位置编码 (准备)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/positional-encoding.md">注入灵魂</a></li>
-</ol>
+            <h1 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h1><p>Softmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。</p>
+<p>$$\text{softmax}(x_i) &#x3D; \frac{e^{x_i}}{\sum e^{x_j}}$$</p>
+<p>在注意力机制中，如果一个词和另一个词“有点相关”，我们往往希望模型忽略这种微弱的相关性，把注意力集中在“非常相关”的那个词上。指数函数能把这种“强者恒强”的特点发挥到极致，让背景噪声快速趋近于 0。</p>
 <ul>
-<li><em>入职登记</em>。给你发工牌（位置信息），确定你在公司的工位（顺序）。</li>
-<li><strong>(数据传给 Attention)</strong></li>
+<li><p>它是为了模拟 “Max”（马太效应）</p>
+</li>
+<li><p>求导极其完美 (Differentiable)</p>
+</li>
+<li><p>加法变乘法</p>
+</li>
+<li><p>这符合最大熵原理 (Maximum Entropy) 和物理学中的 玻尔兹曼分布 (Boltzmann Distribution)。</p>
+</li>
 </ul>
-<ol start="2">
-<li><strong>注意力机制 (交互)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/attention.md">理解上下文</a></li>
-</ol>
-<ul>
-<li><em>开会讨论</em>。你去和其他部门同事（其他 Token）沟通，了解大家都在干什么。你的脑子里装进了项目背景（上下文语义）。</li>
-<li><strong>(数据传给 Add &amp; Norm)</strong></li>
-</ul>
-<ol start="3">
-<li><strong>残差与归一化 (稳定)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/%E5%B1%82%E5%BD%92%E4%B8%80%E5%8C%96.md">层归一化</a></li>
-</ol>
-<ul>
-<li><em>休息调整</em>。确保你没有因为开会太多而迷失自我（保留原始信息），并调整心态（归一化），准备下一项工作。</li>
-<li><strong>(数据传给 FFN)</strong></li>
-</ul>
-<ol start="4">
-<li><strong>前馈网络 (变换)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.md">前馈神经网络</a></li>
-</ol>
-<ul>
-<li><em>独立思考</em>。回到工位，消化刚才开会的内容，结合自己的专业技能（权重矩阵），产出具体的方案。</li>
-<li><strong>(数据再次经过 Add &amp; Norm，进入下一层)</strong></li>
-</ul>
-<p><strong>一句话总结前后关系：</strong><br><strong>“准备公式”<strong>搭建舞台，</strong>“交互公式”<strong>负责收集情报，<strong>变换公式</strong>负责消化情报，而</strong>稳定公式</strong>贯穿全程，确保这套流程能循环 N 次而不崩塌。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -140,7 +122,7 @@
     </div>
     
         <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DeepSeek-R1"><span class="toc-number">1.</span> <span class="toc-text">DeepSeek R1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%A2%B3%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">历史梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Transformer"><span class="toc-number">1.1.1.</span> <span class="toc-text">Transformer</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Softmax"><span class="toc-number">1.</span> <span class="toc-text">Softmax</span></a></li></ol>
         </div>
     
 </div>

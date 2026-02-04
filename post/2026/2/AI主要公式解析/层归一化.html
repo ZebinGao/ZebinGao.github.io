@@ -10,8 +10,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
-    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,DeepSeek R1历史梳理TransformerTransformer 模型虽然整体结构看着复杂，但如果从数学公式的功能来分类，其实可以非常清晰地划分为四大类。
-如果把一个单词向量通过 Tran,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,LayerNorm公式全貌：$$\text{LayerNorm}(x) &amp;#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma ,"> 
     <meta name="author" content="Zebin Gao"> 
     <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -22,8 +21,7 @@
     
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:title" content=" - 与买桂花同载酒"/>
-    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,DeepSeek R1历史梳理TransformerTransformer 模型虽然整体结构看着复杂，但如果从数学公式的功能来分类，其实可以非常清晰地划分为四大类。
-如果把一个单词向量通过 Tran,"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,LayerNorm公式全貌：$$\text{LayerNorm}(x) &amp;#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma ,"/>
     
     
     
@@ -31,8 +29,7 @@
     <meta property="og:site_name" content="与买桂花同载酒"/>
     <meta property="og:type" content="object"/>
     <meta property="og:title" content=" - 与买桂花同载酒"/>
-    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,DeepSeek R1历史梳理TransformerTransformer 模型虽然整体结构看着复杂，但如果从数学公式的功能来分类，其实可以非常清晰地划分为四大类。
-如果把一个单词向量通过 Tran,"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,LayerNorm公式全貌：$$\text{LayerNorm}(x) &amp;#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma ,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -73,37 +70,64 @@
 
         </div>
         <div class="content markdown">
-            <h1 id="DeepSeek-R1"><a href="#DeepSeek-R1" class="headerlink" title="DeepSeek R1"></a>DeepSeek R1</h1><h2 id="历史梳理"><a href="#历史梳理" class="headerlink" title="历史梳理"></a>历史梳理</h2><h3 id="Transformer"><a href="#Transformer" class="headerlink" title="Transformer"></a>Transformer</h3><p>Transformer 模型虽然整体结构看着复杂，但如果从<strong>数学公式的功能</strong>来分类，其实可以非常清晰地划分为<strong>四大类</strong>。</p>
-<p>如果把一个单词向量通过 Transformer 的过程比作**“刚入职员工的成长史”**，这四类公式的关系如下：</p>
-<ol>
-<li><strong>位置编码 (准备)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/positional-encoding.md">注入灵魂</a></li>
-</ol>
-<ul>
-<li><em>入职登记</em>。给你发工牌（位置信息），确定你在公司的工位（顺序）。</li>
-<li><strong>(数据传给 Attention)</strong></li>
+            <h1 id="LayerNorm"><a href="#LayerNorm" class="headerlink" title="LayerNorm"></a>LayerNorm</h1><p>公式全貌：<br>$$<br>\text{LayerNorm}(x) &#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta<br>$$</p>
+<hr>
+<h2 id="第一阶段：强制标准化-Standardization"><a href="#第一阶段：强制标准化-Standardization" class="headerlink" title="第一阶段：强制标准化 (Standardization)"></a>第一阶段：强制标准化 (Standardization)</h2><p>$$<br>\hat{x} &#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}<br>$$</p>
+<p>这一步的目的是**“消除差异，统一度量衡”**。</p>
+<h3 id="1-符号拆解"><a href="#1-符号拆解" class="headerlink" title="1. 符号拆解"></a>1. 符号拆解</h3><ul>
+<li><strong>$x$ (Input)</strong>: 输入的向量。比如刚才算出来的 <code>[91, 71]</code>。</li>
+<li><strong>$\mu$ (Mean)</strong>: <strong>均值</strong>。代表这个向量的“平均水平”。<ul>
+<li><em>(91+71)&#x2F;2 &#x3D; 81</em></li>
 </ul>
-<ol start="2">
-<li><strong>注意力机制 (交互)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/attention.md">理解上下文</a></li>
-</ol>
-<ul>
-<li><em>开会讨论</em>。你去和其他部门同事（其他 Token）沟通，了解大家都在干什么。你的脑子里装进了项目背景（上下文语义）。</li>
-<li><strong>(数据传给 Add &amp; Norm)</strong></li>
+</li>
+<li><strong>$\sigma$ (Standard Deviation)</strong>: <strong>标准差</strong>。代表这个向量里的数“波动有多大”。<ul>
+<li><em>波动是 10</em></li>
 </ul>
-<ol start="3">
-<li><strong>残差与归一化 (稳定)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/%E5%B1%82%E5%BD%92%E4%B8%80%E5%8C%96.md">层归一化</a></li>
-</ol>
-<ul>
-<li><em>休息调整</em>。确保你没有因为开会太多而迷失自我（保留原始信息），并调整心态（归一化），准备下一项工作。</li>
-<li><strong>(数据传给 FFN)</strong></li>
+</li>
+<li><strong>$\epsilon$ (Epsilon)</strong>: <strong>极小值</strong>（比如 0.00001）。<ul>
+<li><em>作用</em>：防止分母为 0。如果方差是 0（所有数都一样），除法会报错，加上这个数保平安。</li>
 </ul>
-<ol start="4">
-<li><strong>前馈网络 (变换)</strong>：<a href="./AI%E4%B8%BB%E8%A6%81%E5%85%AC%E5%BC%8F%E8%A7%A3%E6%9E%90/%E5%89%8D%E9%A6%88%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C.md">前馈神经网络</a></li>
-</ol>
-<ul>
-<li><em>独立思考</em>。回到工位，消化刚才开会的内容，结合自己的专业技能（权重矩阵），产出具体的方案。</li>
-<li><strong>(数据再次经过 Add &amp; Norm，进入下一层)</strong></li>
+</li>
 </ul>
-<p><strong>一句话总结前后关系：</strong><br><strong>“准备公式”<strong>搭建舞台，</strong>“交互公式”<strong>负责收集情报，<strong>变换公式</strong>负责消化情报，而</strong>稳定公式</strong>贯穿全程，确保这套流程能循环 N 次而不崩塌。</p>
+<h3 id="2-物理意义：Z-Score-Z分数"><a href="#2-物理意义：Z-Score-Z分数" class="headerlink" title="2. 物理意义：Z-Score (Z分数)"></a>2. 物理意义：Z-Score (Z分数)</h3><p>这其实就是统计学里最著名的 <strong>Z-Score</strong>。</p>
+<ul>
+<li><strong>$x - \mu$ (去中心化)</strong>：把数据的中心强行拉回 <strong>0</strong>。<ul>
+<li><em>不管你原来是 [91, 71] 还是 [10091, 10071]，减去均值后都变成 [10, -10]。</em></li>
+</ul>
+</li>
+<li><strong>除以 $\sigma$ (归一化)</strong>：把数据的波动范围强行缩放到 <strong>1</strong>。<ul>
+<li><em>不管你原来波动多大，除以标准差后，波动幅度都统一了。</em></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>💡 举个例子：考试排名</strong></p>
+<ul>
+<li>A班试卷简单，平均分 90 分。</li>
+<li>B班试卷很难，平均分 50 分。</li>
+<li>这就好比 LayerNorm 之前的数据，量级不同，没法比较。</li>
+<li><strong>Norm 之后</strong>：大家都变成了“超过平均分多少个标准差”。如果你的得分是 +2.0，说明你是两个班里一样的学霸，无关试卷难易。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="第二阶段：个性化调整-Rescaling"><a href="#第二阶段：个性化调整-Rescaling" class="headerlink" title="第二阶段：个性化调整 (Rescaling)"></a>第二阶段：个性化调整 (Rescaling)</h2><p>$$<br>y &#x3D; \hat{x} \cdot \gamma + \beta<br>$$</p>
+<p>这一步的目的是**“赋予模型自由”**。</p>
+<h3 id="1-为什么标准化之后还要变回去？"><a href="#1-为什么标准化之后还要变回去？" class="headerlink" title="1. 为什么标准化之后还要变回去？"></a>1. 为什么标准化之后还要变回去？</h3><p>如果我们只做第一步，所有的输出都会变成均值为 0、方差为 1 的死板数据。<br><strong>但是，神经网络可能不希望数据这么死板！</strong><br>也许对于某些任务，数据偏大一点（均值&#x3D;5）或者波动大一点（方差&#x3D;10）才更好？</p>
+<h3 id="2-符号拆解"><a href="#2-符号拆解" class="headerlink" title="2. 符号拆解"></a>2. 符号拆解</h3><p>这两个参数不是算出来的，而是<strong>模型自己“学”出来的</strong>（就像权重矩阵 W 一样）。</p>
+<ul>
+<li><strong>$\gamma$ (Gamma - 缩放因子)</strong>：<ul>
+<li>模型会问：“标准差为 1 够吗？不够的话我乘个 2，把它拉宽。”</li>
+</ul>
+</li>
+<li><strong>$\beta$ (Beta - 平移因子)</strong>：<ul>
+<li>模型会问：“均值为 0 合适吗？不合适的话我加个 5，把它整体抬高。”</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>💡 核心逻辑：可逆性</strong><br>如果模型发现“标准化”是个错误的决定，它完全可以通过学习让 $\gamma &#x3D; \sigma$ 且 $\beta &#x3D; \mu$，从而<strong>把数据还原回去</strong>。</p>
+<p>这给了模型选择权：<strong>它可以选择标准的数据，也可以选择保留原始特征。</strong></p>
+</blockquote>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -140,7 +164,7 @@
     </div>
     
         <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#DeepSeek-R1"><span class="toc-number">1.</span> <span class="toc-text">DeepSeek R1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%A2%B3%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">历史梳理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Transformer"><span class="toc-number">1.1.1.</span> <span class="toc-text">Transformer</span></a></li></ol></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#LayerNorm"><span class="toc-number">1.</span> <span class="toc-text">LayerNorm</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%EF%BC%9A%E5%BC%BA%E5%88%B6%E6%A0%87%E5%87%86%E5%8C%96-Standardization"><span class="toc-number">1.1.</span> <span class="toc-text">第一阶段：强制标准化 (Standardization)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%AC%A6%E5%8F%B7%E6%8B%86%E8%A7%A3"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 符号拆解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%89%A9%E7%90%86%E6%84%8F%E4%B9%89%EF%BC%9AZ-Score-Z%E5%88%86%E6%95%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. 物理意义：Z-Score (Z分数)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%EF%BC%9A%E4%B8%AA%E6%80%A7%E5%8C%96%E8%B0%83%E6%95%B4-Rescaling"><span class="toc-number">1.2.</span> <span class="toc-text">第二阶段：个性化调整 (Rescaling)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E6%A0%87%E5%87%86%E5%8C%96%E4%B9%8B%E5%90%8E%E8%BF%98%E8%A6%81%E5%8F%98%E5%9B%9E%E5%8E%BB%EF%BC%9F"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 为什么标准化之后还要变回去？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%AC%A6%E5%8F%B7%E6%8B%86%E8%A7%A3"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 符号拆解</span></a></li></ol></li></ol></li></ol>
         </div>
     
 </div>

@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> - 与买桂花同载酒</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,数学推导：高斯积分与正态分布归一化系数我们要解决的核心问题是计算著名的 高斯积分 (Gaussian Integral)：
+$$I &amp;#x3D; \int_{-\infty}^{+\infty} e,"> 
+    <meta name="author" content="Zebin Gao"> 
+    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content=" - 与买桂花同载酒"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,数学推导：高斯积分与正态分布归一化系数我们要解决的核心问题是计算著名的 高斯积分 (Gaussian Integral)：
+$$I &amp;#x3D; \int_{-\infty}^{+\infty} e,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="与买桂花同载酒"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content=" - 与买桂花同载酒"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,数学推导：高斯积分与正态分布归一化系数我们要解决的核心问题是计算著名的 高斯积分 (Gaussian Integral)：
+$$I &amp;#x3D; \int_{-\infty}^{+\infty} e,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">与买桂花同载酒</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://www.zebin-yue.top"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle"></h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title"></h1>
+        <div class="stuff">
+            <span>二月 04, 2026</span>
+            
+
+        </div>
+        <div class="content markdown">
+            <h1 id="数学推导：高斯积分与正态分布归一化系数"><a href="#数学推导：高斯积分与正态分布归一化系数" class="headerlink" title="数学推导：高斯积分与正态分布归一化系数"></a>数学推导：高斯积分与正态分布归一化系数</h1><p>我们要解决的核心问题是计算著名的 <strong>高斯积分 (Gaussian Integral)</strong>：</p>
+<p>$$<br>I &#x3D; \int_{-\infty}^{+\infty} e^{-x^2} dx<br>$$</p>
+<p>这是一个经典的数学难题，因为函数 $e^{-x^2}$ 的原函数不是初等函数（即无法通过常规积分法则直接写出）。</p>
+<p>解决方法是使用 <strong>泊松积分技巧 (Poisson Integral)</strong>：通过“升维打击”，将一重积分转化为二重极坐标积分来求解。</p>
+<hr>
+<h2 id="1-构造平方-The-Square-Trick"><a href="#1-构造平方-The-Square-Trick" class="headerlink" title="1. 构造平方 (The Square Trick)"></a>1. 构造平方 (The Square Trick)</h2><p>既然无法直接计算 $I$，我们尝试计算 $I^2$。<br>引入一个独立的变量 $y$，其积分值与 $x$ 相同：</p>
+<p>$$<br>I^2 &#x3D; \left( \int_{-\infty}^{+\infty} e^{-x^2} dx \right) \left( \int_{-\infty}^{+\infty} e^{-y^2} dy \right)<br>$$</p>
+<p>利用线性性质，将其合并为二重积分：</p>
+<p>$$<br>I^2 &#x3D; \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} e^{-(x^2 + y^2)} dx dy<br>$$</p>
+<blockquote>
+<p><strong>数学意义</strong>：<br>此时，问题从计算“平面曲线下的面积”（1D），变成了计算“旋转曲面下的体积”（2D）。</p>
+</blockquote>
+<hr>
+<h2 id="2-极坐标变换-Polar-Coordinates-Transformation"><a href="#2-极坐标变换-Polar-Coordinates-Transformation" class="headerlink" title="2. 极坐标变换 (Polar Coordinates Transformation)"></a>2. 极坐标变换 (Polar Coordinates Transformation)</h2><p>这是解题的关键一步。我们将笛卡尔坐标系 $(x, y)$ 变换为极坐标系 $(r, \theta)$。</p>
+<p><strong>变换关系：</strong></p>
+<ul>
+<li>$x &#x3D; r \cos \theta$</li>
+<li>$y &#x3D; r \sin \theta$</li>
+<li>$x^2 + y^2 &#x3D; r^2$</li>
+<li><strong>面积微元 (Jacobian)</strong>：$dx dy \rightarrow r dr d\theta$  (注意：这里多了一个 $r$)</li>
+</ul>
+<p><strong>积分区域：</strong></p>
+<ul>
+<li>全平面对应为：半径 $r \in [0, +\infty)$，角度 $\theta \in [0, 2\pi]$。</li>
+</ul>
+<p><strong>代入积分式：</strong></p>
+<p>$$<br>I^2 &#x3D; \int_{0}^{2\pi} \int_{0}^{+\infty} e^{-r^2} \cdot r dr d\theta<br>$$</p>
+<p>由于被积函数中 $r$ 和 $\theta$ 是分离的，我们可以将二重积分拆解为两个单重积分的乘积：</p>
+<p>$$<br>I^2 &#x3D; \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{+\infty} e^{-r^2} r dr \right)<br>$$</p>
+<hr>
+<h2 id="3-分步计算"><a href="#3-分步计算" class="headerlink" title="3. 分步计算"></a>3. 分步计算</h2><h3 id="第一部分：角度积分"><a href="#第一部分：角度积分" class="headerlink" title="第一部分：角度积分"></a>第一部分：角度积分</h3><p>这是常数积分，计算非常简单：<br>$$<br>\int_{0}^{2\pi} d\theta &#x3D; [\theta]_{0}^{2\pi} &#x3D; 2\pi<br>$$</p>
+<h3 id="第二部分：半径积分"><a href="#第二部分：半径积分" class="headerlink" title="第二部分：半径积分"></a>第二部分：半径积分</h3><p>计算 $J &#x3D; \int_{0}^{+\infty} e^{-r^2} r dr$。<br>使用 <strong>换元法 (u-substitution)</strong>：</p>
+<ul>
+<li>令 $u &#x3D; r^2$，则 $du &#x3D; 2r dr$，即 $r dr &#x3D; \frac{1}{2} du$。</li>
+<li>当 $r&#x3D;0$ 时，$u&#x3D;0$；当 $r \to \infty$ 时，$u \to \infty$。</li>
+</ul>
+<p>代入计算：<br>$$<br>\begin{aligned}<br>J &amp;&#x3D; \int_{0}^{+\infty} e^{-u} \cdot \frac{1}{2} du \<br>&amp;&#x3D; \frac{1}{2} \left[ -e^{-u} \right]_{0}^{+\infty} \<br>&amp;&#x3D; \frac{1}{2} (0 - (-1)) \<br>&amp;&#x3D; \frac{1}{2}<br>\end{aligned}<br>$$</p>
+<hr>
+<h2 id="4-汇总结果"><a href="#4-汇总结果" class="headerlink" title="4. 汇总结果"></a>4. 汇总结果</h2><p>回到 $I^2$ 的算式：</p>
+<p>$$<br>\begin{aligned}<br>I^2 &amp;&#x3D; (\text{角度部分}) \times (\text{半径部分}) \<br>&amp;&#x3D; 2\pi \times \frac{1}{2} \<br>&amp;&#x3D; \pi<br>\end{aligned}<br>$$</p>
+<p>因为被积函数 $e^{-x^2}$ 始终大于 0，积分结果必为正数，开方取正根：</p>
+<p>$$<br>I &#x3D; \int_{-\infty}^{+\infty} e^{-x^2} dx &#x3D; \sqrt{\pi}<br>$$</p>
+<hr>
+<h2 id="5-关联：为什么正态分布是-sqrt-2-pi-？"><a href="#5-关联：为什么正态分布是-sqrt-2-pi-？" class="headerlink" title="5. 关联：为什么正态分布是 $\sqrt{2\pi}$？"></a>5. 关联：为什么正态分布是 $\sqrt{2\pi}$？</h2><p>标准正态分布的概率密度公式中，指数项通常带有系数 $-\frac{1}{2}$：</p>
+<p>$$<br>\text{Target} &#x3D; \int_{-\infty}^{+\infty} e^{-\frac{1}{2}x^2} dx<br>$$</p>
+<p>我们需要利用刚才推导出的结论 $I &#x3D; \sqrt{\pi}$ 来计算这个变体。</p>
+<p><strong>换元计算：</strong><br>令 $t &#x3D; \frac{x}{\sqrt{2}}$，则 $x &#x3D; \sqrt{2}t$，且 $dx &#x3D; \sqrt{2} dt$。</p>
+<p>$$<br>\begin{aligned}<br>\int_{-\infty}^{+\infty} e^{-\left(\frac{x}{\sqrt{2}}\right)^2} dx &amp;&#x3D; \int_{-\infty}^{+\infty} e^{-t^2} \cdot \sqrt{2} dt \<br>&amp;&#x3D; \sqrt{2} \underbrace{\int_{-\infty}^{+\infty} e^{-t^2} dt}_{I&#x3D;\sqrt{\pi}} \<br>&amp;&#x3D; \sqrt{2} \cdot \sqrt{\pi} \<br>&amp;&#x3D; \sqrt{2\pi}<br>\end{aligned}<br>$$</p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>正是因为全积分 $\int_{-\infty}^{+\infty} e^{-\frac{1}{2}x^2} dx &#x3D; \sqrt{2\pi}$，为了满足概率论公理（即<strong>总概率必须等于 1</strong>），概率密度函数的前面必须除以这个结果作为<strong>归一化系数</strong>。</p>
+<p>这就是正态分布公式中 $\frac{1}{\sqrt{2\pi}}$ 的由来：</p>
+<p>$$<br>f(x) &#x3D; \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x^2}<br>$$</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/sakura-michi.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liUMUoQLKTPswJDK"
+        data-cs="c46b751f5cbe796f506b01288d1c07f0446a45ef"
+        data-r="blog-comments"
+        data-o="ZebinGao"
+        data-a="ZebinGao"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC%EF%BC%9A%E9%AB%98%E6%96%AF%E7%A7%AF%E5%88%86%E4%B8%8E%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E5%BD%92%E4%B8%80%E5%8C%96%E7%B3%BB%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">数学推导：高斯积分与正态分布归一化系数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%9E%84%E9%80%A0%E5%B9%B3%E6%96%B9-The-Square-Trick"><span class="toc-number">1.1.</span> <span class="toc-text">1. 构造平方 (The Square Trick)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%9E%81%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2-Polar-Coordinates-Transformation"><span class="toc-number">1.2.</span> <span class="toc-text">2. 极坐标变换 (Polar Coordinates Transformation)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%88%86%E6%AD%A5%E8%AE%A1%E7%AE%97"><span class="toc-number">1.3.</span> <span class="toc-text">3. 分步计算</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%EF%BC%9A%E8%A7%92%E5%BA%A6%E7%A7%AF%E5%88%86"><span class="toc-number">1.3.1.</span> <span class="toc-text">第一部分：角度积分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E9%83%A8%E5%88%86%EF%BC%9A%E5%8D%8A%E5%BE%84%E7%A7%AF%E5%88%86"><span class="toc-number">1.3.2.</span> <span class="toc-text">第二部分：半径积分</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%B1%87%E6%80%BB%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.</span> <span class="toc-text">4. 汇总结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%85%B3%E8%81%94%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83%E6%98%AF-sqrt-2-pi-%EF%BC%9F"><span class="toc-number">1.5.</span> <span class="toc-text">5. 关联：为什么正态分布是 $\sqrt{2\pi}$？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA"><span class="toc-number">1.5.1.</span> <span class="toc-text">结论</span></a></li></ol></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PWRM0QDS7E');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
