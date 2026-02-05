@@ -1,3 +1,10 @@
+---
+title: attention 解析
+date: 2026-02-05 12:00:00
+---
+
+这里才是正文...
+
 # 缩放点积注意力
 
 $$\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$

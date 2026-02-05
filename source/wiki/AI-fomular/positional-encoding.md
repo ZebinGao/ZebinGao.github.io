@@ -1,3 +1,10 @@
+---
+title: Positional Encoding 解析
+date: 2026-02-05 12:00:00
+---
+
+这里才是正文...
+
 # 实例解析：位置编码叠加公式
 
 本例展示 Transformer 如何利用公式 $$X_{final} = X_{embedding} + PE_{(pos)}$$ 将位置信息注入到词向量中。
