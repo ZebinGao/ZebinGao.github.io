@@ -41,7 +41,7 @@ twitterpic:
 
 # 是否使用mathjax MathJax 是一个用于在网页上显示数学公式的 JavaScript 库。
 # MathJax 的脚本文件比较大。
-mathjax: false
+mathjax: true
 
 # 是否关闭默认滚动条
 scrollbar: true
