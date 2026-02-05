@@ -45,7 +45,10 @@
     <div id="loader"></div>
     <div id="single" class="page">
     <div id="top">
-        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+        <a class="iconfont icon-left image-icon" 
+   href="javascript:;" 
+   onclick="event.stopPropagation(); if(document.referrer){window.history.back()}else{window.location.href='/'}; return false;">
+</a>
     </div>
     <div class="section">
         <div class="article">
