@@ -1,3 +1,9 @@
+---
+title: DeepSeek-R1-技术报告(未完成)
+date: 2026-02-06 20:27:03
+categories: 编程技术
+tags: 编程
+---
 # DeepSeek R1
 
 ## 历史梳理
