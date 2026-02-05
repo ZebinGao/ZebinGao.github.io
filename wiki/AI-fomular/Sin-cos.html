@@ -5,13 +5,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title> - 与买桂花同载酒</title>
+    <title>与买桂花同载酒 - 心之所向，素履以往</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
-    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,SoftmaxSoftmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。
-$$\text{softmax}(x_i) &amp;#x3D; \fr,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"> 
     <meta name="author" content="Zebin Gao"> 
     <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -21,18 +20,16 @@ $$\text{softmax}(x_i) &amp;#x3D; \fr,">
     
     
     <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content=" - 与买桂花同载酒"/>
-    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,SoftmaxSoftmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。
-$$\text{softmax}(x_i) &amp;#x3D; \fr,"/>
+    <meta name="twitter:title" content="与买桂花同载酒 - 心之所向，素履以往"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
     
     
     
     
     <meta property="og:site_name" content="与买桂花同载酒"/>
     <meta property="og:type" content="object"/>
-    <meta property="og:title" content=" - 与买桂花同载酒"/>
-    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,SoftmaxSoftmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。
-$$\text{softmax}(x_i) &amp;#x3D; \fr,"/>
+    <meta property="og:title" content="与买桂花同载酒 - 心之所向，素履以往"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
     
 <link rel="stylesheet" href="/css/diaspora.css">
 
@@ -46,90 +43,68 @@ $$\text{softmax}(x_i) &amp;#x3D; \fr,"/>
 <body class="loading">
     <span id="config-title" style="display:none">与买桂花同载酒</span>
     <div id="loader"></div>
-    <div id="single">
-    <div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://www.zebin-yue.top"></a>
-    <div title="播放/暂停" class="iconfont icon-play"></div>
-    <h3 class="subtitle"></h3>
-    <div class="social">
-        <div>
-            <div class="share">
-                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
-            </div>
-            <div id="qr"></div>
-        </div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
     </div>
-    <div class="scrollbar"></div>
-</div>
-
     <div class="section">
         <div class="article">
-    <div class='main'>
-        <h1 class="title"></h1>
-        <div class="stuff">
-            <span>二月 05, 2026</span>
-            
-
-        </div>
-        <div class="content markdown">
-            <h1 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a>Softmax</h1><p>Softmax 的名字里有一个 Max。它的初衷是想近似 max() 函数（选出最大的那个），但又要保持“软”的特性。</p>
-<p>$$\text{softmax}(x_i) &#x3D; \frac{e^{x_i}}{\sum e^{x_j}}$$</p>
-<p>在注意力机制中，如果一个词和另一个词“有点相关”，我们往往希望模型忽略这种微弱的相关性，把注意力集中在“非常相关”的那个词上。指数函数能把这种“强者恒强”的特点发挥到极致，让背景噪声快速趋近于 0。</p>
+            <div class="main">
+                <div class="content">
+                
+                        <p>这里才是正文…</p>
+<h1 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h1><p>$$<br>\begin{aligned}<br>PE_{(pos, 2i)} &amp;&#x3D; \sin\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{偶数维度用 sin}) \<br>PE_{(pos, 2i+1)} &amp;&#x3D; \cos\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{奇数维度用 cos})<br>\end{aligned}<br>$$</p>
+<h2 id="How-position-is-determined"><a href="#How-position-is-determined" class="headerlink" title="How position is determined"></a>How position is determined</h2><p>这其实非常简单，它基于计算机科学中最基础的 <strong>“索引” (Index)</strong> 概念。Transformer 并不认识单词，它只认识单词在句子里的<strong>排队顺序</strong>。</p>
+<p>我们在处理句子 <code>&quot;Thinking Machines&quot;</code> 时：</p>
 <ul>
-<li><p>它是为了模拟 “Max”（马太效应）</p>
-</li>
-<li><p>求导极其完美 (Differentiable)</p>
-</li>
-<li><p>加法变乘法</p>
-</li>
-<li><p>这符合最大熵原理 (Maximum Entropy) 和物理学中的 玻尔兹曼分布 (Boltzmann Distribution)。</p>
-</li>
+<li><strong>Thinking</strong>: 是第 1 个词。在 Python&#x2F;编程中，索引从 0 开始，所以 $pos &#x3D; 0$。</li>
+<li><strong>Machines</strong>: 是第 2 个词。所以 $pos &#x3D; 1$。</li>
+<li><strong>…</strong>: 如果后面还有词，就是 $pos &#x3D; 2, 3, 4 \dots$</li>
 </ul>
+<blockquote>
+<p><strong>结论</strong>：$pos$ 就是单词在句子中的下标。当你输入第一个词时，模型自动认定 $pos&#x3D;0$。</p>
+</blockquote>
+<hr>
+<h2 id="2-Sin-Cos"><a href="#2-Sin-Cos" class="headerlink" title="2. Sin&#x2F;Cos"></a>2. Sin&#x2F;Cos</h2><p>Google 团队设计了一个巧妙的公式，让每个位置都能生成一个<strong>独一无二的纹理</strong>。</p>
+<p><strong>结果对比：</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">Pos</th>
+<th align="left">向量 (近似值)</th>
+<th align="left">特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>Thinking</strong></td>
+<td align="left">0</td>
+<td align="left"><code>[0.00, 1.00, 0.00, 1.00]</code></td>
+<td align="left">干净的 0&#x2F;1</td>
+</tr>
+<tr>
+<td align="left"><strong>Machines</strong></td>
+<td align="left">1</td>
+<td align="left"><code>[0.84, 0.54, 0.01, 1.00]</code></td>
+<td align="left">前面变化大，后面变化小</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>💡 直观比喻：时钟</strong></p>
+<ul>
+<li>位置编码的<strong>低维度</strong>（左边的数）就像<strong>秒针</strong>，走得很快（0.84）。</li>
+<li>位置编码的<strong>高维度</strong>（右边的数）就像<strong>时针</strong>，走得很慢（0.01）。</li>
+<li>Transformer 通过看这“一排指针”的状态，就能精确知道现在是几点（单词在哪）。</li>
+</ul>
+</blockquote>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-                <ul id="audio-list" style="display:none">
-                    
-                        
-                            <li title="0" data-url="/music/sakura-michi.mp3"></li>
-                        
-                    
-                        
-                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
-                        
-                    
-                </ul>
-            
+                
+                </div>
+            </div>
         </div>
-        
-        
-    <div id="gitalk-container" class="comment link"
-		data-enable="true"
-        data-ae="false"
-        data-ci="Ov23liUMUoQLKTPswJDK"
-        data-cs="c46b751f5cbe796f506b01288d1c07f0446a45ef"
-        data-r="blog-comments"
-        data-o="ZebinGao"
-        data-a="ZebinGao"
-        data-d="false"
-    >查看评论</div>
-
-
     </div>
-    
-        <div class="side">
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Softmax"><span class="toc-number">1.</span> <span class="toc-text">Softmax</span></a></li></ol>
-        </div>
-    
 </div>
 
-
-    </div>
-</div>
 </body>
 
 <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>

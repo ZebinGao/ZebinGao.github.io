@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>与买桂花同载酒 - 心之所向，素履以往</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"> 
+    <meta name="author" content="Zebin Gao"> 
+    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="与买桂花同载酒 - 心之所向，素履以往"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="与买桂花同载酒"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="与买桂花同载酒 - 心之所向，素履以往"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">与买桂花同载酒</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <p>这里才是正文…</p>
+<h1 id="实例解析：位置编码叠加公式"><a href="#实例解析：位置编码叠加公式" class="headerlink" title="实例解析：位置编码叠加公式"></a>实例解析：位置编码叠加公式</h1><p>本例展示 Transformer 如何利用公式 $$X_{final} &#x3D; X_{embedding} + PE_{(pos)}$$ 将位置信息注入到词向量中。</p>
+<h2 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h2><ul>
+<li><strong>输入句子</strong>：<code>Thinking Machines</code></li>
+<li><strong>目标对象</strong>：第一个单词 <strong>“Thinking”</strong>。</li>
+<li><strong>位置 (pos)</strong>：<code>0</code>（计算机从 0 开始计数）。</li>
+<li><strong>模型维度 ($d_{model}$)</strong>：<code>4</code>（为了便于观察，假设维度只有 4 维）。</li>
+</ul>
+<hr>
+<h2 id="1-拆解：-X-embedding-语义部分"><a href="#1-拆解：-X-embedding-语义部分" class="headerlink" title="1. 拆解：$X_{embedding}$ (语义部分)"></a>1. 拆解：$X_{embedding}$ (语义部分)</h2><p>首先，模型在 Embedding 层查表，获取 “Thinking” 的原始语义向量。这个向量只代表单词的意思，不知道它在句子的哪个位置。</p>
+<ul>
+<li>Embedding 层: 这是 Transformer 的第一层参数，通常记作 $W_E$。你可以把它想象成一个巨大的矩阵。行数表示每个词，列数是模型的维度，一开始可能就是随机生成的。</li>
+</ul>
+<p>假设查表结果为：<br>$$X_{\text{Thinking}} &#x3D; [0.5, \quad 1.5, \quad -0.5, \quad 0.2]$$</p>
+<blockquote>
+<p><strong>含义</strong>：这些数值代表了 “Thinking” 的特征（比如动词属性、抽象程度等）。</p>
+</blockquote>
+<h2 id="2-拆解：-PE-pos-位置部分"><a href="#2-拆解：-PE-pos-位置部分" class="headerlink" title="2. 拆解：$PE_{(pos)}$ (位置部分)"></a>2. 拆解：$PE_{(pos)}$ (位置部分)</h2><p>接下来，根据位置编码公式（基于 sin&#x2F;cos），计算 <strong>位置 0</strong> 的编码向量。<br>根据公式，偶数维度用 $\sin$，奇数维度用 $\cos$。对于 $pos&#x3D;0$：</p>
+<ul>
+<li>$\sin(0) &#x3D; 0$</li>
+<li>$\cos(0) &#x3D; 1$</li>
+</ul>
+<p>所以，位置 0 的 $PE$ 向量是固定的：<br>$$PE_{(0)} &#x3D; [0.0, \quad 1.0, \quad 0.0, \quad 1.0]$$</p>
+<blockquote>
+<p><strong>含义</strong>：这个向量是“第1个座位”的专属身份证，与具体的词无关。任何放在开头的词，都会加上这个向量。</p>
+</blockquote>
+<h2 id="3-执行：相加-X-PE"><a href="#3-执行：相加-X-PE" class="headerlink" title="3. 执行：相加 ($X + PE$)"></a>3. 执行：相加 ($X + PE$)</h2><p>现在执行核心公式，将两者<strong>元素对应相加</strong>：</p>
+<p>$$<br>\begin{aligned}<br>X_{final} &amp;&#x3D; X_{\text{Thinking}} + PE_{(0)} \<br>&amp;&#x3D; [0.5, \quad 1.5, \quad -0.5, \quad 0.2] \quad (\text{语义}) \<br>&amp;+ [0.0, \quad 1.0, \quad 0.0, \quad 1.0] \quad (\text{位置}) \<br>&amp;&#x3D; [\mathbf{0.5}, \quad \mathbf{2.5}, \quad \mathbf{-0.5}, \quad \mathbf{1.2}]<br>\end{aligned}<br>$$</p>
+<hr>
+<h2 id="4-深度解读：为什么这样有效？"><a href="#4-深度解读：为什么这样有效？" class="headerlink" title="4. 深度解读：为什么这样有效？"></a>4. 深度解读：为什么这样有效？</h2><p>看着最终结果 $[\mathbf{0.5}, \mathbf{2.5}, \mathbf{-0.5}, \mathbf{1.2}]$，你可能会疑惑：原来的语义不是被破坏了吗？（比如 $1.5$ 变成了 $2.5$）。</p>
+<p>我们可以用**“波形叠加”**来理解：</p>
+<ol>
+<li><p><strong>数据的分离</strong>：</p>
+<ul>
+<li>Transformer 的高维空间非常大（通常 512 维）。</li>
+<li>神经网络非常聪明，它能学会识别：<strong>“在这个向量里，某些特定的波动模式代表位置，而底层的数值代表含义。”</strong></li>
+</ul>
+</li>
+<li><p><strong>对比 “Machines” (Pos 1)</strong>：<br> 如果我们要处理第二个词 <strong>“Machines”</strong>（假设它的语义向量也是 $[0.5, 1.5, \dots]$ 用于对比）：</p>
+<ul>
+<li>它会加上 $PE_{(1)}$（比如 $[0.84, 0.54, \dots]$）。</li>
+<li>结果就会完全不同。</li>
+</ul>
+</li>
+<li><p><strong>总结</strong>：</p>
+<ul>
+<li><strong>输入前</strong>：”Thinking” 只是字典里的一个词，没有时空概念。</li>
+<li><strong>输出后 ($X_{final}$)</strong>：”Thinking” 变成了一个 <strong>“坐在排头位置的 Thinking”</strong>。</li>
+<li>Attention 机制之后在计算时，就能利用这个微小的数值差异，区分出哪个是主语（通常在前），哪个是宾语（通常在后）。</li>
+</ul>
+</li>
+</ol>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PWRM0QDS7E');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>

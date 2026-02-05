@@ -1,0 +1,250 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>与买桂花同载酒 - 心之所向，素履以往</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"> 
+    <meta name="author" content="Zebin Gao"> 
+    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="与买桂花同载酒 - 心之所向，素履以往"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="与买桂花同载酒"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="与买桂花同载酒 - 心之所向，素履以往"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">与买桂花同载酒</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="section">
+        <div class="article">
+            <div class="main">
+                <div class="content">
+                
+                        <p>这里才是正文…</p>
+<h1 id="前馈神经网络-FFN"><a href="#前馈神经网络-FFN" class="headerlink" title="前馈神经网络 (FFN)"></a>前馈神经网络 (FFN)</h1><p>我们继续使用 <strong>“Thinking”</strong> 的例子。<br>FFN 的核心公式是：<br>$$\text{FFN}(x) &#x3D; \text{ReLU}(xW_1 + b_1)W_2 + b_2$$</p>
+<h2 id="场景设定与准备"><a href="#场景设定与准备" class="headerlink" title="场景设定与准备"></a>场景设定与准备</h2><p>为了方便口算，我们将上一章 Attention 算出的结果 $[13.6, 23.6]$ 简化取整。</p>
+<ul>
+<li><strong>输入向量 ($x$)</strong>：<code>[10, 20]</code><ul>
+<li>这是 Attention 层的输出，维度 $d_{model} &#x3D; 2$。</li>
+</ul>
+</li>
+<li><strong>目标</strong>：<ol>
+<li>先<strong>升维</strong>（把 2 维变成 4 维），把特征拆解开。</li>
+<li>通过 <strong>ReLU</strong> 过滤负数。</li>
+<li>再<strong>降维</strong>（把 4 维变回 2 维），整合结果。</li>
+</ol>
+</li>
+</ul>
+<p>我们需要预设两组权重矩阵（在真实模型中，这些是训练出来的）：</p>
+<ul>
+<li><strong>第一层参数 ($W_1, b_1$) - 负责升维</strong>：<ul>
+<li>$W_1$ ($2 \times 4$ 矩阵)</li>
+<li>$b_1$ ($1 \times 4$ 向量)</li>
+</ul>
+</li>
+<li><strong>第二层参数 ($W_2, b_2$) - 负责降维</strong>：<ul>
+<li>$W_2$ ($4 \times 2$ 矩阵)</li>
+<li>$b_2$ ($1 \times 2$ 向量)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-第一步：线性变换与升维-xW-1-b-1"><a href="#1-第一步：线性变换与升维-xW-1-b-1" class="headerlink" title="1. 第一步：线性变换与升维 ($xW_1 + b_1$)"></a>1. 第一步：线性变换与升维 ($xW_1 + b_1$)</h2><p>FFN 的第一层通常很宽（Wide）。我们假设 $W_1$ 和 $b_1$ 如下：</p>
+<p>$$<br>W_1 &#x3D; \begin{bmatrix}<br>1 &amp; -1 &amp; 2 &amp; 0 \<br>0 &amp; 2 &amp; -1 &amp; 1<br>\end{bmatrix}, \quad<br>b_1 &#x3D; [0, \quad 0, \quad -5, \quad 0]<br>$$</p>
+<p><strong>计算过程：</strong></p>
+<p>$$<br>\begin{aligned}<br>Z &amp;&#x3D; x \cdot W_1 + b_1 \<br>&amp;&#x3D; [10, 20] \cdot \begin{bmatrix} 1 &amp; -1 &amp; 2 &amp; 0 \ 0 &amp; 2 &amp; -1 &amp; 1 \end{bmatrix} + [0, 0, -5, 0] \<br>\end{aligned}<br>$$</p>
+<p><strong>逐维度口算：</strong></p>
+<ul>
+<li><strong>第1维</strong>：$10\times1 + 20\times0 + 0 &#x3D; \mathbf{10}$</li>
+<li><strong>第2维</strong>：$10\times(-1) + 20\times2 + 0 &#x3D; -10 + 40 &#x3D; \mathbf{30}$</li>
+<li><strong>第3维</strong>：$10\times2 + 20\times(-1) + (-5) &#x3D; 20 - 20 - 5 &#x3D; \mathbf{-5}$  <strong>(注意这个负数!)</strong></li>
+<li><strong>第4维</strong>：$10\times0 + 20\times1 + 0 &#x3D; \mathbf{20}$</li>
+</ul>
+<p><strong>中间结果 ($Z$)：</strong><br>$$[10, \quad 30, \quad -5, \quad 20]$$</p>
+<blockquote>
+<p><strong>💡 意义</strong>：原本 2 个维度的信息，被拆解到了 4 个维度空间里，就像把一束白光用三棱镜分解成七色光。</p>
+</blockquote>
+<hr>
+<h2 id="2-第二步：非线性激活-ReLU"><a href="#2-第二步：非线性激活-ReLU" class="headerlink" title="2. 第二步：非线性激活 (ReLU)"></a>2. 第二步：非线性激活 (ReLU)</h2><p>公式：$\text{ReLU}(z) &#x3D; \max(0, z)$<br>这一步非常简单粗暴：<strong>所有负数直接归零，正数保持不变。</strong></p>
+<p>$$<br>\begin{aligned}<br>H &amp;&#x3D; \text{ReLU}([10, \quad 30, \quad \mathbf{-5}, \quad 20]) \<br>&amp;&#x3D; [10, \quad 30, \quad \mathbf{0}, \quad 20]<br>\end{aligned}<br>$$</p>
+<blockquote>
+<p><strong>💡 意义</strong>：</p>
+<ul>
+<li>注意那个 <strong>-5 变成了 0</strong>。</li>
+<li>这就是**“筛选”**。模型认为第 3 个维度的特征（可能是某种噪音或无关信息）对当前任务没有帮助，所以直接“关掉”了神经元。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="3-第三步：线性变换与降维-HW-2-b-2"><a href="#3-第三步：线性变换与降维-HW-2-b-2" class="headerlink" title="3. 第三步：线性变换与降维 ($HW_2 + b_2$)"></a>3. 第三步：线性变换与降维 ($HW_2 + b_2$)</h2><p>现在我们要把这个 4 维向量压回 2 维，方便传给下一层。<br>假设 $W_2$ 和 $b_2$ 如下：</p>
+<p>$$<br>W_2 &#x3D; \begin{bmatrix}<br>1 &amp; 0 \<br>1 &amp; 1 \<br>0 &amp; 0 \<br>2 &amp; 1<br>\end{bmatrix}, \quad<br>b_2 &#x3D; [1, \quad 1]<br>$$</p>
+<p><strong>计算过程：</strong></p>
+<p>$$<br>\begin{aligned}<br>\text{Output} &amp;&#x3D; H \cdot W_2 + b_2 \<br>&amp;&#x3D; [10, 30, 0, 20] \cdot \begin{bmatrix} 1 &amp; 0 \ 1 &amp; 1 \ 0 &amp; 0 \ 2 &amp; 1 \end{bmatrix} + [1, 1]<br>\end{aligned}<br>$$</p>
+<p><strong>逐维度口算：</strong></p>
+<ul>
+<li><p><strong>第1维</strong>：<br>  $(10\times1) + (30\times1) + (0\times0) + (20\times2) + 1$<br>  $&#x3D; 10 + 30 + 0 + 40 + 1 &#x3D; \mathbf{81}$</p>
+</li>
+<li><p><strong>第2维</strong>：<br>  $(10\times0) + (30\times1) + (0\times0) + (20\times1) + 1$<br>  $&#x3D; 0 + 30 + 0 + 20 + 1 &#x3D; \mathbf{51}$</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-最终结果对比"><a href="#4-最终结果对比" class="headerlink" title="4. 最终结果对比"></a>4. 最终结果对比</h2><p>$$<br>\text{FFN Output} &#x3D; [\mathbf{81}, \mathbf{51}]<br>$$</p>
+<p>让我们回顾一下全过程的变化：</p>
+<table>
+<thead>
+<tr>
+<th align="left">阶段</th>
+<th align="left">向量值</th>
+<th align="left">维度</th>
+<th align="left">状态描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><strong>FFN 输入</strong></td>
+<td align="left"><code>[10, 20]</code></td>
+<td align="left">2维</td>
+<td align="left">刚开完会（Attention），收集了信息，但比较杂。</td>
+</tr>
+<tr>
+<td align="left"><strong>中间层 (ReLU前)</strong></td>
+<td align="left"><code>[10, 30, -5, 20]</code></td>
+<td align="left"><strong>4维</strong></td>
+<td align="left">大脑风暴，把想法发散开，产生了很多念头。</td>
+</tr>
+<tr>
+<td align="left"><strong>激活后 (ReLU后)</strong></td>
+<td align="left"><code>[10, 30, 0, 20]</code></td>
+<td align="left"><strong>4维</strong></td>
+<td align="left">否定了不靠谱的念头（-5 被归零）。</td>
+</tr>
+<tr>
+<td align="left"><strong>FFN 输出</strong></td>
+<td align="left"><code>[81, 51]</code></td>
+<td align="left">2维</td>
+<td align="left">总结陈词，形成经过深思熟虑的新观点。</td>
+</tr>
+</tbody></table>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PWRM0QDS7E');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
