@@ -3,6 +3,11 @@
   avatar: "/img/friends/travellings.png"
   description: "让传统友链“活跃”，让网页相互接力，让流量相互流动，让网络开放起来"
 
+- name: '逄金吉'
+  url: 'https://jinjipang.com/'
+  avatar: "https://github.com/JinjiPang.png?size=100"
+  description: "爱荷华州立大学兽医微生物与预防医学，我是一个无神论者，却有点相信命中注定，如果有来生，我希望自己能成为一名音乐家。"
+
 - name: "无聊湾"
   url: "https://boringbay.com/"
   avatar: "https://github.com/cantoblanco.png?size=100"
