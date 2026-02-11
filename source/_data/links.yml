@@ -6,7 +6,12 @@
 - name: '逄金吉'
   url: 'https://jinjipang.com/'
   avatar: "https://github.com/JinjiPang.png?size=100"
-  description: "爱荷华州立大学兽医微生物与预防医学，我是一个无神论者，却有点相信命中注定，如果有来生，我希望自己能成为一名音乐家。"
+  description: "爱荷华州立大学兽医微生物与预防医学博士毕业，我是一个无神论者，却有点相信命中注定，如果有来生，我希望自己能成为一名音乐家。"
+
+- name: '谢益辉'
+  url: 'https://yihui.org/'
+  avatar: "https://github.com/yihui.png?size=100"
+  description: "爱荷华州立大学统计系，统计学博士。一个在美帝工作的湖北宜昌人，居住于美国内布拉斯加州麋鹿角郊区。"
 
 - name: "无聊湾"
   url: "https://boringbay.com/"
@@ -30,7 +35,7 @@
 
 - name: 'BLxcwg666'
   url: 'https://blog.xcnya.cn/'
-  avatar: "https://github.com/BLxcwg666/BLxcwg666.png?size=100"
+  avatar: "https://github.com/BLxcwg666.png?size=100"
   description: "十年前我们仰望星空，十年后我们将俯视大地，未来的天空，必将为我们留下一片灿烂的曙光！"
 
 - name: '橙梓'
