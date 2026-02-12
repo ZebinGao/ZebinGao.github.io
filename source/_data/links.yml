@@ -28,11 +28,16 @@
   avatar: "https://github.com/earfanfan.png?size=100"
   description: "当发现被整个世界欺骗的时候，不要直接否定一切，要努力将个人价值与社会价值分离，随后仍然要去重新分辨是非对错，要面对。扎根于具体的生活。"
 
+- name: '清华教授的儿子'
+  url: 'https://onevcat.com/'
+  avatar: "https://github.com/onevcat.png?size=100"
+  description: "王巍 (onevcat)，清华毕业，一名长期在日本生活的中国开发者，主要专注于 iOS, Swift 和 AI 相关的话题。"
+
 
 - name: '移居日本的中国夫妻'
   url: 'https://shuiba.co/'
   avatar: "https://github.com/shuibaco.png?size=100"
-  description: "水八口，居住日本神户的自学成才的网页设计师。一位女儿、妻子、母亲，也是一位极简主义者。"
+  description: "水八口，来自福州，留学日本并定居的网页设计师。一位女儿、妻子、母亲，也是一位极简主义者。"
 
 - name: '拥有飞机驾照的会写代码的女经济师'
   url: 'https://www.liyunchen.com/'
