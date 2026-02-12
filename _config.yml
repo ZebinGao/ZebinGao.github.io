@@ -46,11 +46,11 @@ external_link:
   field: site # Apply to the whole site
   exclude: ''
 filename_case: 0
-render_drafts: false
-post_asset_folder: true #每次新建文章都会自动生成一个同名文件夹，方便你把图片放进去。
+render_drafts: false #是否渲染 source/_drafts 文件夹下的草稿。设为 false 则这些文章不会发布。
+post_asset_folder: false #每次新建文章都会自动生成一个同名文件夹，方便你把图片放进去。
 relative_link: false
-future: true
-syntax_highlighter: highlight.js
+future: true #是否显示发布时间晚于当前时间的文章。
+syntax_highlighter: highlight.js #Hexo 提供两种主流的代码高亮方式：Highlight.js 和 PrismJS。
 highlight:
   line_number: true
   auto_detect: false
