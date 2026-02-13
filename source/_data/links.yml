@@ -15,21 +15,39 @@
   url: 'https://blog.cnbang.net/'
   avatar: "https://github.com/bang590.png?size=100"
   description: "我是bang,程序员,喜欢做东西。"
+
 ##上海系列
 - name: '转战B站和公众号的开源人物羡辙'
   url: 'http://zhangwenli.com/'
   avatar: "https://github.com/Ovilia.png?size=100"
   description: "我是一个想到什么就一定要付诸行动的人——不写就失眠，一写就是四个小时。想找到历史文章不容易，得碰运气。"
+
+- name: "莫比乌斯"
+  url: "https://onojyun.com/"
+  avatar: "/img/friends/onojyun.png"
+  description: "我的文字不是为了顺从你的喜好，而是让你意识到我们是有血有肉的人。"
+
 ##深圳系列
 - name: '我与我周旋久'
   url: 'https://about.laily.net/'
   avatar: "https://github.com/hilaily.png?size=100"
   description: "一个在深圳工作的湖北宜昌人,92 年出生,15 年大学毕业，然后一直在互联网行业工作。"
+
+- name: '蒋洋'
+  url: 'https://jiangmiemie.com/'
+  avatar: "https://github.com/jiangyangcreate.png?size=100"
+  description: "个人的美好生活只有自己争取：子女不应寄希望于父母，父母亦不应寄希望于子女。伴侣不应当寄希望于对方，公民不应当寄希望于政府。"
+
 ##北京系列
 - name: '斩断情思的唐洁'
   url: 'https://tang-jay.github.io/'
   avatar: "https://github.com/Tang-Jay.png?size=100"
   description: "1995年生人,来自湖南祁。大同乡村特岗数学教师兼班主任,湖南大学附属中学数学教师,北师大统计学博士。"
+
+- name: '橙梓'
+  url: 'https://blog.orangii.cn/'
+  avatar: "https://github.com/Jiaocz.png?size=100"
+  description: "西北工业大学，快手，支付业务部，前端开发"
 
 ##重庆系列
 - name: '扯远了'
@@ -37,18 +55,25 @@
   avatar: "/img/friends/shihezi.png"
   description: "河石子，八零后，有时是一名执业药师，有时也是一名医药代表，大多数时间是一名卖身不卖艺的文艺工作者。"
 
-#养狗系列
-- name: '阿木狗主'
+##武汉系列
+- name: '阿木狗主袁凡'
   url: 'https://yuanfan.rbind.io/about/'
   avatar: "https://github.com/earfanfan.png?size=100"
   description: "当发现被整个世界欺骗的时候，不要直接否定一切，要努力将个人价值与社会价值分离，随后仍然要去重新分辨是非对错，要面对。扎根于具体的生活。"
 
-- name: "莫比乌斯"
-  url: "https://onojyun.com/"
-  avatar: "/img/friends/onojyun.png"
-  description: "我的文字不是为了顺从你的喜好，而是让你意识到我们是有血有肉的人。"
+##西安系列
+- name: '肖宗林'
+  url: 'https://www.xiaozonglin.cn/'
+  avatar: "https://github.com/linlinzzong.png?size=100"
+  description: "负责开往服务器的运维工作（用 ChatGPT 对开往服务器出现的问题进行定位和处理，例如 Node.js Cluster 模块使用不当导致进程不断创建子进程等）"
 
-#贵州系列
+##厦门系列
+- name: '洛寒兮'
+  url: 'https://www.luochancy.com/'
+  avatar: "https://github.com/Luochancy.png?size=100"
+  description: "正在负责 “开往” 项目、非商业音游 Simple 的运营之一和 LuocyTeam 的创始人"
+
+##贵州系列
 - name: "尺宅杂记"
   url: "http://www.qncd.com/"
   avatar: "/img/friends/qncd.png"
@@ -134,27 +159,7 @@
 
 #青年系列
 
-- name: '蒋洋'
-  url: 'https://jiangmiemie.com/'
-  avatar: "https://github.com/jiangyangcreate.png?size=100"
-  description: "个人的美好生活只有自己争取：子女不应寄希望于父母，父母亦不应寄希望于子女。伴侣不应当寄希望于对方，公民不应当寄希望于政府。"
-
-- name: '肖宗林'
-  url: 'https://www.xiaozonglin.cn/'
-  avatar: "https://github.com/linlinzzong.png?size=100"
-  description: "负责开往服务器的运维工作（用 ChatGPT 对开往服务器出现的问题进行定位和处理，例如 Node.js Cluster 模块使用不当导致进程不断创建子进程等）"
-
-- name: '洛寒兮'
-  url: 'https://www.luochancy.com/'
-  avatar: "https://github.com/Luochancy.png?size=100"
-  description: "正在负责 “开往” 项目、非商业音游 Simple 的运营之一和 LuocyTeam 的创始人"
-
 - name: 'BLxcwg666'
   url: 'https://blog.xcnya.cn/'
   avatar: "https://github.com/BLxcwg666.png?size=100"
   description: "十年前我们仰望星空，十年后我们将俯视大地，未来的天空，必将为我们留下一片灿烂的曙光！"
-
-- name: '橙梓'
-  url: 'https://blog.orangii.cn/'
-  avatar: "https://github.com/Jiaocz.png?size=100"
-  description: "快手，支付业务部，前端开发"
