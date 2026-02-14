@@ -11,10 +11,20 @@
 #中国人系列
 
 ##杭州系列
-- name: '硕果仅存的持续进步的大佬'
+- name: '持续进步的大佬'
   url: 'https://blog.cnbang.net/'
   avatar: "https://github.com/bang590.png?size=100"
   description: "我是bang,程序员,喜欢做东西。"
+
+- name: '陈光剑'
+  url: 'https://universsky.github.io/'
+  avatar: "https://github.com/universsky.png?size=100"
+  description: "陈光剑,江苏东海人, 号行走江湖一剑客,字之剑. 程序员,诗人, 作家. 光剑免费图书馆"
+
+- name: '丁克的90后男生'
+  url: 'https://blog.solazy.me/'
+  avatar: "/img/friends/solazy.png"
+  description: "不止于品尝，更着迷于其背后的技法与原理，以及所承载的文化与历史。"
 
 ##上海系列
 - name: '转战B站和公众号的开源人物羡辙'
@@ -38,6 +48,12 @@
   avatar: "https://github.com/jiangyangcreate.png?size=100"
   description: "个人的美好生活只有自己争取：子女不应寄希望于父母，父母亦不应寄希望于子女。伴侣不应当寄希望于对方，公民不应当寄希望于政府。"
 
+## 广州系列
+- name: '拥有个人博客的高中生'
+  url: 'https://blog.byteloid.one/'
+  avatar: "https://github.com/bingxin666.png?size=100"
+  description: "广州的普通高中生一名,日常爱好是打游戏！"
+
 ##北京系列
 - name: '斩断情思的唐洁'
   url: 'https://tang-jay.github.io/'
@@ -48,6 +64,22 @@
   url: 'https://blog.orangii.cn/'
   avatar: "https://github.com/Jiaocz.png?size=100"
   description: "西北工业大学，快手，支付业务部，前端开发"
+
+- name: '溢出猫'
+  url: 'https://blog.xinshijiededa.men/'
+  avatar: "https://github.com/OverflowCat.png?size=100"
+  description: "長於淮左，負笈京畿, 學在北航。欲築賽博蘭臺；偶窺機巧之微。"
+
+- name: '全栈工程师'
+  url: 'https://candinya.com/'
+  avatar: "https://github.com/Candinya.png?size=100"
+  description: "摸鱼大王，世末鸽者，肥肥阿宅，一个在家里造数据中心的人。"
+
+- name: '北漂社畜'
+  url: 'https://shakaianee.top/'
+  avatar: "https://github.com/SocialSisterYi.png?size=100"
+  description: "陕西邮电职业技术学院计算机网络专业。拒绝抽烟与短视频，会编程 会搭网站 会玩单片机 会组装PC,老二刺猿技术宅，热爱关于电子科技的一切。"
+
 
 ##重庆系列
 - name: '扯远了'
@@ -64,7 +96,7 @@
 ##西安系列
 - name: '肖宗林'
   url: 'https://www.xiaozonglin.cn/'
-  avatar: "https://github.com/linlinzzong.png?size=100"
+  avatar: "https://github.com/linlinzzo.png?size=100"
   description: "负责开往服务器的运维工作（用 ChatGPT 对开往服务器出现的问题进行定位和处理，例如 Node.js Cluster 模块使用不当导致进程不断创建子进程等）"
 
 ##厦门系列
@@ -78,6 +110,12 @@
   url: "http://www.qncd.com/"
   avatar: "/img/friends/qncd.png"
   description: "没有什么特别的头衔，也没被归为某一类别，除了不劳而获的姓名、性别和年龄，还真是一片空白。我所知的，是我无限的无知。"
+
+##广西系列
+- name: "广西的普通人"
+  url: "https://www.gxres.net/"
+  avatar: "https://github.com/gxres042.png?size=100"
+  description: "I am a 19 years old guy who born in Guangxi, China. Now I am studying Information Security Technology at a university in there."
 
 #在德国慕尼黑的中国人
 - name: "三脚猫程序员+薪水小偷"
