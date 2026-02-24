@@ -100,6 +100,12 @@
   avatar: "https://github.com/earfanfan.png?size=100"
   description: "当发现被整个世界欺骗的时候，不要直接否定一切，要努力将个人价值与社会价值分离，随后仍然要去重新分辨是非对错，要面对。扎根于具体的生活。"
 
+##成都系列
+- name: '王宜楷工作室'
+  url: 'http://wangyikai.com/'
+  avatar: "https://github.com/earfanfan.png?size=100"
+  description: "负责属地网络信息监管与舆情处置、官方双微运营，组织开展网络舆论阵地建设、网络主题宣传、网络评论、网上统战等。"
+
 ##西安系列
 - name: '肖宗林'
   url: 'https://www.xiaozonglin.cn/'
@@ -123,6 +129,13 @@
   url: "https://www.gxres.net/"
   avatar: "https://github.com/gxres042.png?size=100"
   description: "I am a 19 years old guy who born in Guangxi, China. Now I am studying Information Security Technology at a university in there."
+
+##南昌系列
+- name: "人力资源小胡"
+  url: "https://yinji.org/archives.html"
+  avatar: "https://github.com/huhexian.png?size=100"
+  description: "2002年出生,江西人。青山，取自辛弃疾词“我见青山多妩媚，料青山见我应如是。"
+
 
 #在德国慕尼黑的中国人
 - name: "三脚猫程序员+薪水小偷"
