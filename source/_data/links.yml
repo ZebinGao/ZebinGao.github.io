@@ -87,6 +87,13 @@
   avatar: "https://lifelonglearn.ing/logo.png"
   description: "原先在北京西二旗工作，开源项目哪吒监控的开发者，按照丈母娘的要求第二次在山东买了联排，长期远程工作。"
 
+##山东青岛系列
+
+- name: '普通人，喜欢探索。'
+  url: 'https://acevs.com/'
+  avatar: "https://github.com/leileiluoluo.png?size=100"
+  description: "每个人都是不明真相的群众，看到只是世界的一个切片。多几个角度切片，可能会治愈很多，可能会伤害更深，都是收获。"
+
 
 ##重庆系列
 - name: '扯远了'
@@ -94,31 +101,42 @@
   avatar: "/img/friends/shihezi.png"
   description: "河石子，八零后，有时是一名执业药师，有时也是一名医药代表，大多数时间是一名卖身不卖艺的文艺工作者。"
 
-##武汉系列
+- name: '渣浪'
+  url: 'https://bwskyer.com/'
+  avatar: "/img/friends/zhalang.png"
+  description: "做这个网站初衷是为了记录下自己生活的点滴, 打小就喜欢用文字写流水账, 虽然写得不好但总能回头看到以前的自己, 博客换了3个, 现在是永久地址无误."
+
+##湖北武汉系列
 - name: '阿木狗主袁凡'
   url: 'https://yuanfan.rbind.io/about/'
   avatar: "https://github.com/earfanfan.png?size=100"
   description: "当发现被整个世界欺骗的时候，不要直接否定一切，要努力将个人价值与社会价值分离，随后仍然要去重新分辨是非对错，要面对。扎根于具体的生活。"
 
-##成都系列
+##四川成都系列
 - name: '王宜楷工作室'
   url: 'http://wangyikai.com/'
   avatar: "https://github.com/earfanfan.png?size=100"
   description: "负责属地网络信息监管与舆情处置、官方双微运营，组织开展网络舆论阵地建设、网络主题宣传、网络评论、网上统战等。"
 
-##西安系列
+##四川自贡系列
+- name: '1900的灯泡店'
+  url: 'https://1900.live/'
+  avatar: "https://github.com/rebron1900.png?size=100"
+  description: "91 年生人。出生于湖南，但是大部分人生都在四川、广西渡过。在广西时学过几年开发，略懂一些编程技能。2015 年 6 月骑过一次 318，2016 年骑行环青海湖，2018 年 10 月环海南岛。"
+
+##陕西西安系列
 - name: '肖宗林'
   url: 'https://www.xiaozonglin.cn/'
   avatar: "https://github.com/linlinzzo.png?size=100"
   description: "负责开往服务器的运维工作（用 ChatGPT 对开往服务器出现的问题进行定位和处理，例如 Node.js Cluster 模块使用不当导致进程不断创建子进程等）"
 
-##厦门系列
+##福建厦门系列
 - name: '洛寒兮'
   url: 'https://www.luochancy.com/'
   avatar: "https://github.com/Luochancy.png?size=100"
   description: "正在负责 “开往” 项目、非商业音游 Simple 的运营之一和 LuocyTeam 的创始人"
 
-##贵州系列
+##贵州贵阳系列
 - name: "尺宅杂记"
   url: "http://www.qncd.com/"
   avatar: "/img/friends/qncd.png"
@@ -130,7 +148,7 @@
   avatar: "https://github.com/gxres042.png?size=100"
   description: "I am a 19 years old guy who born in Guangxi, China. Now I am studying Information Security Technology at a university in there."
 
-##南昌系列
+##江西南昌系列
 - name: "人力资源小胡"
   url: "https://yinji.org/archives.html"
   avatar: "https://github.com/huhexian.png?size=100"
