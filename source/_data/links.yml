@@ -1,7 +1,8 @@
-- name: "开往-一个神秘的新世界"
-  url: "https://www.travellings.cn/go.html"
-  avatar: "/img/friends/travellings.png"
-  description: "让传统友链“活跃”，让网页相互接力，让流量相互流动，让网络开放起来"
+## 德国系列
+- name: "来自德国的WPF专家"
+  url: "https://www.thomasclaudiushuber.com/"
+  avatar: "https://github.com/thomasclaudiushuber.png?size=100"
+  description: "Residing in Germany’s Black Forest with my wife and our three daughters, I enjoy playing football, guitar, working out."
 
 - name: "优秀个人独立博客导航"
   url: "http://www.jetli.com.cn/"
