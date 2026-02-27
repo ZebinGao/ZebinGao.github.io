@@ -4,6 +4,12 @@
   avatar: "https://github.com/thomasclaudiushuber.png?size=100"
   description: "Residing in Germany’s Black Forest with my wife and our three daughters, I enjoy playing football, guitar, working out."
 
+##韩国系列
+- name: "韩国的WPF专家夫妻"
+  url: "https://jamesnet.dev/"
+  avatar: "https://github.com/vickyqu115.png?size=100"
+  description: "我是瞿扬(Vicky)，一名专注于WPF的开发者、教程创作者和社区教育者。"
+
 - name: "优秀个人独立博客导航"
   url: "http://www.jetli.com.cn/"
   avatar: "/img/friends/jetli.png"
