@@ -219,6 +219,12 @@
   avatar: "/img/friends/phd-chemist.png"
   description: "大学老师的孩子, PHD chemist working in biotech, 波士顿旅居人"
 
+## 美国纽约
+- name: '科普作家卢昌海'
+  url: 'https://www.changhai.org/index.php'
+  avatar: "/img/friends/luchanghai.png"
+  description: "关于童年的许多记忆都已模糊了——正因为如此， 也更让人留恋。 那些点点滴滴的回忆在别人眼里也许很乏味， 对我自己却备感亲切， 算是敝帚自珍吧。"
+
 
 #在加拿大的中国人
 - name: "雁渡寒潭"
