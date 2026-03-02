@@ -1,3 +1,20 @@
+## WPF专家系列
+- name: "林德熙"
+  url: "https://blog.lindexi.com/"
+  avatar: "https://github.com/lindexi.png?size=100"
+  description: "Windows Development MVP. Member of the .NET Foundation"
+
+- name: "吕毅"
+  url: "https://blog.walterlv.com/"
+  avatar: "https://github.com/walterlv.png?size=100"
+  description: ".NET and Windows App Developer"
+
+- name: "晒太阳的猫"
+  url: "https://blog.jgrass.cc/"
+  avatar: "https://github.com/JasonGrass.png?size=100"
+  description: "个人博客站点，记录一些随笔"
+
+
 ## 德国系列
 - name: "来自德国的WPF专家"
   url: "https://www.thomasclaudiushuber.com/"
