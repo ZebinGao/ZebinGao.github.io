@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WPF 内存泄漏排查全纪实 - 与买桂花同载酒</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,WPF 内存泄漏排查全纪实：从 1200 万个幽灵对象到 0 泄漏的硬核破局在工业级客户端开发中，内存泄漏往往是“业务数据膨胀”、“UI 渲染机制”与“架构耦合”三者交织的终极灾难。本文将详细复盘一,"> 
+    <meta name="author" content="Zebin Gao"> 
+    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="WPF 内存泄漏排查全纪实 - 与买桂花同载酒"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,WPF 内存泄漏排查全纪实：从 1200 万个幽灵对象到 0 泄漏的硬核破局在工业级客户端开发中，内存泄漏往往是“业务数据膨胀”、“UI 渲染机制”与“架构耦合”三者交织的终极灾难。本文将详细复盘一,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="与买桂花同载酒"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="WPF 内存泄漏排查全纪实 - 与买桂花同载酒"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,WPF 内存泄漏排查全纪实：从 1200 万个幽灵对象到 0 泄漏的硬核破局在工业级客户端开发中，内存泄漏往往是“业务数据膨胀”、“UI 渲染机制”与“架构耦合”三者交织的终极灾难。本文将详细复盘一,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">与买桂花同载酒</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://www.zebin-yue.top"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">WPF 内存泄漏排查全纪实</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">WPF 内存泄漏排查全纪实</h1>
+        <div class="stuff">
+            <span>三月 31, 2026</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/WPF/" rel="tag">WPF</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%B7%A5%E4%B8%9A%E8%BD%AF%E4%BB%B6/" rel="tag">工业软件</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/" rel="tag">架构解析</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="WPF-内存泄漏排查全纪实：从-1200-万个幽灵对象到-0-泄漏的硬核破局"><a href="#WPF-内存泄漏排查全纪实：从-1200-万个幽灵对象到-0-泄漏的硬核破局" class="headerlink" title="WPF 内存泄漏排查全纪实：从 1200 万个幽灵对象到 0 泄漏的硬核破局"></a>WPF 内存泄漏排查全纪实：从 1200 万个幽灵对象到 0 泄漏的硬核破局</h1><p>在工业级客户端开发中，内存泄漏往往是“业务数据膨胀”、“UI 渲染机制”与“架构耦合”三者交织的终极灾难。本文将详细复盘一次极其隐蔽的 WPF 内存泄漏案，揭示如何通过自动化压测复现、看透诊断工具的障眼法，并扒出架构底层的完整引用链，完成定点爆破。</p>
+<h2 id="一、-案发现场：一份-1-12GB-Dump-引发的悬案"><a href="#一、-案发现场：一份-1-12GB-Dump-引发的悬案" class="headerlink" title="一、 案发现场：一份 1.12GB Dump 引发的悬案"></a>一、 案发现场：一份 1.12GB Dump 引发的悬案</h2><p>排查的起点，是客户现场频发的卡顿与 OOM（Out of Memory）崩溃。通过抓取现场 1.12GB 的 Dump 文件，Visual Studio 诊断工具揭示了极其恐怖的数据：</p>
+<ul>
+<li><strong>1200 万个数据幽灵</strong>：托管堆中密密麻麻地堆积了 <code>12,675,999</code> 个 <code>RecipeHistory</code> 业务对象。</li>
+<li><strong>157 个不死的窗口</strong>：内存中残留了 <code>157</code> 个早已被用户关闭的 <code>RecipeSelectWindow</code> 实例。</li>
+</ul>
+<p>这是一个典型的“连环 Bug”。客户数据库中仅有 1.2 万条历史记录，内存中凭空多出的 1000 万个对象，说明业务代码在多次触发查询时存在<strong>追加不清理的数据倍增 Bug</strong>。而这 157 个携带着畸形膨胀数据的窗口骨架迟迟无法销毁，直接引爆了 OOM。</p>
+<h2 id="二、-贯彻指令：彻夜“裸奔”压测与奇观数据"><a href="#二、-贯彻指令：彻夜“裸奔”压测与奇观数据" class="headerlink" title="二、 贯彻指令：彻夜“裸奔”压测与奇观数据"></a>二、 贯彻指令：彻夜“裸奔”压测与奇观数据</h2><p>在一开始排查时，领导就做出了明确的要求：<strong>必须坚持复现原始问题！</strong> 如果连问题原本的全貌和必现路径都没彻底摸透，就稀里糊涂地去改代码，那纯属自欺欺人。为了严格贯彻这一指示，我们在代码处于完全“裸奔”的未修复状态下，利用 C# <code>user32.dll</code> 手搓了一个自动化压测脚本，模拟“打开-&gt;保存（触发 DB 写入）-&gt;关闭”的循环，并让它跑了一整晚。</p>
+<p>第二天一早抓取 Dump 后，真正的大妖魔终于现身了：</p>
+<ul>
+<li><strong>恐怖的飙升速度</strong>：在压测期间，程序的 Commit Size（提交大小）以 <strong>每小时 5.4GB</strong> 的速度狂飙。</li>
+<li><strong>8,361 个窗口残留</strong>：整整 8361 个窗口骨架被死死拽在内存里（理论应有 1.8 万个，后期因庞大的垃圾触发了 GC 绞肉机效应导致严重卡顿，拖慢了执行效率）。</li>
+<li><strong>737 万个弱引用</strong>：内存中堆积了 <code>7,373,046</code> 个 <code>WeakReference</code>。WPF 本用来防泄漏的机制，在不死窗口的拖累下，成了压垮内存的稻草。</li>
+</ul>
+<h2 id="三、-抽丝剥茧：深挖完整引用链与工具避坑指南"><a href="#三、-抽丝剥茧：深挖完整引用链与工具避坑指南" class="headerlink" title="三、 抽丝剥茧：深挖完整引用链与工具避坑指南"></a>三、 抽丝剥茧：深挖完整引用链与工具避坑指南</h2><p>正是因为坚持了全量复现，我们得以顺着这 8000 多个窗口的 Dump 抽丝剥茧，终于扒出了这条横跨 UI、ViewModel 和系统框架的**“致命死亡锁链”**：</p>
+<ol>
+<li><strong>源头（不死的老大哥）</strong>：<code>Cimetrix</code> 框架底层的全局静态事件 <code>LocalizationManager.CultureChanged</code>。</li>
+<li><strong>第一道锁（暗中订阅）</strong>：<code>RecipeFilterViewModel</code> 继承自基类，基类构造函数“暗中”执行了 <code>+=</code> 订阅，且底层框架未提供解绑机制。</li>
+<li><strong>第二道锁（传递命令）</strong>：ViewModel 接收并保存了来自 UI 层的 <code>RecipeRowSelectCommand</code>。</li>
+<li><strong>第三道锁（强引用 UI）</strong>：该 Command 的委托绑定的是窗口的实例方法（如 <code>DoRecipeRowSelectCommand</code>），导致委托的 <code>Target</code> 死死指向了 <code>RecipeSelectWindow</code> 实例。</li>
+</ol>
+<p><strong>逻辑闭环</strong>：<code>静态事件</code> ➡ <code>ViewModel</code> ➡ <code>Command</code> ➡ <code>Window实例</code>。哪怕清空了数据，这根暗线依然会让窗口骨架“永生”。</p>
+<p>在这场深挖引用链的战斗中，我们遭遇了排查工具带来的巨大干扰，总结为两大避坑铁律：</p>
+<ul>
+<li><strong>⚠️ 避坑铁律 1：必须关闭 XAML 热重载</strong>。调试模式下的热重载服务会强行保留窗口引用，产生“假阳性泄漏”。</li>
+<li><strong>⚠️ 避坑铁律 2：警惕 <code>[Dependent Handle]</code> 的截胡</strong>。在默认勾选 <strong><code>Show hot paths only</code></strong> 时，VS 算法会被 WPF 的 <code>[Dependent Handle]</code>（UI 数据绑定的底层依赖句柄）截胡，强行隐藏远端的静态变量。必须取消勾选热路径才能看透真相。</li>
+</ul>
+<h2 id="四、-终极验证：3小时破坏性测试与-GC-孤岛理论"><a href="#四、-终极验证：3小时破坏性测试与-GC-孤岛理论" class="headerlink" title="四、 终极验证：3小时破坏性测试与 GC 孤岛理论"></a>四、 终极验证：3小时破坏性测试与 GC 孤岛理论</h2><p>为了验证这条引用链的准确性，我们进行了一次硬核的<strong>控制变量破坏性测试</strong>。<br>由于基类没有提供解绑静态事件的方法，<strong>我们必须在 <code>RecipeFilterViewModel</code> 类中自己手写一个 <code>Cleanup()</code> 方法，专门用于执行内部注销 <code>LocalizationManager</code> 静态事件的逻辑</strong>。</p>
+<p>在窗口的 <code>OnClosed</code> 中，我们仅仅只调用这个手写的 <code>Cleanup()</code>，<strong>故意不做任何 UI 层的物理断电</strong>。压测 3 小时，Commit Size 从 900MB 缓慢上升到 1.3GB。停止脚本后，<strong>内存稳稳回落并稳定在 1GB</strong>。</p>
+<p><strong>🔬 核心原理解析：垃圾孤岛效应 (Island of Isolation)</strong><br>为什么只注销静态变量就不漏了？因为切断了唯一的全局活根（静态变量）后，窗口、ViewModel 和海量数据组成的关系网瞬间变成了一座与系统断开的“孤岛”。GC 扫描时判定其全为垃圾，最终连锅端。测试期间的爬升，只是因为巨型对象进入了 GC 第 2 代，GC 在等待阈值触发全量回收。</p>
+<h2 id="五、-最终修复方案与“最小改动原则”"><a href="#五、-最终修复方案与“最小改动原则”" class="headerlink" title="五、 最终修复方案与“最小改动原则”"></a>五、 最终修复方案与“最小改动原则”</h2><p>虽然破坏性测试证明“只注销静态事件就能治本”，但在工业级框架中，如果不主动断开海量数据与 UI 的绑定，GC 在回收庞大孤岛时会引发严重的 CPU 尖峰与界面卡顿。</p>
+<p>为了彻底解决这每小时 5.4GB 的大出血，我尝试在窗口的 <code>OnClosed</code> 事件中加上了 <code>root.DataContext = null</code> 及其他物理清理代码。<br><strong>因此，我们必须遵循“最小改动原则”，在清理前后进行状态备份与恢复。</strong><br>因为外部调用方（如父窗口）在弹窗关闭后，还需要读取用户的选择结果。如果在清理时直接把绑定的状态摧毁，外部将获取到 <code>null</code>，从而引发严重的业务异常。</p>
+<p><strong>终极防御代码（RecipeSelectWindow.xaml.cs）：</strong></p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnClosed</span>(<span class="params">EventArgs e</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">base</span>.OnClosed(e);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 0. 最小改动原则：备份对外暴露的业务状态 ---</span></span><br><span class="line">    <span class="comment">// 防止后续的暴力清理导致数据绑定将结果刷为空，影响调用方读取</span></span><br><span class="line">    <span class="keyword">var</span> backupItem = <span class="keyword">this</span>.SelectedItem;</span><br><span class="line">    <span class="keyword">var</span> backupItems = <span class="keyword">this</span>.SelectedItems != <span class="literal">null</span> ? <span class="keyword">new</span> List&lt;BeanConstant.Model.RecipeIndexItem&gt;(<span class="keyword">this</span>.SelectedItems) : <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 1. 治本：切断暗线（拔除静态全局铁钩） ---</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.RecipeFilterViewModel != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 关键：调用我们在 ViewModel 中手写的新增方法，执行 -= 注销静态事件</span></span><br><span class="line">        <span class="keyword">this</span>.RecipeFilterViewModel.Cleanup(); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 2. 治标：物理断电（炸毁垃圾孤岛，避免 GC 绞肉机卡顿） ---</span></span><br><span class="line">    <span class="comment">// 解除绑定，让千万级数据对象失去向 UI 爬行的通道，化整为零</span></span><br><span class="line">    <span class="keyword">this</span>.root.DataContext = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.DataContext = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (ucFilter?.lsvRecipes != <span class="literal">null</span>) &#123; ucFilter.lsvRecipes.ItemsSource = <span class="literal">null</span>; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 3. 清算：摧毁视觉树 ---</span></span><br><span class="line">    <span class="keyword">this</span>.Content = <span class="literal">null</span>; <span class="comment">// 释放 TextBlock 等海量 UI 零件</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 4. 彻底归零 ---</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.RecipeFilterViewModel != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.RecipeFilterViewModel = <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// --- 5. 最小改动原则：还原业务状态 ---</span></span><br><span class="line">    <span class="comment">// 确保窗口物理死亡后，业务灵魂（选择结果）依然留存供外部调用</span></span><br><span class="line">    <span class="keyword">this</span>.SelectedItem = backupItem;</span><br><span class="line">    <span class="keyword">if</span> (backupItems != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">this</span>.SelectedItems = backupItems;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/sakura-michi.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liUMUoQLKTPswJDK"
+        data-cs="c46b751f5cbe796f506b01288d1c07f0446a45ef"
+        data-r="blog-comments"
+        data-o="ZebinGao"
+        data-a="ZebinGao"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WPF-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E5%85%A8%E7%BA%AA%E5%AE%9E%EF%BC%9A%E4%BB%8E-1200-%E4%B8%87%E4%B8%AA%E5%B9%BD%E7%81%B5%E5%AF%B9%E8%B1%A1%E5%88%B0-0-%E6%B3%84%E6%BC%8F%E7%9A%84%E7%A1%AC%E6%A0%B8%E7%A0%B4%E5%B1%80"><span class="toc-number">1.</span> <span class="toc-text">WPF 内存泄漏排查全纪实：从 1200 万个幽灵对象到 0 泄漏的硬核破局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%A1%88%E5%8F%91%E7%8E%B0%E5%9C%BA%EF%BC%9A%E4%B8%80%E4%BB%BD-1-12GB-Dump-%E5%BC%95%E5%8F%91%E7%9A%84%E6%82%AC%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">一、 案发现场：一份 1.12GB Dump 引发的悬案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E8%B4%AF%E5%BD%BB%E6%8C%87%E4%BB%A4%EF%BC%9A%E5%BD%BB%E5%A4%9C%E2%80%9C%E8%A3%B8%E5%A5%94%E2%80%9D%E5%8E%8B%E6%B5%8B%E4%B8%8E%E5%A5%87%E8%A7%82%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.</span> <span class="toc-text">二、 贯彻指令：彻夜“裸奔”压测与奇观数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E6%8A%BD%E4%B8%9D%E5%89%A5%E8%8C%A7%EF%BC%9A%E6%B7%B1%E6%8C%96%E5%AE%8C%E6%95%B4%E5%BC%95%E7%94%A8%E9%93%BE%E4%B8%8E%E5%B7%A5%E5%85%B7%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97"><span class="toc-number">1.3.</span> <span class="toc-text">三、 抽丝剥茧：深挖完整引用链与工具避坑指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E7%BB%88%E6%9E%81%E9%AA%8C%E8%AF%81%EF%BC%9A3%E5%B0%8F%E6%97%B6%E7%A0%B4%E5%9D%8F%E6%80%A7%E6%B5%8B%E8%AF%95%E4%B8%8E-GC-%E5%AD%A4%E5%B2%9B%E7%90%86%E8%AE%BA"><span class="toc-number">1.4.</span> <span class="toc-text">四、 终极验证：3小时破坏性测试与 GC 孤岛理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E6%9C%80%E7%BB%88%E4%BF%AE%E5%A4%8D%E6%96%B9%E6%A1%88%E4%B8%8E%E2%80%9C%E6%9C%80%E5%B0%8F%E6%94%B9%E5%8A%A8%E5%8E%9F%E5%88%99%E2%80%9D"><span class="toc-number">1.5.</span> <span class="toc-text">五、 最终修复方案与“最小改动原则”</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PWRM0QDS7E');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
