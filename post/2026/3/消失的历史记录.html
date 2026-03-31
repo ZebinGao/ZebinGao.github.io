@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>消失的历史记录 - 与买桂花同载酒</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,序言：消失的历史记录在半导体设备控制系统（基于 Cimetrix CCF 框架）的开发中，我们常遇到一个诡异的现象：通过 U 盘直接拷贝到本地文件夹的配方（Recipe），第一次打开时虽然能看到步骤,"> 
+    <meta name="author" content="Zebin Gao"> 
+    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="消失的历史记录 - 与买桂花同载酒"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,序言：消失的历史记录在半导体设备控制系统（基于 Cimetrix CCF 框架）的开发中，我们常遇到一个诡异的现象：通过 U 盘直接拷贝到本地文件夹的配方（Recipe），第一次打开时虽然能看到步骤,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="与买桂花同载酒"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="消失的历史记录 - 与买桂花同载酒"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,序言：消失的历史记录在半导体设备控制系统（基于 Cimetrix CCF 框架）的开发中，我们常遇到一个诡异的现象：通过 U 盘直接拷贝到本地文件夹的配方（Recipe），第一次打开时虽然能看到步骤,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">与买桂花同载酒</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://www.zebin-yue.top"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">消失的历史记录</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">消失的历史记录</h1>
+        <div class="stuff">
+            <span>三月 30, 2026</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/WPF/" rel="tag">WPF</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E5%B7%A5%E4%B8%9A%E8%BD%AF%E4%BB%B6/" rel="tag">工业软件</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%9E%B6%E6%9E%84%E8%A7%A3%E6%9E%90/" rel="tag">架构解析</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h2 id="序言：消失的历史记录"><a href="#序言：消失的历史记录" class="headerlink" title="序言：消失的历史记录"></a>序言：消失的历史记录</h2><p>在半导体设备控制系统（基于 <strong>Cimetrix CCF</strong> 框架）的开发中，我们常遇到一个诡异的现象：通过 U 盘直接拷贝到本地文件夹的配方（Recipe），第一次打开时虽然能看到步骤和参数，但“配方历史（History）”却是一片空白；只有手动点击一次“保存”后，历史记录才会神奇地显现。</p>
+<p>通过对全栈代码的深度追踪，我们还原了一场关于**物理肉体（磁盘文件）与数据库灵魂（Mongo索引）**的同步之旅。这个链条完美展示了 MVVM 模式、WCF 跨进程通信、IoC 依赖注入 以及 Repository 仓储模式 是如何串联协作的。</p>
+<hr>
+<h2 id="一、-架构全链路解析：从点击到落盘"><a href="#一、-架构全链路解析：从点击到落盘" class="headerlink" title="一、 架构全链路解析：从点击到落盘"></a>一、 架构全链路解析：从点击到落盘</h2><p>这条调用链条展示了工业级软件如何通过多层架构实现界面与数据的彻底解耦。</p>
+<h3 id="1-表现层-View-Layer"><a href="#1-表现层-View-Layer" class="headerlink" title="1. 表现层 (View Layer)"></a>1. 表现层 (View Layer)</h3><p>界面渲染与事件触发</p>
+<ul>
+<li><strong>触发点</strong>：<code>Live visual tree</code> 中的 <code>btnSave</code> 按钮。</li>
+<li><strong>代码实现</strong>：  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">x:Name</span>=<span class="string">&quot;btnSave&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">Style</span>=<span class="string">&quot;&#123;StaticResource ButtonHeaderStyle&#125;&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">Content</span>=<span class="string">&quot;Save&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">Visibility</span>=<span class="string">&quot;&#123;Binding RecipeEditorVisibility&#125;&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">Command</span>=<span class="string">&quot;&#123;Binding SaveCommand&#125;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><strong>架构意义</strong>：WPF 界面通过命令绑定（Command Binding）驱动逻辑。构造函数中的 <code>ViewModel = viewModel;</code> 建立了 View 与 ViewModel 的契合。WPF 的 XAML 界面通过数据绑定（Data Binding）将界面上的“Save”按钮与后台 ViewModel 中的 SaveCommand 命令死死绑定。界面不知道什么是数据库，它只知道“有人点了我，我就去喊 SaveCommand”。</li>
+</ul>
+<h3 id="2-逻辑层-ViewModel-Layer"><a href="#2-逻辑层-ViewModel-Layer" class="headerlink" title="2. 逻辑层 (ViewModel Layer)"></a>2. 逻辑层 (ViewModel Layer)</h3><p>业务逻辑与命令封装</p>
+<ul>
+<li><strong>核心类</strong>：<code>class RecipeEditorScreenViewModel : BaseFAViewModel</code></li>
+<li><strong>指令封装</strong>：<code>SaveCommand = new GUICommand&lt;string&gt;(DoSave);</code></li>
+<li><strong>业务逻辑</strong>：  <figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DoSave</span>(<span class="params"><span class="built_in">object</span> obj</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    Recipe.LastRevisionTime = DateTime.Now; <span class="comment">// 更新时间戳</span></span><br><span class="line">    <span class="keyword">var</span> xml = GetFullRecipeXml();            <span class="comment">// 组装物理 XML 内容</span></span><br><span class="line">    Save(xml);                               <span class="comment">// 进入保存流</span></span><br><span class="line">    MessageBox.Show(<span class="string">&quot;Saved Successfully!&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>架构意义</strong>：ViewModel 负责状态管理与数据封装，它不关心数据存哪，只负责“准备好要存的数据”。ViewModel 接管了控制权。在 DoSave 中，系统将当前配方的最新状态打包生成了 XML 文件（准备存入本地磁盘），并组装好了配方的元数据档案。此时，所有的活儿都还在 UI 进程的内存里打转。</li>
+</ul>
+<h3 id="3-服务通信层-Service-WCF-Layer"><a href="#3-服务通信层-Service-WCF-Layer" class="headerlink" title="3. 服务通信层 (Service &#x2F; WCF Layer)"></a>3. 服务通信层 (Service &#x2F; WCF Layer)</h3><p>跨进程通信与端点隔离</p>
+<ul>
+<li><strong>入口</strong>：<code>var proxy = ServiceClientsFactory.CreateGUIOperationService();</code></li>
+<li><strong>中转站</strong>：<code>class GUIOperationService : WcfServiceHost, IGUIOperationService</code></li>
+<li><strong>架构意义</strong>：UI 进程与后台服务进程分离。通过 WCF 代理，UI 将数据包发送给具备更高权限的服务端进程，实现进程级隔离。这是整个架构的分水岭！工业设备软件绝不允许 UI 直接操作数据库。UI 通过代理工厂（ServiceClientsFactory）拿到了一个 WCF 客户端代理，把数据像打包发快递一样，通过网络（或命名管道）发送给了运行在后台的 GUIOperationService 服务进程。</li>
+</ul>
+<h3 id="4-数据仓储层-Repository-Layer-物理持久层-Database-Layer"><a href="#4-数据仓储层-Repository-Layer-物理持久层-Database-Layer" class="headerlink" title="4. 数据仓储层 (Repository Layer) 物理持久层 (Database Layer)"></a>4. 数据仓储层 (Repository Layer) 物理持久层 (Database Layer)</h3><p>依赖倒置与数据持久化</p>
+<ul>
+<li><p><strong>接口调用</strong>：<code>var recorder = IOC.Service.Container.Resolve&lt;IRecipeIndexItemRepository&gt;();</code></p>
+</li>
+<li><p><strong>架构意义</strong>：利用 <strong>IoC (依赖注入)</strong> 容器动态解析仓储。这使得系统可以轻松切换存储介质（如从 MongoDB 切换到 SQL），而无需修改上层逻辑。后台服务收到包裹后，并没有直接写死“我要连 MongoDB”。它转身向 IoC 容器（控制反转容器）要了一个“实现了配方仓储接口的工具人”。系统配置在这个时候生效，甩给了它一个专门对接 MongoDB 的实例（MongoDBRecipeIndexItemRepository）。这种设计叫依赖倒置，哪怕明天你们决定把 MongoDB 换成 SQL Server，前面的所有代码一行都不用改。</p>
+</li>
+<li><p><strong>具体实现</strong>：<code>class MongoDBRecipeIndexItemRepository</code></p>
+</li>
+<li><p><strong>底层指令</strong>：</p>
+</li>
+</ul>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">UpdateItem</span>(<span class="params">RecipeIndexItem item</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    itemCollection.FindOneAndReplace&lt;RecipeIndexItem, RecipeIndexItem&gt;(</span><br><span class="line">        x =&gt; x.Name == item.Name, </span><br><span class="line">        item, </span><br><span class="line">        <span class="keyword">new</span> FindOneAndReplaceOptions&lt;RecipeIndexItem, RecipeIndexItem&gt;() &#123; IsUpsert = <span class="literal">true</span> &#125;</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>架构意义</strong>：这是链路的终点。<code>IsUpsert = true</code> 保证了数据库的“自愈”能力。链条的终点！这行代码拿着刚才历经千辛万苦传过来的配方索引对象，对 MongoDB 执行了原子操作。最精妙的 IsUpsert &#x3D; true 发挥了**有则更新，无则插入（建档）**的神奇作用。</li>
+</ul>
+<hr>
+<h2 id="二、-证据确凿！"><a href="#二、-证据确凿！" class="headerlink" title="二、 证据确凿！"></a>二、 证据确凿！</h2><p>所有的线索都白纸黑字地写在你的 RecipeEditorScreenViewModel.cs 代码里。我们可以从代码中明确看到，当你选中或双击打开一个配方时，系统是如何兵分两路，分别提取“本地文件（XML参数）”和“数据库记录（History历史）”的。</p>
+<h3 id="证据一：读取本地磁盘文件（获取-Steps-和参数）"><a href="#证据一：读取本地磁盘文件（获取-Steps-和参数）" class="headerlink" title="证据一：读取本地磁盘文件（获取 Steps 和参数）"></a>证据一：读取本地磁盘文件（获取 Steps 和参数）</h3><p>当你选中一行配方时，代码会调用 LoadRecipe(RecipeIndexItem item) 方法。请看这个方法的前几行：GetRecipe 就是去拿物理文件的。解析出来的 doc (XDocument) 就是你在界面上看到的那些工艺参数和步骤。这一步完全不碰历史记录。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="built_in">bool</span> <span class="title">LoadRecipe</span>(<span class="params">RecipeIndexItem item</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="built_in">string</span>.IsNullOrEmpty(item.Name)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 【铁证 1】：调用底层服务，通过文件路径(item.Name)去读本地的物理文件，返回字节流</span></span><br><span class="line">	<span class="keyword">var</span> content = OIClient.Service.GetRecipe(item.Name); </span><br><span class="line">	</span><br><span class="line">	<span class="comment">// ... 省略校验代码 ...</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 把字节流解码成字符串，并解析成 XML 文档！</span></span><br><span class="line">	<span class="keyword">var</span> encoder = <span class="keyword">new</span> ASCIIEncoding();</span><br><span class="line">	<span class="keyword">var</span> recipe = encoder.GetString(content);</span><br><span class="line">	<span class="keyword">var</span> doc = XDocument.Parse(recipe); </span><br><span class="line">	</span><br><span class="line">	<span class="comment">// ... 接着就是把 XML 里的 Steps 解析出来 ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="证据二：读取-MongoDB-里的元数据（获取权限与冻结状态）"><a href="#证据二：读取-MongoDB-里的元数据（获取权限与冻结状态）" class="headerlink" title="证据二：读取 MongoDB 里的元数据（获取权限与冻结状态）"></a>证据二：读取 MongoDB 里的元数据（获取权限与冻结状态）</h3><p>那 MongoDB 的数据是在哪读的呢？其实，传进来的参数 RecipeIndexItem item 本身，就是从 MongoDB 里查出来的完整数据实体（对应你之前截图里的那条 JSON）！</p>
+<p>请看双击打开配方的方法 DoRecipeDoubleClickCommand(RecipeIndexItem item)：界面的权限控制（能否编辑）和冻结状态（FrozenRecipe），直接取自这个代表 MongoDB 记录的 item 对象。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">DoRecipeDoubleClickCommand</span>(<span class="params">RecipeIndexItem item</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 此时 item 已经包含了从 MongoDB 拉取的 Role, AccessItems, History 等数据</span></span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">	<span class="keyword">if</span> (UpdateRecipeOperation(item) &amp;&amp; LoadRecipe(item)) <span class="comment">// 这里去调了上面的读文件方法</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 【铁证 2】：直接从这个 MongoDB 实体对象中提取数据，赋给界面的属性</span></span><br><span class="line">		currentRole = item.Role == <span class="literal">null</span> ? OIClient.Service.CurrentUser.Group : item.Role;</span><br><span class="line">		FrozenRecipe = item.Frozened; <span class="comment">// 从数据库对象里读取“是否冻结”</span></span><br><span class="line">		</span><br><span class="line">		UpdateRecipeCompare(item); <span class="comment">// 核心：传递给历史记录</span></span><br><span class="line">		SwitchToEditMode();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="证据三：将-MongoDB-的历史记录丢给-UI-显示"><a href="#证据三：将-MongoDB-的历史记录丢给-UI-显示" class="headerlink" title="证据三：将 MongoDB 的历史记录丢给 UI 显示"></a>证据三：将 MongoDB 的历史记录丢给 UI 显示</h3><p>最后，我们来看看历史记录（History）是怎么跑到界面上去的。紧接着上面的代码，它调用了 UpdateRecipeCompare(item)：RecipeHistoryScreenViewModel 拿到这个对象后，就会去读里面的 History 数组来渲染表格。如果这是 U 盘刚拷进来的文件，后台扫描到文件后捏造了一个临时的 recipeItem 壳子让它能显示在列表里，但由于 Mongo 里没数据，它的 History 就是 null。如果是正常保存过的，这个 recipeItem 就是从 MongoDB 里完整查出来的，History 数组里就有数据，界面也就有显示了。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">UpdateRecipeCompare</span>(<span class="params">RecipeIndexItem recipeItem</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	RecipeCompareScreenViewModel.MasterRecipeIndexItem = recipeItem;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 【铁证 3】：把代表 MongoDB 记录的整个对象，塞给了专门负责显示历史记录的 ViewModel！</span></span><br><span class="line">	RecipeHistoryScreenViewModel.RecipeIndexItem = recipeItem; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="三、-真相大白：为何保存后历史记录才出现？"><a href="#三、-真相大白：为何保存后历史记录才出现？" class="headerlink" title="三、 真相大白：为何保存后历史记录才出现？"></a>三、 真相大白：为何保存后历史记录才出现？</h2><p>针对“U 盘强塞文件”场景，同步逻辑如下：</p>
+<ol>
+<li><strong>“黑户”状态</strong>：强行拷贝 .rcp 文件到本地，只更新了物理磁盘，没有触发上述链条的第三步到第五步。MongoDB（第四层）对此一无所知。</li>
+<li><strong>第一次打开</strong>：UI 层（第一层）只能读到本地磁盘的 XML 参数，但当它向 WCF 服务（第三层）索要 MongoDB（第四层）里的 History 时，服务层只能返回空（null），导致界面历史记录空白。</li>
+<li><strong>点下保存（触发自愈）</strong>：你的点击激活了上面的完整链条。数据一路狂奔直达底层，第五步的 IsUpsert &#x3D; true 强制给这个“黑户”配方在 MongoDB 中新建了档案。。</li>
+<li><strong>最终刷新</strong>：DoSave 代码最后立刻刷新界面，重新走了一遍读操作。这一次，从 MongoDB 里顺利取回了刚刚建立的新档案，History 数据显现，物理世界与数据库世界彻底恢复同步！</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这一条从 <code>btnSave</code> 到 <code>FindOneAndReplace</code> 的调用链，体现了工业软件追求的高内聚、低耦合。它告诉我们：在复杂的系统中，看到的“现象”往往只是冰山一角，而底层的架构逻辑才是决定数据流转的隐形双手。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/sakura-michi.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liUMUoQLKTPswJDK"
+        data-cs="c46b751f5cbe796f506b01288d1c07f0446a45ef"
+        data-r="blog-comments"
+        data-o="ZebinGao"
+        data-a="ZebinGao"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%8F%E8%A8%80%EF%BC%9A%E6%B6%88%E5%A4%B1%E7%9A%84%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95"><span class="toc-number">1.</span> <span class="toc-text">序言：消失的历史记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E6%9E%B6%E6%9E%84%E5%85%A8%E9%93%BE%E8%B7%AF%E8%A7%A3%E6%9E%90%EF%BC%9A%E4%BB%8E%E7%82%B9%E5%87%BB%E5%88%B0%E8%90%BD%E7%9B%98"><span class="toc-number">2.</span> <span class="toc-text">一、 架构全链路解析：从点击到落盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E8%A1%A8%E7%8E%B0%E5%B1%82-View-Layer"><span class="toc-number">2.1.</span> <span class="toc-text">1. 表现层 (View Layer)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%BB%E8%BE%91%E5%B1%82-ViewModel-Layer"><span class="toc-number">2.2.</span> <span class="toc-text">2. 逻辑层 (ViewModel Layer)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E5%B1%82-Service-WCF-Layer"><span class="toc-number">2.3.</span> <span class="toc-text">3. 服务通信层 (Service &#x2F; WCF Layer)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%82%A8%E5%B1%82-Repository-Layer-%E7%89%A9%E7%90%86%E6%8C%81%E4%B9%85%E5%B1%82-Database-Layer"><span class="toc-number">2.4.</span> <span class="toc-text">4. 数据仓储层 (Repository Layer) 物理持久层 (Database Layer)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E8%AF%81%E6%8D%AE%E7%A1%AE%E5%87%BF%EF%BC%81"><span class="toc-number">3.</span> <span class="toc-text">二、 证据确凿！</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%8D%AE%E4%B8%80%EF%BC%9A%E8%AF%BB%E5%8F%96%E6%9C%AC%E5%9C%B0%E7%A3%81%E7%9B%98%E6%96%87%E4%BB%B6%EF%BC%88%E8%8E%B7%E5%8F%96-Steps-%E5%92%8C%E5%8F%82%E6%95%B0%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">证据一：读取本地磁盘文件（获取 Steps 和参数）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%8D%AE%E4%BA%8C%EF%BC%9A%E8%AF%BB%E5%8F%96-MongoDB-%E9%87%8C%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE%EF%BC%88%E8%8E%B7%E5%8F%96%E6%9D%83%E9%99%90%E4%B8%8E%E5%86%BB%E7%BB%93%E7%8A%B6%E6%80%81%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">证据二：读取 MongoDB 里的元数据（获取权限与冻结状态）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%81%E6%8D%AE%E4%B8%89%EF%BC%9A%E5%B0%86-MongoDB-%E7%9A%84%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E4%B8%A2%E7%BB%99-UI-%E6%98%BE%E7%A4%BA"><span class="toc-number">3.3.</span> <span class="toc-text">证据三：将 MongoDB 的历史记录丢给 UI 显示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E7%9C%9F%E7%9B%B8%E5%A4%A7%E7%99%BD%EF%BC%9A%E4%B8%BA%E4%BD%95%E4%BF%9D%E5%AD%98%E5%90%8E%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E6%89%8D%E5%87%BA%E7%8E%B0%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">三、 真相大白：为何保存后历史记录才出现？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">5.</span> <span class="toc-text">结语</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PWRM0QDS7E');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
