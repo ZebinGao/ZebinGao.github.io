@@ -1,0 +1,25 @@
+<article class="post-detail links-page">
+    <header class="post-header">
+        <h1 class="post-title">友情链接</h1>
+    </header>
+
+    <div class="content markdown">
+        <%- page.content %> 
+
+        <div class="link-navigation">
+            <% if (site.data.links) { %>
+                <% for (var i in site.data.links) { %>
+                    <a class="link-card-wrap" href="<%- site.data.links[i].url %>" target="_blank" rel="noopener">
+                        <div class="card">
+                            <img src="<%- site.data.links[i].avatar %>" alt="<%- site.data.links[i].name %>">
+                            <div class="card-text">
+                                <h4><%- site.data.links[i].name %></h4>
+                                <p><%- site.data.links[i].description %></p>
+                            </div>
+                        </div>
+                    </a>
+                <% } %>
+            <% } %>
+        </div>
+    </div>
+</article>
