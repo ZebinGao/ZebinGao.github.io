@@ -440,3 +440,60 @@ body {
     font-size: 0.9em;
     word-break: break-all;
 }
+/* =========================================================
+   归档页面 (Archive) 特化样式
+========================================================= */
+.archive-container {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 80vh;
+}
+
+/* 居中大写的年份标题 */
+.archive-year {
+    text-align: center;
+    font-size: 1.8rem;
+    color: #222;
+    margin: 40px 0 30px 0;
+    font-family: "Noto Serif SC", serif; /* 使用宋体更显文艺 */
+}
+.archive-year:first-child {
+    margin-top: 10px;
+}
+
+/* 让列表项横向排列，自动换行 */
+.archive-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 30px; /* 上下间距 20px，左右间距 30px */
+    justify-content: flex-start;
+}
+
+/* 单个文章条目 */
+.archive-item {
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+/* 日期样式：变成淡灰色，并使用等宽字体对齐 */
+.archive-item time {
+    color: #999;
+    margin-right: 8px;
+    font-family: 'Consolas', 'Courier New', monospace;
+}
+
+/* 🎯 标题样式：经典的虚线下划线 */
+.archive-item a {
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px dashed #999; /* 关键：虚线下划线 */
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+}
+
+.archive-item a:hover {
+    color: #d84b6b; /* 悬浮时变色 */
+    border-bottom-color: #d84b6b;
+}
