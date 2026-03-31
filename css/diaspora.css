@@ -370,3 +370,9 @@ pre .keyword,pre .javascript .function {color:#cc99cc;}
   .article .side {display:none}
   .comment .gt-btn-public .gt-btn-text:after{content:"";}
 }
+/* 针对你博客主题的强制加粗代码 */
+.content.markdown strong,
+.content.markdown b {
+    font-weight: 700 !important; /* 强制粗体 */
+    color: #333 !important;      /* 可选：加深颜色让粗体更明显 */
+}
