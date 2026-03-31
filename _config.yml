@@ -137,3 +137,9 @@ search:
   format: html
   #limit: 10000 是一个安全阀，用来限制搜索数据库抓取的文章数量上限。
   limit: 10000
+
+# 归档页生成配置
+archive_generator:
+  per_page: 0   # 🎯 0 表示归档页不分页，一页展示所有文章
+  yearly: true  # 开启按年归档
+  monthly: true # 开启按月归档
