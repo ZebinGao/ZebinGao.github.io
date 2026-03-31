@@ -67,6 +67,12 @@
   avatar: "/img/friends/onojyun.png"
   description: "我的文字不是为了顺从你的喜好，而是让你意识到我们是有血有肉的人。"
 
+- name: '董翰林'
+  url: 'http://www.hanlindong.com/'
+  avatar: "https://github.com/hanlin-dong.png?size=100"
+  description: "上海师范大学科学教育系，副系主任"
+
+
 ##深圳系列
 - name: '我与我周旋久'
   url: 'https://about.laily.net/'
