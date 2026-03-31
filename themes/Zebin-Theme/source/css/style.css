@@ -56,3 +56,76 @@ body {
         position: static; /* 取消吸附效果 */
     }
 }
+
+/* --- 首页文章卡片样式 --- */
+.post-card {
+    background: #fff;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee; /* 文章之间加一条浅色分割线 */
+}
+.post-card:last-child {
+    border-bottom: none;
+}
+.post-title a {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+}
+.post-title a:hover {
+    color: #d84b6b; /* 悬浮时变成喵神博客那种暗红色 */
+}
+.post-meta {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 10px 0 15px 0;
+}
+.post-excerpt {
+    color: #555;
+    margin-bottom: 20px;
+}
+.read-more {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.read-more:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* --- 翻页组件样式 --- */
+.paginator {
+    margin-top: 40px;
+    text-align: center;
+}
+.paginator a, .paginator span {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 5px;
+    background: #fff;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+}
+.paginator .current {
+    background: #333;
+    color: #fff;
+}
+
+/* --- 文章详情页样式 --- */
+.post-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.post-header .post-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
