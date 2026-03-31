@@ -34,20 +34,64 @@
         </main>
 
         <aside class="sidebar-right">
-            <div class="widget">
-                <h3>文章目录</h3>
-                <div class="toc-content">这里稍后注入 TOC 数据</div>
+            
+            <% if (is_post()) { %>
+                <div class="widget toc-widget">
+                    <h3><i class="iconfont icon-list"></i> 文章目录</h3>
+                    <div class="toc-content">
+                        <%- toc(page.content, {list_number: false}) %>
+                    </div>
+                </div>
+            <% } %>
+
+            <div class="widget tags-widget">
+                <h3><i class="iconfont icon-tags"></i> 热门标签</h3>
+                <div class="tags-cloud">
+                    <%- tagcloud({min_font: 12, max_font: 20, amount: 30, color: true, start_color: '#999', end_color: '#d84b6b'}) %>
+                </div>
             </div>
-            <div class="widget">
-                <h3>标签</h3>
-                <div class="tags-content">这里稍后注入标签云</div>
-            </div>
-            <div class="widget">
-                <h3>日历</h3>
-                <div class="calendar-content">这里稍后写日历组件</div>
+
+            <div class="widget calendar-widget">
+                <h3><i class="iconfont icon-calendar"></i> 日历</h3>
+                <div class="calendar-container">
+                    <div class="calendar-header">
+                        <span class="month"><%= date(Date.now(), 'MMMM YYYY') %></span>
+                    </div>
+                    <div class="calendar-days">
+                        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+                    </div>
+                    <div class="calendar-grid" id="calendar-grid">
+                        </div>
+                </div>
             </div>
         </aside>
 
     </div>
+    <script>
+    function buildCalendar() {
+        const grid = document.getElementById('calendar-grid');
+        if (!grid) return;
+        
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth();
+        const today = now.getDate();
+        
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        // 填充空白
+        for (let i = 0; i < firstDay; i++) {
+            grid.innerHTML += '<span></span>';
+        }
+        
+        // 填充日期
+        for (let d = 1; d <= daysInMonth; d++) {
+            const isToday = d === today ? 'class="today"' : '';
+            grid.innerHTML += `<span ${isToday}>${d}</span>`;
+        }
+    }
+    buildCalendar();
+</script>
 </body>
 </html>

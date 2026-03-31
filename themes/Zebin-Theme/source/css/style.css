@@ -256,3 +256,99 @@ body {
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
+
+/* =========================================================
+   右侧挂件通用样式
+========================================================= */
+.widget {
+    margin-bottom: 25px;
+}
+.widget h3 {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+.widget h3 i {
+    margin-right: 8px;
+}
+
+/* --- 文章目录 TOC 特化样式 --- */
+.toc-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.toc-content .toc {
+    padding: 0;
+    list-style: none;
+}
+.toc-content .toc-item {
+    margin: 5px 0;
+}
+.toc-content .toc-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: block;
+    line-height: 1.4;
+}
+.toc-content .toc-link:hover {
+    color: #d84b6b;
+    padding-left: 5px;
+}
+/* 层级缩进 */
+.toc-child {
+    padding-left: 15px;
+    list-style: none;
+}
+
+/* --- 标签云样式 --- */
+.tags-cloud a {
+    display: inline-block;
+    margin: 4px;
+    text-decoration: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+.tags-cloud a:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+}
+
+/* --- 极简日历样式 --- */
+.calendar-container {
+    background: #fff;
+    text-align: center;
+}
+.calendar-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #d84b6b;
+}
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 5px;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.calendar-grid span {
+    font-size: 0.85rem;
+    padding: 5px 0;
+    border-radius: 4px;
+}
+.calendar-grid .today {
+    background: #d84b6b;
+    color: #fff;
+    font-weight: bold;
+}
