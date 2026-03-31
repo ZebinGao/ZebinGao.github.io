@@ -17,10 +17,12 @@
             </div>
             
             <nav class="site-nav">
-                <a href="/"><span>🏠</span> 首页</a>
-                <a href="/archives"><span>🗂️</span> 归档</a>
-                <a href="/links"><span>🤝</span> 友链</a>
-                <a href="/about"><span>🙋‍♂️</span> 关于</a>
+                <% for (var name in theme.menu) { %>
+                    <a href="<%- url_for(theme.menu[name]) %>">
+                        <span><%- theme.menu_icons[name] || '📄' %></span> 
+                        <%- name %>
+                    </a>
+                <% } %>
             </nav>
             
             <div class="social-links">

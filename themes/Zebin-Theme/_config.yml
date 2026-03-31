@@ -1,2 +1,22 @@
 # 主题配置文件
 avatar: /img/avatar.png
+
+# 主题菜单配置
+menu:
+  首页: /
+  归档: /archives
+  友链: /links
+  关于: /about
+  番茄钟定时器: /pomodoro
+  2048小游戏: /smallgame/2048
+  谢益辉的恶作剧: /smallgame/trick
+
+# 为每个菜单项分配一个图标
+menu_icons:
+  首页: 🏠
+  归档: 🗂️
+  友链: 🤝
+  关于: 🙋‍♂️
+  番茄钟定时器: 🍅
+  2048小游戏: 🎮
+  谢益辉的恶作剧: 🤡
