@@ -1,0 +1,131 @@
+/* --- 1. 基础重置与字体 --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    background-color: #f7f9fe; /* 清爽的浅色背景 */
+    color: #333;
+    font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif; /* 之前说的思源宋体 */
+    line-height: 1.6;
+}
+
+/* --- 2. 核心 CSS Grid 网格布局 --- */
+.main-container {
+    display: grid;
+    /* 划重点：左栏 240px，中间自适应剩下的空间，右栏 240px */
+    grid-template-columns: 240px 1fr 240px; 
+    gap: 30px; /* 三栏之间的间距 */
+    max-width: 1200px; /* 网站最大宽度 */
+    margin: 40px auto; /* 上下留白，左右居中 */
+    padding: 0 20px;
+    align-items: start; /* 让左右侧边栏能在顶部对齐 */
+}
+
+/* --- 3. 左右侧边栏的通用样式 --- */
+.sidebar-left, .sidebar-right {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 加一点优雅的微阴影 */
+    /* 精髓：向下滚动时，侧边栏会吸附在屏幕上，不会滚走 */
+    position: sticky; 
+    top: 40px; 
+}
+
+/* 简单的左侧内部样式预览 */
+.avatar { width: 100px; height: 100px; border-radius: 50%; display: block; margin: 0 auto; }
+.author-name { text-align: center; margin-top: 10px; font-size: 1.2rem; }
+.site-nav { display: flex; flex-direction: column; margin-top: 20px; gap: 10px; text-align: center; }
+.site-nav a { text-decoration: none; color: #555; }
+.site-nav a:hover { color: #000; font-weight: bold; }
+
+/* 简单的中间区样式预览 */
+.content-mid {
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-height: 80vh; /* 保证高度足够好看 */
+}
+
+/* --- 4. 移动端适配 (响应式) --- */
+@media (max-width: 900px) {
+    .main-container {
+        /* 当屏幕变窄（手机/平板），直接变成单列排列：左 -> 中 -> 右 */
+        grid-template-columns: 1fr; 
+    }
+    .sidebar-left, .sidebar-right {
+        position: static; /* 取消吸附效果 */
+    }
+}
+
+/* --- 首页文章卡片样式 --- */
+.post-card {
+    background: #fff;
+    padding: 30px 0;
+    border-bottom: 1px solid #eee; /* 文章之间加一条浅色分割线 */
+}
+.post-card:last-child {
+    border-bottom: none;
+}
+.post-title a {
+    color: #222;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: color 0.3s ease;
+}
+.post-title a:hover {
+    color: #d84b6b; /* 悬浮时变成喵神博客那种暗红色 */
+}
+.post-meta {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 10px 0 15px 0;
+}
+.post-excerpt {
+    color: #555;
+    margin-bottom: 20px;
+}
+.read-more {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #f4f4f4;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+.read-more:hover {
+    background: #333;
+    color: #fff;
+}
+
+/* --- 翻页组件样式 --- */
+.paginator {
+    margin-top: 40px;
+    text-align: center;
+}
+.paginator a, .paginator span {
+    display: inline-block;
+    padding: 8px 15px;
+    margin: 0 5px;
+    background: #fff;
+    border-radius: 4px;
+    color: #333;
+    text-decoration: none;
+}
+.paginator .current {
+    background: #333;
+    color: #fff;
+}
+
+/* --- 文章详情页样式 --- */
+.post-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+.post-header .post-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}

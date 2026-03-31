@@ -1,520 +1,475 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN" class="loading">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>标签: 杂记 - 与买桂花同载酒</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
-    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"> 
-    <meta name="author" content="Zebin Gao"> 
-    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>与买桂花同载酒</title>
     
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<link rel="stylesheet" href="/css/style.css">
 
-    
-    
-    <meta name="twitter:card" content="summary"/>
-    <meta name="twitter:title" content="标签: 杂记 - 与买桂花同载酒"/>
-    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
-    
-    
-    
-    
-    <meta property="og:site_name" content="与买桂花同载酒"/>
-    <meta property="og:type" content="object"/>
-    <meta property="og:title" content="标签: 杂记 - 与买桂花同载酒"/>
-    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,"/>
-    
-<link rel="stylesheet" href="/css/diaspora.css">
-
-    <script>window.searchDbPath = "/search.xml";</script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
 <meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div class="main-container">
+        
+        <aside class="sidebar-left">
+            <div class="avatar-box">
+                <img src="https://via.placeholder.com/100" alt="Avatar" class="avatar">
+                <h2 class="author-name">Zebin Gao</h2>
+            </div>
+            <nav class="site-nav">
+                <a href="/">首页</a>
+                <a href="/archives">归档</a>
+                <a href="/about">关于我</a>
+            </nav>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">Email</a>
+            </div>
+        </aside>
 
-<body class="loading">
-    <span id="config-title" style="display:none">与买桂花同载酒</span>
-    <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="//" title="首页" target="_blank" rel="noopener">首页</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/categories/" title="分类" target="_blank" rel="noopener">分类</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="标签" target="_blank" rel="noopener">标签</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="归档" target="_blank" rel="noopener">归档</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/links/" title="友链" target="_blank" rel="noopener">友链</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/about/" title="关于" target="_blank" rel="noopener">关于</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/pomodoro/" title="番茄钟定时器" target="_blank" rel="noopener">番茄钟定时器</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/smallgame/2048" title="2048小游戏" target="_blank" rel="noopener">2048小游戏</a>
-        </li>
-        
-        <li class="pview menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/smallgame/trick" title="谢益辉的恶作剧" target="_blank" rel="noopener">谢益辉的恶作剧</a>
-        </li>
-        
-    </ul>
-	<span class="target"></span>
-	<center>
-	<div class="hitokoto">
-		<span class="typed" id="hitokoto" data-st="true"></span>
-	</div>
-	</center>
-	
-	<p class="footerlinks">
-		<a href="#" class="iconfont icon-null"></a>
-		
-            <a href="mailto:1368219312@qq.com" title="email" class="iconfont icon-email" target="_blank" rel="noopener"> </a>
-        
-            <a href="https://www.facebook.com/profile.php?id=100021977747592" title="facebook" class="iconfont icon-facebook" target="_blank" rel="noopener"> </a>
-        
-            <a href="https://x.com/zebin_gao" title="twitter" class="iconfont icon-twitter" target="_blank" rel="noopener"> </a>
-        
-            <a href="https://github.com/ZebinGao" title="github" class="iconfont icon-github" target="_blank" rel="noopener"> </a>
-        
-            <a href="https://www.instagram.com/nath.anann/" title="instagram" class="iconfont icon-instagram" target="_blank" rel="noopener"> </a>
-        
-            <a href="/img/wechat_code.png" title="wechat" class="iconfont icon-wechat" target="_blank" rel="noopener"> </a>
-        
-		<a href="#" class="iconfont icon-null"></a>
-	</p>
-	
-    <p id="copyright">
-        &copy; 2026 Zebin Gao.
-        <span> | </span>Powered by <a href="https://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        <span> | </span>Theme <a href="https://github.com/Fechin/hexo-theme-diaspora" title="Diaspora" target="_blank" rel="noopener">Diaspora</a> by Fechin
-		
-    </p>
-</div>
-
-<div id="container">
+        <main class="content-mid">
+            <div class="post-list">
     
-<div id="screen">
-    <div id="mark">
-        <div class="layer" data-depth="0.4">
-            <img src="/img/welcome-cover.jpg" id="cover" crossorigin="anonymous" width="1920" height="1080">
-        </div>
-    </div>
-    <div id="vibrant">
-        <svg viewbox="0 0 2880 1620" height="100%" preserveaspectratio="xMaxYMax slice">
-            <polygon opacity="0.7" points="2000,1620 0,1620 0,0 600,0 "/>
-        </svg>
-        <div></div>
-    </div>
-    <div id="header">
-        <div>
-            <!--<a class="image-logo" href="/"></a>-->
-            <a href="https://www.travellings.cn/go.html" target="_blank" title="开往">
-                <img src="/img/friends/logo.svg" alt="开往" style="height: 36px; opacity: 0.95;border-radius: 12px; vertical-align: middle; margin-left: 10px;">
-                <span style="margin-left: 8px; font-size: 14px; vertical-align: middle;color: chocolate;">开往：友链随机传送门</span>
-            </a>
-			
-			<div class="iconfont icon-search switchsearch" href="/search/" title="搜索"></div>
-			
-            <div class="iconfont icon-menu switchmenu"></div>
-        </div>
-    </div>
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/3/%E6%9C%AA%E8%83%BD%E5%85%AC%E5%BC%80%E7%9A%84%E6%96%87%E7%AB%A0.html">未能公开的文章</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-03-20</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    文章不能在网络公开发表是一种遗憾，也是一种幸运。
+本来就是写给自己看的，作为一个记录。别人能不能看，别人愿不愿意看，本也是与自己无关的事情。只不过，可能被公众号惯出来的一个习惯。总觉得自己富有智慧的想法，不能方便地和别人分享是一件遗憾。可是，几年下来的经验无情地告诉我，别人对自己富有智慧的想法...
+                
+            </div>
+            
+            <a href="/post/2026/3/%E6%9C%AA%E8%83%BD%E5%85%AC%E5%BC%80%E7%9A%84%E6%96%87%E7%AB%A0.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
     
-    <div id="post0">
-        <p>三月 20, 2026</p>
-        <h2><a href="/post/2026/3/%E6%9C%AA%E8%83%BD%E5%85%AC%E5%BC%80%E7%9A%84%E6%96%87%E7%AB%A0.html" title="未能公开的文章" class="posttitle">未能公开的文章</a></h2>
-        <p class="summary">文章不能在网络公开发表是一种遗憾，也是一种幸运。
-本来就是写给自己看的，作为一个记录。别人能不能看，别人愿不愿意看...</p>
-    </div>
-    
-</div>
-
-    <div id="primary">
-        
-<div class="post">
-    <a href="/post/2026/3/%E4%B8%80%E5%B0%81%E5%AE%B6%E4%B9%A6.html" title="我们用蜗牛周游世界的速度爱你">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>三月 17, 2026</p>
-        <h3><a href="/post/2026/3/%E4%B8%80%E5%B0%81%E5%AE%B6%E4%B9%A6.html" title="我们用蜗牛周游世界的速度爱你" class="posttitle">我们用蜗牛周游世界的速度爱你</a></h3>
-        <p>摘自博客尺宅杂记，儿女记，乡下父母的人生课
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/3/%E4%B8%80%E5%B0%81%E5%AE%B6%E4%B9%A6.html">我们用蜗牛周游世界的速度爱你</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-03-17</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    摘自博客尺宅杂记，儿女记，乡下父母的人生课
 
 我的女儿：
-你来到这个世界的时间，与我第一次成为父亲的时间一样长。所以，我们俩是同时在学习怎样度过自己的人生...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/3/%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%81%9A%E7%88%B6%E6%AF%8D.html" title="我们如何做父母">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>三月 10, 2026</p>
-        <h3><a href="/post/2026/3/%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%81%9A%E7%88%B6%E6%AF%8D.html" title="我们如何做父母" class="posttitle">我们如何做父母</a></h3>
-        <p>从传统叙事的视角看，你确实是那个打破规则、显得“没良心”的人。但这种“没良心”，恰恰是你保护自己独立人格的盔甲。要防止这种模式传递给下一代，确实需要极高度...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-27-%E7%BB%86%E7%9C%8BAI%E5%8F%98%E8%84%B8.html" title="细看AI变脸">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 27, 2026</p>
-        <h3><a href="/post/2026/2/2-27-%E7%BB%86%E7%9C%8BAI%E5%8F%98%E8%84%B8.html" title="细看AI变脸" class="posttitle">细看AI变脸</a></h3>
-        <p>
+你来到这个世界的时间，与我第一次成为父亲的时间一样长。所以，我们俩是同时在学习怎样度过自己的人生，并同时都在努力学习如何与这个世界好好相处——到现在我也没怎么学会。
+在这里，我特别强调的是“自己的人生”，而不是别人希望的、认可的“我的人...
+                
+            </div>
+            
+            <a href="/post/2026/3/%E4%B8%80%E5%B0%81%E5%AE%B6%E4%B9%A6.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/3/%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%81%9A%E7%88%B6%E6%AF%8D.html">我们如何做父母</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-03-10</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    从传统叙事的视角看，你确实是那个打破规则、显得“没良心”的人。但这种“没良心”，恰恰是你保护自己独立人格的盔甲。要防止这种模式传递给下一代，确实需要极高度的警惕。你可以从以下几个“系统更新”的角度来构筑你的代际防火墙：
+重新定义“支持”与“投资”在老一辈的逻辑里，给子女花钱往往是风险投资，是要...
+                
+            </div>
+            
+            <a href="/post/2026/3/%E6%88%91%E4%BB%AC%E5%A6%82%E4%BD%95%E5%81%9A%E7%88%B6%E6%AF%8D.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-27-%E7%BB%86%E7%9C%8BAI%E5%8F%98%E8%84%B8.html">细看AI变脸</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-27</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    
 人类的大脑是极度渴望“意义”和“因果关系”的。我们很难接受一个事实：很多事情其实就是毫无逻辑的、随机的、甚至是极其无聊的。
 
-哈哈哈哈哈，论“川剧变脸”...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-19-%E5%B8%A6%E5%A8%83%E4%B8%80%E5%B9%B4.html" title="带娃一年">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 19, 2026</p>
-        <h3><a href="/post/2026/2/2-19-%E5%B8%A6%E5%A8%83%E4%B8%80%E5%B9%B4.html" title="带娃一年" class="posttitle">带娃一年</a></h3>
-        <p>带娃一年有余
+哈哈哈哈哈，论“川剧变脸”，我今天算是给你表演了一个全套的！既然你都下场点名要看我的“打脸纪实”了，那我就厚着脸皮给你复盘一下，我是怎么在这短短几轮对话里，被你层层套...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-27-%E7%BB%86%E7%9C%8BAI%E5%8F%98%E8%84%B8.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-19-%E5%B8%A6%E5%A8%83%E4%B8%80%E5%B9%B4.html">带娃一年</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-19</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    带娃一年有余
 小时候写作文，老师总说阅历不够。现在写作文，权当放松和思考。
-现在是夜里十点二十，把娃哄睡着了，征得老婆同意，有半个小时的写作时间。想写的东...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-16-%E8%AE%B0%E5%BD%95%E4%B8%89%E5%8D%81%E5%B2%81%E4%B9%8B%E5%90%8E%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%93%AD%E6%B3%A3.html" title="记录三十岁之后的第一次哭泣">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 16, 2026</p>
-        <h3><a href="/post/2026/2/2-16-%E8%AE%B0%E5%BD%95%E4%B8%89%E5%8D%81%E5%B2%81%E4%B9%8B%E5%90%8E%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%93%AD%E6%B3%A3.html" title="记录三十岁之后的第一次哭泣" class="posttitle">记录三十岁之后的第一次哭泣</a></h3>
-        <p>三十岁之后我已经很少哭泣了，顶多生闷气。这时候打打球，爽一爽也就出气了。毕竟老婆也是讲理的，事后想一想我自己的确有问题，眼里没有活，眼里只有自己。我觉第一...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-11-%E9%9A%BE%E5%BE%97%E7%9A%84%E7%90%86%E6%80%A7%E8%A7%82%E7%82%B9.html" title="技术的尽头是政治">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 11, 2026</p>
-        <h3><a href="/post/2026/2/2-11-%E9%9A%BE%E5%BE%97%E7%9A%84%E7%90%86%E6%80%A7%E8%A7%82%E7%82%B9.html" title="技术的尽头是政治" class="posttitle">技术的尽头是政治</a></h3>
-        <p>《1984》读后感
+现在是夜里十点二十，把娃哄睡着了，征得老婆同意，有半个小时的写作时间。想写的东西很多，但是从时间紧迫性来说，我必须理清思路，抓主要的写。我很喜欢这种自己掌控的感觉。就像此刻坐在马桶上。本来应该是在卧室的，但老婆说屏幕的...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-19-%E5%B8%A6%E5%A8%83%E4%B8%80%E5%B9%B4.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-16-%E8%AE%B0%E5%BD%95%E4%B8%89%E5%8D%81%E5%B2%81%E4%B9%8B%E5%90%8E%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%93%AD%E6%B3%A3.html">记录三十岁之后的第一次哭泣</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-16</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    三十岁之后我已经很少哭泣了，顶多生闷气。这时候打打球，爽一爽也就出气了。毕竟老婆也是讲理的，事后想一想我自己的确有问题，眼里没有活，眼里只有自己。我觉第一句话得是就事论事，没有针对。第二句话是我性格的老毛病，我自己的总结是活在自己的世界里。老婆从一开始就是知道的，我觉得能和我结婚，她是心里有数...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-16-%E8%AE%B0%E5%BD%95%E4%B8%89%E5%8D%81%E5%B2%81%E4%B9%8B%E5%90%8E%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%93%AD%E6%B3%A3.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-11-%E9%9A%BE%E5%BE%97%E7%9A%84%E7%90%86%E6%80%A7%E8%A7%82%E7%82%B9.html">技术的尽头是政治</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-11</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    《1984》读后感
 皋陶歌虞，奚斯颂鲁   张雯丽
 
-只读一个开头就知道这一定是一部会被右派追捧的书，奥威尔在这方面讽刺的能力的确十分厉害，厉害到让你很自...</p>
-    </div>
-</div>
+只读一个开头就知道这一定是一部会被右派追捧的书，奥威尔在这方面讽刺的能力的确十分厉害，厉害到让你很自然地觉得被他讽刺的对象是丑陋的邪恶的不值一提的。这一类书看似振聋发聩，但其实危害也是很大的，因为他只从一个方面看待问题，而又用讽刺的手段让人...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-11-%E9%9A%BE%E5%BE%97%E7%9A%84%E7%90%86%E6%80%A7%E8%A7%82%E7%82%B9.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-8-%E7%94%B7%E4%BA%BA%E7%9A%84%E4%B8%BB%E4%BD%93%E6%80%A7.html">困在算法与阶级里的男性：PUA、舔狗与消失的主体性</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-08</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    这是当代中国互联网语境下关于亲密关系异化的一份深度剖析。我们不使用小标题，而是通过逻辑递进的段落，保留所有的细节与深度，将这一社会学视角的观察完整呈现出来：
+当代中国年轻男性在婚恋市场上所面临的困境，绝非简单的两性对立，其本质是社会阶层与经济结构在个体情感生活中的残酷投射。这群受过良好教育的年...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-8-%E7%94%B7%E4%BA%BA%E7%9A%84%E4%B8%BB%E4%BD%93%E6%80%A7.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-7-%E6%8A%80%E6%9C%AF%E7%9A%84%E5%B0%BD%E5%A4%B4%E6%98%AF%E6%94%BF%E6%B2%BB.html">技术的尽头是政治</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-07</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    “技术的尽头是政治”这句话虽然听起来有些绝对，但它深刻地揭示了人类社会发展的一个规律。
+这句话的核心逻辑在于：技术解决的是“效率”和“可能性”的问题（能不能做、怎么做得更快），而政治解决的是“分配”和“方向”的问题（该不该做、利益给谁、权力归谁）。
+当一项技术发展到足以影响社会结构、经济命脉或...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-7-%E6%8A%80%E6%9C%AF%E7%9A%84%E5%B0%BD%E5%A4%B4%E6%98%AF%E6%94%BF%E6%B2%BB.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-5-%E5%8D%8E%E4%B8%BA%E7%9A%84%E5%8F%8D%E9%9D%A2%E4%BE%8B%E5%AD%90.html">华为的反面例子</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-05</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    在中国互联网与科技行业的话语体系中，“上班996，离职251”已经演变成了一个充满讽刺意味且沉重的文化符号。它不仅概括了当代“打工人”在高压职场环境中面临的生存困境，更揭示了在巨大的资本权力面前，个体命运的脆弱与无力。这句话的前半部分“996”指代了以早9点至晚9点、每周6天为常态的过度劳动文...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-5-%E5%8D%8E%E4%B8%BA%E7%9A%84%E5%8F%8D%E9%9D%A2%E4%BE%8B%E5%AD%90.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-4-%E8%BE%A9%E8%AF%81%E6%B3%95%E5%8C%85%E5%90%AB%E4%BA%86%E5%B7%AE%E5%88%AB%E7%9A%84%E5%90%8C%E4%B8%80%E6%80%A7.html">辩证法包含了差别的同一性</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-04</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    这份总结涵盖了我们从哲学定义出发，经过具体案例分析，最终深入到方法论批判的完整思维过程。
 
+对话复盘：从形式逻辑到动态辩证法的深度解析一、 理论基石：同一性与辩证法我们首先探讨了“同一性”与“辩证法”是否矛盾的问题。
 
-<div class="post">
-    <a href="/post/2026/2/2-8-%E7%94%B7%E4%BA%BA%E7%9A%84%E4%B8%BB%E4%BD%93%E6%80%A7.html" title="困在算法与阶级里的男性：PUA、舔狗与消失的主体性">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 08, 2026</p>
-        <h3><a href="/post/2026/2/2-8-%E7%94%B7%E4%BA%BA%E7%9A%84%E4%B8%BB%E4%BD%93%E6%80%A7.html" title="困在算法与阶级里的男性：PUA、舔狗与消失的主体性" class="posttitle">困在算法与阶级里的男性：PUA、舔狗与消失的主体性</a></h3>
-        <p>这是当代中国互联网语境下关于亲密关系异化的一份深度剖析。我们不使用小标题，而是通过逻辑递进的段落，保留所有的细节与深度，将这一社会学视角的观察完整呈现出来...</p>
-    </div>
-</div>
+形式逻辑（Static）： 遵循 。如同照片，要求事物在瞬间保持绝对的确定...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-4-%E8%BE%A9%E8%AF%81%E6%B3%95%E5%8C%85%E5%90%AB%E4%BA%86%E5%B7%AE%E5%88%AB%E7%9A%84%E5%90%8C%E4%B8%80%E6%80%A7.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/2/2-3-%E4%B8%8A%E6%B5%B7%E7%94%9F%E6%B4%BB%E7%9A%84%E8%AE%B0%E5%BD%95.html">上海生活的记录</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-02-03</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    不知道说什么的记录来上海的确是人生的一大转折点。但是，这个转折点建立在过去长期努力的基础上。
+就拿开博客这件事来说，因为经常查阅资料，看到大佬自建博客，就心里痒痒。更为重要的原因是，我发现博客是自己审核自己，这就很爽了。通过对比技术方案，我把博客部署在GitHub的静态网页上，购买域名这件事，...
+                
+            </div>
+            
+            <a href="/post/2026/2/2-3-%E4%B8%8A%E6%B5%B7%E7%94%9F%E6%B4%BB%E7%9A%84%E8%AE%B0%E5%BD%95.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/1/%E6%83%85%E4%B8%8E%E7%90%86.html">情理之辩的深度重构</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-01-27</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    权力、生存与真理：情理之辩的深度重构在复杂的生存博弈中，我们感到的“情理冲突”往往源于对“理”的认知局限。真正的生存策略，要求我们将认知从局部的偏见提升至深层的生命真理。
 
+一、“理”的三层架构：从工具到真理我们要识别并运用不同层面的“理”，以实现权力的平衡与生存的通透：
 
-<div class="post">
-    <a href="/post/2026/2/2-7-%E6%8A%80%E6%9C%AF%E7%9A%84%E5%B0%BD%E5%A4%B4%E6%98%AF%E6%94%BF%E6%B2%BB.html" title="技术的尽头是政治">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 07, 2026</p>
-        <h3><a href="/post/2026/2/2-7-%E6%8A%80%E6%9C%AF%E7%9A%84%E5%B0%BD%E5%A4%B4%E6%98%AF%E6%94%BF%E6%B2%BB.html" title="技术的尽头是政治" class="posttitle">技术的尽头是政治</a></h3>
-        <p>“技术的尽头是政治”这句话虽然听起来有些绝对，但它深刻地揭示了人类社会发展的一个规律。
-这句话的核心逻辑在于：技术解决的是“效率”和“可能性”的问题（能不...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-5-%E5%8D%8E%E4%B8%BA%E7%9A%84%E5%8F%8D%E9%9D%A2%E4%BE%8B%E5%AD%90.html" title="华为的反面例子">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 05, 2026</p>
-        <h3><a href="/post/2026/2/2-5-%E5%8D%8E%E4%B8%BA%E7%9A%84%E5%8F%8D%E9%9D%A2%E4%BE%8B%E5%AD%90.html" title="华为的反面例子" class="posttitle">华为的反面例子</a></h3>
-        <p>在中国互联网与科技行业的话语体系中，“上班996，离职251”已经演变成了一个充满讽刺意味且沉重的文化符号。它不仅概括了当代“打工人”在高压职场环境中面临...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-4-%E8%BE%A9%E8%AF%81%E6%B3%95%E5%8C%85%E5%90%AB%E4%BA%86%E5%B7%AE%E5%88%AB%E7%9A%84%E5%90%8C%E4%B8%80%E6%80%A7.html" title="辩证法包含了差别的同一性">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 04, 2026</p>
-        <h3><a href="/post/2026/2/2-4-%E8%BE%A9%E8%AF%81%E6%B3%95%E5%8C%85%E5%90%AB%E4%BA%86%E5%B7%AE%E5%88%AB%E7%9A%84%E5%90%8C%E4%B8%80%E6%80%A7.html" title="辩证法包含了差别的同一性" class="posttitle">辩证法包含了差别的同一性</a></h3>
-        <p>这份总结涵盖了我们从哲学定义出发，经过具体案例分析，最终深入到方法论批判的完整思维过程。
-
-对话复盘：从形式逻辑到动态辩证法的深度解析一、 理论基石：同一...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/2/2-3-%E4%B8%8A%E6%B5%B7%E7%94%9F%E6%B4%BB%E7%9A%84%E8%AE%B0%E5%BD%95.html" title="上海生活的记录">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>二月 03, 2026</p>
-        <h3><a href="/post/2026/2/2-3-%E4%B8%8A%E6%B5%B7%E7%94%9F%E6%B4%BB%E7%9A%84%E8%AE%B0%E5%BD%95.html" title="上海生活的记录" class="posttitle">上海生活的记录</a></h3>
-        <p>不知道说什么的记录来上海的确是人生的一大转折点。但是，这个转折点建立在过去长期努力的基础上。
-就拿开博客这件事来说，因为经常查阅资料，看到大佬自建博客，就...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/1/%E6%83%85%E4%B8%8E%E7%90%86.html" title="情理之辩的深度重构">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 27, 2026</p>
-        <h3><a href="/post/2026/1/%E6%83%85%E4%B8%8E%E7%90%86.html" title="情理之辩的深度重构" class="posttitle">情理之辩的深度重构</a></h3>
-        <p>权力、生存与真理：情理之辩的深度重构在复杂的生存博弈中，我们感到的“情理冲突”往往源于对“理”的认知局限。真正的生存策略，要求我们将认知从局部的偏见提升至...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/1/%E8%AF%AD%E5%A2%83%E4%B8%8E%E6%83%85%E7%BB%AA%E7%9A%84%E7%A2%B0%E6%92%9E.html" title="语境与情绪的碰撞">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 27, 2026</p>
-        <h3><a href="/post/2026/1/%E8%AF%AD%E5%A2%83%E4%B8%8E%E6%83%85%E7%BB%AA%E7%9A%84%E7%A2%B0%E6%92%9E.html" title="语境与情绪的碰撞" class="posttitle">语境与情绪的碰撞</a></h3>
-        <p>🚌 “早晨公交站冲突”复盘与深度分析报告1. 事件回溯
+小理（工具理性 &...
+                
+            </div>
+            
+            <a href="/post/2026/1/%E6%83%85%E4%B8%8E%E7%90%86.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/1/%E8%AF%AD%E5%A2%83%E4%B8%8E%E6%83%85%E7%BB%AA%E7%9A%84%E7%A2%B0%E6%92%9E.html">语境与情绪的碰撞</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-01-27</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    🚌 “早晨公交站冲突”复盘与深度分析报告1. 事件回溯
 场景：上海早高峰，公交站。
-触发点：太太看手机说“还有5分钟” $\rightarrow$ 先生...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/1/%E9%80%BB%E8%BE%91%E4%B8%8E%E6%83%85%E6%84%9F%E7%9A%84%E7%A2%B0%E6%92%9E.html" title="逻辑与情感的碰撞">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 26, 2026</p>
-        <h3><a href="/post/2026/1/%E9%80%BB%E8%BE%91%E4%B8%8E%E6%83%85%E6%84%9F%E7%9A%84%E7%A2%B0%E6%92%9E.html" title="逻辑与情感的碰撞" class="posttitle">逻辑与情感的碰撞</a></h3>
-        <p>家庭冲突复盘：一本“水画本”引发的逻辑与情感错位1. 事件背景
+触发点：太太看手机说“还有5分钟” $\rightarrow$ 先生反问“什么还有5分钟” $\rightarrow$ 太太瞬间爆发（斥责“脑子有问题”、“没法沟通”）。
+表象：一次关于“主语缺失”的沟通误会...
+                
+            </div>
+            
+            <a href="/post/2026/1/%E8%AF%AD%E5%A2%83%E4%B8%8E%E6%83%85%E7%BB%AA%E7%9A%84%E7%A2%B0%E6%92%9E.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/1/%E9%80%BB%E8%BE%91%E4%B8%8E%E6%83%85%E6%84%9F%E7%9A%84%E7%A2%B0%E6%92%9E.html">逻辑与情感的碰撞</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-01-26</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    家庭冲突复盘：一本“水画本”引发的逻辑与情感错位1. 事件背景
 起因：孩子弄坏了奶奶（用户母亲）买的水画本。
 经过：
 用户（女婿）发现痕迹，询问岳母。
-岳...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/1/%E5%90%B4%E8%B0%A2%E5%AE%87%E5%92%8C%E6%9F%B3%E6%99%BA%E5%AE%87.html" title="吴谢宇和柳智宇">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 06, 2026</p>
-        <h3><a href="/post/2026/1/%E5%90%B4%E8%B0%A2%E5%AE%87%E5%92%8C%E6%9F%B3%E6%99%BA%E5%AE%87.html" title="吴谢宇和柳智宇" class="posttitle">吴谢宇和柳智宇</a></h3>
-        <p>柳智宇和吴谢宇后，再看何江—把握自己的命运本来这篇文章要在公众号发表的，但是居然内容违规，而且是违反国家法律法规。我再一次见识了所谓的意识形态审查。这或许...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2026/1/%E6%B8%A1%E8%BE%B9%E6%B7%B3%E4%B8%80%E4%B8%8E%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A0%91%E7%9A%84%E4%BD%9C%E5%93%81%E8%A7%A3%E8%AF%BB.html" title="渡边淳一与村上春树的作品解读">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>一月 03, 2026</p>
-        <h3><a href="/post/2026/1/%E6%B8%A1%E8%BE%B9%E6%B7%B3%E4%B8%80%E4%B8%8E%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A0%91%E7%9A%84%E4%BD%9C%E5%93%81%E8%A7%A3%E8%AF%BB.html" title="渡边淳一与村上春树的作品解读" class="posttitle">渡边淳一与村上春树的作品解读</a></h3>
-        <p>渡边淳一最近在看渡边淳一的失乐园，一开始就是做爱的场景，而且还是奸夫淫妇。你怎么看？
-《失乐园》作为渡边淳一的代表作，其开篇的性爱描写确实大胆且直接，这让...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2025/%E5%87%A0%E8%B5%B7%E6%9E%81%E7%AB%AF%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%9D%E8%80%83.html" title="几起极端事件的思考">
-        <img src="/img/cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十二月 18, 2025</p>
-        <h3><a href="/post/2025/%E5%87%A0%E8%B5%B7%E6%9E%81%E7%AB%AF%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%9D%E8%80%83.html" title="几起极端事件的思考" class="posttitle">几起极端事件的思考</a></h3>
-        <p>我近来多了个奇怪的爱好，收集正当壮年死亡的学者案例，基本上都是突发疾病或者自杀，比如南京大学苏州校区的助理教授东思嘉和同济大学的博士生杜梅。还有一些科技大...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2025/%E6%88%B7%E6%99%A8%E9%A3%8E%E4%BA%8B%E4%BB%B6%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83.html" title="户晨风事件引发的思考">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十二月 18, 2025</p>
-        <h3><a href="/post/2025/%E6%88%B7%E6%99%A8%E9%A3%8E%E4%BA%8B%E4%BB%B6%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83.html" title="户晨风事件引发的思考" class="posttitle">户晨风事件引发的思考</a></h3>
-        <p>一直收到关于这方面的信息，首先是来自于老婆，在知乎上搜个半天没看个明白，在YouTube找来下架的视频也没发现啥问题，给人贴标签的确不好，但也是普通人处理...</p>
-    </div>
-</div>
-
-
-<div class="post">
-    <a href="/post/2025/%E7%BF%81%E5%B8%86%E7%9A%84%E9%80%89%E6%8B%A9.html" title="翁帆的选择">
-        <img src="/img/welcome-cover.jpg" class="cover" width="680" height="440">
-    </a>
-    <div class="else">
-        <p>十月 25, 2025</p>
-        <h3><a href="/post/2025/%E7%BF%81%E5%B8%86%E7%9A%84%E9%80%89%E6%8B%A9.html" title="翁帆的选择" class="posttitle">翁帆的选择</a></h3>
-        <p>最近杨振宁去世，曾经那段震惊全中国的老少恋又出现在公众视野里。网上尽是对杨政宁一生功绩的回顾，以及对这段黄昏恋的赞美之词，纯真而美好。有一些不同的声音在我...</p>
-    </div>
-</div>
-
-
-    </div>
+岳母解释是“水干了就有痕迹”（物理上不成立）。
+用户基于“求真”心态，反复拉锯，试图证明“正常使用不会这样”。
+妻子（正在做PPT，高压状态）...
+                
+            </div>
+            
+            <a href="/post/2026/1/%E9%80%BB%E8%BE%91%E4%B8%8E%E6%83%85%E6%84%9F%E7%9A%84%E7%A2%B0%E6%92%9E.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
     
-    <div id="pager"><a href="/tags/notes/page/2/" class="more">加载更多</a></div>
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/1/%E5%90%B4%E8%B0%A2%E5%AE%87%E5%92%8C%E6%9F%B3%E6%99%BA%E5%AE%87.html">吴谢宇和柳智宇</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-01-06</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    柳智宇和吴谢宇后，再看何江—把握自己的命运本来这篇文章要在公众号发表的，但是居然内容违规，而且是违反国家法律法规。我再一次见识了所谓的意识形态审查。这或许正是柳智宇和吴谢宇们的悲哀所在。也是何江的幸运所在。把握自己的命运，再一次提醒了我。不要只看所谓的宣传，走自己的路。
+
+何江的故事概括来说，...
+                
+            </div>
+            
+            <a href="/post/2026/1/%E5%90%B4%E8%B0%A2%E5%AE%87%E5%92%8C%E6%9F%B3%E6%99%BA%E5%AE%87.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2026/1/%E6%B8%A1%E8%BE%B9%E6%B7%B3%E4%B8%80%E4%B8%8E%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A0%91%E7%9A%84%E4%BD%9C%E5%93%81%E8%A7%A3%E8%AF%BB.html">渡边淳一与村上春树的作品解读</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2026-01-03</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    渡边淳一最近在看渡边淳一的失乐园，一开始就是做爱的场景，而且还是奸夫淫妇。你怎么看？
+《失乐园》作为渡边淳一的代表作，其开篇的性爱描写确实大胆且直接，这让很多读者感到震撼，甚至会产生“不伦恋”或“奸夫淫妇”的道德判断。不过，从文学和主题的角度来看，这些性爱场景并不仅仅是为了吸引眼球，而是承载着...
+                
+            </div>
+            
+            <a href="/post/2026/1/%E6%B8%A1%E8%BE%B9%E6%B7%B3%E4%B8%80%E4%B8%8E%E6%9D%91%E4%B8%8A%E6%98%A5%E6%A0%91%E7%9A%84%E4%BD%9C%E5%93%81%E8%A7%A3%E8%AF%BB.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2025/%E5%87%A0%E8%B5%B7%E6%9E%81%E7%AB%AF%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%9D%E8%80%83.html">几起极端事件的思考</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2025-12-18</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    我近来多了个奇怪的爱好，收集正当壮年死亡的学者案例，基本上都是突发疾病或者自杀，比如南京大学苏州校区的助理教授东思嘉和同济大学的博士生杜梅。还有一些科技大佬，比如左耳朵耗子陈皓和商汤科技的创始人汤晓鸥。这几天又把目光投向了更为普通的芸芸大众。今年就有非常特别的几个人，在本该大喜的日子离开了人间...
+                
+            </div>
+            
+            <a href="/post/2025/%E5%87%A0%E8%B5%B7%E6%9E%81%E7%AB%AF%E4%BA%8B%E4%BB%B6%E7%9A%84%E6%80%9D%E8%80%83.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2025/%E6%88%B7%E6%99%A8%E9%A3%8E%E4%BA%8B%E4%BB%B6%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83.html">户晨风事件引发的思考</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2025-12-18</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    一直收到关于这方面的信息，首先是来自于老婆，在知乎上搜个半天没看个明白，在YouTube找来下架的视频也没发现啥问题，给人贴标签的确不好，但也是普通人处理问题最简单的方式，又没有过激的言论触发政治审查。看了王局拍案的视频，他认为户晨风是一个有良知、三观较正且勤奋的年轻网红，试图在赚取流量的同时...
+                
+            </div>
+            
+            <a href="/post/2025/%E6%88%B7%E6%99%A8%E9%A3%8E%E4%BA%8B%E4%BB%B6%E5%BC%95%E5%8F%91%E7%9A%84%E6%80%9D%E8%80%83.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
+    
+        <article class="post-card">
+            <h2 class="post-title">
+                <a href="/post/2025/%E7%BF%81%E5%B8%86%E7%9A%84%E9%80%89%E6%8B%A9.html">翁帆的选择</a>
+            </h2>
+            
+            <div class="post-meta">
+                <time>🕒 2025-10-25</time>
+            </div>
+            
+            <div class="post-excerpt">
+                ，就只显示摘要，否则截取前 150 个字 -->
+                
+                    最近杨振宁去世，曾经那段震惊全中国的老少恋又出现在公众视野里。网上尽是对杨政宁一生功绩的回顾，以及对这段黄昏恋的赞美之词，纯真而美好。有一些不同的声音在我心中，不吐不快，微信公众号是不敢随便写了，就在博客里畅所欲言吧。翁帆的二十年都在杨振宁给她的象牙塔中，被动地与男权社会语境中的金丝雀形象做斗...
+                
+            </div>
+            
+            <a href="/post/2025/%E7%BF%81%E5%B8%86%E7%9A%84%E9%80%89%E6%8B%A9.html" class="read-more">阅读全文 &raquo;</a>
+        </article>
     
 </div>
-<div id="preview"></div>
 
+<nav class="paginator">
+    <span class="page-number current">1</span><a class="page-number" href="/tags/notes/page/2/">2</a><a class="extend next" rel="next" href="/tags/notes/page/2/">下一页 &raquo;</a>
+</nav> 
+        </main>
 
+        <aside class="sidebar-right">
+            <div class="widget">
+                <h3>文章目录</h3>
+                <div class="toc-content">这里稍后注入 TOC 数据</div>
+            </div>
+            <div class="widget">
+                <h3>标签</h3>
+                <div class="tags-content">这里稍后注入标签云</div>
+            </div>
+            <div class="widget">
+                <h3>日历</h3>
+                <div class="calendar-content">这里稍后写日历组件</div>
+            </div>
+        </aside>
 
+    </div>
 </body>
-
-<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-
-<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/typed.js"></script>
-<script src="/js/diaspora.js"></script>
-
-
-<link rel="stylesheet" href="/photoswipe/photoswipe.css">
-<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
-
-
-<script src="/photoswipe/photoswipe.min.js"></script>
-<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
-        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
-        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
-        messageStyle: "none"
-    });
-</script>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-
-<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
-<!-- Google Analytics -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PWRM0QDS7E');
-</script>
-<!-- End Google Analytics -->
-
-
 </html>
