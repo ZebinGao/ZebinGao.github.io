@@ -365,3 +365,78 @@ body {
     color: #fff;
     font-weight: bold;
 }
+
+/* =========================================================
+   文章内代码高亮 (Highlight.js) 深度美化
+========================================================= */
+/* 整体代码外框 */
+.content.markdown figure.highlight {
+    background: #282c34; /* Atom One Dark 的经典背景色 */
+    border-radius: 8px;  /* 圆角 */
+    margin: 25px 0;
+    padding: 15px 0;
+    overflow-x: auto;    /* 代码过长时允许左右滑动 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* 增加一点悬浮立体感 */
+}
+
+/* 消除内部表格的默认间距 */
+.content.markdown figure.highlight table {
+    border-spacing: 0;
+    width: 100%;
+    margin: 0;
+    border: none;
+}
+.content.markdown figure.highlight td {
+    border: none;
+    padding: 0;
+}
+
+/* 统一字体设置：推荐使用等宽编程字体 */
+.content.markdown figure.highlight pre {
+    margin: 0;
+    font-family: 'Fira Code', 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 🎯 左侧行号区域美化 */
+.content.markdown figure.highlight .gutter pre {
+    color: #636d83; /* 行号颜色稍微暗一点，不喧宾夺主 */
+    text-align: right;
+    padding: 0 15px;
+    border-right: 1px solid #3e4451; /* 行号和代码之间加一条细分隔线 */
+    margin-right: 15px;
+}
+
+/* 右侧代码主体区域 */
+.content.markdown figure.highlight .code pre {
+    color: #abb2bf; /* 基础代码文字颜色 */
+    padding-right: 15px;
+}
+
+/* 🎯 底部滚动条美化（让它在 Windows 上也能像 Mac 一样细致） */
+.content.markdown figure.highlight::-webkit-scrollbar {
+    height: 8px;
+}
+.content.markdown figure.highlight::-webkit-scrollbar-track {
+    background: #282c34;
+    border-radius: 0 0 8px 8px;
+}
+.content.markdown figure.highlight::-webkit-scrollbar-thumb {
+    background: #4b5363; /* 滚动条颜色 */
+    border-radius: 4px;
+}
+.content.markdown figure.highlight::-webkit-scrollbar-thumb:hover {
+    background: #5c6370;
+}
+
+/* 补充：对于单行行内代码 (如 `code`) 的高亮 */
+.content.markdown p code, .content.markdown li code {
+    background: #f4f5f6;
+    color: #d84b6b; /* 使用你主题里的那抹暗红色 */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    word-break: break-all;
+}
