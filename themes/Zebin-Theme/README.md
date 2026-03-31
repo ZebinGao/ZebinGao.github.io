@@ -131,7 +131,7 @@ layout: links
 极度重要：必须在 HTML 的 <head> 标签中显式声明 <meta charset="UTF-8">，否则中文字符将显示为乱码！
 
 ## 👨‍💻 作者与鸣谢 (Credits)
-Author: [Zebin Gao / Zebin]
+Author: [Zebin Gao / Zebin-Theme]
 
 Inspiration: 感谢 喵神 OneV's Den 极简优雅的布局启发，以及 Diaspora 主题 带来的创作契机。
 
