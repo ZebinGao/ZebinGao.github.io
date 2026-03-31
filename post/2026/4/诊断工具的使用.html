@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Visual Studio 诊断工具避坑指南 - 与买桂花同载酒</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术,"> 
+    <meta name="description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法面对动辄几个 G 的 Dump 文件和几千万个内存对象，常规的代码 Review 往往无济于事。Visual Studio,"> 
+    <meta name="author" content="Zebin Gao"> 
+    <link rel="alternative" href="atom.xml" title="与买桂花同载酒" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+    
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:title" content="Visual Studio 诊断工具避坑指南 - 与买桂花同载酒"/>
+    <meta name="twitter:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法面对动辄几个 G 的 Dump 文件和几千万个内存对象，常规的代码 Review 往往无济于事。Visual Studio,"/>
+    
+    
+    
+    
+    <meta property="og:site_name" content="与买桂花同载酒"/>
+    <meta property="og:type" content="object"/>
+    <meta property="og:title" content="Visual Studio 诊断工具避坑指南 - 与买桂花同载酒"/>
+    <meta property="og:description" content="这是Zebin Gao的个人博客，记录关于编程技术、生活随笔和读书的内容。,Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法面对动辄几个 G 的 Dump 文件和几千万个内存对象，常规的代码 Review 往往无济于事。Visual Studio,"/>
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+    <script>window.searchDbPath = "/search.xml";</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body class="loading">
+    <span id="config-title" style="display:none">与买桂花同载酒</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="iconfont icon-home image-icon" href="javascript:;" data-url="https://www.zebin-yue.top"></a>
+    <div title="播放/暂停" class="iconfont icon-play"></div>
+    <h3 class="subtitle">Visual Studio 诊断工具避坑指南</h3>
+    <div class="social">
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="iconfont icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Visual Studio 诊断工具避坑指南</h1>
+        <div class="stuff">
+            <span>四月 01, 2026</span>
+            
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/C/" rel="tag">C#</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/Visual-Studio/" rel="tag">Visual Studio</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/WPF/" rel="tag">WPF</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/" rel="tag">调试技巧</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Visual-Studio-诊断工具避坑指南：WPF-内存泄漏排查的高阶心法"><a href="#Visual-Studio-诊断工具避坑指南：WPF-内存泄漏排查的高阶心法" class="headerlink" title="Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法"></a>Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法</h1><p>面对动辄几个 G 的 Dump 文件和几千万个内存对象，常规的代码 Review 往往无济于事。Visual Studio 内置的内存诊断工具（Diagnostic Tools）是我们给程序“开膛破肚”的最强利器。</p>
+<p>然而，在这个工具极其强大的表象下，隐藏着极深的算法逻辑与“视觉欺骗”。特别是在极其复杂的 WPF 框架中，如果不了解 .NET 的底层机制和工具的寻路逻辑，你极有可能被它带进沟里。本文将从基础的内存指标认知识别讲起，结合一次真实的千万级对象泄漏实战，为你提炼出一套使用 VS 诊断工具的高阶心法与避坑指南。</p>
+<h2 id="一、-内存泄漏的“体征指标”：认清-Commit-Size-与-GC-原理"><a href="#一、-内存泄漏的“体征指标”：认清-Commit-Size-与-GC-原理" class="headerlink" title="一、 内存泄漏的“体征指标”：认清 Commit Size 与 GC 原理"></a>一、 内存泄漏的“体征指标”：认清 Commit Size 与 GC 原理</h2><p>在动手使用工具之前，你必须先搞懂两个底层概念，否则你连“程序到底漏没漏”都无法准确判断。</p>
+<h3 id="1-别看错任务管理器：Commit-Size（提交大小）才是真理"><a href="#1-别看错任务管理器：Commit-Size（提交大小）才是真理" class="headerlink" title="1. 别看错任务管理器：Commit Size（提交大小）才是真理"></a>1. 别看错任务管理器：Commit Size（提交大小）才是真理</h3><p>很多开发者习惯打开任务管理器，看着默认的“内存”列（其实是 <strong>Working Set &#x2F; 工作集</strong>）来判断泄漏。这是极其错误的。</p>
+<ul>
+<li><strong>工作集 (Working Set)</strong>：表示程序当前被映射到物理内存（RAM）中的大小。当系统内存紧张时，操作系统会把程序的一部分内存移到虚拟内存（硬盘）里，此时工作集会骤降，给你一种“内存回收了”的假象。</li>
+<li><strong>提交大小 (Commit Size &#x2F; Private Bytes)</strong>：这才是你的程序实打实向操作系统申请保留的虚拟内存总量！<strong>在排查泄漏时，必须在任务管理器中右键表头，勾选并死盯“提交大小”。</strong> 如果你执行了一组循环操作（打开-&gt;关闭窗口）后，Commit Size 只增不减，呈阶梯状上升，那才是真正的内存泄漏。</li>
+</ul>
+<h3 id="2-NET-GC（垃圾回收器）的底层逻辑"><a href="#2-NET-GC（垃圾回收器）的底层逻辑" class="headerlink" title="2. .NET GC（垃圾回收器）的底层逻辑"></a>2. .NET GC（垃圾回收器）的底层逻辑</h3><p>.NET 的垃圾回收机制基于 <strong>“根追踪（Tracing）”</strong> 和 <strong>“代际（Generations）”</strong> 假设。</p>
+<ul>
+<li><strong>代际 (Gen 0, 1, 2)</strong>：新创建的对象在 Gen 0，极易被清理。存活越久的对象会被推到 Gen 2。Gen 2 的清理代价极其高昂（会冻结应用程序线程，引发 UI 卡顿）。泄漏的对象通常会迅速填满 Gen 2 甚至大对象堆（LOH）。</li>
+<li><strong>GC Root（垃圾回收根）</strong>：GC 不在乎对象之间是不是“互相引用”（哪怕 A 引用 B，B 引用 A，只要没有外界连着它们，统统视为垃圾）。GC 只在乎对象是否能顺藤摸瓜连上 <strong>GC Root</strong>。<br>常见的 GC Root 包括：<strong>全局静态变量（Static variables）</strong>、正在执行的方法局部变量、WPF 底层的系统级句柄（Dependent Handle）。排查泄漏，本质上就是<strong>找出一根不该存在的线，把它和 GC Root 剪断。</strong></li>
+</ul>
+<h2 id="二、-抓取与分析快照的正确姿势"><a href="#二、-抓取与分析快照的正确姿势" class="headerlink" title="二、 抓取与分析快照的正确姿势"></a>二、 抓取与分析快照的正确姿势</h2><p>获取内存状态通常有两种场景，VS 针对它们有不同的入口：</p>
+<h3 id="场景-A：开发阶段的动态调试-Take-Snapshot"><a href="#场景-A：开发阶段的动态调试-Take-Snapshot" class="headerlink" title="场景 A：开发阶段的动态调试 (Take Snapshot)"></a>场景 A：开发阶段的动态调试 (Take Snapshot)</h3><p>在 Visual Studio 中按 F5 启动调试时，按 <code>Ctrl+Alt+F2</code> 调出**诊断工具（Diagnostic Tools）**窗口。</p>
+<ol>
+<li>切换到 <strong>“内存使用率(Memory Usage)”</strong> 选项卡。</li>
+<li>程序启动稳定后，点击 <strong>“截取快照 (Take Snapshot)”</strong>，作为基准（Baseline）。</li>
+<li>在你的程序里执行一套完整的业务操作（比如打开配方窗口，然后关闭）。</li>
+<li>再次点击 <strong>“截取快照”</strong>。VS 会自动帮你对比这两次快照之间增加的对象。</li>
+</ol>
+<h3 id="场景-B：生产环境的死后验尸-Dump-分析"><a href="#场景-B：生产环境的死后验尸-Dump-分析" class="headerlink" title="场景 B：生产环境的死后验尸 (Dump 分析)"></a>场景 B：生产环境的死后验尸 (Dump 分析)</h3><p>当客户现场崩溃或内存飙升到几个 G 时，直接通过任务管理器右键进程 -&gt; <strong>“创建转储文件(Create Dump File)”</strong>。</p>
+<ol>
+<li>将 <code>.dmp</code> 文件拖入 Visual Studio 中打开。</li>
+<li>在右侧的“操作”面板中，<strong>强烈建议点击 “调试托管内存 (Debug Managed Memory)”</strong>。</li>
+<li><strong>为什么不选混合模式？</strong> WPF 程序包含大量非托管的 C++ 渲染代码（Milcore），如果你不是排查纯底层的 DirectX 渲染泄漏，混入非托管内存会让你的分析视图充满无意义的内存碎片。锁定 <strong>Managed Memory Only</strong> 才能直击 C# 业务代码的病灶。</li>
+</ol>
+<h2 id="三、-调试前的绝对禁忌：关闭-XAML-热重载"><a href="#三、-调试前的绝对禁忌：关闭-XAML-热重载" class="headerlink" title="三、 调试前的绝对禁忌：关闭 XAML 热重载"></a>三、 调试前的绝对禁忌：关闭 XAML 热重载</h2><p>这是无数 WPF 开发者在使用“快照(Snapshot)”排查时踩过的第一个大坑。</p>
+<p>在默认的调试模式下，为了支持 UI 的实时修改，VS 会开启 <strong>XAML Hot Reload（热重载）</strong>。这个功能在底层会注入一个叫 <code>WpfVisualTreeService</code> 的服务，强行保留对当前活动窗口和 UI 元素的引用。</p>
+<p><strong>后果</strong>：如果你在开启热重载的情况下截取快照，你会发现哪怕你写了 <code>this.Close()</code>，窗口也显示“泄漏”了。这是典型的<strong>假阳性（False Positive）泄漏</strong>。<br><strong>避坑心法</strong>：在进行任何真正的内存泄漏排查前，<strong>必须在 VS 选项（工具 -&gt; 选项 -&gt; 调试 -&gt; XAML 热重载）中彻底关闭该功能！</strong> 保证你的代码处于纯粹的“裸奔”状态。</p>
+<h2 id="四、-核心指标认知：不要只看大小，要看数量"><a href="#四、-核心指标认知：不要只看大小，要看数量" class="headerlink" title="四、 核心指标认知：不要只看大小，要看数量"></a>四、 核心指标认知：不要只看大小，要看数量</h2><p>当快照或 Dump 加载完毕进入托管内存视图时，请优先关注以下三个维度：</p>
+<ol>
+<li><strong>Count（数量）</strong>：最核心的指标。如果是窗口（Window）泄漏，关注其数量是否远超预期（如：本该只有 1 个，却出现了 157 个甚至上千个）。</li>
+<li><strong>Size (Bytes)</strong>：对象本身占用的浅表内存（通常很小，一个空窗口类可能只有几百字节）。</li>
+<li><strong>Inclusive Size (Bytes)</strong>：<strong>包含大小</strong>。这是该对象以及它所引用的所有子对象占用的总内存。如果你看到一个 Window 的 Inclusive Size 高达几百 MB，说明它正死死拽着海量的数据集合或几十万个 UI 树零件（如 <code>TextBlock</code>）。</li>
+</ol>
+<h2 id="五、-最大的视觉欺骗：揭开-“Show-hot-paths-only”-的谎言"><a href="#五、-最大的视觉欺骗：揭开-“Show-hot-paths-only”-的谎言" class="headerlink" title="五、 最大的视觉欺骗：揭开 “Show hot paths only” 的谎言"></a>五、 最大的视觉欺骗：揭开 “Show hot paths only” 的谎言</h2><p>选中泄漏对象后，我们通常会查看底部的 <strong>Paths To Root（根路径）</strong> 面板来寻找那根连接 GC Root 的线。此时，VS 会默认勾选左上角的 <strong><code>Show hot paths only</code>（仅显示热路径）</strong>。这是全宇宙最大的一个“坑”！</p>
+<p><strong>VS 底层算法的无奈：</strong><br>在 .NET 中，几千万个对象构成了一个极其复杂的有向图。当寻找 GC Root 时，VS 跑的是广度优先搜索（BFS），它只会挑一条**“在图论数学上最短的路径”**展示给你。</p>
+<p><strong>WPF 里的致命拦截（Dependent Handle）：</strong><br>在 WPF 中，一旦你绑定了数据（<code>DataContext</code>），底层就会生成一种极高优先级的系统句柄，叫做 <strong><code>[Dependent Handle]</code></strong>（例如绑定集合的 <code>CollectionChanged</code> 事件）。这根线极粗、极短，直接连着 CLR 底层。</p>
+<p>如果你代码里有一个隐藏很深的<strong>全局静态变量</strong>（真凶）抓住了 ViewModel，而 ViewModel 又绑定了 UI 树。在勾选“热路径”时，VS 会判定：短平快的 <code>[Dependent Handle]</code> 才是罪魁祸首！从而<strong>强行折叠并彻底隐藏</strong>了那条真正致命、但路径较长的静态变量引用。</p>
+<p><strong>避坑心法</strong>：面对这种视觉欺骗，你有两种破局方式：</p>
+<ol>
+<li><strong>实战绝招：物理断电法（强行修改代码）</strong>。这是排查时最暴力也最有效的手段。既然 UI 钢缆的引力太大，我们就<strong>直接在代码里修改</strong>，强行在窗口的 <code>OnClosed</code> 事件中加上 <code>root.DataContext = null</code>。这就相当于拿大剪刀物理剪断了那根最粗的干扰线。一旦 <code>[Dependent Handle]</code> 的引力场消失，VS 的寻路算法别无选择，只能乖乖把你隐藏在背后的真实元凶（静态变量）作为唯一“热路径”暴露出来。</li>
+<li><strong>工具降维法：取消热路径</strong>。如果排查生产 Dump 暂时无法改代码，当你看到路径终结于 <code>Dependent Handle</code> 或 <code>GridViewRowPresenter</code> 时，不要以为到此为止了。<strong>果断取消勾选 <code>Show hot paths only</code>！</strong> 在极其庞大的网状树中，去寻找 <code>Static variable</code> 的蛛丝马迹。</li>
+</ol>
+<h2 id="六、-高阶排查战术：降维打击搜法"><a href="#六、-高阶排查战术：降维打击搜法" class="headerlink" title="六、 高阶排查战术：降维打击搜法"></a>六、 高阶排查战术：降维打击搜法</h2><p>面对 1GB 的 Dump 或百万级对象的快照，如果你取消了“热路径”，千万<strong>不要</strong>试图在 <code>Paths To Root</code> 里用肉眼一层层点开树状图！那会引发“引用爆炸”，导致 VS 直接卡死崩溃，或者让你迷失在 <code>(Cycle Detected)</code> 的死循环引用中。</p>
+<p>请使用以下三步“闪电战”搜法：</p>
+<h3 id="第一步：自上而下的对象锚定"><a href="#第一步：自上而下的对象锚定" class="headerlink" title="第一步：自上而下的对象锚定"></a>第一步：自上而下的对象锚定</h3><p>不要直接搜庞大的 <code>Window</code> 实例，它的 UI 树太复杂。<br>利用搜索框（Filter types），直接搜索**“纯数据结构”<strong>或</strong>“已知嫌疑人”**。例如，直接搜索你的 <code>ViewModel</code> 类名，或者直接搜索你怀疑的底层静态类名（如 <code>LocalizationManager</code>）。</p>
+<h3 id="第二步：利用-Referenced-Types（引用者视图）"><a href="#第二步：利用-Referenced-Types（引用者视图）" class="headerlink" title="第二步：利用 Referenced Types（引用者视图）"></a>第二步：利用 Referenced Types（引用者视图）</h3><p>选中对象后，不要只看 <code>Paths To Root</code>，切换到旁边的 <strong><code>Referenced Types</code></strong> 选项卡。<br>这个视图会扁平化地列出“到底有哪些类型在持有我的引用”。<br>在这里，重点寻找：</p>
+<ul>
+<li>带有 <code>Static variable</code> 标记的对象。</li>
+<li>全局的 <code>Service</code> 或 <code>Manager</code> 类。</li>
+<li><code>EventHandler</code> 或 <code>Action</code> 委托（通常是事件未注销导致）。</li>
+</ul>
+<h3 id="第三步：Compare-With-Baseline（基准对比大师）"><a href="#第三步：Compare-With-Baseline（基准对比大师）" class="headerlink" title="第三步：Compare With Baseline（基准对比大师）"></a>第三步：Compare With Baseline（基准对比大师）</h3><p>这是最强大的大杀器。永远不要只分析一份 Dump。<br>如果是在 VS 里截取快照，直接对比两次操作的差异。<br>如果在生产环境排查，请抓取两份 Dump（Dump A 为基准，Dump B 为操作 N 次后）。<br>在 VS 中打开 Dump B，点击右上角的 <strong>Compare With Baseline</strong>，选择 Dump A。在结果中，只按 <strong>Count Diff（数量差值）</strong> 降序排列。那些数量只增不减的、差值正好是操作次数倍数的对象，100% 就是泄漏的源头。顺着这些增量对象的根路径摸过去，一抓一个准。</p>
+<h2 id="七、-总结"><a href="#七、-总结" class="headerlink" title="七、 总结"></a>七、 总结</h2><p>Visual Studio 诊断工具就像一位极其精密的“法医”，它呈现给你的是底层的物理事实（如哪个句柄锁住了内存）。但它不懂你的业务架构（MVVM、生命周期）。</p>
+<p>高级的内存排查，永远是<strong>理论先行，工具验证</strong>：<br>认清 Commit Size 确认泄漏 ➡ 抓取 Managed Memory 过滤非托管噪音 ➡ 关闭热重载排除工具自身干扰 ➡ 通过代码赋 null 越过最短路径的视觉欺骗 ➡ 定位到静态变量或未释放的强事件 ➡ 执行精准的物理斩断。</p>
+<p>掌握了这些底层逻辑，再庞大的 Dump 文件，在你眼里也不过是条理清晰的嫌疑人名单。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        
+                            <li title="0" data-url="/music/sakura-michi.mp3"></li>
+                        
+                    
+                        
+                            <li title="1" data-url="http://link.hhtjim.com/163/425570952.mp3"></li>
+                        
+                    
+                </ul>
+            
+        </div>
+        
+        
+    <div id="gitalk-container" class="comment link"
+		data-enable="true"
+        data-ae="false"
+        data-ci="Ov23liUMUoQLKTPswJDK"
+        data-cs="c46b751f5cbe796f506b01288d1c07f0446a45ef"
+        data-r="blog-comments"
+        data-o="ZebinGao"
+        data-a="ZebinGao"
+        data-d="false"
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class="side">
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Visual-Studio-%E8%AF%8A%E6%96%AD%E5%B7%A5%E5%85%B7%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97%EF%BC%9AWPF-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%8E%92%E6%9F%A5%E7%9A%84%E9%AB%98%E9%98%B6%E5%BF%83%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E7%9A%84%E2%80%9C%E4%BD%93%E5%BE%81%E6%8C%87%E6%A0%87%E2%80%9D%EF%BC%9A%E8%AE%A4%E6%B8%85-Commit-Size-%E4%B8%8E-GC-%E5%8E%9F%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">一、 内存泄漏的“体征指标”：认清 Commit Size 与 GC 原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%88%AB%E7%9C%8B%E9%94%99%E4%BB%BB%E5%8A%A1%E7%AE%A1%E7%90%86%E5%99%A8%EF%BC%9ACommit-Size%EF%BC%88%E6%8F%90%E4%BA%A4%E5%A4%A7%E5%B0%8F%EF%BC%89%E6%89%8D%E6%98%AF%E7%9C%9F%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1. 别看错任务管理器：Commit Size（提交大小）才是真理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-NET-GC%EF%BC%88%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%EF%BC%89%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91"><span class="toc-number">1.1.2.</span> <span class="toc-text">2. .NET GC（垃圾回收器）的底层逻辑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%8A%93%E5%8F%96%E4%B8%8E%E5%88%86%E6%9E%90%E5%BF%AB%E7%85%A7%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%A7%BF%E5%8A%BF"><span class="toc-number">1.2.</span> <span class="toc-text">二、 抓取与分析快照的正确姿势</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-A%EF%BC%9A%E5%BC%80%E5%8F%91%E9%98%B6%E6%AE%B5%E7%9A%84%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95-Take-Snapshot"><span class="toc-number">1.2.1.</span> <span class="toc-text">场景 A：开发阶段的动态调试 (Take Snapshot)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF-B%EF%BC%9A%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E7%9A%84%E6%AD%BB%E5%90%8E%E9%AA%8C%E5%B0%B8-Dump-%E5%88%86%E6%9E%90"><span class="toc-number">1.2.2.</span> <span class="toc-text">场景 B：生产环境的死后验尸 (Dump 分析)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E8%B0%83%E8%AF%95%E5%89%8D%E7%9A%84%E7%BB%9D%E5%AF%B9%E7%A6%81%E5%BF%8C%EF%BC%9A%E5%85%B3%E9%97%AD-XAML-%E7%83%AD%E9%87%8D%E8%BD%BD"><span class="toc-number">1.3.</span> <span class="toc-text">三、 调试前的绝对禁忌：关闭 XAML 热重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E6%A0%B8%E5%BF%83%E6%8C%87%E6%A0%87%E8%AE%A4%E7%9F%A5%EF%BC%9A%E4%B8%8D%E8%A6%81%E5%8F%AA%E7%9C%8B%E5%A4%A7%E5%B0%8F%EF%BC%8C%E8%A6%81%E7%9C%8B%E6%95%B0%E9%87%8F"><span class="toc-number">1.4.</span> <span class="toc-text">四、 核心指标认知：不要只看大小，要看数量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E6%9C%80%E5%A4%A7%E7%9A%84%E8%A7%86%E8%A7%89%E6%AC%BA%E9%AA%97%EF%BC%9A%E6%8F%AD%E5%BC%80-%E2%80%9CShow-hot-paths-only%E2%80%9D-%E7%9A%84%E8%B0%8E%E8%A8%80"><span class="toc-number">1.5.</span> <span class="toc-text">五、 最大的视觉欺骗：揭开 “Show hot paths only” 的谎言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81-%E9%AB%98%E9%98%B6%E6%8E%92%E6%9F%A5%E6%88%98%E6%9C%AF%EF%BC%9A%E9%99%8D%E7%BB%B4%E6%89%93%E5%87%BB%E6%90%9C%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">六、 高阶排查战术：降维打击搜法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E8%87%AA%E4%B8%8A%E8%80%8C%E4%B8%8B%E7%9A%84%E5%AF%B9%E8%B1%A1%E9%94%9A%E5%AE%9A"><span class="toc-number">1.6.1.</span> <span class="toc-text">第一步：自上而下的对象锚定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%88%A9%E7%94%A8-Referenced-Types%EF%BC%88%E5%BC%95%E7%94%A8%E8%80%85%E8%A7%86%E5%9B%BE%EF%BC%89"><span class="toc-number">1.6.2.</span> <span class="toc-text">第二步：利用 Referenced Types（引用者视图）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9ACompare-With-Baseline%EF%BC%88%E5%9F%BA%E5%87%86%E5%AF%B9%E6%AF%94%E5%A4%A7%E5%B8%88%EF%BC%89"><span class="toc-number">1.6.3.</span> <span class="toc-text">第三步：Compare With Baseline（基准对比大师）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81-%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text">七、 总结</span></a></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/typed.js"></script>
+<script src="/js/diaspora.js"></script>
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({"HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"], linebreaks: { automatic:true }, EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) },
+        tex2jax: { inlineMath: [ ["$", "$"], ["\\(","\\)"] ], processEscapes: true, ignoreClass: "tex2jax_ignore|dno",skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']},
+        TeX: {  noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, Macros: { href: "{}" } },
+        messageStyle: "none"
+    });
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+<!-- Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PWRM0QDS7E"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PWRM0QDS7E');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
