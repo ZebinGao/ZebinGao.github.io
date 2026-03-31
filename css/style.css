@@ -11,9 +11,9 @@ body {
 .main-container {
     display: grid;
     /* 划重点：左栏 240px，中间自适应剩下的空间，右栏 240px */
-    grid-template-columns: 240px 1fr 240px; 
+    grid-template-columns: 200px 1fr 220px; 
     gap: 30px; /* 三栏之间的间距 */
-    max-width: 1200px; /* 网站最大宽度 */
+    max-width: 1350px; /* 网站最大宽度 */
     margin: 40px auto; /* 上下留白，左右居中 */
     padding: 0 20px;
     align-items: start; /* 让左右侧边栏能在顶部对齐 */
@@ -41,7 +41,8 @@ body {
 .content-mid {
     background: #fff;
     border-radius: 12px;
-    padding: 40px;
+    /* 原来是 padding: 40px; 可以改成上下 40px，左右 30px */
+    padding: 40px 30px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     min-height: 80vh; /* 保证高度足够好看 */
 }
@@ -165,18 +166,30 @@ body {
 .site-nav {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    gap: 8px;
+    margin-top: 15px; /* 稍微缩小顶部间距 */
+    gap: 4px;        /* 缩小项与项之间的间距，防止列表过长溢出容器 */
 }
+
 .site-nav a {
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 8px 15px; /* 缩小上下内边距 */
     color: #555;
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    font-size: 0.9rem; /* 稍微调小一点字号，看起来更精致 */
+}
+
+/* 如果菜单实在太多，可以让侧边栏内部产生滚动条 */
+.sidebar-left {
+    max-height: calc(100vh - 80px); /* 限制高度为屏幕高度减去边距 */
+    overflow-y: auto;               /* 内容多时自动出现滚动条 */
+}
+
+/* 隐藏侧边栏那条丑陋的滚动条，但保留滚动功能 */
+.sidebar-left::-webkit-scrollbar {
+    width: 0px;
 }
 .site-nav a span {
     margin-right: 12px;
@@ -255,4 +268,100 @@ body {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+}
+
+/* =========================================================
+   右侧挂件通用样式
+========================================================= */
+.widget {
+    margin-bottom: 25px;
+}
+.widget h3 {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+.widget h3 i {
+    margin-right: 8px;
+}
+
+/* --- 文章目录 TOC 特化样式 --- */
+.toc-content {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.toc-content .toc {
+    padding: 0;
+    list-style: none;
+}
+.toc-content .toc-item {
+    margin: 5px 0;
+}
+.toc-content .toc-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: block;
+    line-height: 1.4;
+}
+.toc-content .toc-link:hover {
+    color: #d84b6b;
+    padding-left: 5px;
+}
+/* 层级缩进 */
+.toc-child {
+    padding-left: 15px;
+    list-style: none;
+}
+
+/* --- 标签云样式 --- */
+.tags-cloud a {
+    display: inline-block;
+    margin: 4px;
+    text-decoration: none;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+}
+.tags-cloud a:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+}
+
+/* --- 极简日历样式 --- */
+.calendar-container {
+    background: #fff;
+    text-align: center;
+}
+.calendar-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #d84b6b;
+}
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    font-size: 0.75rem;
+    color: #999;
+    margin-bottom: 5px;
+}
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+}
+.calendar-grid span {
+    font-size: 0.85rem;
+    padding: 5px 0;
+    border-radius: 4px;
+}
+.calendar-grid .today {
+    background: #d84b6b;
+    color: #fff;
+    font-weight: bold;
 }
