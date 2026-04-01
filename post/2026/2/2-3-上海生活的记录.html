@@ -112,7 +112,7 @@
                 <h3><i class="iconfont icon-calendar"></i> 日历</h3>
                 <div class="calendar-container">
                     <div class="calendar-header">
-                        <span class="month">三月 2026</span>
+                        <span class="month" id="calendar-month"></span>
                     </div>
                     <div class="calendar-days">
                         <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
@@ -127,15 +127,22 @@
     <script>
     function buildCalendar() {
         const grid = document.getElementById('calendar-grid');
-        if (!grid) return;
+        const monthHeader = document.getElementById('calendar-month'); // 🎯 获取标题元素
+        if (!grid || !monthHeader) return;
         
         const now = new Date();
         const year = now.getFullYear();
         const month = now.getMonth();
         const today = now.getDate();
         
+        // 🎯 动态写入当前的月份和年份
+        const monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+        monthHeader.innerText = `${monthNames[month]} ${year}`;
+        
         const firstDay = new Date(year, month, 1).getDay();
         const daysInMonth = new Date(year, month + 1, 0).getDate();
+        
+        grid.innerHTML = ''; // 清空旧数据
         
         // 填充空白
         for (let i = 0; i < firstDay; i++) {
