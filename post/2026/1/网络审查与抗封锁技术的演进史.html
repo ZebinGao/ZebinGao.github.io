@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <script>
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>网络审查与抗封锁技术的演进史 | 与买桂花同载酒</title>
@@ -58,9 +63,13 @@
                 
             </nav>
             
-            <div class="social-links">
+            <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
                 <a href="https://github.com/zebingao" target="_blank" title="GitHub">GitHub</a>
                 <a href="mailto:你的邮箱@xxx.com" target="_blank" title="Email">Email</a>
+    
+                <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 1.1em;">
+                    <span id="theme-icon">🌙</span>
+                </a>
             </div>
         </aside>
 
@@ -144,6 +153,31 @@
 
     </div>
     <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlElement = document.documentElement;
+
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        htmlElement.setAttribute('data-theme', 'dark');
+        themeIcon.innerText = '☀️'; // 变成了太阳
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        let theme = htmlElement.getAttribute('data-theme');
+        
+        if (theme === 'dark') {
+            htmlElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+            themeIcon.innerText = '🌙'; // 变回月亮
+        } else {
+            htmlElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+            themeIcon.innerText = '☀️'; // 变成太阳
+        }
+    });
+
     function buildCalendar() {
         const grid = document.getElementById('calendar-grid');
         const monthHeader = document.getElementById('calendar-month'); // 🎯 获取标题元素
