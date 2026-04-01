@@ -1,8 +1,8 @@
 /* --- 1. 基础重置与字体 --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    background-color: #f7f9fe; /* 清爽的浅色背景 */
-    color: #333;
+    background-color: var(--bg-card); /* 明暗主题*/
+    color: var(--text-main);
     font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif; /* 之前说的思源宋体 */
     line-height: 1.6;
 }
@@ -21,7 +21,7 @@ body {
 
 /* --- 3. 左右侧边栏的通用样式 --- */
 .sidebar-left, .sidebar-right {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 加一点优雅的微阴影 */
@@ -39,7 +39,7 @@ body {
 
 /* 简单的中间区样式预览 */
 .content-mid {
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 12px;
     /* 原来是 padding: 40px; 可以改成上下 40px，左右 30px */
     padding: 40px 30px;
@@ -60,9 +60,9 @@ body {
 
 /* --- 首页文章卡片样式 --- */
 .post-card {
-    background: #fff;
+    background: var(--bg-card);
     padding: 30px 0;
-    border-bottom: 1px solid #eee; /* 文章之间加一条浅色分割线 */
+    border-bottom: 1px solid var(--border-color); /* 文章之间加一条浅色分割线 */
 }
 .post-card:last-child {
     border-bottom: none;
@@ -89,15 +89,15 @@ body {
     display: inline-block;
     padding: 8px 16px;
     background: #f4f4f4;
-    color: #333;
+    color: var(--text-main);
     text-decoration: none;
     border-radius: 4px;
     font-size: 0.9rem;
     transition: all 0.3s;
 }
 .read-more:hover {
-    background: #333;
-    color: #fff;
+    background: var(--text-main);
+    color: var(--bg-card);
 }
 
 /* --- 翻页组件样式 --- */
@@ -109,14 +109,14 @@ body {
     display: inline-block;
     padding: 8px 15px;
     margin: 0 5px;
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 4px;
-    color: #333;
+    color: var(--text-main);
     text-decoration: none;
 }
 .paginator .current {
-    background: #333;
-    color: #fff;
+    background: var(--text-main);
+    color: var(--bg-card);
 }
 
 /* --- 文章详情页样式 --- */
@@ -124,7 +124,7 @@ body {
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 .post-header .post-title {
     font-size: 2rem;
@@ -136,7 +136,7 @@ body {
 .avatar-box {
     text-align: center;
     padding-bottom: 20px;
-    border-bottom: 1px dashed #eee;
+    border-bottom: 1px dashed var(--border-color);
 }
 .avatar {
     width: 110px;
@@ -144,7 +144,7 @@ body {
     border-radius: 50%;
     object-fit: cover;
     margin: 0 auto;
-    border: 4px solid #fff;
+    border: 4px solid var(--bg-card);
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: transform 0.5s ease;
 }
@@ -160,7 +160,7 @@ body {
 .author-bio {
     margin-top: 5px;
     font-size: 0.85rem;
-    color: #888;
+    color: var(--text-muted);
 }
 
 .site-nav {
@@ -209,7 +209,7 @@ body {
 }
 .social-links a {
     font-size: 0.85rem;
-    color: #fff;
+    color: var(--bg-card);
     background: #444;
     padding: 5px 12px;
     border-radius: 20px;
@@ -239,7 +239,7 @@ body {
     border-radius: 12px;
     transition: all 0.3s;
     text-align: center;
-    background: #fff;
+    background: var(--bg-card);
     height: 100%;
 }
 .card:hover {
@@ -256,7 +256,7 @@ body {
 }
 .card-text h4 {
     margin: 0 0 5px;
-    color: #333;
+    color: var(--text-main);
     font-size: 1.1rem;
 }
 .card-text p {
@@ -335,7 +335,7 @@ body {
 
 /* --- 极简日历样式 --- */
 .calendar-container {
-    background: #fff;
+    background: var(--bg-card);
     text-align: center;
 }
 .calendar-header {
@@ -347,7 +347,7 @@ body {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     font-size: 0.75rem;
-    color: #999;
+    color: var(--text-muted);
     margin-bottom: 5px;
 }
 .calendar-grid {
@@ -362,7 +362,7 @@ body {
 }
 .calendar-grid .today {
     background: #d84b6b;
-    color: #fff;
+    color: var(--bg-card);
     font-weight: bold;
 }
 
@@ -444,7 +444,7 @@ body {
    归档页面 (Archive) 特化样式
 ========================================================= */
 .archive-container {
-    background: #fff;
+    background: var(--bg-card);
     padding: 40px 30px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -479,16 +479,16 @@ body {
 
 /* 日期样式：变成淡灰色，并使用等宽字体对齐 */
 .archive-item time {
-    color: #999;
+    color: var(--text-muted);
     margin-right: 8px;
     font-family: 'Consolas', 'Courier New', monospace;
 }
 
 /* 🎯 标题样式：经典的虚线下划线 */
 .archive-item a {
-    color: #333;
+    color: var(--text-main);
     text-decoration: none;
-    border-bottom: 1px dashed #999; /* 关键：虚线下划线 */
+    border-bottom: 1px dashed var(--text-muted); /* 关键：虚线下划线 */
     padding-bottom: 2px;
     transition: all 0.3s ease;
 }
@@ -496,4 +496,68 @@ body {
 .archive-item a:hover {
     color: #d84b6b; /* 悬浮时变色 */
     border-bottom-color: #d84b6b;
+}
+
+/* =========================================
+   1. 核心色彩变量体系 (Color System)
+   ========================================= */
+
+/* ☀️ 明亮模式 (默认) */
+:root {
+    /* 背景色系 */
+    --bg-body: #f4f5f7;          /* 网页最底层的背景 */
+    --bg-card: #ffffff;          /* 侧边栏、文章卡片的背景 */
+    --bg-button: #f5f5f5;        /* 按钮(如阅读全文)、标签的背景 */
+    --bg-button-hover: #e8e8e8;  /* 按钮悬停背景 */
+
+    /* 文字色系 */
+    --text-main: #333333;        /* 正文、主标题 */
+    --text-muted: #888888;       /* 日期、文章摘要、次要图标 */
+    --text-strong: #000000;      /* 极度强调的文字 */
+
+    /* 边框与阴影 */
+    --border-color: #eeeeee;     /* 分割线 */
+    --shadow-color: rgba(0, 0, 0, 0.05); /* 淡淡的卡片阴影 */
+
+    /* 主题强调色 (保持你的品牌色不变) */
+    --theme-color: #42b983;      
+}
+
+/* 🌙 暗黑模式 */
+[data-theme="dark"] {
+    /* 背景色系 */
+    --bg-body: #121212;          /* 深邃黑底，不刺眼 */
+    --bg-card: #1e1e1e;          /* 稍微提亮的深灰卡片，拉开空间层次 */
+    --bg-button: #2d2d2d;        /* 按钮需要比卡片更亮一点点 */
+    --bg-button-hover: #3d3d3d;
+
+    /* 文字色系 */
+    --text-main: #cecece;        /* 🎯 暗黑模式下千万别用纯白，用浅灰护眼 */
+    --text-muted: #777777;       /* 次要文字 */
+    --text-strong: #ffffff;      /* 只有需要极度强调的地方才用纯白 */
+
+    /* 边框与阴影 */
+    --border-color: #333333;     /* 边框也要暗下去 */
+    --shadow-color: rgba(0, 0, 0, 0.4); /* 🎯 阴影必须加深，压住底色 */
+
+    /* 主题强调色 */
+    --theme-color: #4eb782;      /* 暗黑模式下的主色调稍微调亮一点，增加对比度 */
+}
+
+/* =========================================
+   2. 全局平滑过渡动画 (GPU 性能优化版)
+   ========================================= */
+/* 🎯 仅对大面积的背景容器应用背景色和阴影过渡，避免 GPU 瞬间过载崩溃 */
+body, .sidebar-left, .sidebar-right, .content-mid, .post-card, .widget, .card, .calendar-container {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* 🎯 文字颜色变化极快，不需要过渡动画，直接瞬间切换反而更干脆清晰 */
+body {
+    color: var(--text-main);
+}
+
+/* 🎯 仅对带有交互的链接和按钮保留综合过渡 */
+a, button, .read-more, .theme-toggle {
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
