@@ -545,19 +545,21 @@ body {
 }
 
 /* =========================================
-   2. 全局平滑过渡动画 (GPU 性能优化版)
+   2. 全局平滑过渡动画 (GPU 性能优化版) !!!不需要优化
    ========================================= */
-/* 🎯 仅对大面积的背景容器应用背景色和阴影过渡，避免 GPU 瞬间过载崩溃 */
+/* 🎯 仅对大面积的背景容器应用背景色和阴影过渡，避免 GPU 瞬间过载崩溃 
 body, .sidebar-left, .sidebar-right, .content-mid, .post-card, .widget, .card, .calendar-container {
     transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
+*/
 
-/* 🎯 文字颜色变化极快，不需要过渡动画，直接瞬间切换反而更干脆清晰 */
+/* 🎯 文字颜色变化极快，不需要过渡动画，直接瞬间切换反而更干脆清晰 
 body {
     color: var(--text-main);
 }
-
-/* 🎯 仅对带有交互的链接和按钮保留综合过渡 */
+*/
+/* 🎯 仅对带有交互的链接和按钮保留综合过渡 
 a, button, .read-more, .theme-toggle {
     transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
+*/   
