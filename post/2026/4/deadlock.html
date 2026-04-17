@@ -79,29 +79,15 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="Contributing"><a href="#Contributing" class="headerlink" title="Contributing"></a>Contributing</h1><p>Changes and improvements are more than welcome! Feel free to fork and open a pull request.</p>
-<p>Please follow the house rules to have a bigger chance of your contribution being merged.</p>
-<h2 id="House-rules"><a href="#House-rules" class="headerlink" title="House rules"></a>House rules</h2><h3 id="How-to-make-changes"><a href="#How-to-make-changes" class="headerlink" title="How to make changes"></a>How to make changes</h3><ul>
-<li>To make changes, create a new branch based on <code>master</code> (do not create one from <code>gh-pages</code> unless strictly necessary) and make them there, then create a Pull Request to master.<br> <code>gh-pages</code> is different from master in that it contains sharing features, analytics and other things that have no direct bearing with the game. <code>master</code> is the “pure” version of the game.</li>
-<li>If you want to modify the CSS, please edit the SCSS files present in <code>style/</code>: <code>main.scss</code> and others. Don’t edit the <code>main.css</code>, because it’s supposed to be generated.<br> In order to compile your SCSS modifications, you need to use the <code>sass</code> gem (install it by running <code>gem install sass</code> once Ruby is installed).<br> To run SASS, simply use the following command:<br> <code>sass --unix-newlines --watch style/main.scss</code><br> SASS will automatically recompile your css when changed.</li>
-<li><code>Rakefile</code> contains some tasks that help during development. Feel free to add useful tasks if needed.</li>
-<li>Please use 2-space indentation when editing the JavaScript. A <code>.jshintrc</code> file is present, which will help your code to follow the guidelines if you install and run <code>jshint</code>.</li>
-<li>Please test your modification thoroughly before submitting your Pull Request.</li>
-</ul>
-<h3 id="Changes-that-might-not-be-accepted"><a href="#Changes-that-might-not-be-accepted" class="headerlink" title="Changes that might not be accepted"></a>Changes that might not be accepted</h3><p>We have to be conservative with the core game. This means that some modifications won’t be merged, or will have to be evaluated carefully before being merged:</p>
-<ul>
-<li>Undo&#x2F;redo features</li>
-<li>Save&#x2F;reload features</li>
-<li>Changes to how the tiles look or their contents</li>
-<li>Changes to the layout</li>
-<li>Changes to the grid size</li>
-</ul>
-<h3 id="Changes-that-are-welcome"><a href="#Changes-that-are-welcome" class="headerlink" title="Changes that are welcome"></a>Changes that are welcome</h3><ul>
-<li>Bug fixes</li>
-<li>Compatibility improvements</li>
-<li>“Under the hood” enhancements</li>
-<li>Small changes that don’t have an impact on the core gameplay</li>
-</ul>
+        <h1 id="机台死锁问题排查总结"><a href="#机台死锁问题排查总结" class="headerlink" title="机台死锁问题排查总结"></a>机台死锁问题排查总结</h1><p>设备跑货时设备突然停机，报了死锁报警。现场情况是：只跑一个工艺步骤进 PMA 没问题，但加上第二个步骤要进 PMB 或 PMC 就会卡死。排查后发现是 Bug#474 的代码改动引起的。</p>
+<h2 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h2><p>调度器就像一个调度员，负责把 wafer 按顺序送到各个腔去加工。调度员有个自我检查机制：如果发现有活要干，但连续 60 秒一个新任务都派不出去，就判定为”死锁”，说明哪里卡住了，需要报警让人来处理。</p>
+<h2 id="Bug-474-改了什么"><a href="#Bug-474-改了什么" class="headerlink" title="Bug#474 改了什么"></a>Bug#474 改了什么</h2><p>这次改动的目的是优化调度员的判断流程。调度员在送 wafer 进腔之前，会先看看哪些腔当前能接第一道工序的 wafer，然后拿着这份”可用腔名单”，去检查这个 Job 的每一道工序——每一步需要的腔在名单里能找到吗？都找得到，Job 就可以跑；哪一步找不到，就先 hold 住。</p>
+<h2 id="问题在哪"><a href="#问题在哪" class="headerlink" title="问题在哪"></a>问题在哪</h2><p>这份”可用腔名单”本身就只包含了<strong>第一道工序能用哪些腔</strong>，但它却被拿去检查了 Job 的<strong>所有工序</strong>。比如 Job 的第一道工序只指定 PMA，那名单上就只有 PMA，PMB 和 PMC 再空闲也不会出现在名单上。当调度员拿这份名单去检查第二道工序”需要 PMB”时，自然找不到，于是判定 Job 不能跑，hold 住——实际上 PMB 完全可以用，只是名单上根本没有它。</p>
+<p>打个比方：你去餐厅吃饭，服务员只看了你们第一个人的口味（只要素菜），就判定你们整桌人都只吃素菜，拒绝给你们下单。后面的人明明要吃肉菜，服务员也不管——因为他的”菜单”是根据第一个人的需求生成的。</p>
+<p>具体到这次问题：Job 要先在 PMA 加工 step3，再去 PMB 加工 step4。调度员看的是第一道工序 step3 只能用 PMA，于是名单上只有 PMA。检查 step3——PMA 在名单里，没问题；检查 step4（需要 PMB）——名单上没有 PMB，判定 Job 不能跑，hold 住。一片 wafer 都没取就卡死了。</p>
+<p>只跑一个步骤时不会出问题，因为只有一道工序要检查，名单刚好够用。</p>
+<h2 id="怎么修的"><a href="#怎么修的" class="headerlink" title="怎么修的"></a>怎么修的</h2><p>修复很简单：这份名单只用来检查<strong>第一道工序</strong>，后面的工序要让调度员去看<strong>所有腔</strong>，而不是只盯着这份只有第一道工序信息的名单。这样 step4 检查 PMB 时就能正确找到，不会误把 Job hold 住。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次问题的核心是<strong>拿了一个只包含部分信息的列表，当成了完整信息来用</strong>。<code>EstimateJustInTimeWaferLoading</code> 的职责是评估”第一片 wafer 当前能进哪些腔”，它天然只关注第一道工序对应的腔。但 <code>HoldNewJob</code> 需要的是”Job 的每一步都有腔可用”这个全局判断，两者需求不同，不能直接把前者的结果塞给后者用。</p>
 
     </div>
 </article> 
@@ -109,6 +95,13 @@
 
         <aside class="sidebar-right">
             
+            
+                <div class="widget toc-widget">
+                    <h3><i class="iconfont icon-list"></i> 文章目录</h3>
+                    <div class="toc-content">
+                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%8F%B0%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%BB%E7%BB%93"><span class="toc-text">机台死锁问题排查总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81"><span class="toc-text">什么是死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bug-474-%E6%94%B9%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">Bug#474 改了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%9C%A8%E5%93%AA"><span class="toc-text">问题在哪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E4%BF%AE%E7%9A%84"><span class="toc-text">怎么修的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol>
+                    </div>
+                </div>
             
 
             <div class="widget tags-widget">
