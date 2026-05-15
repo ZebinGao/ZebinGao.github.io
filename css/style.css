@@ -271,6 +271,49 @@ body {
     overflow: hidden;
 }
 
+/* 友链分类标签栏 */
+.link-category-tabs,
+.link-subcategory-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+.link-subcategory-tabs {
+    margin-top: 0;
+}
+
+.category-tab {
+    padding: 6px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    background: var(--bg-button);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.category-tab:hover {
+    color: #d84b6b;
+    border-color: #d84b6b;
+    background: rgba(216, 75, 107, 0.05);
+}
+
+.category-tab.active {
+    color: #fff;
+    background: #d84b6b;
+    border-color: #d84b6b;
+}
+
+.link-card-wrap.hidden {
+    display: none;
+}
+
 /* =========================================================
    右侧挂件通用样式
 ========================================================= */
