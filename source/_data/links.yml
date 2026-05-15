@@ -22,6 +22,12 @@
   description: "Currently, I live in North Vancouver, Canada by myself due to H1B visa issues, away from my husband (CUI Hao) and our cat named Fancy."
   category: "中科大的朋友"
 
+- name: "吴英杰"
+  url: "https://oldj.net/"
+  avatar: "https://github.com/oldj.png?size=100"
+  description: "毕业于一所“红砖并进，泥石交融”的以理工科闻名的学校，目前就职于一家与四十大盗有关的电子商务企业"
+  category: "中科大的朋友"
+
 - name: "FEIYAN MA"
   url: "https://chiyuru.github.io/"
   avatar: "https://github.com/Chiyuru.png?size=100"
@@ -40,6 +46,59 @@
   description: "清华大学2010级本科，曾经在微软亚洲研究院的系统研究组、hulu的推荐、谷歌北京的Google输入法、英国伦敦Facebook实习。"
   category: "清华科班出身"
 
+- name: "HenryHu"
+  url: "https://blog.henryhu.net/"
+  avatar: "/img/friends/henry.png"
+  description: "傻逼PhD转职傻逼码农……"
+  category: "清华科班出身"
+
+- name: "Yuzhi Wang"
+  url: "https://bigeagle.me/"
+  avatar: "https://github.com/bigeagle.png?size=100"
+  description: "2022年11月，旷视的机会没有来，ChatGPT 来了，属于旷视和“AI四小龙”的时代结束。"
+  category: "清华科班出身"
+
+- name: "laike9m"
+  url: "https://laike9m.com/"
+  avatar: "https://github.com/laike9m.png?size=100"
+  description: "Hi, I'm laike9m. I'm currently a software engineer working for Google."
+  category: "清华科班出身"
+
+- name: "宋方睿"
+  url: "https://maskray.me/"
+  avatar: "https://github.com/MaskRay.png?size=100"
+  description: "Retired Algo/CTF/Student Cluster Competition player"
+  category: "清华科班出身"
+
+- name: "康师傅(王康)"
+  url: "http://scateu.me/"
+  avatar: "https://github.com/scateu.png?size=100"
+  description: "开了博客的tuna成员"
+  category: "清华科班出身"
+
+- name: "李鑫"
+  url: "https://blog.delphij.net/"
+  avatar: "https://github.com/delphij.png?size=100"
+  description: "美国生活的老清华，水木清华的老版主，姥爷是中国人民大学的老师"
+  category: "清华科班出身"
+
+- name: "Yuxin Wu"
+  url: "https://ppwwyyxx.com/"
+  avatar: "https://github.com/ppwwyyxx.png?size=100"
+  description: "I’m building foundation models at Moonshot AI (Kimi). We’re hiring top talents in China and US."
+  category: "清华科班出身"
+
+- name: "水渍"
+  url: "https://multisim.me/"
+  avatar: "/img/friends/shuizi.png"
+  description: "帝都第一男子技工学校农民工专业攻学学士"
+  category: "清华科班出身"
+
+- name: "librehat"
+  url: "https://www.librehat.com/"
+  avatar: "https://github.com/tuna.png?size=100"
+  description: "中国制造，现居伦敦。"
+  category: "东南大学"
 
 - name: "林德熙"
   url: "https://blog.lindexi.com/"
