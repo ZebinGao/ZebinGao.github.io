@@ -1,305 +1,334 @@
-## 新朋友系列
 - name: "屠·城"
   url: "https://www.haomwei.com/"
   avatar: "https://github.com/tufu9441.png?size=100"
   description: "这个家伙很懒，什么都没有留下。"
+  category: "新朋友"
 
-## WPF专家系列
 - name: "林德熙"
   url: "https://blog.lindexi.com/"
   avatar: "https://github.com/lindexi.png?size=100"
   description: "Windows Development MVP. Member of the .NET Foundation"
+  category: "WPF专家"
 
 - name: "吕毅"
   url: "https://blog.walterlv.com/"
   avatar: "https://github.com/walterlv.png?size=100"
   description: ".NET and Windows App Developer"
+  category: "WPF专家"
 
 - name: "晒太阳的猫"
   url: "https://blog.jgrass.cc/"
   avatar: "https://github.com/JasonGrass.png?size=100"
   description: "个人博客站点，记录一些随笔"
+  category: "WPF专家"
 
-
-## 德国系列
 - name: "来自德国的WPF专家"
   url: "https://www.thomasclaudiushuber.com/"
   avatar: "https://github.com/thomasclaudiushuber.png?size=100"
-  description: "Residing in Germany’s Black Forest with my wife and our three daughters, I enjoy playing football, guitar, working out."
+  description: "Residing in Germany's Black Forest with my wife and our three daughters, I enjoy playing football, guitar, working out."
+  category: "德国"
 
-##韩国系列
 - name: "韩国的WPF专家夫妻"
   url: "https://jamesnet.dev/"
   avatar: "https://github.com/vickyqu115.png?size=100"
   description: "我是瞿扬(Vicky)，一名专注于WPF的开发者、教程创作者和社区教育者。"
+  category: "韩国"
 
 - name: "优秀个人独立博客导航"
   url: "http://www.jetli.com.cn/"
   avatar: "/img/friends/jetli.png"
   description: "博客志 / 只收藏有价值的优秀博客 / 你关注的人，决定你看到的世界"
+  category: "韩国"
 
-#中国人系列
-
-##杭州系列
 - name: '持续进步的大佬'
   url: 'https://blog.cnbang.net/'
   avatar: "https://github.com/bang590.png?size=100"
   description: "我是bang,程序员,喜欢做东西。"
+  category: "中国人"
+  subcategory: "杭州"
 
 - name: '陈光剑'
   url: 'https://universsky.github.io/'
   avatar: "https://github.com/universsky.png?size=100"
   description: "陈光剑,江苏东海人, 号行走江湖一剑客,字之剑. 程序员,诗人, 作家. 光剑免费图书馆"
+  category: "中国人"
+  subcategory: "杭州"
 
 - name: '丁克的90后男生'
   url: 'https://blog.solazy.me/'
   avatar: "/img/friends/solazy.png"
   description: "不止于品尝，更着迷于其背后的技法与原理，以及所承载的文化与历史。"
+  category: "中国人"
+  subcategory: "杭州"
 
-##上海系列
 - name: '转战B站和公众号的开源人物羡辙'
   url: 'http://zhangwenli.com/'
   avatar: "https://github.com/Ovilia.png?size=100"
   description: "我是一个想到什么就一定要付诸行动的人——不写就失眠，一写就是四个小时。想找到历史文章不容易，得碰运气。"
+  category: "中国人"
+  subcategory: "上海"
 
 - name: "莫比乌斯"
   url: "https://onojyun.com/"
   avatar: "/img/friends/onojyun.png"
   description: "我的文字不是为了顺从你的喜好，而是让你意识到我们是有血有肉的人。"
+  category: "中国人"
+  subcategory: "上海"
 
 - name: '董翰林'
   url: 'http://www.hanlindong.com/'
   avatar: "https://github.com/hanlin-dong.png?size=100"
   description: "上海师范大学科学教育系，副系主任"
+  category: "中国人"
+  subcategory: "上海"
 
-
-##深圳系列
 - name: '我与我周旋久'
   url: 'https://about.laily.net/'
   avatar: "https://github.com/hilaily.png?size=100"
   description: "一个在深圳工作的湖北宜昌人,92 年出生,15 年大学毕业，然后一直在互联网行业工作。"
+  category: "中国人"
+  subcategory: "深圳"
 
 - name: '蒋洋'
   url: 'https://jiangmiemie.com/'
   avatar: "https://github.com/jiangyangcreate.png?size=100"
   description: "个人的美好生活只有自己争取：子女不应寄希望于父母，父母亦不应寄希望于子女。伴侣不应当寄希望于对方，公民不应当寄希望于政府。"
+  category: "中国人"
+  subcategory: "深圳"
 
-## 广州系列
 - name: '拥有个人博客的高中生'
   url: 'https://blog.byteloid.one/'
   avatar: "https://github.com/bingxin666.png?size=100"
   description: "广州的普通高中生一名,日常爱好是打游戏！"
+  category: "中国人"
+  subcategory: "广州"
 
-##北京系列
 - name: '斩断情思的唐洁'
   url: 'https://tang-jay.github.io/'
   avatar: "https://github.com/Tang-Jay.png?size=100"
   description: "1995年生人,来自湖南祁。大同乡村特岗数学教师兼班主任,湖南大学附属中学数学教师,北师大统计学博士。"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '橙梓'
   url: 'https://blog.orangii.cn/'
   avatar: "https://github.com/Jiaocz.png?size=100"
   description: "西北工业大学，快手，支付业务部，前端开发"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '溢出猫'
   url: 'https://blog.xinshijiededa.men/'
   avatar: "https://github.com/OverflowCat.png?size=100"
   description: "長於淮左，負笈京畿, 學在北航。欲築賽博蘭臺；偶窺機巧之微。"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '全栈工程师'
   url: 'https://candinya.com/'
   avatar: "https://github.com/Candinya.png?size=100"
   description: "摸鱼大王，世末鸽者，肥肥阿宅，一个在家里造数据中心的人。"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '评论尸'
   url: 'https://1q43.blog/'
   avatar: "https://github.com/Pls-1q43.png?size=100"
   description: "租住在北京二环的北京土著"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '北漂社畜'
   url: 'https://shakaianee.top/'
   avatar: "https://github.com/SocialSisterYi.png?size=100"
   description: "陕西邮电职业技术学院计算机网络专业。拒绝抽烟与短视频，会编程 会搭网站 会玩单片机 会组装PC,老二刺猿技术宅，热爱关于电子科技的一切。"
-
-##山东系列
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '奶爸博客'
   url: 'https://lifelonglearn.ing'
   avatar: "https://lifelonglearn.ing/logo.png"
   description: "原先在北京西二旗工作，开源项目哪吒监控的开发者，按照丈母娘的要求第二次在山东买了联排，长期远程工作。"
-
-##山东青岛系列
+  category: "中国人"
+  subcategory: "山东"
 
 - name: '普通人，喜欢探索。'
   url: 'https://acevs.com/'
   avatar: "https://github.com/leileiluoluo.png?size=100"
   description: "每个人都是不明真相的群众，看到只是世界的一个切片。多几个角度切片，可能会治愈很多，可能会伤害更深，都是收获。"
+  category: "中国人"
+  subcategory: "山东"
 
-
-##重庆系列
 - name: '扯远了'
   url: 'https://heshizi.com/'
   avatar: "/img/friends/shihezi.png"
   description: "河石子，八零后，有时是一名执业药师，有时也是一名医药代表，大多数时间是一名卖身不卖艺的文艺工作者。"
+  category: "中国人"
+  subcategory: "重庆"
 
 - name: '渣浪'
   url: 'https://bwskyer.com/'
   avatar: "/img/friends/zhalang.png"
   description: "做这个网站初衷是为了记录下自己生活的点滴, 打小就喜欢用文字写流水账, 虽然写得不好但总能回头看到以前的自己, 博客换了3个, 现在是永久地址无误."
+  category: "中国人"
+  subcategory: "重庆"
 
-##湖北武汉系列
 - name: '阿木狗主袁凡'
   url: 'https://yuanfan.rbind.io/about/'
   avatar: "https://github.com/earfanfan.png?size=100"
   description: "当发现被整个世界欺骗的时候，不要直接否定一切，要努力将个人价值与社会价值分离，随后仍然要去重新分辨是非对错，要面对。扎根于具体的生活。"
+  category: "中国人"
+  subcategory: "湖北"
 
-##湖北武汉襄阳系列
 - name: '运维工程师'
   url: 'https://usj.cc/'
   avatar: "https://github.com/zqlit.png?size=100"
   description: "不以物喜，不以己悲，不以人废言，不以己废人。"
+  category: "中国人"
+  subcategory: "湖北"
 
-##甘肃兰州白银系列
 - name: '三无青年'
   url: 'https://www.duanxiansen.com/'
   avatar: "https://github.com/2443266417.png?size=100"
   description: "基层工作者 / 生活记录者 / 折腾爱好者"
+  category: "中国人"
+  subcategory: "甘肃"
 
-
-##四川成都系列
 - name: '王宜楷工作室'
   url: 'http://wangyikai.com/'
   avatar: "/img/friends/wangyikai.jpg"
   description: "负责属地网络信息监管与舆情处置、官方双微运营，组织开展网络舆论阵地建设、网络主题宣传、网络评论、网上统战等。"
+  category: "中国人"
+  subcategory: "四川"
 
-##四川自贡系列
 - name: '1900的灯泡店'
   url: 'https://1900.live/'
   avatar: "https://github.com/rebron1900.png?size=100"
   description: "91 年生人。出生于湖南，但是大部分人生都在四川、广西渡过。在广西时学过几年开发，略懂一些编程技能。2015 年 6 月骑过一次 318，2016 年骑行环青海湖，2018 年 10 月环海南岛。"
+  category: "中国人"
+  subcategory: "四川"
 
-##陕西西安系列
 - name: '肖宗林'
   url: 'https://www.xiaozonglin.cn/'
   avatar: "https://github.com/linlinzzo.png?size=100"
   description: "负责开往服务器的运维工作（用 ChatGPT 对开往服务器出现的问题进行定位和处理，例如 Node.js Cluster 模块使用不当导致进程不断创建子进程等）"
+  category: "中国人"
+  subcategory: "陕西"
 
-##福建厦门系列
 - name: '洛寒兮'
   url: 'https://www.luochancy.com/'
   avatar: "https://github.com/Luochancy.png?size=100"
-  description: "正在负责 “开往” 项目、非商业音游 Simple 的运营之一和 LuocyTeam 的创始人"
+  description: '正在负责 "开往" 项目、非商业音游 Simple 的运营之一和 LuocyTeam 的创始人'
+  category: "中国人"
+  subcategory: "福建"
 
-##贵州贵阳系列
 - name: "尺宅杂记"
   url: "http://www.qncd.com/"
   avatar: "/img/friends/qncd.png"
   description: "没有什么特别的头衔，也没被归为某一类别，除了不劳而获的姓名、性别和年龄，还真是一片空白。我所知的，是我无限的无知。"
+  category: "中国人"
+  subcategory: "贵州"
 
-##广西系列
 - name: "广西的普通人"
   url: "https://www.gxres.net/"
   avatar: "https://github.com/gxres042.png?size=100"
   description: "I am a 19 years old guy who born in Guangxi, China. Now I am studying Information Security Technology at a university in there."
+  category: "中国人"
+  subcategory: "广西"
 
-##江西南昌系列
 - name: "人力资源小胡"
   url: "https://yinji.org/archives.html"
   avatar: "https://github.com/huhexian.png?size=100"
-  description: "2002年出生,江西人。青山，取自辛弃疾词“我见青山多妩媚，料青山见我应如是。"
+  description: '2002年出生,江西人。青山，取自辛弃疾词"我见青山多妩媚，料青山见我应如是。'
+  category: "中国人"
+  subcategory: "江西"
 
-
-#在德国慕尼黑的中国人
 - name: "三脚猫程序员+薪水小偷"
   url: "https://zheshiwo.de/about-me/"
   avatar: "/img/friends/zheshiwo.png"
   description: "穴居生物。业余伙夫。超业余园丁。三脚猫程序员。薪水小偷。生活乏味到不行却还优哉游哉，不知在哉哪样的可怜大叔。"
+  category: "在德国的中国人"
 
-#在日本的中国人
 - name: '清华教授的儿子'
   url: 'https://onevcat.com/'
   avatar: "https://github.com/onevcat.png?size=100"
   description: "王巍 (onevcat)，清华毕业，一名长期在日本生活的中国开发者，主要专注于 iOS, Swift 和 AI 相关的话题。"
-
+  category: "在日本的中国人"
 
 - name: '移居日本的中国夫妻'
   url: 'https://shuiba.co/'
   avatar: "https://github.com/shuibaco.png?size=100"
   description: "水八口，来自福州，留学日本并定居的网页设计师。一位女儿、妻子、母亲，也是一位极简主义者。"
+  category: "在日本的中国人"
 
 - name: '张列驰'
   url: 'https://www.liechi.org//'
   avatar: "https://github.com/liechi.png?size=100"
   description: "四川泸州,现就读于日本基础生物研究所,PhD第五年(真希望能早日在这个句子里面用上完成时)。喜欢看书，做饭和看别人运动。 至于别的，以后想到了再加上吧。"
+  category: "在日本的中国人"
 
-#在美国的中国人
 - name: '拥有飞机驾照的会写代码的女经济师'
   url: 'https://www.liyunchen.com/'
   avatar: "/img/friends/liyunChen.jpeg"
   description: "Blogger since 2006 and Private Pilot since 2019,Social Network Analysis, Mechanism Design."
+  category: "在美国的中国人"
 
 - name: '邱怡轩'
   url: 'https://yixuan.blog/'
   avatar: "https://github.com/yixuan.png?size=100"
   description: "在中国人民放假大学（也叫中国群众大学）学了六年统计，学明白的东西和没学明白的东西都在与日俱增， 现在在西老佛爷村的村立普渡众生大学继续读着。唉你是不是已经开始同情我了。"
-
+  category: "在美国的中国人"
 
 - name: '逄金吉'
   url: 'https://jinjipang.com/'
   avatar: "https://github.com/JinjiPang.png?size=100"
   description: "爱荷华州立大学兽医微生物与预防医学博士毕业，我是一个无神论者，却有点相信命中注定，如果有来生，我希望自己能成为一名音乐家。"
+  category: "在美国的中国人"
 
 - name: '谢益辉'
   url: 'https://yihui.org/'
   avatar: "https://github.com/yihui.png?size=100"
   description: "爱荷华州立大学统计系，统计学博士。一个在美帝工作的湖北宜昌人，居住于美国内布拉斯加州麋鹿角郊区。"
+  category: "在美国的中国人"
 
 - name: "睡前小语"
   url: "https://yumaiguihuatongzaijiu.blogspot.com/"
-  #将路径改为相对于网站根目录的绝对路径：
-  #以下划线 _ 开头的文件夹（如 _data, _posts）在执行 hexo generate 时，会被视为私有数据或源文件
   avatar: "/img/friends/phd-chemist.png"
   description: "大学老师的孩子, PHD chemist working in biotech, 波士顿旅居人"
+  category: "在美国的中国人"
 
-## 美国纽约
 - name: '科普作家卢昌海'
   url: 'https://www.changhai.org/index.php'
   avatar: "/img/friends/luchanghai.png"
   description: "关于童年的许多记忆都已模糊了——正因为如此， 也更让人留恋。 那些点点滴滴的回忆在别人眼里也许很乏味， 对我自己却备感亲切， 算是敝帚自珍吧。"
+  category: "在美国的中国人"
 
-
-#在加拿大的中国人
 - name: "雁渡寒潭"
   url: "https://hisherry.com/"
   avatar: "/img/friends/hisherry.png"
   description: "我生长于江南小镇，目前住加拿大渥太华。我的学历普通，上学的时候也没怎么用心，可能大部分时间用来谈恋爱或者仰望心仪的男生了。"
+  category: "在加拿大的中国人"
 
-
-#在英国的中国人
 - name: "yihan(依含)"
   url: "https://yihanxu.github.io/"
   avatar: "https://github.com/yihanxu.png?size=100"
   description: "我在伦敦当了交换生，在巴塞罗那读完硕士，在日内瓦找到基督教信仰，在新加坡重回象牙塔读博毕业。最后兜兜转转在伦敦遇见我老公leyi。现居伦敦Richmond区。"
+  category: "在英国的中国人"
 
-
-#技术狂人系列
 - name: "李新野"
   url: "https://sinyalee.com/blog/"
   avatar: "https://github.com/sinyalee.png?size=100"
   description: "一个无父无母的技术狂人"
+  category: "技术狂人"
 
 - name: "王垠"
   url: "https://yinwang-wiki.github.io/site/"
   avatar: "https://github.com/yinwang0.png?size=100"
   description: "川大退学，清华退学，康奈尔大学退学，印第安纳大学退学，谷歌离职，现为自由职业"
-
-#已经离世的大佬
+  category: "技术狂人"
 
 - name: '陈皓'
   url: 'https://github.com/haoel'
   avatar: "https://github.com/haoel.png?size=100"
   description: "永远的技术大佬"
-
-
-
-
+  category: "已离世的大佬"

@@ -4,22 +4,119 @@
     </header>
 
     <div class="content markdown">
-        <%- page.content %> 
+        <%- page.content %>
+
+        <%
+            var categories = [];
+            var subcategories = {};
+            site.data.links.forEach(function(link) {
+                if (link.category && categories.indexOf(link.category) === -1) {
+                    categories.push(link.category);
+                }
+                if (link.category && link.subcategory) {
+                    if (!subcategories[link.category]) subcategories[link.category] = [];
+                    if (subcategories[link.category].indexOf(link.subcategory) === -1) {
+                        subcategories[link.category].push(link.subcategory);
+                    }
+                }
+            });
+        %>
+
+        <div class="link-category-tabs">
+            <button class="category-tab active" data-filter="all">全部</button>
+            <% categories.forEach(function(cat) { %>
+                <button class="category-tab" data-filter="<%= cat %>"><%= cat %></button>
+            <% }) %>
+        </div>
+
+        <% Object.keys(subcategories).forEach(function(cat) { %>
+            <div class="link-subcategory-tabs" data-parent="<%= cat %>" style="display:none;">
+                <button class="category-tab active" data-filter="all">全部</button>
+                <% subcategories[cat].forEach(function(sub) { %>
+                    <button class="category-tab" data-filter="<%= sub %>"><%= sub %></button>
+                <% }) %>
+            </div>
+        <% }) %>
 
         <div class="link-navigation">
             <% if (site.data.links) { %>
-                <% for (var i in site.data.links) { %>
-                    <a class="link-card-wrap" href="<%- site.data.links[i].url %>" target="_blank" rel="noopener">
+                <% site.data.links.forEach(function(link) { %>
+                    <a class="link-card-wrap" href="<%- link.url %>" target="_blank" rel="noopener" data-category="<%= link.category %>"<% if (link.subcategory) { %> data-subcategory="<%= link.subcategory %>"<% } %>>
                         <div class="card">
-                            <img src="<%- site.data.links[i].avatar %>" alt="<%- site.data.links[i].name %>">
+                            <img src="<%- link.avatar %>" alt="<%- link.name %>">
                             <div class="card-text">
-                                <h4><%- site.data.links[i].name %></h4>
-                                <p><%- site.data.links[i].description %></p>
+                                <h4><%- link.name %></h4>
+                                <p><%- link.description %></p>
                             </div>
                         </div>
                     </a>
-                <% } %>
+                <% }) %>
             <% } %>
         </div>
     </div>
 </article>
+
+<script>
+(function() {
+    var mainTabs = document.querySelector('.link-category-tabs');
+    var subTabsAll = document.querySelectorAll('.link-subcategory-tabs');
+    var cards = document.querySelectorAll('.link-card-wrap');
+    var currentCategory = 'all';
+    var currentSubcategory = 'all';
+
+    function getSubTabs(category) {
+        return document.querySelector('.link-subcategory-tabs[data-parent="' + category + '"]');
+    }
+
+    function filterCards() {
+        cards.forEach(function(card) {
+            var cat = card.getAttribute('data-category');
+            var sub = card.getAttribute('data-subcategory');
+
+            var matchCategory = (currentCategory === 'all') || (cat === currentCategory);
+            var matchSub = (currentSubcategory === 'all') || (sub === currentSubcategory);
+
+            if (matchCategory && matchSub) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    mainTabs.addEventListener('click', function(e) {
+        var tab = e.target.closest('.category-tab');
+        if (!tab) return;
+
+        mainTabs.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+
+        currentCategory = tab.getAttribute('data-filter');
+        currentSubcategory = 'all';
+
+        subTabsAll.forEach(function(st) { st.style.display = 'none'; });
+
+        var subTabs = getSubTabs(currentCategory);
+        if (subTabs) {
+            subTabs.style.display = 'flex';
+            subTabs.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+            subTabs.querySelector('[data-filter="all"]').classList.add('active');
+        }
+
+        filterCards();
+    });
+
+    subTabsAll.forEach(function(subTabs) {
+        subTabs.addEventListener('click', function(e) {
+            var tab = e.target.closest('.category-tab');
+            if (!tab) return;
+
+            subTabs.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+
+            currentSubcategory = tab.getAttribute('data-filter');
+            filterCards();
+        });
+    });
+})();
+</script>
