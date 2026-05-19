@@ -255,6 +255,13 @@
   category: "中国人"
   subcategory: "山东"
 
+- name: '雨帆'
+  url: 'https://yufan.me/'
+  avatar: "https://github.com/syhily.png?size=100"
+  description: "我累了，不再年轻。成家后的生活不再是一个人的世界，有太多事情需要操心。等到拥有真正属于自己的时间时，我只想一个人躺在那里，什么都不做。"
+  category: "中国人"
+  subcategory: "安徽"
+
 - name: '扯远了'
   url: 'https://heshizi.com/'
   avatar: "/img/friends/shihezi.png"
