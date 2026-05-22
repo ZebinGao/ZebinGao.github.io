@@ -28,6 +28,12 @@
   description: "毕业于一所“红砖并进，泥石交融”的以理工科闻名的学校，目前就职于一家与四十大盗有关的电子商务企业"
   category: "中科大的朋友"
 
+- name: "林汇平"
+  url: "https://blog.lhp-pku.top/"
+  avatar: "/img/friends/linhuiping.png"
+  description: "女高音，如今在清华大学合唱队；我喜欢古典主义与浪漫主义的音乐（莫扎特及之后、肖斯塔科维奇及之前）。西方现代主义及之后的文学作品（波德莱尔之后）"
+  category: "清华科班出身"
+
 - name: "FEIYAN MA"
   url: "https://chiyuru.github.io/"
   avatar: "https://github.com/Chiyuru.png?size=100"
@@ -38,6 +44,12 @@
   url: "https://ouuan.moe/"
   avatar: "https://github.com/ouuan.png?size=100"
   description: "祖籍是 & 出生于江西，但不到一岁就来到了武汉。"
+  category: "清华科班出身"
+
+- name: "王万霖"
+  url: "https://dgideas.net/"
+  avatar: "https://github.com/DGideas.png?size=100"
+  description: "提到了三个人，“20世纪之子”：张灏。“惠我思想的李先生”：李泽厚。“我的老师”：可能是余英时先生。"
   category: "清华科班出身"
 
 - name: "甜万呆"
@@ -259,6 +271,13 @@
   description: "魔都 2026 届高中生，在读牲口，抽象骡子，折腾爱好者，喜欢公路骑行，3D 打印和小提琴"
   category: "中国人"
   subcategory: "北京"
+
+- name: '银色子弹'
+  url: 'https://silverrainz.me/'
+  avatar: "https://github.com/SilverRainZ.png?size=100"
+  description: "辞职学画画！.I used to work for ByteDance Inc. (2021~2024)."
+  category: "中国人"
+  subcategory: "河北"
 
 - name: '奶爸博客'
   url: 'https://lifelonglearn.ing'
