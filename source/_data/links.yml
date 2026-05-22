@@ -40,6 +40,18 @@
   description: "祖籍是 & 出生于江西，但不到一岁就来到了武汉。"
   category: "清华科班出身"
 
+- name: "甜万呆"
+  url: "https://twd2.me/"
+  avatar: "https://github.com/twd2.png?size=100"
+  description: "毕业于中关村第一幼儿园。毕业于北京市中关村第一小学。毕业于中国人民大学附属中学初中普通班。获得清华大学计算机科学与技术系计算机科学与技术专业学士学位。"
+  category: "清华科班出身"
+
+- name: "Clever_Jimmy"
+  url: "https://leverimmy.top/"
+  avatar: "https://github.com/leverimmy.png?size=100"
+  description: "高中来自于武汉外国语学校，现在就读于清华大学计算机系。"
+  category: "清华科班出身"
+
 - name: "郭家宝"
   url: "https://byvoid.com/zhs/blog/"
   avatar: "https://github.com/BYVoid.png?size=100"
@@ -241,6 +253,13 @@
   category: "中国人"
   subcategory: "北京"
 
+- name: '晴雀堂'
+  url: 'https://blog.verynb.net/'
+  avatar: "https://github.com/hehysh.png?size=100"
+  description: "魔都 2026 届高中生，在读牲口，抽象骡子，折腾爱好者，喜欢公路骑行，3D 打印和小提琴"
+  category: "中国人"
+  subcategory: "北京"
+
 - name: '奶爸博客'
   url: 'https://lifelonglearn.ing'
   avatar: "https://lifelonglearn.ing/logo.png"
@@ -275,6 +294,13 @@
   description: "做这个网站初衷是为了记录下自己生活的点滴, 打小就喜欢用文字写流水账, 虽然写得不好但总能回头看到以前的自己, 博客换了3个, 现在是永久地址无误."
   category: "中国人"
   subcategory: "重庆"
+
+- name: '周晓康'
+  url: 'https://blog.ethan-ai.cn/'
+  avatar: "https://github.com/ethan-phu.png?size=100"
+  description: "患有桥本甲状腺炎的同龄男性"
+  category: "中国人"
+  subcategory: "湖北"
 
 - name: '阿木狗主袁凡'
   url: 'https://yuanfan.rbind.io/about/'
