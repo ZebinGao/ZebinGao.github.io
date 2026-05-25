@@ -28,6 +28,12 @@
   description: "毕业于一所“红砖并进，泥石交融”的以理工科闻名的学校，目前就职于一家与四十大盗有关的电子商务企业"
   category: "中科大的朋友"
 
+- name: "张书樵"
+  url: "https://zhangshuqiao.org/"
+  avatar: "https://github.com/stevenjoezhang.png?size=100"
+  description: "vscode成员，一个喜欢自己动手做硬件工具的大佬"
+  category: "清华科班出身"
+
 - name: "林汇平"
   url: "https://blog.lhp-pku.top/"
   avatar: "/img/friends/linhuiping.png"
@@ -118,6 +124,24 @@
   description: "帝都第一男子技工学校农民工专业攻学学士"
   category: "清华科班出身"
 
+- name: "Liu Xiaoyi"
+  url: "https://layered.meow.plus/"
+  avatar: "https://github.com/CircuitCoder.png?size=100"
+  description: "无论你如何找到这个网站，想接触哪个层面的喵喵，都欢迎你的来访，希望你能在这里找到有趣的东西。"
+  category: "清华科班出身"
+
+- name: "陈晟祺"
+  url: "https://harrychen.xyz/"
+  avatar: "https://github.com/Harry-Chen.png?size=100"
+  description: "江苏省常熟中学，理科实验班，高中。清华大学，计算机科学与技术系，直博"
+  category: "清华科班出身"
+
+- name: "郑林楷"
+  url: "https://nano.ac/archives/"
+  avatar: "https://github.com/Konano.png?size=100"
+  description: "2019年，在江苏卫视播出的《最强大脑之燃烧吧大脑》（即《最强大脑》第六季）中，郑林楷拿下了最终的最高荣誉。"
+  category: "清华科班出身"
+
 - name: "librehat"
   url: "https://www.librehat.com/"
   avatar: "https://github.com/tuna.png?size=100"
@@ -195,12 +219,26 @@
   category: "中国人"
   subcategory: "上海"
 
+- name: '昊哥'
+  url: 'https://lenciel.com/'
+  avatar: "/img/friends/hao.png"
+  description: "人生，是你死之前的一个贝叶斯过程，你的情绪和欲望，你的占有和失去只是副产物。目前在 FITURE ，做 COO。"
+  category: "中国人"
+  subcategory: "上海"
+
 - name: '董翰林'
   url: 'http://www.hanlindong.com/'
   avatar: "https://github.com/hanlin-dong.png?size=100"
   description: "上海师范大学科学教育系，副系主任"
   category: "中国人"
   subcategory: "上海"
+
+- name: 'bd4sur'
+  url: 'https://bd4sur.com/'
+  avatar: "https://github.com/bd4sur.png?size=100"
+  description: "博客转型为电台网站，启用bd4sur.com域名。"
+  category: "中国人"
+  subcategory: "江苏"
 
 - name: '我与我周旋久'
   url: 'https://about.laily.net/'
@@ -222,6 +260,13 @@
   description: "广州的普通高中生一名,日常爱好是打游戏！"
   category: "中国人"
   subcategory: "广州"
+
+- name: 'Merrier'
+  url: 'https://merrier.wang/'
+  avatar: "https://github.com/merrier.png?size=100"
+  description: "北京老破小亏了200万。卒然临之而不惊，无故加之而不怒。"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: '斩断情思的唐洁'
   url: 'https://tang-jay.github.io/'
@@ -356,6 +401,13 @@
   category: "中国人"
   subcategory: "四川"
 
+- name: '251的魔法实验室'
+  url: 'https://blog.251.sh/'
+  avatar: "https://github.com/misaka00251.png?size=100"
+  description: "您要的页面找不到了，但我们不能停止斗争。"
+  category: "中国人"
+  subcategory: "四川"
+
 - name: '肖宗林'
   url: 'https://www.xiaozonglin.cn/'
   avatar: "https://github.com/linlinzzo.png?size=100"
@@ -396,6 +448,12 @@
   avatar: "/img/friends/zheshiwo.png"
   description: "穴居生物。业余伙夫。超业余园丁。三脚猫程序员。薪水小偷。生活乏味到不行却还优哉游哉，不知在哉哪样的可怜大叔。"
   category: "在德国的中国人"
+
+- name: 'NoirGif'
+  url: 'https://nir.moe/'
+  avatar: "https://github.com/noirgif.png?size=100"
+  description: "CS Master in UW-Madison, software engineer in TikTok"
+  category: "在日本的中国人"
 
 - name: '清华教授的儿子'
   url: 'https://onevcat.com/'
@@ -455,6 +513,12 @@
   url: "https://hisherry.com/"
   avatar: "/img/friends/hisherry.png"
   description: "我生长于江南小镇，目前住加拿大渥太华。我的学历普通，上学的时候也没怎么用心，可能大部分时间用来谈恋爱或者仰望心仪的男生了。"
+  category: "在加拿大的中国人"
+
+- name: "Frank"
+  url: "https://nyan.im/"
+  avatar: "https://github.com/tuna.png?size=100"
+  description: "我是Frank，是一名软件工程师。擅长面向搜索引擎编程，希望通过技术为世界做一些微小的贡献。。"
   category: "在加拿大的中国人"
 
 - name: "yihan(依含)"
