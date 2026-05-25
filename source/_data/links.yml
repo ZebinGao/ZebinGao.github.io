@@ -142,6 +142,18 @@
   description: "2019年，在江苏卫视播出的《最强大脑之燃烧吧大脑》（即《最强大脑》第六季）中，郑林楷拿下了最终的最高荣誉。"
   category: "清华科班出身"
 
+- name: "杰哥"
+  url: "https://jia.je/"
+  avatar: "https://github.com/jiegec.png?size=100"
+  description: "我是清华大学计算机系的一名在读博士生。"
+  category: "清华科班出身"
+
+- name: "贺叶霜"
+  url: "https://blog.heysh.xyz/"
+  avatar: "https://github.com/heyeshuang.png?size=100"
+  description: "贺叶霜，如你所见，是个死宅，正在读帝都的大学，热爱自由，喜欢neta、潜水"
+  category: "清华科班出身"
+
 - name: "librehat"
   url: "https://www.librehat.com/"
   avatar: "https://github.com/tuna.png?size=100"
@@ -204,6 +216,20 @@
   description: "不止于品尝，更着迷于其背后的技法与原理，以及所承载的文化与历史。"
   category: "中国人"
   subcategory: "杭州"
+
+- name: '土豆'
+  url: 'https://dmesg.app/'
+  avatar: "https://github.com/BennyThink.png?size=100"
+  description: "这是我的某位小伙伴对我的称呼。她陪伴我走过了我人生最低谷的那段时间，八年前我们曾经幼稚、曾经互相冷嘲热讽，但是最终我们却陪伴在彼此身边。"
+  category: "中国人"
+  subcategory: "上海"
+
+- name: '高策'
+  url: 'https://gaocegege.com/Blog/about/'
+  avatar: "https://github.com/gaocegege.png?size=100"
+  description: "江湖小虾米。目前在 TensorChord 担任联合创始人兼 CEO，主要关注机器学习基础设施方向。"
+  category: "中国人"
+  subcategory: "上海"
 
 - name: '转战B站和公众号的开源人物羡辙'
   url: 'http://zhangwenli.com/'
@@ -316,6 +342,13 @@
   description: "魔都 2026 届高中生，在读牲口，抽象骡子，折腾爱好者，喜欢公路骑行，3D 打印和小提琴"
   category: "中国人"
   subcategory: "北京"
+
+- name: 'xuanwo'
+  url: 'https://xuanwo.io/'
+  avatar: "https://github.com/Xuanwo.png?size=100"
+  description: "QingCloud，Databend，LanceDB"
+  category: "中国人"
+  subcategory: "河北"
 
 - name: '银色子弹'
   url: 'https://silverrainz.me/'
