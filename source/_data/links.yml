@@ -229,6 +229,13 @@
   category: "中国人"
   subcategory: "杭州"
 
+- name: '魏武挥'
+  url: 'http://weiwuhui.com/'
+  avatar: "/img/friends/weiwuhui.png"
+  description: "我大学里基本上做的事情是谈恋爱、炒股票、贩卖一些水果和螃蟹。正在我感到困顿的时候，远在香港的老父建议我去香港读个硕士。"
+  category: "中国人"
+  subcategory: "上海"
+
 - name: '土豆'
   url: 'https://dmesg.app/'
   avatar: "https://github.com/BennyThink.png?size=100"
