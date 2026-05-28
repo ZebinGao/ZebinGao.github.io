@@ -10,6 +10,12 @@
   description: "Software engineer at Microsoft. Born in 1990s, lives in Suzhou, China."
   category: "北邮的朋友"
 
+- name: "青藤木鸟"
+  url: "https://www.qtmuniao.com/"
+  avatar: "https://github.com/songpengwei.png?size=100"
+  description: "北邮计算机科班本硕，外企（微软），大厂（腾讯），曾经独角兽（旷视）和小创（NebulaGraph）都待过一阵"
+  category: "北邮的朋友"
+
 - name: "崔灏"
   url: "https://blog.cvhc.cc/"
   avatar: "https://github.com/cuihaoleo.png?size=100"
@@ -154,6 +160,12 @@
   description: "贺叶霜，如你所见，是个死宅，正在读帝都的大学，热爱自由，喜欢neta、潜水"
   category: "清华科班出身"
 
+- name: "谭新宇"
+  url: "https://tanxinyu.work/"
+  avatar: "https://github.com/OneSizeFitsQuorum.png?size=100"
+  description: "清华本硕，对分布式系统和性能优化感兴趣。"
+  category: "清华科班出身"
+
 - name: "librehat"
   url: "https://www.librehat.com/"
   avatar: "https://github.com/tuna.png?size=100"
@@ -286,6 +298,13 @@
   description: "广州的普通高中生一名,日常爱好是打游戏！"
   category: "中国人"
   subcategory: "广州"
+
+- name: '代码家'
+  url: 'https://daimajia.com/'
+  avatar: "https://github.com/daimajia.png?size=100"
+  description: "我算了算，不上班已经马上要 3 年了。2025年12月18日"
+  category: "中国人"
+  subcategory: "北京"
 
 - name: 'Merrier'
   url: 'https://merrier.wang/'
