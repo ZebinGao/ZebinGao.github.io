@@ -315,6 +315,80 @@ body {
 }
 
 /* =========================================================
+   兴趣爱好页面
+========================================================= */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 15px;
+}
+
+.hobby-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 18px 16px;
+    transition: all 0.3s;
+    display: block;
+    text-decoration: none;
+    position: relative;
+}
+
+.hobby-card[href]:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    border-color: #d84b6b;
+}
+
+.hobby-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.hobby-card-author {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+}
+
+.hobby-card-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hobby-status {
+    display: inline-block;
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.hobby-status-watched,
+.hobby-status-read {
+    background: rgba(76, 175, 80, 0.1);
+    color: #4caf50;
+}
+
+.hobby-status-want_to_watch,
+.hobby-status-want_to_read {
+    background: rgba(255, 152, 0, 0.1);
+    color: #ff9800;
+}
+
+.hobby-card.hidden {
+    display: none;
+}
+
+/* =========================================================
    右侧挂件通用样式
 ========================================================= */
 .widget {
