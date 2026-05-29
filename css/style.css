@@ -394,6 +394,45 @@ body {
 }
 
 /* =========================================================
+   Wiki 页面分类卡片
+========================================================= */
+.wiki-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.wiki-category-card {
+    display: block;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.wiki-category-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    border-color: #d84b6b;
+}
+
+.wiki-category-name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+
+.wiki-category-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* =========================================================
    右侧挂件通用样式
 ========================================================= */
 .widget {
