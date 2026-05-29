@@ -1,22 +1,23 @@
 - title: "贪婪的多巴胺"
   author: "丹尼尔·利伯曼"
   status: "in_read"
-  note: "多巴胺其实并不是“快乐分子”，而是“渴望分子”。"
-  url: "/post/2026/4/%E8%A7%A3%E5%AF%86%E8%8D%B7%E5%B0%94%E8%92%99.html"
-
-# 不建议使用完整链接， url: "https://zebin-yue.top/post/2026/4/%E8%A7%A3%E5%AF%86%E8%8D%B7%E5%B0%94%E8%92%99.html"
+  note: '多巴胺其实并不是"快乐分子"，而是"渴望分子"。'
+  url: "/wiki/books/"
 
 - title: "百年孤独"
   author: "加西亚·马尔克斯"
   status: "read"
   note: "过去都是假的，回忆是一条没有归途的路。"
+  url: "/wiki/books/"
 
 - title: "活着"
   author: "余华"
   status: "read"
   note: "人是为了活着本身而活着，而不是为了活着之外的任何事物而活着。"
+  url: "/wiki/books/"
 
 - title: "三体"
   author: "刘慈欣"
   status: "want_to_read"
   note: "给岁月以文明，而不是给文明以岁月。"
+  url: "/wiki/books/"

@@ -1,15 +1,19 @@
 - title: "肖申克的救赎"
   status: "watched"
   note: "希望是个好东西，也许是世上最好的东西。"
+  url: "/wiki/movies/"
 
 - title: "星际穿越"
   status: "watched"
   note: "爱是唯一可以超越时间与空间的东西。"
+  url: "/wiki/movies/"
 
 - title: "千与千寻"
   status: "watched"
   note: "不能吃太胖哦，会被杀掉的！"
+  url: "/wiki/movies/"
 
 - title: "霸王别姬"
   status: "want_to_watch"
   note: "说好了一辈子，少一年、一天、一个时辰，都不是一辈子。"
+  url: "/wiki/movies/"
