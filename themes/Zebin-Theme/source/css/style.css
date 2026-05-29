@@ -348,7 +348,8 @@ body {
     margin-bottom: 6px;
 }
 
-.hobby-card-author {
+.hobby-card-author,
+.hobby-card-meta {
     font-size: 0.82rem;
     color: var(--text-muted);
     margin-bottom: 6px;

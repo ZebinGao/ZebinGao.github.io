@@ -36,6 +36,13 @@
                             <div class="hobby-card" data-status="<%= item.status %>">
                         <% } %>
                             <div class="hobby-card-title"><%- item.title %></div>
+                            <% if (item.director || item.date) { %>
+                                <div class="hobby-card-meta">
+                                    <% if (item.director) { %><%- item.director %><% } %>
+                                    <% if (item.director && item.date) { %> · <% } %>
+                                    <% if (item.date) { %><%- item.date %><% } %>
+                                </div>
+                            <% } %>
                             <% if (item.note) { %>
                                 <div class="hobby-card-note"><%- item.note %></div>
                             <% } %>
