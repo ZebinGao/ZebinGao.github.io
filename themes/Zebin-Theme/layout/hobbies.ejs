@@ -1,0 +1,180 @@
+<article class="post-detail hobbies-page">
+    <header class="post-header">
+        <h1 class="post-title">兴趣爱好</h1>
+    </header>
+
+    <div class="content markdown">
+        <%- page.content %>
+
+        <div class="link-category-tabs hobbies-main-tabs">
+            <button class="category-tab active" data-filter="movies">🎬 电影</button>
+            <button class="category-tab" data-filter="books">📚 书籍</button>
+            <button class="category-tab" data-filter="music">🎵 音乐</button>
+        </div>
+
+        <div class="link-subcategory-tabs hobbies-status-tabs" data-parent="movies" style="display:flex;">
+            <button class="category-tab active" data-filter="all">全部</button>
+            <button class="category-tab" data-filter="watched">已看</button>
+            <button class="category-tab" data-filter="want_to_watch">想看</button>
+        </div>
+
+        <div class="link-subcategory-tabs hobbies-status-tabs" data-parent="books" style="display:none;">
+            <button class="category-tab active" data-filter="all">全部</button>
+            <button class="category-tab" data-filter="read">已读</button>
+            <button class="category-tab" data-filter="want_to_read">想读</button>
+        </div>
+
+        <!-- 电影区域 -->
+        <div class="hobbies-section" id="section-movies">
+            <div class="hobbies-grid">
+                <% if (site.data.movies) { %>
+                    <% site.data.movies.forEach(function(item) { %>
+                        <% if (item.url) { %>
+                            <a class="hobby-card" href="<%- item.url %>" data-status="<%= item.status %>">
+                        <% } else { %>
+                            <div class="hobby-card" data-status="<%= item.status %>">
+                        <% } %>
+                            <div class="hobby-card-title"><%- item.title %></div>
+                            <% if (item.note) { %>
+                                <div class="hobby-card-note"><%- item.note %></div>
+                            <% } %>
+                            <span class="hobby-status hobby-status-<%= item.status %>">
+                                <%= item.status === 'watched' ? '已看' : '想看' %>
+                            </span>
+                        <% if (item.url) { %>
+                            </a>
+                        <% } else { %>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- 书籍区域 -->
+        <div class="hobbies-section" id="section-books" style="display:none;">
+            <div class="hobbies-grid">
+                <% if (site.data.books) { %>
+                    <% site.data.books.forEach(function(item) { %>
+                        <% if (item.url) { %>
+                            <a class="hobby-card" href="<%- item.url %>" data-status="<%= item.status %>">
+                        <% } else { %>
+                            <div class="hobby-card" data-status="<%= item.status %>">
+                        <% } %>
+                            <div class="hobby-card-title"><%- item.title %></div>
+                            <% if (item.author) { %>
+                                <div class="hobby-card-author"><%- item.author %></div>
+                            <% } %>
+                            <% if (item.note) { %>
+                                <div class="hobby-card-note"><%- item.note %></div>
+                            <% } %>
+                            <span class="hobby-status hobby-status-<%= item.status %>">
+                                <%= item.status === 'read' ? '已读' : '想读' %>
+                            </span>
+                        <% if (item.url) { %>
+                            </a>
+                        <% } else { %>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- 音乐区域 -->
+        <div class="hobbies-section" id="section-music" style="display:none;">
+            <div class="hobbies-grid">
+                <% if (site.data.music) { %>
+                    <% site.data.music.forEach(function(item) { %>
+                        <% if (item.url) { %>
+                            <a class="hobby-card" href="<%- item.url %>">
+                        <% } else { %>
+                            <div class="hobby-card">
+                        <% } %>
+                            <div class="hobby-card-title"><%- item.title %></div>
+                            <% if (item.artist) { %>
+                                <div class="hobby-card-author"><%- item.artist %></div>
+                            <% } %>
+                            <% if (item.note) { %>
+                                <div class="hobby-card-note"><%- item.note %></div>
+                            <% } %>
+                        <% if (item.url) { %>
+                            </a>
+                        <% } else { %>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</article>
+
+<script>
+(function() {
+    var mainTabs = document.querySelector('.hobbies-main-tabs');
+    var statusTabsAll = document.querySelectorAll('.hobbies-status-tabs');
+    var sections = {
+        movies: document.getElementById('section-movies'),
+        books: document.getElementById('section-books'),
+        music: document.getElementById('section-music')
+    };
+    var currentTab = 'movies';
+    var currentStatus = 'all';
+
+    function filterByStatus(section) {
+        var cards = section.querySelectorAll('.hobby-card');
+        cards.forEach(function(card) {
+            var status = card.getAttribute('data-status');
+            if (currentStatus === 'all' || status === currentStatus) {
+                card.classList.remove('hidden');
+            } else {
+                card.classList.add('hidden');
+            }
+        });
+    }
+
+    mainTabs.addEventListener('click', function(e) {
+        var tab = e.target.closest('.category-tab');
+        if (!tab) return;
+
+        mainTabs.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+
+        currentTab = tab.getAttribute('data-filter');
+        currentStatus = 'all';
+
+        // Show/hide sections
+        Object.keys(sections).forEach(function(key) {
+            sections[key].style.display = (key === currentTab) ? 'block' : 'none';
+        });
+
+        // Show/hide status tabs
+        statusTabsAll.forEach(function(st) {
+            if (st.getAttribute('data-parent') === currentTab) {
+                st.style.display = 'flex';
+                st.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+                st.querySelector('[data-filter="all"]').classList.add('active');
+            } else {
+                st.style.display = 'none';
+            }
+        });
+
+        // Reset status filter
+        filterByStatus(sections[currentTab]);
+    });
+
+    statusTabsAll.forEach(function(statusTabs) {
+        statusTabs.addEventListener('click', function(e) {
+            var tab = e.target.closest('.category-tab');
+            if (!tab) return;
+
+            statusTabs.querySelectorAll('.category-tab').forEach(function(t) { t.classList.remove('active'); });
+            tab.classList.add('active');
+
+            currentStatus = tab.getAttribute('data-filter');
+            filterByStatus(sections[currentTab]);
+        });
+    });
+})();
+</script>
