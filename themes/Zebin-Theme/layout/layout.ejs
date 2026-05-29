@@ -20,7 +20,7 @@
             <nav class="site-nav">
                 <% for (var name in theme.menu) { %>
                     <a href="<%- url_for(theme.menu[name]) %>">
-                        <span><%- theme.menu_icons[name] || '📄' %></span> 
+                        <span><%- theme.menu_icons[name] !== undefined ? theme.menu_icons[name] : '📄' %></span>
                         <%- name %>
                     </a>
                 <% } %>
