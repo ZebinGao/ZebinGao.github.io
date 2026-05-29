@@ -378,6 +378,11 @@ body {
     color: #4caf50;
 }
 
+.hobby-status-in_read {
+    background: rgba(33, 150, 243, 0.1);
+    color: #2196f3;
+}
+
 .hobby-status-want_to_watch,
 .hobby-status-want_to_read {
     background: rgba(255, 152, 0, 0.1);

@@ -21,6 +21,7 @@
         <div class="link-subcategory-tabs hobbies-status-tabs" data-parent="books" style="display:none;">
             <button class="category-tab active" data-filter="all">全部</button>
             <button class="category-tab" data-filter="read">已读</button>
+            <button class="category-tab" data-filter="in_read">在读</button>
             <button class="category-tab" data-filter="want_to_read">想读</button>
         </div>
 
@@ -69,7 +70,7 @@
                                 <div class="hobby-card-note"><%- item.note %></div>
                             <% } %>
                             <span class="hobby-status hobby-status-<%= item.status %>">
-                                <%= item.status === 'read' ? '已读' : '想读' %>
+                                <%= item.status === 'read' ? '已读' : item.status === 'in_read' ? '在读' : '想读' %>
                             </span>
                         <% if (item.url) { %>
                             </a>
