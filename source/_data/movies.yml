@@ -5,6 +5,13 @@
   note: "站着，还把钱挣了。"
   url: "/wiki/movies/"
 
+- title: "霸王别姬"
+  director: "陈凯歌"
+  date: "1993"
+  status: "watched"
+  note: "说好了一辈子，少一年、一天、一个时辰，都不是一辈子。"
+  url: "/wiki/movies/"
+
 - title: "大话西游"
   director: "周星驰"
   date: "1995"
@@ -171,11 +178,4 @@
   date: "2026"
   status: "watched"
   note: "当审判的权力落入屏幕背后的匿名者手中，正义还是正义吗？"
-  url: "/wiki/movies/"
-
-- title: "霸王别姬"
-  director: "陈凯歌"
-  date: "1993"
-  status: "want_to_watch"
-  note: "说好了一辈子，少一年、一天、一个时辰，都不是一辈子。"
   url: "/wiki/movies/"
