@@ -1,5 +1,5 @@
 ---
-title: categories
+title: 分类
 date: 2025-12-30 11:10:35
-type: "categories"
+layout: "categories"
 ---

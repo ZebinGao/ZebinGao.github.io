@@ -3,6 +3,9 @@
         <h1 class="post-title"><%- page.title %></h1>
         <div class="post-meta">
             <span>📅 发布于：<%- date(page.date, 'YYYY年MM月DD日') %></span>
+            <% if (page.categories && page.categories.length) { %>
+                <span>📂 <%- list_categories(page.categories, {show_count: false, style: 'none', separator: ', '}) %></span>
+            <% } %>
             <% if (page.tags && page.tags.length) { %>
                 <span class="tags">
                     🏷️ <%- list_tags(page.tags, {show_count: false, style: 'none', separator: ', '}) %>

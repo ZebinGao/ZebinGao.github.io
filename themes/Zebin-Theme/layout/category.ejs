@@ -1,0 +1,13 @@
+<div class="archive-container">
+    <% if (page.posts.length > 0) { %>
+        <h2 class="archive-year"><%- page.category %></h2>
+        <div class="archive-list">
+            <% page.posts.each(function(post) { %>
+                <div class="archive-item">
+                    <time><%- post.date.format('YYYY-MM-DD') %></time>
+                    <a href="<%- url_for(post.path) %>"><%- post.title || '无标题' %></a>
+                </div>
+            <% }) %>
+        </div>
+    <% } %>
+</div>

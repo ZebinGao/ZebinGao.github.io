@@ -5,6 +5,7 @@ avatar: /img/avatar.png
 menu:
   首页: /
   归档: /archives
+  分类: /categories
   友链: /links
   兴趣爱好: /hobbies
   关于: /about
@@ -17,6 +18,7 @@ menu:
 menu_icons:
   首页: ""
   归档: ""
+  分类: ""
   友链: ""
   兴趣爱好: ""
   关于: ""
