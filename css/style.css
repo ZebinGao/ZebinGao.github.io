@@ -173,11 +173,52 @@ body {
         display: none;
     }
 
-    /* 卡片网格：手机上每行两张 */
+    /* 兴趣爱好卡片：手机端左右布局 */
+    .hobbies-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .hobby-card {
+        display: flex;
+        align-items: center;
+        padding: 10px 14px;
+        border-radius: 8px;
+        gap: 10px;
+    }
+    .hobby-card-title {
+        font-size: 0.92rem;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+    .hobby-card-meta,
+    .hobby-card-author {
+        font-size: 0.75rem;
+        margin-bottom: 0;
+        color: var(--text-muted);
+        flex-shrink: 0;
+    }
+    .hobby-card-note {
+        flex: 1;
+        font-size: 0.78rem;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        -webkit-box-orient: unset;
+        display: block;
+    }
+    .hobby-status {
+        flex-shrink: 0;
+        margin-top: 0;
+    }
+
+    /* 友链卡片：手机端保持两列 */
     .link-navigation,
-    .hobbies-grid,
     .wiki-categories {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 }
 
