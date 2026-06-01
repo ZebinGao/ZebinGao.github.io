@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>层归一化 | 与买桂花同载酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -101,14 +102,15 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="LayerNorm"><a href="#LayerNorm" class="headerlink" title="LayerNorm"></a>LayerNorm</h1><p>公式全貌：<br>$$<br>\text{LayerNorm}(x) &#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta<br>$$</p>
-<hr>
-<h2 id="第一阶段：强制标准化-Standardization"><a href="#第一阶段：强制标准化-Standardization" class="headerlink" title="第一阶段：强制标准化 (Standardization)"></a>第一阶段：强制标准化 (Standardization)</h2><p>$$<br>\hat{x} &#x3D; \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}<br>$$</p>
-<p>这一步的目的是**“消除差异，统一度量衡”**。</p>
+        <h1 id="LayerNorm"><a href="#LayerNorm" class="headerlink" title="LayerNorm"></a>LayerNorm</h1><p>公式全貌：</p>
+<script type="math/tex; mode=display">
+\text{LayerNorm}(x) = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta</script><hr>
+<h2 id="第一阶段：强制标准化-Standardization"><a href="#第一阶段：强制标准化-Standardization" class="headerlink" title="第一阶段：强制标准化 (Standardization)"></a>第一阶段：强制标准化 (Standardization)</h2><script type="math/tex; mode=display">
+\hat{x} = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}</script><p>这一步的目的是<strong>“消除差异，统一度量衡”</strong>。</p>
 <h3 id="1-符号拆解"><a href="#1-符号拆解" class="headerlink" title="1. 符号拆解"></a>1. 符号拆解</h3><ul>
 <li><strong>$x$ (Input)</strong>: 输入的向量。比如刚才算出来的 <code>[91, 71]</code>。</li>
 <li><strong>$\mu$ (Mean)</strong>: <strong>均值</strong>。代表这个向量的“平均水平”。<ul>
-<li><em>(91+71)&#x2F;2 &#x3D; 81</em></li>
+<li><em>(91+71)/2 = 81</em></li>
 </ul>
 </li>
 <li><strong>$\sigma$ (Standard Deviation)</strong>: <strong>标准差</strong>。代表这个向量里的数“波动有多大”。<ul>
@@ -141,9 +143,9 @@
 </ul>
 </blockquote>
 <hr>
-<h2 id="第二阶段：个性化调整-Rescaling"><a href="#第二阶段：个性化调整-Rescaling" class="headerlink" title="第二阶段：个性化调整 (Rescaling)"></a>第二阶段：个性化调整 (Rescaling)</h2><p>$$<br>y &#x3D; \hat{x} \cdot \gamma + \beta<br>$$</p>
-<p>这一步的目的是**“赋予模型自由”**。</p>
-<h3 id="1-为什么标准化之后还要变回去？"><a href="#1-为什么标准化之后还要变回去？" class="headerlink" title="1. 为什么标准化之后还要变回去？"></a>1. 为什么标准化之后还要变回去？</h3><p>如果我们只做第一步，所有的输出都会变成均值为 0、方差为 1 的死板数据。<br><strong>但是，神经网络可能不希望数据这么死板！</strong><br>也许对于某些任务，数据偏大一点（均值&#x3D;5）或者波动大一点（方差&#x3D;10）才更好？</p>
+<h2 id="第二阶段：个性化调整-Rescaling"><a href="#第二阶段：个性化调整-Rescaling" class="headerlink" title="第二阶段：个性化调整 (Rescaling)"></a>第二阶段：个性化调整 (Rescaling)</h2><script type="math/tex; mode=display">
+y = \hat{x} \cdot \gamma + \beta</script><p>这一步的目的是<strong>“赋予模型自由”</strong>。</p>
+<h3 id="1-为什么标准化之后还要变回去？"><a href="#1-为什么标准化之后还要变回去？" class="headerlink" title="1. 为什么标准化之后还要变回去？"></a>1. 为什么标准化之后还要变回去？</h3><p>如果我们只做第一步，所有的输出都会变成均值为 0、方差为 1 的死板数据。<br><strong>但是，神经网络可能不希望数据这么死板！</strong><br>也许对于某些任务，数据偏大一点（均值=5）或者波动大一点（方差=10）才更好？</p>
 <h3 id="2-符号拆解"><a href="#2-符号拆解" class="headerlink" title="2. 符号拆解"></a>2. 符号拆解</h3><p>这两个参数不是算出来的，而是<strong>模型自己“学”出来的</strong>（就像权重矩阵 W 一样）。</p>
 <ul>
 <li><strong>$\gamma$ (Gamma - 缩放因子)</strong>：<ul>
@@ -156,7 +158,7 @@
 </li>
 </ul>
 <blockquote>
-<p><strong>💡 核心逻辑：可逆性</strong><br>如果模型发现“标准化”是个错误的决定，它完全可以通过学习让 $\gamma &#x3D; \sigma$ 且 $\beta &#x3D; \mu$，从而<strong>把数据还原回去</strong>。</p>
+<p><strong>💡 核心逻辑：可逆性</strong><br>如果模型发现“标准化”是个错误的决定，它完全可以通过学习让 $\gamma = \sigma$ 且 $\beta = \mu$，从而<strong>把数据还原回去</strong>。</p>
 <p>这给了模型选择权：<strong>它可以选择标准的数据，也可以选择保留原始特征。</strong></p>
 </blockquote>
 
@@ -418,5 +420,8 @@
         });
     })();
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
 </body>
 </html>

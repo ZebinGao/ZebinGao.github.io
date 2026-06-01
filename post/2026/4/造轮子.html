@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人博客主题造轮子全纪实：从底层架构到前端性能调优 | 与买桂花同载酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -108,9 +109,7 @@
         <h2 id="前言：造轮子的意义"><a href="#前言：造轮子的意义" class="headerlink" title="前言：造轮子的意义"></a>前言：造轮子的意义</h2><p>在完成了工业设备软件底层与后端复杂逻辑的开发后，回头来手搓一个纯前端的 Hexo 博客主题（Zebin-Theme）。本以为前端只是简单的“画界面”，但在从零搭建底层响应式架构、处理 CSS 渲染引擎底层逻辑、以及解决时序冲突时，踩出了一堆极具技术含量的“坑”。</p>
 <p>本文是对这一轮“造轮子”过程中的技术架构与核心 Bug 排查的深度复盘。</p>
 <hr>
-<h2 id="一、-底层目录骨架与规范"><a href="#一、-底层目录骨架与规范" class="headerlink" title="一、 底层目录骨架与规范"></a>一、 底层目录骨架与规范</h2><p>开发一个 Hexo 主题，首先要跨越的是官方的目录规范墙。为了保证极简和高效，Zebin-Theme 的核心基础架构被精简为以下树状目录：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">themes/zebin-theme/<br>├── _config.yml        # 主题的配置文件（定义菜单、社交链接等参数）<br>├── layout/<br>│   ├── layout.ejs     # 全局母版（定义了所有页面共用的三栏 HTML 骨架）<br>│   ├── index.ejs      # 首页模板（负责遍历并注入文章列表）<br>│   ├── archive.ejs    # 归档页模板（按年份对文章进行时间轴聚类）<br>│   ├── post.ejs       # 文章详情页模板<br>│   └── links.ejs      # 友链页模板（独立页面特化）<br>└── source/<br>    └── css/<br>        └── style.css  # 全局核心样式表（包含 CSS Grid 与主题变量体系）<br></code></pre></td></tr></table></figure>
-<p>这套大纲严格遵循了 Hexo 的渲染逻辑：Hexo 会先寻找对应页面的特化模板（如 index.ejs），将其渲染后的内容无缝塞入全局母版 layout.ejs 的 &lt;%- body %&gt; 占位符中。</p>
+<h2 id="一、-底层目录骨架与规范"><a href="#一、-底层目录骨架与规范" class="headerlink" title="一、 底层目录骨架与规范"></a>一、 底层目录骨架与规范</h2><p>开发一个 Hexo 主题，首先要跨越的是官方的目录规范墙。为了保证极简和高效，Zebin-Theme 的核心基础架构被精简为以下树状目录：<br><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs text">themes/zebin-theme/<br>├── _config.yml        # 主题的配置文件（定义菜单、社交链接等参数）<br>├── layout/<br>│   ├── layout.ejs     # 全局母版（定义了所有页面共用的三栏 HTML 骨架）<br>│   ├── index.ejs      # 首页模板（负责遍历并注入文章列表）<br>│   ├── archive.ejs    # 归档页模板（按年份对文章进行时间轴聚类）<br>│   ├── post.ejs       # 文章详情页模板<br>│   └── links.ejs      # 友链页模板（独立页面特化）<br>└── source/<br>    └── css/<br>        └── style.css  # 全局核心样式表（包含 CSS Grid 与主题变量体系）<br></code></pre></td></tr></table></figure><br>这套大纲严格遵循了 Hexo 的渲染逻辑：Hexo 会先寻找对应页面的特化模板（如 index.ejs），将其渲染后的内容无缝塞入全局母版 layout.ejs 的 &lt;%- body %&gt; 占位符中。</p>
 <hr>
 <h2 id="二、-核心架构：基于-CSS-Grid-的响应式三栏布局"><a href="#二、-核心架构：基于-CSS-Grid-的响应式三栏布局" class="headerlink" title="二、 核心架构：基于 CSS Grid 的响应式三栏布局"></a>二、 核心架构：基于 CSS Grid 的响应式三栏布局</h2><p>主题的“地基”抛弃了老旧的浮动（Float）或复杂的 Flex 嵌套，直接采用了现代化的 CSS Grid（网格布局）。</p>
 <h3 id="1-骨架定义-Layout"><a href="#1-骨架定义-Layout" class="headerlink" title="1. 骨架定义 (Layout)"></a>1. 骨架定义 (Layout)</h3><p>在 CSS 中，通过极其优雅的一行代码定义了全局的宏观排版：<br>grid-template-columns: 200px 1fr 220px;</p>
@@ -132,12 +131,12 @@
 </ul>
 <h3 id="2-友链页-Links-的数据驱动网格"><a href="#2-友链页-Links-的数据驱动网格" class="headerlink" title="2. 友链页 (Links) 的数据驱动网格"></a>2. 友链页 (Links) 的数据驱动网格</h3><p>友链页面 (links.ejs) 是纯粹的数据驱动渲染模型。</p>
 <ul>
-<li>数据隔离：抛弃了在 Markdown 里硬写 HTML 的做法，而是利用 Hexo 的数据文件功能。在博客根目录的 source&#x2F;_data&#x2F;links.yml 中配置统一的友链数据。</li>
+<li>数据隔离：抛弃了在 Markdown 里硬写 HTML 的做法，而是利用 Hexo 的数据文件功能。在博客根目录的 source/_data/links.yml 中配置统一的友链数据。</li>
 <li>网格渲染：在 EJS 模板中，通过 &lt;% for (var i in site.data.links) { %&gt; 提取数据，并结合 CSS 的 grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 语法。无论你有 3 个友链还是 30 个友链，它们都会自动形成等宽的自适应卡片矩阵。</li>
 </ul>
 <hr>
 <h2 id="四、-暗黑模式-Dark-Mode-的一键工程化实现"><a href="#四、-暗黑模式-Dark-Mode-的一键工程化实现" class="headerlink" title="四、 暗黑模式 (Dark Mode) 的一键工程化实现"></a>四、 暗黑模式 (Dark Mode) 的一键工程化实现</h2><p>引入了现代化的明暗主题切换机制，涉及完整的色彩架构重构。</p>
-<h3 id="1-建立双系统色彩变量体系"><a href="#1-建立双系统色彩变量体系" class="headerlink" title="1. 建立双系统色彩变量体系"></a>1. 建立双系统色彩变量体系</h3><p>抛弃所有硬编码的 #fff 和 #333，在 CSS 顶部引入 :root 与 [data-theme&#x3D;”dark”] 变量体系。</p>
+<h3 id="1-建立双系统色彩变量体系"><a href="#1-建立双系统色彩变量体系" class="headerlink" title="1. 建立双系统色彩变量体系"></a>1. 建立双系统色彩变量体系</h3><p>抛弃所有硬编码的 #fff 和 #333，在 CSS 顶部引入 :root 与 [data-theme=”dark”] 变量体系。</p>
 <ul>
 <li>设计细节：暗黑模式的背景采用 #121212 护眼，卡片背景稍微提亮（#1e1e1e）以拉开空间层次；暗黑模式下的卡片阴影必须大幅加深透明度才能压住底色。</li>
 </ul>
@@ -430,5 +429,8 @@
         });
     })();
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
 </body>
 </html>

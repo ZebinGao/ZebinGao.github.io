@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>attention 解析 | 与买桂花同载酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -101,68 +102,67 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="缩放点积注意力"><a href="#缩放点积注意力" class="headerlink" title="缩放点积注意力"></a>缩放点积注意力</h1><p>$$\text{Attention}(Q, K, V) &#x3D; \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V$$</p>
-<ul>
+        <h1 id="缩放点积注意力"><a href="#缩放点积注意力" class="headerlink" title="缩放点积注意力"></a>缩放点积注意力</h1><script type="math/tex; mode=display">\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V</script><ul>
 <li>$Q$ (Query): 你的查询意图。比如你手里拿着一张写着“哈利波特”的纸条。</li>
-<li>$K$ (Key): 图书的索引&#x2F;标签。图书馆里每本书脊上贴的标签，比如“科幻”、“魔法”、“传记”。</li>
+<li>$K$ (Key): 图书的索引/标签。图书馆里每本书脊上贴的标签，比如“科幻”、“魔法”、“传记”。</li>
 <li>$V$ (Value): 书的内容本身。书里具体的文字信息。</li>
 </ul>
 <p>这是一个极简的数值例子，模拟 Transformer 内部在处理两个单词时，是如何通过 <strong>“缩放点积注意力” (Scaled Dot-Product Attention)</strong> 计算出结果的。</p>
 <h2 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h2><ul>
 <li><strong>输入单词</strong>：<code>Thinking</code> 和 <code>Machines</code></li>
 <li><strong>目标</strong>：计算第一个单词 <strong>“Thinking”</strong> 的注意力输出（即：它在结合了上下文 “Machines” 后，变成了什么样的新向量）。</li>
-<li><strong>参数假设</strong>：为了方便计算，假设嵌入维度 $d_k &#x3D; 2$。</li>
+<li><strong>参数假设</strong>：为了方便计算，假设嵌入维度 $d_k = 2$。</li>
 </ul>
 <hr>
 <h2 id="0-准备数据-Q-K-V"><a href="#0-准备数据-Q-K-V" class="headerlink" title="0. 准备数据 ($Q, K, V$)"></a>0. 准备数据 ($Q, K, V$)</h2><p>在真实模型中，$Q, K, V$ 是通过输入向量乘以权重矩阵 $W^Q, W^K, W^V$ 得到的。这里我们直接给出结果向量：</p>
 <ul>
 <li><strong>Query ($Q$)</strong>: 代表 “Thinking” 去查询别人的意图。<ul>
-<li>$q_1 &#x3D; [1, 2]$</li>
+<li>$q_1 = [1, 2]$</li>
 </ul>
 </li>
 <li><strong>Keys ($K$)</strong>: 代表 “Thinking” 和 “Machines” 供别人查询的标签。<ul>
-<li>$k_1$ (Thinking) $&#x3D; [1, 2]$</li>
-<li>$k_2$ (Machines) $&#x3D; [0, 1]$</li>
+<li>$k_1$ (Thinking) $= [1, 2]$</li>
+<li>$k_2$ (Machines) $= [0, 1]$</li>
 </ul>
 </li>
 <li><strong>Values ($V$)</strong>: 代表这两个词实际包含的信息内容。<ul>
-<li>$v_1$ (Thinking) $&#x3D; [10, 20]$</li>
-<li>$v_2$ (Machines) $&#x3D; [30, 40]$</li>
+<li>$v_1$ (Thinking) $= [10, 20]$</li>
+<li>$v_2$ (Machines) $= [30, 40]$</li>
 </ul>
 </li>
 </ul>
 <hr>
 <h2 id="1-第一步：点积-QK-T-——-计算相似度"><a href="#1-第一步：点积-QK-T-——-计算相似度" class="headerlink" title="1. 第一步：点积 ($QK^T$) —— 计算相似度"></a>1. 第一步：点积 ($QK^T$) —— 计算相似度</h2><p>拿着 $q_1$ 去和所有的 $k$ 进行点积，看看 “Thinking” 和这句话里的每个词有多相关。</p>
 <ul>
-<li><p><strong>与自己点积</strong> ($q_1 \cdot k_1$):<br>  $$1 \times 1 + 2 \times 2 &#x3D; 1 + 4 &#x3D; \mathbf{5}$$</p>
-</li>
-<li><p><strong>与 “Machines” 点积</strong> ($q_1 \cdot k_2$):<br>  $$1 \times 0 + 2 \times 1 &#x3D; 0 + 2 &#x3D; \mathbf{2}$$</p>
-</li>
+<li><p><strong>与自己点积</strong> ($q_1 \cdot k_1$):</p>
+<script type="math/tex; mode=display">1 \times 1 + 2 \times 2 = 1 + 4 = \mathbf{5}</script></li>
+<li><p><strong>与 “Machines” 点积</strong> ($q_1 \cdot k_2$):</p>
+<script type="math/tex; mode=display">1 \times 0 + 2 \times 1 = 0 + 2 = \mathbf{2}</script></li>
 </ul>
 <p><strong>当前结果向量：</strong> $[5, 2]$</p>
 <blockquote>
 <p><strong>💡 解读</strong>：分数越高，代表相关性越高。Thinking 关注自己 5 分，关注 Machines 2 分。</p>
 </blockquote>
 <hr>
-<h2 id="2-第二步：缩放-Scaling"><a href="#2-第二步：缩放-Scaling" class="headerlink" title="2. 第二步：缩放 (Scaling)"></a>2. 第二步：缩放 (Scaling)</h2><p>公式要求除以 $\sqrt{d_k}$。因为我们设定 $d_k&#x3D;4$ (为简化演示，此处假设根号后为2)，所以 $\sqrt{d_k}&#x3D;2$。</p>
-<p>$$<br>[5, 2] \div 2 &#x3D; [\mathbf{2.5}, \mathbf{1.0}]<br>$$</p>
-<p><strong>当前结果向量：</strong> $[2.5, 1.0]$</p>
+<h2 id="2-第二步：缩放-Scaling"><a href="#2-第二步：缩放-Scaling" class="headerlink" title="2. 第二步：缩放 (Scaling)"></a>2. 第二步：缩放 (Scaling)</h2><p>公式要求除以 $\sqrt{d_k}$。因为我们设定 $d_k=4$ (为简化演示，此处假设根号后为2)，所以 $\sqrt{d_k}=2$。</p>
+<script type="math/tex; mode=display">
+[5, 2] \div 2 = [\mathbf{2.5}, \mathbf{1.0}]</script><p><strong>当前结果向量：</strong> $[2.5, 1.0]$</p>
 <blockquote>
 <p><strong>💡 解读</strong>：这一步是为了防止数值过大，导致下一步 Softmax 梯度消失。</p>
 </blockquote>
 <hr>
 <h2 id="3-第三步：Softmax-——-归一化为概率"><a href="#3-第三步：Softmax-——-归一化为概率" class="headerlink" title="3. 第三步：Softmax —— 归一化为概率"></a>3. 第三步：Softmax —— 归一化为概率</h2><p>我们需要把分数变成百分比（权重），让它们的和为 1。公式如下：</p>
-<p>$$<br>\text{softmax}(x_i) &#x3D; \frac{e^{x_i}}{\sum e^{x_j}}<br>$$</p>
-<p><strong>计算过程：</strong></p>
+<script type="math/tex; mode=display">
+\text{softmax}(x_i) = \frac{e^{x_i}}{\sum e^{x_j}}</script><p><strong>计算过程：</strong></p>
 <ol>
 <li>$e^{2.5} \approx 12.18$</li>
 <li>$e^{1.0} \approx 2.71$</li>
-<li>总和 $&#x3D; 12.18 + 2.71 &#x3D; 14.89$</li>
+<li>总和 $= 12.18 + 2.71 = 14.89$</li>
 </ol>
 <p><strong>计算权重：</strong></p>
 <ul>
-<li>$w_1$ (对自己): $12.18 &#x2F; 14.89 \approx \mathbf{0.82}$</li>
-<li>$w_2$ (对 Machines): $2.71 &#x2F; 14.89 \approx \mathbf{0.18}$</li>
+<li>$w_1$ (对自己): $12.18 / 14.89 \approx \mathbf{0.82}$</li>
+<li>$w_2$ (对 Machines): $2.71 / 14.89 \approx \mathbf{0.18}$</li>
 </ul>
 <p><strong>当前注意力权重：</strong> $[0.82, 0.18]$</p>
 <blockquote>
@@ -170,14 +170,14 @@
 </blockquote>
 <hr>
 <h2 id="4-第四步：加权求和-dots-times-V"><a href="#4-第四步：加权求和-dots-times-V" class="headerlink" title="4. 第四步：加权求和 ($\dots \times V$)"></a>4. 第四步：加权求和 ($\dots \times V$)</h2><p>最后，用计算出的权重，去混合 $V$ (实际内容)。</p>
-<p>$$<br>\text{Output} &#x3D; 0.82 \times v_1 + 0.18 \times v_2<br>$$</p>
-<p>代入数据 ($v_1&#x3D;[10, 20], v_2&#x3D;[30, 40]$)：</p>
+<script type="math/tex; mode=display">
+\text{Output} = 0.82 \times v_1 + 0.18 \times v_2</script><p>代入数据 ($v_1=[10, 20], v_2=[30, 40]$)：</p>
 <ul>
-<li><strong>第一维</strong>：$0.82 \times 10 + 0.18 \times 30 &#x3D; 8.2 + 5.4 &#x3D; \mathbf{13.6}$</li>
-<li><strong>第二维</strong>：$0.82 \times 20 + 0.18 \times 40 &#x3D; 16.4 + 7.2 &#x3D; \mathbf{23.6}$</li>
+<li><strong>第一维</strong>：$0.82 \times 10 + 0.18 \times 30 = 8.2 + 5.4 = \mathbf{13.6}$</li>
+<li><strong>第二维</strong>：$0.82 \times 20 + 0.18 \times 40 = 16.4 + 7.2 = \mathbf{23.6}$</li>
 </ul>
-<h3 id="✅-最终结果"><a href="#✅-最终结果" class="headerlink" title="✅ 最终结果"></a>✅ 最终结果</h3><p>$$<br>\text{Attention Output} &#x3D; [\mathbf{13.6}, \mathbf{23.6}]<br>$$</p>
-<hr>
+<h3 id="✅-最终结果"><a href="#✅-最终结果" class="headerlink" title="✅ 最终结果"></a>✅ 最终结果</h3><script type="math/tex; mode=display">
+\text{Attention Output} = [\mathbf{13.6}, \mathbf{23.6}]</script><hr>
 <h2 id="总结：这个结果意味着什么？"><a href="#总结：这个结果意味着什么？" class="headerlink" title="总结：这个结果意味着什么？"></a>总结：这个结果意味着什么？</h2><ol>
 <li><strong>原始的 Thinking ($v_1$)</strong> 是 $[10, 20]$。</li>
 <li><strong>处理后的 Thinking</strong> 是 $[13.6, 23.6]$。</li>
@@ -451,5 +451,8 @@
         });
     })();
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
 </body>
 </html>

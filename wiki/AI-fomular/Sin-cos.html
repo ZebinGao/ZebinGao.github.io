@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sin-cos 解析 | 与买桂花同载酒</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
     
 <link rel="stylesheet" href="/css/style.css">
 
@@ -101,42 +102,23 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h1><p>$$<br>\begin{aligned}<br>PE_{(pos, 2i)} &amp;&#x3D; \sin\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{偶数维度用 sin}) \<br>PE_{(pos, 2i+1)} &amp;&#x3D; \cos\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{奇数维度用 cos})<br>\end{aligned}<br>$$</p>
-<h2 id="How-position-is-determined"><a href="#How-position-is-determined" class="headerlink" title="How position is determined"></a>How position is determined</h2><p>这其实非常简单，它基于计算机科学中最基础的 <strong>“索引” (Index)</strong> 概念。Transformer 并不认识单词，它只认识单词在句子里的<strong>排队顺序</strong>。</p>
+        <h1 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h1><script type="math/tex; mode=display">
+\begin{aligned}
+PE_{(pos, 2i)} &= \sin\left(\frac{pos}{10000^{2i/d_{model}}}\right) \quad (\text{偶数维度用 sin}) \\
+PE_{(pos, 2i+1)} &= \cos\left(\frac{pos}{10000^{2i/d_{model}}}\right) \quad (\text{奇数维度用 cos})
+\end{aligned}</script><h2 id="How-position-is-determined"><a href="#How-position-is-determined" class="headerlink" title="How position is determined"></a>How position is determined</h2><p>这其实非常简单，它基于计算机科学中最基础的 <strong>“索引” (Index)</strong> 概念。Transformer 并不认识单词，它只认识单词在句子里的<strong>排队顺序</strong>。</p>
 <p>我们在处理句子 <code>&quot;Thinking Machines&quot;</code> 时：</p>
 <ul>
-<li><strong>Thinking</strong>: 是第 1 个词。在 Python&#x2F;编程中，索引从 0 开始，所以 $pos &#x3D; 0$。</li>
-<li><strong>Machines</strong>: 是第 2 个词。所以 $pos &#x3D; 1$。</li>
-<li><strong>…</strong>: 如果后面还有词，就是 $pos &#x3D; 2, 3, 4 \dots$</li>
+<li><strong>Thinking</strong>: 是第 1 个词。在 Python/编程中，索引从 0 开始，所以 $pos = 0$。</li>
+<li><strong>Machines</strong>: 是第 2 个词。所以 $pos = 1$。</li>
+<li><strong>…</strong>: 如果后面还有词，就是 $pos = 2, 3, 4 \dots$</li>
 </ul>
 <blockquote>
-<p><strong>结论</strong>：$pos$ 就是单词在句子中的下标。当你输入第一个词时，模型自动认定 $pos&#x3D;0$。</p>
+<p><strong>结论</strong>：$pos$ 就是单词在句子中的下标。当你输入第一个词时，模型自动认定 $pos=0$。</p>
 </blockquote>
 <hr>
-<h2 id="2-Sin-Cos"><a href="#2-Sin-Cos" class="headerlink" title="2. Sin&#x2F;Cos"></a>2. Sin&#x2F;Cos</h2><p>Google 团队设计了一个巧妙的公式，让每个位置都能生成一个<strong>独一无二的纹理</strong>。</p>
-<p><strong>结果对比：</strong></p>
-<table>
-<thead>
-<tr>
-<th align="left">单词</th>
-<th align="left">Pos</th>
-<th align="left">向量 (近似值)</th>
-<th align="left">特征</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><strong>Thinking</strong></td>
-<td align="left">0</td>
-<td align="left"><code>[0.00, 1.00, 0.00, 1.00]</code></td>
-<td align="left">干净的 0&#x2F;1</td>
-</tr>
-<tr>
-<td align="left"><strong>Machines</strong></td>
-<td align="left">1</td>
-<td align="left"><code>[0.84, 0.54, 0.01, 1.00]</code></td>
-<td align="left">前面变化大，后面变化小</td>
-</tr>
-</tbody></table>
+<h2 id="2-Sin-Cos"><a href="#2-Sin-Cos" class="headerlink" title="2. Sin/Cos"></a>2. Sin/Cos</h2><p>Google 团队设计了一个巧妙的公式，让每个位置都能生成一个<strong>独一无二的纹理</strong>。</p>
+<p><strong>结果对比：</strong><br>| 单词 | Pos | 向量 (近似值) | 特征 |<br>| :—- | :—- | :—- | :—- |<br>| <strong>Thinking</strong> | 0 | <code>[0.00, 1.00, 0.00, 1.00]</code> | 干净的 0/1 |<br>| <strong>Machines</strong> | 1 | <code>[0.84, 0.54, 0.01, 1.00]</code> | 前面变化大，后面变化小 |</p>
 <blockquote>
 <p><strong>💡 直观比喻：时钟</strong></p>
 <ul>
@@ -404,5 +386,8 @@
         });
     })();
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
 </body>
 </html>
