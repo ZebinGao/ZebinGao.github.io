@@ -48,13 +48,136 @@ body {
 }
 
 /* --- 4. 移动端适配 (响应式) --- */
+
+/* 桌面端隐藏移动端元素 */
+.mobile-header, .mobile-overlay, .mobile-search-bar {
+    display: none;
+}
+
 @media (max-width: 900px) {
-    .main-container {
-        /* 当屏幕变窄（手机/平板），直接变成单列排列：左 -> 中 -> 右 */
-        grid-template-columns: 1fr; 
+    /* 移动端顶栏 */
+    .mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        background: var(--bg-card);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        z-index: 1000;
+        padding: 0 15px;
     }
-    .sidebar-left, .sidebar-right {
-        position: static; /* 取消吸附效果 */
+    .mobile-hamburger, .mobile-search-btn, .mobile-theme-toggle {
+        background: none;
+        border: none;
+        font-size: 1.3rem;
+        cursor: pointer;
+        color: var(--text-main);
+        padding: 5px;
+    }
+    .mobile-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-main);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* 移动端搜索栏 */
+    .mobile-search-bar {
+        display: none;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        padding: 10px 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        z-index: 1000;
+    }
+    .mobile-search-bar.open {
+        display: block;
+    }
+    .mobile-search-bar input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: var(--bg-button);
+        color: var(--text-main);
+        font-size: 0.9rem;
+        outline: none;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+    .mobile-search-bar input:focus {
+        border-color: #d84b6b;
+    }
+    .mobile-search-results {
+        margin-top: 8px;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    /* 遮罩层 */
+    .mobile-overlay {
+        display: none;
+        position: fixed;
+        top: 50px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.3);
+        z-index: 998;
+    }
+    .mobile-overlay.open {
+        display: block;
+    }
+
+    /* 左侧栏变为侧滑菜单 */
+    .sidebar-left {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 240px;
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .sidebar-left.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+    }
+
+    /* 主内容区 */
+    .main-container {
+        grid-template-columns: 1fr;
+        margin-top: 50px;
+        padding: 0 10px;
+    }
+    .content-mid {
+        border-radius: 0;
+        padding: 20px 15px;
+    }
+
+    /* 隐藏右侧栏 */
+    .sidebar-right {
+        display: none;
+    }
+
+    /* 卡片网格：手机上每行两张 */
+    .link-navigation,
+    .hobbies-grid,
+    .wiki-categories {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
 
