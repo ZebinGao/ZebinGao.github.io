@@ -3,7 +3,6 @@ title: Softmax 解析
 date: 2026-02-05 12:00:00
 ---
 
-这里才是正文...
 
 # Softmax
 
