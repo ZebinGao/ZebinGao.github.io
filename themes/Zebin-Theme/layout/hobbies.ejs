@@ -70,9 +70,11 @@
                             <div class="hobby-card" data-status="<%= item.status %>">
                         <% } %>
                             <div class="hobby-card-title"><%- item.title %></div>
-                            <% if (item.author) { %>
-                                <div class="hobby-card-author"><%- item.author %></div>
-                            <% } %>
+                            <div class="hobby-card-meta">
+                                <% if (item.author) { %><%- item.author %><% } %>
+                                <% if (item.author && item.date) { %> · <% } %>
+                                <% if (item.date) { %><%- item.date.substring(0, 4) %><% } %>
+                            </div>
                             <% if (item.note) { %>
                                 <div class="hobby-card-note"><%- item.note %></div>
                             <% } %>
@@ -100,9 +102,11 @@
                             <div class="hobby-card">
                         <% } %>
                             <div class="hobby-card-title"><%- item.title %></div>
-                            <% if (item.artist) { %>
-                                <div class="hobby-card-author"><%- item.artist %></div>
-                            <% } %>
+                            <div class="hobby-card-meta">
+                                <% if (item.artist) { %><%- item.artist %><% } %>
+                                <% if (item.artist && item.date) { %> · <% } %>
+                                <% if (item.date) { %><%- item.date.substring(0, 4) %><% } %>
+                            </div>
                             <% if (item.note) { %>
                                 <div class="hobby-card-note"><%- item.note %></div>
                             <% } %>
