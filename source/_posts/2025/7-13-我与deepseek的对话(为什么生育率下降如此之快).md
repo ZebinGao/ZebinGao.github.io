@@ -1,3 +1,10 @@
+---
+title: 我与deep seek的对话
+categories: 社会观察
+tags: [生育率, 中国问题, AI]
+date: 2025-07-13 21:05:25
+---
+
 # 我与DeepSeek的对话：为什么生育率下降如此之快
 ![alt text](文章处理通知.png)
 

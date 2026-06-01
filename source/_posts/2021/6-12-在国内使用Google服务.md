@@ -1,3 +1,10 @@
+---
+title: 在国内使用谷歌服务
+categories: 技术笔记
+tags: [谷歌, vpn, 网络自由]
+date: 2021-06-12 21:05:25
+---
+
 ![alt text](image-5.png)
 
 ![alt text](image-6.png)
