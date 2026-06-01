@@ -101,8 +101,7 @@
     </header>
 
     <div class="content markdown">
-        <p>这里才是正文…</p>
-<h1 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h1><p>$$<br>\begin{aligned}<br>PE_{(pos, 2i)} &amp;&#x3D; \sin\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{偶数维度用 sin}) \<br>PE_{(pos, 2i+1)} &amp;&#x3D; \cos\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{奇数维度用 cos})<br>\end{aligned}<br>$$</p>
+        <h1 id="位置编码"><a href="#位置编码" class="headerlink" title="位置编码"></a>位置编码</h1><p>$$<br>\begin{aligned}<br>PE_{(pos, 2i)} &amp;&#x3D; \sin\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{偶数维度用 sin}) \<br>PE_{(pos, 2i+1)} &amp;&#x3D; \cos\left(\frac{pos}{10000^{2i&#x2F;d_{model}}}\right) \quad (\text{奇数维度用 cos})<br>\end{aligned}<br>$$</p>
 <h2 id="How-position-is-determined"><a href="#How-position-is-determined" class="headerlink" title="How position is determined"></a>How position is determined</h2><p>这其实非常简单，它基于计算机科学中最基础的 <strong>“索引” (Index)</strong> 概念。Transformer 并不认识单词，它只认识单词在句子里的<strong>排队顺序</strong>。</p>
 <p>我们在处理句子 <code>&quot;Thinking Machines&quot;</code> 时：</p>
 <ul>
