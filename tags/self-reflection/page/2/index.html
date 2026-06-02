@@ -91,14 +91,18 @@
                 
             </nav>
             
-            <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+            <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
                 
-                <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 1.1em;">📡</a>
+                <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
                 
                 
-                <a class="lang-toggle" id="lang-toggle" title="切换语言" style="cursor: pointer; font-size: 1.1em;">EN</a>
+                <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
+                    <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
+                    <button class="lang-btn" data-lang="en" title="English">EN</button>
+                    <button class="lang-btn" data-lang="zh" title="中文">中</button>
+                </div>
                 
-                <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 1.1em;">
+                <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
                     <span id="theme-icon">🌙</span>
                 </a>
             </div>
@@ -455,6 +459,46 @@
                     '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
                 }
             },
+            de: {
+                search: 'Suche',
+                search_placeholder: 'Artikel suchen...',
+                no_result: 'Keine Ergebnisse gefunden',
+                toc: 'Inhaltsverzeichnis',
+                hot_tags: 'Beliebte Tags',
+                calendar: 'Kalender',
+                movies: 'Filme',
+                books: 'Bücher',
+                music: 'Musik',
+                all: 'Alle',
+                watched: 'Gesehen',
+                want_to_watch: 'Möchte sehen',
+                read: 'Gelesen',
+                in_read: 'Am Lesen',
+                want_to_read: 'Möchte lesen',
+                read_more: 'Weiterlesen »',
+                prev_page: 'Zurück',
+                next_page: 'Weiter',
+                categories: 'Kategorien',
+                articles_unit: 'Artikel',
+                friend_links: 'Empfehlungen',
+                hobbies: 'Hobbys',
+                published_on: 'Veröffentlicht: ',
+                month_suffix: '',
+                months: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
+                days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
+                menu: {'首页':'Startseite','归档':'Archiv','分类':'Kategorien','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Streich'},
+                cat: {
+                    'AI 公式': 'KI-Formeln', '深度学习中的数学公式推导与解析': 'Mathematische Formelableitungen im Deep Learning',
+                    '电影': 'Filme', '看过的电影与观影感想': 'Filme die ich gesehen habe und meine Gedanken',
+                    '书籍': 'Bücher', '读过的书与读书笔记': 'Gelesene Bücher und meine Notizen',
+                    '音乐': 'Musik', '喜欢的音乐与背后故事': 'Lieblingsmusik und die Geschichten dahinter',
+                    '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton-Technik und Wettbewerbserfahrungen',
+                    '猝不及防的死亡': 'Unerwartete Todesfälle', '那些令人唏嘘的意外与逝去': 'Bedauerliche Unfälle und Verluste',
+                    '神童的悲惨故事': 'Tragische Wunderkind-Geschichten', '被天赋与期望裹挟的人生': 'Leben im Griff von Talent und Erwartungen',
+                    '生活随笔': 'Lebensnotizen', '情感与心理': 'Gefühle & Psychologie', '社会观察': 'Gesellschaftsbeobachtungen', '技术笔记': 'Techniknotizen', '读书与思考': 'Lesen & Nachdenken', '转载': 'Reposts',
+                    '前端': 'Frontend', '后端': 'Backend', '综合': 'Allgemein', '独立博客': 'Persönliche Blogs', '技术服务': 'Tech-Dienste', '社区论坛': 'Community-Foren', '效率工具': 'Produktivitätstools'
+                }
+            },
             zh: {
                 search: '搜索',
                 search_placeholder: '搜索文章...',
@@ -487,9 +531,19 @@
             }
         };
 
-        var langBtn = document.getElementById('lang-toggle');
-        var defaultLang = 'zh';
+        var langBtns = document.querySelectorAll('.lang-btn');
+        var defaultLang = 'de';
         var currentLang = localStorage.getItem('lang') || defaultLang;
+
+        function updateLangButtons(lang) {
+            langBtns.forEach(function(btn) {
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
 
         function applyLang(lang) {
             var t = translations[lang];
@@ -562,8 +616,8 @@
                     if (textNode) textNode.textContent = orig;
                 }
             });
-            // Lang button text
-            langBtn.textContent = lang === 'zh' ? 'EN' : '中文';
+            // Update lang buttons
+            updateLangButtons(lang);
             // Rebuild calendar
             buildCalendarLang(lang, t);
         }
@@ -594,14 +648,17 @@
         // Override no-result text
         var origNoResult = '未找到相关文章';
 
-        langBtn.addEventListener('click', function() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            localStorage.setItem('lang', currentLang);
-            applyLang(currentLang);
+        langBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                currentLang = btn.getAttribute('data-lang');
+                localStorage.setItem('lang', currentLang);
+                applyLang(currentLang);
+            });
         });
 
         // Apply saved lang on load
-        if (currentLang === 'en') applyLang('en');
+        if (currentLang !== 'zh') applyLang(currentLang);
+        updateLangButtons(currentLang);
     })();
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
