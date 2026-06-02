@@ -41,7 +41,7 @@
         <% var end = Math.min(page.total, start + 5); %>
         <% if (end - start < 5) { start = Math.max(1, end - 5); } %>
         <% if (start > 1) { %>
-            <a href="<%- url_for(page.path) %>">1</a>
+            <a href="<%- url_for('archives/') %>">1</a>
             <% if (start > 2) { %>
                 <span class="paginator-ellipsis">...</span>
             <% } %>
@@ -50,14 +50,14 @@
             <% if (i === page.current) { %>
                 <span class="current"><%- i %></span>
             <% } else { %>
-                <a href="<%- url_for(i === 1 ? page.path : 'archives/' + i + '/') %>"><%- i %></a>
+                <a href="<%- url_for(i === 1 ? page.path : 'archives/page/' + i + '/') %>"><%- i %></a>
             <% } %>
         <% } %>
         <% if (end < page.total) { %>
             <% if (end < page.total - 1) { %>
                 <span class="paginator-ellipsis">...</span>
             <% } %>
-            <a href="<%- url_for('archives/' + page.total + '/') %>"><%- page.total %></a>
+            <a href="<%- url_for('archives/page/' + page.total + '/') %>"><%- page.total %></a>
         <% } %>
         <% if (page.next) { %>
             <a href="<%- url_for(page.next_link) %>">&raquo;</a>
