@@ -419,7 +419,7 @@
                     '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton technique notes and competition insights',
                     '猝不及防的死亡': 'Unexpected Deaths', '那些令人唏嘘的意外与逝去': 'Lamentable accidents and losses',
                     '神童的悲惨故事': 'Tragic Stories of Prodigies', '被天赋与期望裹挟的人生': 'Lives engulfed by talent and expectations',
-                    '年终总结': 'Annual Reviews', '想法杂记': 'Random Thoughts', '家庭生活': 'Family Life', '编程技术': 'Programming', '读书笔记': 'Book Notes',
+                    '生活随笔': 'Life Notes', '情感与心理': 'Emotions & Psychology', '社会观察': 'Social Observations', '技术笔记': 'Tech Notes', '读书与思考': 'Reading & Reflection', '转载': 'Reposts',
                     '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
                 }
             },
@@ -464,7 +464,14 @@
             // data-i18n text
             document.querySelectorAll('[data-i18n]').forEach(function(el) {
                 var key = el.getAttribute('data-i18n');
-                if (t[key]) el.textContent = t[key];
+                if (!el.getAttribute('data-original')) {
+                    el.setAttribute('data-original', el.textContent.trim());
+                }
+                if (t[key]) {
+                    el.textContent = t[key];
+                } else {
+                    el.textContent = el.getAttribute('data-original');
+                }
             });
             // data-i18n-placeholder
             document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
@@ -474,8 +481,13 @@
             // data-i18n-cat (category/tag translations)
             document.querySelectorAll('[data-i18n-cat]').forEach(function(el) {
                 var zhName = el.getAttribute('data-i18n-cat');
-                if (t.cat && t.cat[zhName] !== undefined) {
+                if (!el.getAttribute('data-original')) {
+                    el.setAttribute('data-original', el.textContent.trim());
+                }
+                if (lang === 'en' && t.cat && t.cat[zhName] !== undefined) {
                     el.textContent = t.cat[zhName];
+                } else {
+                    el.textContent = el.getAttribute('data-original');
                 }
             });
             // Archive month suffix
@@ -508,9 +520,14 @@
             document.querySelectorAll('.site-nav a').forEach(function(a) {
                 var spans = a.querySelectorAll('span');
                 var textNode = spans.length > 0 ? spans[0].nextSibling : a.childNodes[1];
-                var zhName = textNode ? textNode.textContent.trim() : '';
-                if (t.menu && t.menu[zhName] !== undefined) {
-                    textNode.textContent = t.menu[zhName];
+                if (!a.getAttribute('data-original')) {
+                    a.setAttribute('data-original', textNode ? textNode.textContent.trim() : '');
+                }
+                var orig = a.getAttribute('data-original');
+                if (lang === 'en' && t.menu && t.menu[orig] !== undefined) {
+                    if (textNode) textNode.textContent = t.menu[orig];
+                } else {
+                    if (textNode) textNode.textContent = orig;
                 }
             });
             // Lang button text
