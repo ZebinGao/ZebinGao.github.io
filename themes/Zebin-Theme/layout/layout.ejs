@@ -50,6 +50,9 @@
             </nav>
             
             <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
+                <% if (theme.rss) { %>
+                <a href="<%- url_for(theme.rss) %>" title="RSS 订阅" target="_blank" style="font-size: 1.1em;">📡</a>
+                <% } %>
                 <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 1.1em;">
                     <span id="theme-icon">🌙</span>
                 </a>
