@@ -1007,12 +1007,6 @@ a, button, .read-more, .theme-toggle {
     color: var(--text-muted);
     margin-bottom: 20px;
 }
-.poem-divider {
-    color: var(--text-muted);
-    font-size: 1.4rem;
-    margin: 24px 0;
-    opacity: 0.5;
-}
 .poem-body {
     display: flex;
     flex-direction: column;
@@ -1026,20 +1020,24 @@ a, button, .read-more, .theme-toggle {
     letter-spacing: 2px;
     margin: 0;
 }
-.poem-translation {
+.poem-notes {
     text-align: left;
-    max-width: 520px;
+    max-width: 420px;
     margin: 0 auto;
     background: var(--bg-button);
     border-radius: 10px;
     padding: 20px 24px;
 }
-.poem-translation p {
-    font-size: 0.92rem;
+.poem-notes p {
+    font-size: 0.9rem;
     line-height: 1.8;
     color: var(--text-muted);
-    margin: 0 0 12px 0;
+    margin: 0 0 8px 0;
 }
-.poem-translation p:last-child {
+.poem-notes p:last-child {
     margin-bottom: 0;
+}
+.poem-notes strong {
+    color: var(--text-main);
+    margin-right: 4px;
 }
