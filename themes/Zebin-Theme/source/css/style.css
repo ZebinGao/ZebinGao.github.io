@@ -397,6 +397,26 @@ body {
     background: #d84b6b;
     color: #fff;
 }
+.lang-btn {
+    background: var(--bg-button);
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+.lang-btn:hover {
+    border-color: #d84b6b;
+    color: #d84b6b;
+}
+.lang-btn.active {
+    background: #d84b6b;
+    color: #fff;
+    border-color: #d84b6b;
+}
 
 /* =========================================================
    友链页面网格样式 (取代你原来的行内 Style)
