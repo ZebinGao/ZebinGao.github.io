@@ -69,22 +69,75 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)表示按日期倒序排列（最新的文章排在最前面）。
 index_generator:
   path: ''
-  per_page: 20
+  per_page: 12
   order_by: -date
 
 # Category & Tag 解决中文 URL 乱码或美化链接。
-default_category: '想法杂记'
+default_category: '生活随笔'
 category_map:
-  年终总结: annual-review
-  想法杂记: thoughts
-  家庭生活: daily-life
-  编程技术: programming
-  读书笔记: book-notes
+  生活随笔: life-notes
+  情感与心理: emotions-psychology
+  社会观察: social-observations
+  技术笔记: tech-notes
+  读书与思考: reading-reflection
+  转载: reposts
 tag_map:
-  日子: life
-  技术: tech
-  编程: coding
-  杂记: notes
+  个人反思: self-reflection
+  个人成长: personal-growth
+  中国问题: china-issues
+  互联网文化: internet-culture
+  亲密关系: intimate-relationships
+  人在德国: life-in-germany
+  人际关系: interpersonal
+  写作: writing
+  利己主义: egoism
+  前端开发: frontend
+  历史反思: history-reflection
+  哲学: philosophy
+  国家制度: national-systems
+  外企: foreign-company
+  多巴胺: dopamine
+  婚姻: marriage
+  宗教: religion
+  家庭关系: family
+  小朱: xiao-zhu
+  小镇父子: small-town-father-son
+  左联: left-wing-league
+  干部: cadres
+  年度回顾: annual-review
+  心理学: psychology
+  快乐: happiness
+  性别议题: gender-issues
+  性能优化: performance
+  批判性思维: critical-thinking
+  技术经历: tech-experience
+  文学: literature
+  权力与自由: power-and-freedom
+  沟通与表达: communication
+  清华北大: tsinghua-pku
+  爱国口号: patriotism
+  爱情: love
+  生活记录: life-record
+  生育率: birth-rate
+  疫情: pandemic
+  看电影: movie-review
+  真相: truth
+  社会评论: social-commentary
+  程序员: programmer
+  简单: simplicity
+  网络自由: internet-freedom
+  育儿: parenting
+  腾讯: tencent
+  自我认知: self-awareness
+  诈骗: fraud
+  读书笔记: book-notes
+  调试排障: debugging
+  谷歌: google
+  赛道: career-track
+  转载: repost
+  遗孀: widow
+  阶级分析: class-analysis
+  领导: leadership
 
 # Metadata elements 这是一种对 Hexo 开发团队的“致敬”。
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
