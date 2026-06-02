@@ -506,6 +506,14 @@ body {
 .movie-item:last-child {
     border-bottom: none;
 }
+a.movie-item {
+    text-decoration: none;
+    transition: background 0.2s;
+}
+a.movie-item:hover {
+    background: var(--bg-button);
+    border-radius: 6px;
+}
 .movie-date {
     flex-shrink: 0;
     font-size: 0.82rem;
