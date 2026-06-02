@@ -28,7 +28,7 @@
         </a>
     </div>
     <div class="mobile-search-bar" id="mobile-search-bar">
-        <input type="text" id="mobile-search-input" placeholder="搜索文章..." autocomplete="off">
+        <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
         <div class="mobile-search-results" id="mobile-search-results"></div>
     </div>
     <div class="mobile-overlay" id="mobile-overlay"></div>
@@ -95,6 +95,9 @@
                 
                 <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 1.1em;">📡</a>
                 
+                
+                <a class="lang-toggle" id="lang-toggle" title="切换语言" style="cursor: pointer; font-size: 1.1em;">EN</a>
+                
                 <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 1.1em;">
                     <span id="theme-icon">🌙</span>
                 </a>
@@ -159,16 +162,16 @@
         <aside class="sidebar-right">
 
             <div class="widget search-widget">
-                <h3>搜索</h3>
+                <h3 data-i18n="search">搜索</h3>
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="搜索文章..." autocomplete="off">
+                    <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
                     <div class="search-results" id="search-results"></div>
                 </div>
             </div>
 
             
                 <div class="widget toc-widget">
-                    <h3><i class="iconfont icon-list"></i> 文章目录</h3>
+                    <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
                     <div class="toc-content">
                         <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E2%80%9C%E6%88%91%E4%BB%AC%E8%BF%99%E4%B8%80%E4%BB%A3%EF%BC%8C%E5%B0%8F%E5%86%9C%EF%BC%8C%E5%B0%8F%E5%B8%82%E6%B0%91%EF%BC%8C%E6%B7%B1%E6%80%80%E7%9D%80%E9%9D%9E%E6%96%87%E5%8C%96%EF%BC%8C%E9%9D%9E%E5%AE%A1%E7%BE%8E%EF%BC%8C%E9%9D%9E%E5%BF%83%E7%81%B5%E7%9A%84%E5%BF%83%E7%90%86%E5%80%BE%E5%90%91%EF%BC%8C%E4%BA%8E%E6%98%AF%E9%83%BD%E4%BB%A5%E4%B8%80%E4%B8%AA%E2%80%98%E5%90%83%E2%80%99%E5%AD%97%E4%BA%86%E5%8D%B4%E4%BA%86%E4%B8%80%E7%94%9F%EF%BC%8C%E8%80%8C%E5%90%83%E9%A5%B1%E4%BA%86%EF%BC%8C%E5%8F%88%E4%BB%A5%E4%B8%80%E7%A7%8D%E2%80%98%E6%80%A7%E2%80%99%E6%9D%A5%E6%89%93%E5%8F%91%E6%97%A5%E5%AD%90%E3%80%82%E2%80%9D"><span class="toc-text">“我们这一代，小农，小市民，深怀着非文化，非审美，非心灵的心理倾向，于是都以一个‘吃’字了却了一生，而吃饱了，又以一种‘性’来打发日子。”</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BD%95%E4%B8%AD%E4%BA%A7%E7%9A%84%E5%A9%9A%E5%A7%BB%E4%BC%9A%E8%B5%B0%E5%90%91%E7%A9%BA%E6%B4%9E%E5%92%8C%E6%AD%BB%E6%B0%94%E6%B2%89%E6%B2%89%EF%BC%9F"><span class="toc-text">为何中产的婚姻会走向空洞和死气沉沉？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E9%83%BD%E5%B8%82%E4%BA%BA%E7%B2%BE%E7%A5%9E%E4%B8%8A%E7%9A%84%E5%9B%B0%E5%A2%83%EF%BC%9A%E5%B0%BD%E7%AE%A1%E7%89%A9%E8%B4%A8%E7%94%9F%E6%B4%BB%E5%AF%8C%E8%B6%B3%EF%BC%8C%E5%86%85%E5%BF%83%E5%8D%B4%E6%84%9F%E5%88%B0%E5%B7%A8%E5%A4%A7%E7%9A%84%E7%A9%BA%E8%99%9A%E5%92%8C%E9%9A%94%E7%BB%9D%E3%80%82%E8%BF%99%E6%98%AF%E4%B8%BA%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">现代都市人精神上的困境：尽管物质生活富足，内心却感到巨大的空虚和隔绝。这是为什么？</span></a>
                     </div>
@@ -176,14 +179,14 @@
             
 
             <div class="widget tags-widget">
-                <h3><i class="iconfont icon-tags"></i> 热门标签</h3>
+                <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
                 <div class="tags-cloud">
                     <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8F%8D%E6%80%9D/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E9%97%AE%E9%A2%98/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91%E6%96%87%E5%8C%96/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
                 </div>
             </div>
 
             <div class="widget calendar-widget">
-                <h3><i class="iconfont icon-calendar"></i> 日历</h3>
+                <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
                 <div class="calendar-container">
                     <div class="calendar-header">
                         <span class="month" id="calendar-month"></span>
@@ -415,6 +418,118 @@
                 searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
             });
         });
+    })();
+
+    // 语言切换
+    (function() {
+        var translations = {
+            en: {
+                search: 'Search',
+                search_placeholder: 'Search articles...',
+                no_result: 'No results found',
+                toc: 'Table of Contents',
+                hot_tags: 'Popular Tags',
+                calendar: 'Calendar',
+                movies: 'Movies',
+                books: 'Books',
+                music: 'Music',
+                all: 'All',
+                watched: 'Watched',
+                want_to_watch: 'Want to Watch',
+                read: 'Read',
+                in_read: 'Reading',
+                want_to_read: 'Want to Read',
+                months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'}
+            },
+            zh: {
+                search: '搜索',
+                search_placeholder: '搜索文章...',
+                no_result: '未找到相关文章',
+                toc: '文章目录',
+                hot_tags: '热门标签',
+                calendar: '日历',
+                movies: '电影',
+                books: '书籍',
+                music: '音乐',
+                all: '全部',
+                watched: '已看',
+                want_to_watch: '想看',
+                read: '已读',
+                in_read: '在读',
+                want_to_read: '想读',
+                months: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+                days: ['日','一','二','三','四','五','六'],
+                menu: {}
+            }
+        };
+
+        var langBtn = document.getElementById('lang-toggle');
+        var defaultLang = 'zh';
+        var currentLang = localStorage.getItem('lang') || defaultLang;
+
+        function applyLang(lang) {
+            var t = translations[lang];
+            // data-i18n text
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            // data-i18n-placeholder
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+            // Navigation menu
+            document.querySelectorAll('.site-nav a').forEach(function(a) {
+                var spans = a.querySelectorAll('span');
+                var textNode = spans.length > 0 ? spans[0].nextSibling : a.childNodes[1];
+                var zhName = textNode ? textNode.textContent.trim() : '';
+                if (t.menu && t.menu[zhName] !== undefined) {
+                    textNode.textContent = t.menu[zhName];
+                }
+            });
+            // Lang button text
+            langBtn.textContent = lang === 'zh' ? 'EN' : '中文';
+            // Rebuild calendar
+            buildCalendarLang(lang, t);
+        }
+
+        window.buildCalendarLang = function(lang, t) {
+            var grid = document.getElementById('calendar-grid');
+            var monthHeader = document.getElementById('calendar-month');
+            if (!grid || !monthHeader) return;
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth();
+            var today = now.getDate();
+            monthHeader.innerText = t.months[month] + ' ' + year;
+            var firstDay = new Date(year, month, 1).getDay();
+            var daysInMonth = new Date(year, month + 1, 0).getDate();
+            grid.innerHTML = '';
+            for (var i = 0; i < firstDay; i++) grid.innerHTML += '<span></span>';
+            for (var d = 1; d <= daysInMonth; d++) {
+                grid.innerHTML += '<span' + (d === today ? ' class="today"' : '') + '>' + d + '</span>';
+            }
+            // Day headers
+            var dayRow = document.querySelector('.calendar-days');
+            if (dayRow) {
+                dayRow.innerHTML = t.days.map(function(d){ return '<span>' + d + '</span>'; }).join('');
+            }
+        };
+
+        // Override no-result text
+        var origNoResult = '未找到相关文章';
+
+        langBtn.addEventListener('click', function() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('lang', currentLang);
+            applyLang(currentLang);
+        });
+
+        // Apply saved lang on load
+        if (currentLang === 'en') applyLang('en');
     })();
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

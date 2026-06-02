@@ -28,7 +28,7 @@
         </a>
     </div>
     <div class="mobile-search-bar" id="mobile-search-bar">
-        <input type="text" id="mobile-search-input" placeholder="搜索文章..." autocomplete="off">
+        <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
         <div class="mobile-search-results" id="mobile-search-results"></div>
     </div>
     <div class="mobile-overlay" id="mobile-overlay"></div>
@@ -94,6 +94,9 @@
             <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
                 
                 <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 1.1em;">📡</a>
+                
+                
+                <a class="lang-toggle" id="lang-toggle" title="切换语言" style="cursor: pointer; font-size: 1.1em;">EN</a>
                 
                 <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 1.1em;">
                     <span id="theme-icon">🌙</span>
@@ -180,9 +183,9 @@ y = \hat{x} \cdot \gamma + \beta</script><p>这一步的目的是<strong>“赋�
         <aside class="sidebar-right">
 
             <div class="widget search-widget">
-                <h3>搜索</h3>
+                <h3 data-i18n="search">搜索</h3>
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="搜索文章..." autocomplete="off">
+                    <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
                     <div class="search-results" id="search-results"></div>
                 </div>
             </div>
@@ -190,14 +193,14 @@ y = \hat{x} \cdot \gamma + \beta</script><p>这一步的目的是<strong>“赋�
             
 
             <div class="widget tags-widget">
-                <h3><i class="iconfont icon-tags"></i> 热门标签</h3>
+                <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
                 <div class="tags-cloud">
                     <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8F%8D%E6%80%9D/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E9%97%AE%E9%A2%98/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91%E6%96%87%E5%8C%96/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
                 </div>
             </div>
 
             <div class="widget calendar-widget">
-                <h3><i class="iconfont icon-calendar"></i> 日历</h3>
+                <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
                 <div class="calendar-container">
                     <div class="calendar-header">
                         <span class="month" id="calendar-month"></span>
@@ -429,6 +432,118 @@ y = \hat{x} \cdot \gamma + \beta</script><p>这一步的目的是<strong>“赋�
                 searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
             });
         });
+    })();
+
+    // 语言切换
+    (function() {
+        var translations = {
+            en: {
+                search: 'Search',
+                search_placeholder: 'Search articles...',
+                no_result: 'No results found',
+                toc: 'Table of Contents',
+                hot_tags: 'Popular Tags',
+                calendar: 'Calendar',
+                movies: 'Movies',
+                books: 'Books',
+                music: 'Music',
+                all: 'All',
+                watched: 'Watched',
+                want_to_watch: 'Want to Watch',
+                read: 'Read',
+                in_read: 'Reading',
+                want_to_read: 'Want to Read',
+                months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'}
+            },
+            zh: {
+                search: '搜索',
+                search_placeholder: '搜索文章...',
+                no_result: '未找到相关文章',
+                toc: '文章目录',
+                hot_tags: '热门标签',
+                calendar: '日历',
+                movies: '电影',
+                books: '书籍',
+                music: '音乐',
+                all: '全部',
+                watched: '已看',
+                want_to_watch: '想看',
+                read: '已读',
+                in_read: '在读',
+                want_to_read: '想读',
+                months: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+                days: ['日','一','二','三','四','五','六'],
+                menu: {}
+            }
+        };
+
+        var langBtn = document.getElementById('lang-toggle');
+        var defaultLang = 'zh';
+        var currentLang = localStorage.getItem('lang') || defaultLang;
+
+        function applyLang(lang) {
+            var t = translations[lang];
+            // data-i18n text
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            // data-i18n-placeholder
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+            // Navigation menu
+            document.querySelectorAll('.site-nav a').forEach(function(a) {
+                var spans = a.querySelectorAll('span');
+                var textNode = spans.length > 0 ? spans[0].nextSibling : a.childNodes[1];
+                var zhName = textNode ? textNode.textContent.trim() : '';
+                if (t.menu && t.menu[zhName] !== undefined) {
+                    textNode.textContent = t.menu[zhName];
+                }
+            });
+            // Lang button text
+            langBtn.textContent = lang === 'zh' ? 'EN' : '中文';
+            // Rebuild calendar
+            buildCalendarLang(lang, t);
+        }
+
+        window.buildCalendarLang = function(lang, t) {
+            var grid = document.getElementById('calendar-grid');
+            var monthHeader = document.getElementById('calendar-month');
+            if (!grid || !monthHeader) return;
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth();
+            var today = now.getDate();
+            monthHeader.innerText = t.months[month] + ' ' + year;
+            var firstDay = new Date(year, month, 1).getDay();
+            var daysInMonth = new Date(year, month + 1, 0).getDate();
+            grid.innerHTML = '';
+            for (var i = 0; i < firstDay; i++) grid.innerHTML += '<span></span>';
+            for (var d = 1; d <= daysInMonth; d++) {
+                grid.innerHTML += '<span' + (d === today ? ' class="today"' : '') + '>' + d + '</span>';
+            }
+            // Day headers
+            var dayRow = document.querySelector('.calendar-days');
+            if (dayRow) {
+                dayRow.innerHTML = t.days.map(function(d){ return '<span>' + d + '</span>'; }).join('');
+            }
+        };
+
+        // Override no-result text
+        var origNoResult = '未找到相关文章';
+
+        langBtn.addEventListener('click', function() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('lang', currentLang);
+            applyLang(currentLang);
+        });
+
+        // Apply saved lang on load
+        if (currentLang === 'en') applyLang('en');
     })();
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>

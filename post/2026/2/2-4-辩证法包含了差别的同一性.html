@@ -28,7 +28,7 @@
         </a>
     </div>
     <div class="mobile-search-bar" id="mobile-search-bar">
-        <input type="text" id="mobile-search-input" placeholder="搜索文章..." autocomplete="off">
+        <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
         <div class="mobile-search-results" id="mobile-search-results"></div>
     </div>
     <div class="mobile-overlay" id="mobile-overlay"></div>
@@ -94,6 +94,9 @@
             <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 15px;">
                 
                 <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 1.1em;">📡</a>
+                
+                
+                <a class="lang-toggle" id="lang-toggle" title="切换语言" style="cursor: pointer; font-size: 1.1em;">EN</a>
                 
                 <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 1.1em;">
                     <span id="theme-icon">🌙</span>
@@ -220,16 +223,16 @@
         <aside class="sidebar-right">
 
             <div class="widget search-widget">
-                <h3>搜索</h3>
+                <h3 data-i18n="search">搜索</h3>
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="搜索文章..." autocomplete="off">
+                    <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
                     <div class="search-results" id="search-results"></div>
                 </div>
             </div>
 
             
                 <div class="widget toc-widget">
-                    <h3><i class="iconfont icon-list"></i> 文章目录</h3>
+                    <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
                     <div class="toc-content">
                         <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%AF%9D%E5%A4%8D%E7%9B%98%EF%BC%9A%E4%BB%8E%E5%BD%A2%E5%BC%8F%E9%80%BB%E8%BE%91%E5%88%B0%E5%8A%A8%E6%80%81%E8%BE%A9%E8%AF%81%E6%B3%95%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90"><span class="toc-text">对话复盘：从形式逻辑到动态辩证法的深度解析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81-%E7%90%86%E8%AE%BA%E5%9F%BA%E7%9F%B3%EF%BC%9A%E5%90%8C%E4%B8%80%E6%80%A7%E4%B8%8E%E8%BE%A9%E8%AF%81%E6%B3%95"><span class="toc-text">一、 理论基石：同一性与辩证法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81-%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90-I%EF%BC%9A%E3%80%8A%E5%9B%BD%E9%99%85%E6%AD%8C%E3%80%8B%E4%B8%8E%E3%80%8A%E4%B8%9C%E6%96%B9%E7%BA%A2%E3%80%8B"><span class="toc-text">二、 案例分析 I：《国际歌》与《东方红》</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%8B%86%E8%A7%A3%EF%BC%88%E5%AE%98%E6%96%B9-%E8%AF%A1%E8%BE%A9%E8%A7%86%E8%A7%92%EF%BC%89"><span class="toc-text">1. 静态拆解（官方&#x2F;诡辩视角）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81%E8%BE%A9%E8%AF%81%EF%BC%88%E5%8E%86%E5%8F%B2-%E7%9C%9F%E5%AE%9E%E8%A7%86%E8%A7%92%EF%BC%89"><span class="toc-text">2. 动态辩证（历史&#x2F;真实视角）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81-%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90-II%EF%BC%9A%E2%80%9C%E6%AD%A4%E7%94%9F%E6%97%A0%E6%82%94%E5%85%A5%E5%8D%8E%E5%A4%8F%EF%BC%8C%E5%AE%B6%E4%BD%8F%E5%8A%A0%E5%88%A9%E7%A6%8F%E5%B0%BC%E4%BA%9A%E2%80%9D"><span class="toc-text">三、 案例分析 II：“此生无悔入华夏，家住加利福尼亚”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%8B%86%E8%A7%A3%EF%BC%88%E5%BF%83%E7%90%86%E9%98%B2%E5%BE%A1-%E8%AF%A1%E8%BE%A9%EF%BC%89"><span class="toc-text">1. 静态拆解（心理防御&#x2F;诡辩）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81%E8%BE%A9%E8%AF%81%EF%BC%88%E5%BF%83%E7%90%86%E4%BB%A3%E5%81%BF-%E7%9C%9F%E5%AE%9E%EF%BC%89"><span class="toc-text">2. 动态辩证（心理代偿&#x2F;真实）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81-%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90-III%EF%BC%9A%E6%AF%8D%E5%AD%90%E5%85%B3%E7%B3%BB%EF%BC%88%E2%80%9C%E9%B8%A1%E7%8A%AC%E4%B9%8B%E5%A3%B0%E7%9B%B8%E9%97%BB%E2%80%9D%EF%BC%89"><span class="toc-text">四、 案例分析 III：母子关系（“鸡犬之声相闻”）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%9D%99%E6%80%81%E6%8B%86%E8%A7%A3%EF%BC%9A%E6%9E%81%E5%BA%A6%E6%B8%85%E9%86%92-vs-%E6%9E%81%E5%BA%A6%E5%86%B7%E8%A1%80"><span class="toc-text">1. 静态拆解：极度清醒 vs 极度冷血</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81%E8%BE%A9%E8%AF%81%EF%BC%9A%E7%94%9F%E5%AD%98%E7%AD%96%E7%95%A5%E4%B8%8E%E6%9D%83%E5%8A%9B%E8%AE%A9%E6%B8%A1"><span class="toc-text">2. 动态辩证：生存策略与权力让渡</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81-%E6%A0%B8%E5%BF%83%E6%96%B9%E6%B3%95%E8%AE%BA%E6%89%B9%E5%88%A4%EF%BC%9A%E6%8B%86%E8%A7%A3-vs-%E5%8A%A8%E6%80%81"><span class="toc-text">五、 核心方法论批判：拆解 vs 动态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E8%AF%AD"><span class="toc-text">总结语</span></a></li></ol></li></ol></li></ol>
                     </div>
@@ -237,14 +240,14 @@
             
 
             <div class="widget tags-widget">
-                <h3><i class="iconfont icon-tags"></i> 热门标签</h3>
+                <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
                 <div class="tags-cloud">
                     <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E5%8F%8D%E6%80%9D/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/%E4%B8%AD%E5%9B%BD%E9%97%AE%E9%A2%98/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91%E6%96%87%E5%8C%96/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/%E4%BA%B2%E5%AF%86%E5%85%B3%E7%B3%BB/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
                 </div>
             </div>
 
             <div class="widget calendar-widget">
-                <h3><i class="iconfont icon-calendar"></i> 日历</h3>
+                <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
                 <div class="calendar-container">
                     <div class="calendar-header">
                         <span class="month" id="calendar-month"></span>
@@ -476,6 +479,118 @@
                 searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
             });
         });
+    })();
+
+    // 语言切换
+    (function() {
+        var translations = {
+            en: {
+                search: 'Search',
+                search_placeholder: 'Search articles...',
+                no_result: 'No results found',
+                toc: 'Table of Contents',
+                hot_tags: 'Popular Tags',
+                calendar: 'Calendar',
+                movies: 'Movies',
+                books: 'Books',
+                music: 'Music',
+                all: 'All',
+                watched: 'Watched',
+                want_to_watch: 'Want to Watch',
+                read: 'Read',
+                in_read: 'Reading',
+                want_to_read: 'Want to Read',
+                months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'}
+            },
+            zh: {
+                search: '搜索',
+                search_placeholder: '搜索文章...',
+                no_result: '未找到相关文章',
+                toc: '文章目录',
+                hot_tags: '热门标签',
+                calendar: '日历',
+                movies: '电影',
+                books: '书籍',
+                music: '音乐',
+                all: '全部',
+                watched: '已看',
+                want_to_watch: '想看',
+                read: '已读',
+                in_read: '在读',
+                want_to_read: '想读',
+                months: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
+                days: ['日','一','二','三','四','五','六'],
+                menu: {}
+            }
+        };
+
+        var langBtn = document.getElementById('lang-toggle');
+        var defaultLang = 'zh';
+        var currentLang = localStorage.getItem('lang') || defaultLang;
+
+        function applyLang(lang) {
+            var t = translations[lang];
+            // data-i18n text
+            document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+            // data-i18n-placeholder
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+                var key = el.getAttribute('data-i18n-placeholder');
+                if (t[key]) el.placeholder = t[key];
+            });
+            // Navigation menu
+            document.querySelectorAll('.site-nav a').forEach(function(a) {
+                var spans = a.querySelectorAll('span');
+                var textNode = spans.length > 0 ? spans[0].nextSibling : a.childNodes[1];
+                var zhName = textNode ? textNode.textContent.trim() : '';
+                if (t.menu && t.menu[zhName] !== undefined) {
+                    textNode.textContent = t.menu[zhName];
+                }
+            });
+            // Lang button text
+            langBtn.textContent = lang === 'zh' ? 'EN' : '中文';
+            // Rebuild calendar
+            buildCalendarLang(lang, t);
+        }
+
+        window.buildCalendarLang = function(lang, t) {
+            var grid = document.getElementById('calendar-grid');
+            var monthHeader = document.getElementById('calendar-month');
+            if (!grid || !monthHeader) return;
+            var now = new Date();
+            var year = now.getFullYear();
+            var month = now.getMonth();
+            var today = now.getDate();
+            monthHeader.innerText = t.months[month] + ' ' + year;
+            var firstDay = new Date(year, month, 1).getDay();
+            var daysInMonth = new Date(year, month + 1, 0).getDate();
+            grid.innerHTML = '';
+            for (var i = 0; i < firstDay; i++) grid.innerHTML += '<span></span>';
+            for (var d = 1; d <= daysInMonth; d++) {
+                grid.innerHTML += '<span' + (d === today ? ' class="today"' : '') + '>' + d + '</span>';
+            }
+            // Day headers
+            var dayRow = document.querySelector('.calendar-days');
+            if (dayRow) {
+                dayRow.innerHTML = t.days.map(function(d){ return '<span>' + d + '</span>'; }).join('');
+            }
+        };
+
+        // Override no-result text
+        var origNoResult = '未找到相关文章';
+
+        langBtn.addEventListener('click', function() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            localStorage.setItem('lang', currentLang);
+            applyLang(currentLang);
+        });
+
+        // Apply saved lang on load
+        if (currentLang === 'en') applyLang('en');
     })();
 </script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
