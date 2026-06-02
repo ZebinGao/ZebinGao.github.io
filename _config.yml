@@ -141,7 +141,7 @@ search:
 
 # 归档页生成配置
 archive_generator:
-  per_page: 0   # 🎯 0 表示归档页不分页，一页展示所有文章
+  per_page: 30   # 🎯 每页 30 篇
   yearly: true  # 开启按年归档
   monthly: true # 开启按月归档
 

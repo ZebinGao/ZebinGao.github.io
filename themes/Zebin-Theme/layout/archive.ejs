@@ -31,4 +31,16 @@
     <% if (lastYear !== '') { %>
         </div></div>
     <% } %>
+
+    <% if (page.total > 1) { %>
+    <nav class="paginator">
+        <% if (page.prev) { %>
+            <a href="<%- url_for(page.prev_link) %>">&laquo; 上一页</a>
+        <% } %>
+        <span class="current">第 <%- page.current %> / <%- page.total %> 页</span>
+        <% if (page.next) { %>
+            <a href="<%- url_for(page.next_link) %>">下一页 &raquo;</a>
+        <% } %>
+    </nav>
+    <% } %>
 </div>
