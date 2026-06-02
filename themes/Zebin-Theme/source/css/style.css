@@ -886,6 +886,20 @@ body {
     margin-top: 10px;
 }
 
+/* 月份小标题 */
+.archive-month {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 20px 0 10px 0;
+    padding-left: 4px;
+    border-left: 3px solid #d84b6b;
+    padding-left: 10px;
+}
+.archive-month:first-child {
+    margin-top: 6px;
+}
+
 /* 让列表项横向排列，自动换行 */
 .archive-list {
     display: flex;
