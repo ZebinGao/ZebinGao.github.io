@@ -27,36 +27,22 @@
 
         <!-- 电影区域 -->
         <div class="hobbies-section" id="section-movies">
-            <div class="hobbies-grid">
-                <% if (site.data.movies) { %>
-                    <% site.data.movies.forEach(function(item) { %>
-                        <% if (item.url) { %>
-                            <a class="hobby-card" href="<%- item.url %>" data-status="<%= item.status %>">
-                        <% } else { %>
-                            <div class="hobby-card" data-status="<%= item.status %>">
-                        <% } %>
-                            <div class="hobby-card-title"><%- item.title %></div>
-                            <% if (item.director || item.date) { %>
-                                <div class="hobby-card-meta">
-                                    <% if (item.director) { %><%- item.director %><% } %>
-                                    <% if (item.director && item.date) { %> · <% } %>
-                                    <% if (item.date) { %><%- item.date %><% } %>
-                                </div>
-                            <% } %>
-                            <% if (item.note) { %>
-                                <div class="hobby-card-note"><%- item.note %></div>
-                            <% } %>
-                            <span class="hobby-status hobby-status-<%= item.status %>">
-                                <%= item.status === 'watched' ? '已看' : '想看' %>
-                            </span>
-                        <% if (item.url) { %>
-                            </a>
-                        <% } else { %>
+            <% if (site.data.movies) { %>
+                <div class="movie-timeline">
+                    <% var movies = site.data.movies.toArray().reverse(); %>
+                    <% movies.forEach(function(item) { %>
+                        <div class="movie-item" data-status="<%= item.status %>">
+                            <div class="movie-date"><%- item.date.substring(0, 10) %></div>
+                            <div class="movie-info">
+                                <span class="movie-title"><%- item.title %></span>
+                                <% if (item.note) { %>
+                                    <span class="movie-note">—— <%- item.note %></span>
+                                <% } %>
                             </div>
-                        <% } %>
+                        </div>
                     <% }) %>
-                <% } %>
-            </div>
+                </div>
+            <% } %>
         </div>
 
         <!-- 书籍区域 -->
@@ -135,7 +121,7 @@
     var currentStatus = 'all';
 
     function filterByStatus(section) {
-        var cards = section.querySelectorAll('.hobby-card');
+        var cards = section.querySelectorAll('.hobby-card, .movie-item');
         cards.forEach(function(card) {
             var status = card.getAttribute('data-status');
             if (currentStatus === 'all' || status === currentStatus) {
