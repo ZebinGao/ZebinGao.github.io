@@ -35,11 +35,32 @@
     <% if (page.total > 1) { %>
     <nav class="paginator">
         <% if (page.prev) { %>
-            <a href="<%- url_for(page.prev_link) %>">&laquo; 上一页</a>
+            <a href="<%- url_for(page.prev_link) %>">&laquo;</a>
         <% } %>
-        <span class="current">第 <%- page.current %> / <%- page.total %> 页</span>
+        <% var start = Math.max(1, page.current - 2); %>
+        <% var end = Math.min(page.total, start + 5); %>
+        <% if (end - start < 5) { start = Math.max(1, end - 5); } %>
+        <% if (start > 1) { %>
+            <a href="<%- url_for(page.path) %>">1</a>
+            <% if (start > 2) { %>
+                <span class="paginator-ellipsis">...</span>
+            <% } %>
+        <% } %>
+        <% for (var i = start; i <= end; i++) { %>
+            <% if (i === page.current) { %>
+                <span class="current"><%- i %></span>
+            <% } else { %>
+                <a href="<%- url_for(i === 1 ? page.path : 'archives/' + i + '/') %>"><%- i %></a>
+            <% } %>
+        <% } %>
+        <% if (end < page.total) { %>
+            <% if (end < page.total - 1) { %>
+                <span class="paginator-ellipsis">...</span>
+            <% } %>
+            <a href="<%- url_for('archives/' + page.total + '/') %>"><%- page.total %></a>
+        <% } %>
         <% if (page.next) { %>
-            <a href="<%- url_for(page.next_link) %>">下一页 &raquo;</a>
+            <a href="<%- url_for(page.next_link) %>">&raquo;</a>
         <% } %>
     </nav>
     <% } %>
