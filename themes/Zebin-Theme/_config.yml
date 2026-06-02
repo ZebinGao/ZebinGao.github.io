@@ -42,3 +42,8 @@ local_search:
 
 # RSS 订阅
 rss: atom.xml
+
+# 语言切换
+i18n:
+  enable: true
+  default: zh  # zh 或 en
