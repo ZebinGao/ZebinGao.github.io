@@ -109,7 +109,7 @@
     <header class="post-header">
         <h1 class="post-title"></h1>
         <div class="post-meta">
-            <span>📅 发布于：2026年06月02日</span>
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年06月02日</span>
             
             
         </div>
@@ -512,9 +512,29 @@
                 read: 'Read',
                 in_read: 'Reading',
                 want_to_read: 'Want to Read',
+                read_more: 'Read more »',
+                prev_page: 'Previous',
+                next_page: 'Next',
+                categories: 'Categories',
+                articles_unit: 'articles',
+                friend_links: 'Friend Links',
+                hobbies: 'Hobbies',
+                published_on: 'Published: ',
+                month_suffix: '',
                 months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
                 days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'}
+                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'},
+                cat: {
+                    'AI 公式': 'AI Formulas', '深度学习中的数学公式推导与解析': 'Math formula derivations in deep learning',
+                    '电影': 'Movies', '看过的电影与观影感想': 'Movies I\'ve watched and my thoughts',
+                    '书籍': 'Books', '读过的书与读书笔记': 'Books I\'ve read and my notes',
+                    '音乐': 'Music', '喜欢的音乐与背后故事': 'Favorite music and stories behind them',
+                    '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton technique notes and competition insights',
+                    '猝不及防的死亡': 'Unexpected Deaths', '那些令人唏嘘的意外与逝去': 'Lamentable accidents and losses',
+                    '神童的悲惨故事': 'Tragic Stories of Prodigies', '被天赋与期望裹挟的人生': 'Lives engulfed by talent and expectations',
+                    '年终总结': 'Annual Reviews', '想法杂记': 'Random Thoughts', '家庭生活': 'Family Life', '编程技术': 'Programming', '读书笔记': 'Book Notes',
+                    '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
+                }
             },
             zh: {
                 search: '搜索',
@@ -532,9 +552,19 @@
                 read: '已读',
                 in_read: '在读',
                 want_to_read: '想读',
+                read_more: '阅读全文 »',
+                prev_page: '上一页',
+                next_page: '下一页',
+                categories: '分类',
+                articles_unit: '篇文章',
+                friend_links: '友情链接',
+                hobbies: '兴趣爱好',
+                published_on: '发布于：',
+                month_suffix: ' 月',
                 months: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
                 days: ['日','一','二','三','四','五','六'],
-                menu: {}
+                menu: {},
+                cat: {}
             }
         };
 
@@ -554,6 +584,32 @@
                 var key = el.getAttribute('data-i18n-placeholder');
                 if (t[key]) el.placeholder = t[key];
             });
+            // data-i18n-cat (category/tag translations)
+            document.querySelectorAll('[data-i18n-cat]').forEach(function(el) {
+                var zhName = el.getAttribute('data-i18n-cat');
+                if (t.cat && t.cat[zhName] !== undefined) {
+                    el.textContent = t.cat[zhName];
+                }
+            });
+            // Archive month suffix
+            document.querySelectorAll('.month-suffix').forEach(function(el) {
+                el.textContent = t.month_suffix !== undefined ? t.month_suffix : ' 月';
+            });
+            // Paginator prev/next text
+            document.querySelectorAll('.paginator a').forEach(function(a) {
+                if (a.textContent.indexOf('上一页') > -1) a.innerHTML = '&laquo; ' + t.prev_page;
+                if (a.textContent.indexOf('下一页') > -1) a.innerHTML = t.next_page + ' &raquo;';
+            });
+            // Page title (post-title from front matter)
+            var pageTitle = document.querySelector('.post-title');
+            if (pageTitle) {
+                var zhTitle = pageTitle.textContent.trim();
+                if (t.menu && t.menu[zhTitle] !== undefined) {
+                    pageTitle.textContent = t.menu[zhTitle];
+                } else if (zhTitle === 'about') {
+                    pageTitle.textContent = lang === 'en' ? 'About' : '关于';
+                }
+            }
             // Navigation menu
             document.querySelectorAll('.site-nav a').forEach(function(a) {
                 var spans = a.querySelectorAll('span');
