@@ -29,7 +29,7 @@
         <div class="hobbies-section" id="section-movies">
             <% if (site.data.movies) { %>
                 <div class="movie-timeline">
-                    <% var movies = site.data.movies.toArray().reverse(); %>
+                    <% var movies = site.data.movies.slice().reverse(); %>
                     <% movies.forEach(function(item) { %>
                         <div class="movie-item" data-status="<%= item.status %>">
                             <div class="movie-date"><%- item.date.substring(0, 10) %></div>
