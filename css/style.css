@@ -491,6 +491,45 @@ body {
 }
 
 /* =========================================================
+   兴趣爱好页面 — 电影时间线
+========================================================= */
+.movie-timeline {
+    margin-top: 15px;
+}
+.movie-item {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.movie-item:last-child {
+    border-bottom: none;
+}
+.movie-date {
+    flex-shrink: 0;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-family: 'Consolas', 'Courier New', monospace;
+    min-width: 86px;
+}
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.movie-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+.movie-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* =========================================================
    兴趣爱好页面
 ========================================================= */
 .hobbies-grid {
