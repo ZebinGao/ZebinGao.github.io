@@ -285,8 +285,14 @@ body {
     text-decoration: none;
 }
 .paginator .current {
-    background: var(--text-main);
-    color: var(--bg-card);
+    background: #d84b6b;
+    color: #fff;
+    border-color: #d84b6b;
+}
+.paginator-ellipsis {
+    padding: 8px 12px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
 }
 
 /* --- 文章详情页样式 --- */
@@ -874,16 +880,16 @@ body {
     min-height: 80vh;
 }
 
-/* 居中大写的年份标题 */
+/* 年份标题 */
 .archive-year {
-    text-align: center;
-    font-size: 1.8rem;
-    color: var(--text-main);  /* 🎯 替换为跟随系统明暗切换的变量 */
-    margin: 40px 0 30px 0;
-    font-family: "Noto Serif SC", serif; /* 使用宋体更显文艺 */
+    font-size: 1.3rem;
+    color: var(--text-main);
+    margin: 30px 0 12px 0;
+    padding-left: 4px;
+    font-family: "Noto Serif SC", serif;
 }
 .archive-year:first-child {
-    margin-top: 10px;
+    margin-top: 0;
 }
 
 /* 月份小标题 */
