@@ -1,0 +1,32 @@
+<aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="<%- (typeof theme !== 'undefined' && theme.avatar) ? theme.avatar : '/img/avatar.png' %>" alt="Avatar" class="avatar">
+        <h2 class="author-name"><%- config.author || 'ZeBin' %></h2>
+        <p class="author-bio"><%- config.description || '保持热爱，奔赴山海。' %></p>
+    </div>
+
+    <nav class="site-nav">
+        <% for (var name in theme.menu) { %>
+            <a href="<%- url_for(theme.menu[name]) %>">
+                <span><%- theme.menu_icons[name] !== undefined ? theme.menu_icons[name] : '📄' %></span>
+                <%- name %>
+            </a>
+        <% } %>
+    </nav>
+
+    <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
+        <% if (theme.rss) { %>
+        <a href="<%- url_for(theme.rss) %>" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
+        <% } %>
+        <% if (theme.i18n && theme.i18n.enable) { %>
+        <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
+            <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
+            <button class="lang-btn" data-lang="en" title="English">EN</button>
+            <button class="lang-btn" data-lang="zh" title="中文">中</button>
+        </div>
+        <% } %>
+        <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
+            <span id="theme-icon">🌙</span>
+        </a>
+    </div>
+</aside>

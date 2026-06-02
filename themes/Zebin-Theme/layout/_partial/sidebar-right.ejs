@@ -1,0 +1,40 @@
+<aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    <% if (is_post() && (theme.TOC !== false) && (page.toc !== false)) { %>
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <%- toc(page.content, {list_number: false}) %>
+            </div>
+        </div>
+    <% } %>
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <%- tagcloud({min_font: 12, max_font: 20, amount: 10, color: true, start_color: '#999', end_color: '#d84b6b'}) %>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
