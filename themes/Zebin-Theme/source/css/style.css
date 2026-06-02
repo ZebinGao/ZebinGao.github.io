@@ -385,8 +385,8 @@ body {
 }
 .social-links a {
     font-size: 0.85rem;
-    color: var(--bg-card);
-    background: #444;
+    color: var(--text-main);
+    background: var(--bg-button);
     padding: 5px 12px;
     border-radius: 20px;
     text-decoration: none;
@@ -394,6 +394,7 @@ body {
 }
 .social-links a:hover {
     background: #d84b6b;
+    color: #fff;
 }
 
 /* =========================================================
