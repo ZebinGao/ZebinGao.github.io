@@ -1,6 +1,12 @@
 # 主题配置文件
 avatar: /img/favicon.png
 
+# 网站ico
+favicon: /img/favicon.png
+
+# 网站关键字
+keywords: Zebin, Blog, 编程, 生活, 技术
+
 # 主题菜单配置
 menu:
   首页: /
@@ -24,3 +30,15 @@ menu_icons:
   Wiki: ""
   2048小游戏: ""
   谢益辉的恶作剧: ""
+
+# 是否显示文章目录（TOC）
+# 即使全局关闭，也可以在单篇文章的 front-matter 中通过 toc: true 单独开启
+TOC: true
+
+# 本地搜索
+local_search:
+  enable: true
+  path: search.xml
+
+# RSS 订阅
+rss: atom.xml

@@ -149,3 +149,9 @@ archive_generator:
 encrypt:
   message: "本文已加密，请输入密码查看。"
   wrong_pass_message: "密码错误，请重试。"
+
+# RSS 订阅
+feed:
+  type: atom
+  path: atom.xml
+  limit: 10
