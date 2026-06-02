@@ -19,95 +19,92 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <!-- 移动端顶栏（桌面端隐藏） -->
-    <div class="mobile-header">
-        <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
-        <span class="mobile-title">与买桂花同载酒</span>
-        <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
-        <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
-            <span id="mobile-theme-icon">🌙</span>
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/favicon.png" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/2048">
+                <span></span>
+                2048小游戏
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+    </nav>
+
+    <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
+        
+        <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
+        
+        
+        <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
+            <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
+            <button class="lang-btn" data-lang="en" title="English">EN</button>
+            <button class="lang-btn" data-lang="zh" title="中文">中</button>
+        </div>
+        
+        <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
+            <span id="theme-icon">🌙</span>
         </a>
     </div>
-    <div class="mobile-search-bar" id="mobile-search-bar">
-        <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
-        <div class="mobile-search-results" id="mobile-search-results"></div>
-    </div>
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-
-    <div class="main-container">
-        
-        <aside class="sidebar-left">
-            <div class="avatar-box">
-                <img src="/img/favicon.png" alt="Avatar" class="avatar">
-                <h2 class="author-name">Nathan Gao</h2>
-                <p class="author-bio">人生天地间，忽如远行客。</p>
-            </div>
-            
-            <nav class="site-nav">
-                
-                    <a href="/">
-                        <span></span>
-                        首页
-                    </a>
-                
-                    <a href="/archives">
-                        <span></span>
-                        归档
-                    </a>
-                
-                    <a href="/categories">
-                        <span></span>
-                        分类
-                    </a>
-                
-                    <a href="/links">
-                        <span></span>
-                        友链
-                    </a>
-                
-                    <a href="/hobbies">
-                        <span></span>
-                        兴趣爱好
-                    </a>
-                
-                    <a href="/about">
-                        <span></span>
-                        关于
-                    </a>
-                
-                    <a href="/wiki">
-                        <span></span>
-                        Wiki
-                    </a>
-                
-                    <a href="/smallgame/2048">
-                        <span></span>
-                        2048小游戏
-                    </a>
-                
-                    <a href="/smallgame/trick">
-                        <span></span>
-                        谢益辉的恶作剧
-                    </a>
-                
-            </nav>
-            
-            <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
-                
-                <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
-                
-                
-                <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
-                    <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
-                    <button class="lang-btn" data-lang="en" title="English">EN</button>
-                    <button class="lang-btn" data-lang="zh" title="中文">中</button>
-                </div>
-                
-                <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
-                    <span id="theme-icon">🌙</span>
-                </a>
-            </div>
-        </aside>
-
+</aside>
         <main class="content-mid">
             <article class="post-detail">
     <header class="post-header">
@@ -233,530 +230,66 @@
 <p><strong>破解关键</strong>在于重建乡村支持网络：通过土地流转收益反哺养老、探索”互助养老合作社”模式、强化基层医疗巡诊，避免统计数字背后的生存危机继续恶化。</p>
 
     </div>
-</article> 
+</article>
         </main>
-
         <aside class="sidebar-right">
 
-            <div class="widget search-widget">
-                <h3 data-i18n="search">搜索</h3>
-                <div class="search-box">
-                    <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
-                    <div class="search-results" id="search-results"></div>
-                </div>
-            </div>
-
-            
-                <div class="widget toc-widget">
-                    <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
-                    <div class="toc-content">
-                        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E4%B8%8EDeepSeek%E7%9A%84%E5%AF%B9%E8%AF%9D%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%9F%E8%82%B2%E7%8E%87%E4%B8%8B%E9%99%8D%E5%A6%82%E6%AD%A4%E4%B9%8B%E5%BF%AB"><span class="toc-text">我与DeepSeek的对话：为什么生育率下降如此之快</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AC%AC%E4%B8%83%E6%AC%A1%E5%85%A8%E5%9B%BD%E4%BA%BA%E5%8F%A3%E6%99%AE%E6%9F%A5%EF%BC%882020%E5%B9%B4%EF%BC%89%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-text">一、第七次全国人口普查（2020年）数据分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B6%E5%BA%AD%E6%88%B7%E8%A7%84%E6%A8%A1%E6%8C%81%E7%BB%AD%E7%BC%A9%E5%B0%8F"><span class="toc-text">家庭户规模持续缩小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%A8%E5%9B%BD%E6%88%B7%E5%9D%87%E4%BA%BA%E6%95%B0%E9%99%8D%E8%87%B32-62%E4%BA%BA"><span class="toc-text">1. 全国户均人数降至2.62人</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E5%AE%B6%E5%BA%AD%E5%8D%A0%E6%AF%94%E7%BB%93%E6%9E%84%E5%8F%98%E5%8C%96"><span class="toc-text">2. 核心家庭占比结构变化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B6%E5%BA%AD%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%BD%AC%E5%8F%98"><span class="toc-text">家庭类型的结构性转变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%80%E4%BB%A3%E6%88%B7%E6%88%90%E4%B8%BA%E4%B8%BB%E5%AF%BC"><span class="toc-text">1. 一代户成为主导</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8D%95%E4%BA%BA%E6%88%B7%E6%BF%80%E5%A2%9E"><span class="toc-text">2. 单人户激增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%B8%89%E4%BB%A3%E5%8F%8A%E4%BB%A5%E4%B8%8A%E5%AE%B6%E5%BA%AD%E5%8D%A0%E6%AF%94%E8%90%8E%E7%BC%A9"><span class="toc-text">3. 三代及以上家庭占比萎缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%9F%E8%82%B2%E7%8E%87%E4%B8%8B%E9%99%8D%E5%A6%82%E6%AD%A4%E4%B9%8B%E5%BF%AB%EF%BC%9F"><span class="toc-text">二、为什么生育率下降如此之快？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%8F%E6%B5%8E%E6%88%90%E6%9C%AC%E5%8E%8B%E5%8A%9B%EF%BC%9A%E6%8A%91%E5%88%B6%E7%94%9F%E8%82%B2%E6%84%8F%E6%84%BF%E7%9A%84%E9%A6%96%E8%A6%81%E5%9B%A0%E7%B4%A0"><span class="toc-text">一、经济成本压力：抑制生育意愿的首要因素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E8%82%B2%E5%85%BB%E8%82%B2%E6%95%99%E8%82%B2%E6%88%90%E6%9C%AC%E7%95%B8%E9%AB%98"><span class="toc-text">生育养育教育成本畸高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E4%B8%8E%E6%94%B6%E5%85%A5%E4%B8%8D%E7%A8%B3%E5%AE%9A%E5%8A%A0%E5%89%A7%E7%BB%8F%E6%B5%8E%E7%84%A6%E8%99%91"><span class="toc-text">工作与收入不稳定加剧经济焦虑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A4%BE%E4%BC%9A%E6%96%87%E5%8C%96%E5%8F%98%E8%BF%81%EF%BC%9A%E5%AE%B6%E5%BA%AD%E8%A7%82%E5%BF%B5%E4%B8%8E%E4%B8%AA%E4%BD%93%E4%BB%B7%E5%80%BC%E9%87%8D%E6%9E%84"><span class="toc-text">二、社会文化变迁：家庭观念与个体价值重构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%8E%E5%B8%82%E5%8C%96%E6%B6%88%E8%A7%A3%E4%BC%A0%E7%BB%9F%E5%AE%B6%E5%BA%AD%E5%8A%9F%E8%83%BD"><span class="toc-text">城市化消解传统家庭功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E4%B8%BB%E4%B9%89%E5%85%B4%E8%B5%B7%E4%B8%8E%E5%A5%B3%E6%80%A7%E6%84%8F%E8%AF%86%E8%A7%89%E9%86%92"><span class="toc-text">个人主义兴起与女性意识觉醒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%80%E6%9C%AF%E6%9B%BF%E4%BB%A3%E4%B8%8E%E4%BA%BA%E5%8F%A3%E4%BB%B7%E5%80%BC%E8%BD%AC%E5%9E%8B%EF%BC%9A%E7%94%9F%E8%82%B2%E5%8A%A8%E5%8A%9B%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%89%8A%E5%BC%B1"><span class="toc-text">三、技术替代与人口价值转型：生育动力的根本削弱</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%B3%E5%8A%A8%E5%8A%9B%E4%BB%B7%E5%80%BC%E8%A2%AB%E6%8A%80%E6%9C%AF%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%9B%BF%E4%BB%A3"><span class="toc-text">劳动力价值被技术大规模替代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%8F%E5%88%A9%E5%88%B6%E5%BA%A6%E6%94%B9%E5%8F%98%E7%94%9F%E8%82%B2%E9%80%BB%E8%BE%91"><span class="toc-text">福利制度改变生育逻辑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%AD%E5%9B%BD%E7%89%B9%E6%9C%89%E7%9A%84%E5%8A%A0%E9%80%9F%E6%9C%BA%E5%88%B6%EF%BC%9A%E6%94%BF%E7%AD%96%E4%B8%8E%E7%AB%9E%E4%BA%89%E7%9A%84%E5%8F%A0%E5%8A%A0%E6%95%88%E5%BA%94"><span class="toc-text">四、中国特有的加速机制：政策与竞争的叠加效应</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%94%BF%E7%AD%96%E9%81%97%E7%95%99%E5%BD%B1%E5%93%8D"><span class="toc-text">历史政策遗留影响</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%99%E8%82%B2%E5%86%85%E5%8D%B7%E4%B8%8E%E4%BD%8F%E6%88%BF%E5%8E%8B%E5%8A%9B"><span class="toc-text">教育内卷与住房压力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E8%82%B2%E6%94%AF%E6%8C%81%E4%BD%93%E7%B3%BB%E7%BC%BA%E4%BD%8D"><span class="toc-text">生育支持体系缺位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BA%BA%E5%8F%A3%E7%BB%93%E6%9E%84%E6%81%B6%E6%80%A7%E5%BE%AA%E7%8E%AF%EF%BC%9A%E4%BD%8E%E7%94%9F%E8%82%B2%E7%8E%87%E8%87%AA%E6%88%91%E5%BC%BA%E5%8C%96"><span class="toc-text">五、人口结构恶性循环：低生育率自我强化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9F%8E%E5%B8%82%E5%8C%96%E6%B6%88%E8%A7%A3%E4%BC%A0%E7%BB%9F%E5%AE%B6%E5%BA%AD%E5%8A%9F%E8%83%BD%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">三、城市化消解传统家庭功能的深度分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%B6%E5%BA%AD%E7%BB%93%E6%9E%84%E7%9A%84%E7%A2%8E%E7%89%87%E5%8C%96%EF%BC%9A%E4%BB%8E%E6%89%A9%E5%B1%95%E5%AE%B6%E5%BA%AD%E5%88%B0%E5%8E%9F%E5%AD%90%E5%8C%96%E5%8D%95%E5%85%83"><span class="toc-text">一、家庭结构的碎片化：从扩展家庭到原子化单元</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%AE%B6%E5%BA%AD%E6%88%90%E4%B8%BA%E4%B8%BB%E6%B5%81%E6%A8%A1%E5%BC%8F"><span class="toc-text">1. 核心家庭成为主流模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B5%81%E5%8A%A8%E5%AE%B6%E5%BA%AD%E8%A7%84%E6%A8%A1%E6%89%A9%E5%A4%A7"><span class="toc-text">2. 流动家庭规模扩大</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%B6%E5%BA%AD%E7%B1%BB%E5%9E%8B%E5%A4%9A%E5%85%83%E5%8C%96"><span class="toc-text">3. 家庭类型多元化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%B6%E5%BA%AD%E5%8A%9F%E8%83%BD%E7%9A%84%E5%A4%96%E9%83%A8%E5%8C%96%EF%BC%9A%E4%BB%8E%E8%87%AA%E8%B6%B3%E5%8D%95%E5%85%83%E5%88%B0%E4%BE%9D%E8%B5%96%E7%A4%BE%E4%BC%9A%E7%B3%BB%E7%BB%9F"><span class="toc-text">二、家庭功能的外部化：从自足单元到依赖社会系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%B6%E5%BA%AD%E5%85%B3%E7%B3%BB%E7%9A%84%E7%96%8F%E7%A6%BB%E5%8C%96%EF%BC%9A%E4%BA%B2%E7%BC%98%E7%BA%BD%E5%B8%A6%E8%A2%AB%E7%90%86%E6%80%A7%E8%AE%A1%E7%AE%97%E7%93%A6%E8%A7%A3"><span class="toc-text">三、家庭关系的疏离化：亲缘纽带被理性计算瓦解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%A3%E9%99%85%E6%94%AF%E6%8C%81%E5%BC%B1%E5%8C%96"><span class="toc-text">1. 代际支持弱化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%B2%E7%BC%98%E4%BA%A4%E5%BE%80%E2%80%9D%E6%96%AD%E9%93%BE%E2%80%9D"><span class="toc-text">2. 亲缘交往”断链”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%83%85%E6%84%9F%E8%81%94%E7%BB%93%E8%84%86%E5%BC%B1%E5%8C%96"><span class="toc-text">3. 情感联结脆弱化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%B6%E5%BA%AD%E4%BB%B7%E5%80%BC%E7%9A%84%E9%87%8D%E6%9E%84%EF%BC%9A%E4%B8%AA%E4%BD%93%E4%B8%BB%E4%B9%89%E6%B6%88%E8%A7%A3%E9%9B%86%E4%BD%93%E4%BC%A6%E7%90%86"><span class="toc-text">四、家庭价值的重构：个体主义消解集体伦理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%9F%E8%82%B2%E9%80%BB%E8%BE%91%E6%A0%B9%E6%9C%AC%E5%8F%98%E9%9D%A9"><span class="toc-text">1. 生育逻辑根本变革</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%A9%9A%E5%A7%BB%E5%A5%91%E7%BA%A6%E5%B1%9E%E6%80%A7%E5%BC%BA%E5%8C%96"><span class="toc-text">2. 婚姻契约属性强化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E8%B4%A8%E7%9F%9B%E7%9B%BE%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-text">四、本质矛盾与未来展望</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E8%B4%A8%E7%9F%9B%E7%9B%BE%EF%BC%9A%E5%9F%8E%E5%B8%82%E5%8C%96%E6%92%95%E8%A3%82%E5%AE%B6%E5%BA%AD%E7%9A%84%E5%8F%8C%E9%87%8D%E5%B1%9E%E6%80%A7"><span class="toc-text">本质矛盾：城市化撕裂家庭的双重属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E5%AE%B6%E8%A7%82%E7%82%B9"><span class="toc-text">专家观点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%B2%E7%BC%98%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%A2%E8%A7%82%E8%A7%84%E5%BE%8B"><span class="toc-text">亲缘关系的客观规律</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BA%94%E5%AF%B9%E5%BB%BA%E8%AE%AE%E4%B8%8E%E7%BB%93%E8%AE%BA"><span class="toc-text">五、应对建议与结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E8%82%B2%E5%B1%82%E9%9D%A2%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">教育层面的建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%8D%B1%E6%9C%BA%E9%9C%80%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%BA%94%E5%AF%B9"><span class="toc-text">结论：系统性危机需系统性应对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A1%E6%9D%91%E7%8B%AC%E5%B1%85%E5%8D%B1%E6%9C%BA%E7%9A%84%E7%A0%B4%E8%A7%A3"><span class="toc-text">乡村独居危机的破解</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </div>
-            
-
-            <div class="widget tags-widget">
-                <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
-                <div class="tags-cloud">
-                    <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/self-reflection/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/china-issues/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/internet-culture/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/intimate-relationships/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
-                </div>
-            </div>
-
-            <div class="widget calendar-widget">
-                <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <span class="month" id="calendar-month"></span>
-                    </div>
-                    <div class="calendar-days">
-                        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
-                    </div>
-                    <div class="calendar-grid" id="calendar-grid">
-                        </div>
-                </div>
-            </div>
-        </aside>
-
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
     </div>
-    <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const htmlElement = document.documentElement;
 
-    const currentTheme = localStorage.getItem('theme');
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%88%91%E4%B8%8EDeepSeek%E7%9A%84%E5%AF%B9%E8%AF%9D%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%9F%E8%82%B2%E7%8E%87%E4%B8%8B%E9%99%8D%E5%A6%82%E6%AD%A4%E4%B9%8B%E5%BF%AB"><span class="toc-text">我与DeepSeek的对话：为什么生育率下降如此之快</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%AC%AC%E4%B8%83%E6%AC%A1%E5%85%A8%E5%9B%BD%E4%BA%BA%E5%8F%A3%E6%99%AE%E6%9F%A5%EF%BC%882020%E5%B9%B4%EF%BC%89%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"><span class="toc-text">一、第七次全国人口普查（2020年）数据分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B6%E5%BA%AD%E6%88%B7%E8%A7%84%E6%A8%A1%E6%8C%81%E7%BB%AD%E7%BC%A9%E5%B0%8F"><span class="toc-text">家庭户规模持续缩小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%85%A8%E5%9B%BD%E6%88%B7%E5%9D%87%E4%BA%BA%E6%95%B0%E9%99%8D%E8%87%B32-62%E4%BA%BA"><span class="toc-text">1. 全国户均人数降至2.62人</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%A0%B8%E5%BF%83%E5%AE%B6%E5%BA%AD%E5%8D%A0%E6%AF%94%E7%BB%93%E6%9E%84%E5%8F%98%E5%8C%96"><span class="toc-text">2. 核心家庭占比结构变化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%B6%E5%BA%AD%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%BB%93%E6%9E%84%E6%80%A7%E8%BD%AC%E5%8F%98"><span class="toc-text">家庭类型的结构性转变</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%B8%80%E4%BB%A3%E6%88%B7%E6%88%90%E4%B8%BA%E4%B8%BB%E5%AF%BC"><span class="toc-text">1. 一代户成为主导</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8D%95%E4%BA%BA%E6%88%B7%E6%BF%80%E5%A2%9E"><span class="toc-text">2. 单人户激增</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E4%B8%89%E4%BB%A3%E5%8F%8A%E4%BB%A5%E4%B8%8A%E5%AE%B6%E5%BA%AD%E5%8D%A0%E6%AF%94%E8%90%8E%E7%BC%A9"><span class="toc-text">3. 三代及以上家庭占比萎缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%9F%E8%82%B2%E7%8E%87%E4%B8%8B%E9%99%8D%E5%A6%82%E6%AD%A4%E4%B9%8B%E5%BF%AB%EF%BC%9F"><span class="toc-text">二、为什么生育率下降如此之快？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E7%BB%8F%E6%B5%8E%E6%88%90%E6%9C%AC%E5%8E%8B%E5%8A%9B%EF%BC%9A%E6%8A%91%E5%88%B6%E7%94%9F%E8%82%B2%E6%84%8F%E6%84%BF%E7%9A%84%E9%A6%96%E8%A6%81%E5%9B%A0%E7%B4%A0"><span class="toc-text">一、经济成本压力：抑制生育意愿的首要因素</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E8%82%B2%E5%85%BB%E8%82%B2%E6%95%99%E8%82%B2%E6%88%90%E6%9C%AC%E7%95%B8%E9%AB%98"><span class="toc-text">生育养育教育成本畸高</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E4%B8%8E%E6%94%B6%E5%85%A5%E4%B8%8D%E7%A8%B3%E5%AE%9A%E5%8A%A0%E5%89%A7%E7%BB%8F%E6%B5%8E%E7%84%A6%E8%99%91"><span class="toc-text">工作与收入不稳定加剧经济焦虑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%A4%BE%E4%BC%9A%E6%96%87%E5%8C%96%E5%8F%98%E8%BF%81%EF%BC%9A%E5%AE%B6%E5%BA%AD%E8%A7%82%E5%BF%B5%E4%B8%8E%E4%B8%AA%E4%BD%93%E4%BB%B7%E5%80%BC%E9%87%8D%E6%9E%84"><span class="toc-text">二、社会文化变迁：家庭观念与个体价值重构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9F%8E%E5%B8%82%E5%8C%96%E6%B6%88%E8%A7%A3%E4%BC%A0%E7%BB%9F%E5%AE%B6%E5%BA%AD%E5%8A%9F%E8%83%BD"><span class="toc-text">城市化消解传统家庭功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AA%E4%BA%BA%E4%B8%BB%E4%B9%89%E5%85%B4%E8%B5%B7%E4%B8%8E%E5%A5%B3%E6%80%A7%E6%84%8F%E8%AF%86%E8%A7%89%E9%86%92"><span class="toc-text">个人主义兴起与女性意识觉醒</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%8A%80%E6%9C%AF%E6%9B%BF%E4%BB%A3%E4%B8%8E%E4%BA%BA%E5%8F%A3%E4%BB%B7%E5%80%BC%E8%BD%AC%E5%9E%8B%EF%BC%9A%E7%94%9F%E8%82%B2%E5%8A%A8%E5%8A%9B%E7%9A%84%E6%A0%B9%E6%9C%AC%E5%89%8A%E5%BC%B1"><span class="toc-text">三、技术替代与人口价值转型：生育动力的根本削弱</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%B3%E5%8A%A8%E5%8A%9B%E4%BB%B7%E5%80%BC%E8%A2%AB%E6%8A%80%E6%9C%AF%E5%A4%A7%E8%A7%84%E6%A8%A1%E6%9B%BF%E4%BB%A3"><span class="toc-text">劳动力价值被技术大规模替代</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A6%8F%E5%88%A9%E5%88%B6%E5%BA%A6%E6%94%B9%E5%8F%98%E7%94%9F%E8%82%B2%E9%80%BB%E8%BE%91"><span class="toc-text">福利制度改变生育逻辑</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%AD%E5%9B%BD%E7%89%B9%E6%9C%89%E7%9A%84%E5%8A%A0%E9%80%9F%E6%9C%BA%E5%88%B6%EF%BC%9A%E6%94%BF%E7%AD%96%E4%B8%8E%E7%AB%9E%E4%BA%89%E7%9A%84%E5%8F%A0%E5%8A%A0%E6%95%88%E5%BA%94"><span class="toc-text">四、中国特有的加速机制：政策与竞争的叠加效应</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%86%E5%8F%B2%E6%94%BF%E7%AD%96%E9%81%97%E7%95%99%E5%BD%B1%E5%93%8D"><span class="toc-text">历史政策遗留影响</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%99%E8%82%B2%E5%86%85%E5%8D%B7%E4%B8%8E%E4%BD%8F%E6%88%BF%E5%8E%8B%E5%8A%9B"><span class="toc-text">教育内卷与住房压力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%9F%E8%82%B2%E6%94%AF%E6%8C%81%E4%BD%93%E7%B3%BB%E7%BC%BA%E4%BD%8D"><span class="toc-text">生育支持体系缺位</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BA%BA%E5%8F%A3%E7%BB%93%E6%9E%84%E6%81%B6%E6%80%A7%E5%BE%AA%E7%8E%AF%EF%BC%9A%E4%BD%8E%E7%94%9F%E8%82%B2%E7%8E%87%E8%87%AA%E6%88%91%E5%BC%BA%E5%8C%96"><span class="toc-text">五、人口结构恶性循环：低生育率自我强化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9F%8E%E5%B8%82%E5%8C%96%E6%B6%88%E8%A7%A3%E4%BC%A0%E7%BB%9F%E5%AE%B6%E5%BA%AD%E5%8A%9F%E8%83%BD%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-text">三、城市化消解传统家庭功能的深度分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%AE%B6%E5%BA%AD%E7%BB%93%E6%9E%84%E7%9A%84%E7%A2%8E%E7%89%87%E5%8C%96%EF%BC%9A%E4%BB%8E%E6%89%A9%E5%B1%95%E5%AE%B6%E5%BA%AD%E5%88%B0%E5%8E%9F%E5%AD%90%E5%8C%96%E5%8D%95%E5%85%83"><span class="toc-text">一、家庭结构的碎片化：从扩展家庭到原子化单元</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%B8%E5%BF%83%E5%AE%B6%E5%BA%AD%E6%88%90%E4%B8%BA%E4%B8%BB%E6%B5%81%E6%A8%A1%E5%BC%8F"><span class="toc-text">1. 核心家庭成为主流模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%B5%81%E5%8A%A8%E5%AE%B6%E5%BA%AD%E8%A7%84%E6%A8%A1%E6%89%A9%E5%A4%A7"><span class="toc-text">2. 流动家庭规模扩大</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%AE%B6%E5%BA%AD%E7%B1%BB%E5%9E%8B%E5%A4%9A%E5%85%83%E5%8C%96"><span class="toc-text">3. 家庭类型多元化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%B6%E5%BA%AD%E5%8A%9F%E8%83%BD%E7%9A%84%E5%A4%96%E9%83%A8%E5%8C%96%EF%BC%9A%E4%BB%8E%E8%87%AA%E8%B6%B3%E5%8D%95%E5%85%83%E5%88%B0%E4%BE%9D%E8%B5%96%E7%A4%BE%E4%BC%9A%E7%B3%BB%E7%BB%9F"><span class="toc-text">二、家庭功能的外部化：从自足单元到依赖社会系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%AE%B6%E5%BA%AD%E5%85%B3%E7%B3%BB%E7%9A%84%E7%96%8F%E7%A6%BB%E5%8C%96%EF%BC%9A%E4%BA%B2%E7%BC%98%E7%BA%BD%E5%B8%A6%E8%A2%AB%E7%90%86%E6%80%A7%E8%AE%A1%E7%AE%97%E7%93%A6%E8%A7%A3"><span class="toc-text">三、家庭关系的疏离化：亲缘纽带被理性计算瓦解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BB%A3%E9%99%85%E6%94%AF%E6%8C%81%E5%BC%B1%E5%8C%96"><span class="toc-text">1. 代际支持弱化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%B2%E7%BC%98%E4%BA%A4%E5%BE%80%E2%80%9D%E6%96%AD%E9%93%BE%E2%80%9D"><span class="toc-text">2. 亲缘交往”断链”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%83%85%E6%84%9F%E8%81%94%E7%BB%93%E8%84%86%E5%BC%B1%E5%8C%96"><span class="toc-text">3. 情感联结脆弱化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%AE%B6%E5%BA%AD%E4%BB%B7%E5%80%BC%E7%9A%84%E9%87%8D%E6%9E%84%EF%BC%9A%E4%B8%AA%E4%BD%93%E4%B8%BB%E4%B9%89%E6%B6%88%E8%A7%A3%E9%9B%86%E4%BD%93%E4%BC%A6%E7%90%86"><span class="toc-text">四、家庭价值的重构：个体主义消解集体伦理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%94%9F%E8%82%B2%E9%80%BB%E8%BE%91%E6%A0%B9%E6%9C%AC%E5%8F%98%E9%9D%A9"><span class="toc-text">1. 生育逻辑根本变革</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%A9%9A%E5%A7%BB%E5%A5%91%E7%BA%A6%E5%B1%9E%E6%80%A7%E5%BC%BA%E5%8C%96"><span class="toc-text">2. 婚姻契约属性强化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%9C%AC%E8%B4%A8%E7%9F%9B%E7%9B%BE%E4%B8%8E%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B"><span class="toc-text">四、本质矛盾与未来展望</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E8%B4%A8%E7%9F%9B%E7%9B%BE%EF%BC%9A%E5%9F%8E%E5%B8%82%E5%8C%96%E6%92%95%E8%A3%82%E5%AE%B6%E5%BA%AD%E7%9A%84%E5%8F%8C%E9%87%8D%E5%B1%9E%E6%80%A7"><span class="toc-text">本质矛盾：城市化撕裂家庭的双重属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%93%E5%AE%B6%E8%A7%82%E7%82%B9"><span class="toc-text">专家观点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%B2%E7%BC%98%E5%85%B3%E7%B3%BB%E7%9A%84%E5%AE%A2%E8%A7%82%E8%A7%84%E5%BE%8B"><span class="toc-text">亲缘关系的客观规律</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BA%94%E5%AF%B9%E5%BB%BA%E8%AE%AE%E4%B8%8E%E7%BB%93%E8%AE%BA"><span class="toc-text">五、应对建议与结论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E8%82%B2%E5%B1%82%E9%9D%A2%E7%9A%84%E5%BB%BA%E8%AE%AE"><span class="toc-text">教育层面的建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E8%AE%BA%EF%BC%9A%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%8D%B1%E6%9C%BA%E9%9C%80%E7%B3%BB%E7%BB%9F%E6%80%A7%E5%BA%94%E5%AF%B9"><span class="toc-text">结论：系统性危机需系统性应对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%A1%E6%9D%91%E7%8B%AC%E5%B1%85%E5%8D%B1%E6%9C%BA%E7%9A%84%E7%A0%B4%E8%A7%A3"><span class="toc-text">乡村独居危机的破解</span></a></li></ol></li></ol></li></ol>
+            </div>
+        </div>
+    
 
-    if (currentTheme === 'dark') {
-        htmlElement.setAttribute('data-theme', 'dark');
-        themeIcon.innerText = '☀️'; // 变成了太阳
-    }
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/self-reflection/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/china-issues/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/internet-culture/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/intimate-relationships/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
+        </div>
+    </div>
 
-    toggleBtn.addEventListener('click', () => {
-        let theme = htmlElement.getAttribute('data-theme');
-        
-        if (theme === 'dark') {
-            htmlElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-            themeIcon.innerText = '🌙'; // 变回月亮
-        } else {
-            htmlElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeIcon.innerText = '☀️'; // 变成太阳
-        }
-    });
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    
+<script src="/js/theme-toggle.js"></script>
 
-    function buildCalendar() {
-        const grid = document.getElementById('calendar-grid');
-        const monthHeader = document.getElementById('calendar-month'); // 🎯 获取标题元素
-        if (!grid || !monthHeader) return;
-        
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth();
-        const today = now.getDate();
-        
-        // 🎯 动态写入当前的月份和年份
-        const monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
-        monthHeader.innerText = `${monthNames[month]} ${year}`;
-        
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        grid.innerHTML = ''; // 清空旧数据
-        
-        // 填充空白
-        for (let i = 0; i < firstDay; i++) {
-            grid.innerHTML += '<span></span>';
-        }
-        
-        // 填充日期
-        for (let d = 1; d <= daysInMonth; d++) {
-            const isToday = d === today ? 'class="today"' : '';
-            grid.innerHTML += `<span ${isToday}>${d}</span>`;
-        }
-    }
-    buildCalendar();
+    
+<script src="/js/calendar.js"></script>
 
-    // 搜索功能
-    (function() {
-        var searchInput = document.getElementById('search-input');
-        var searchResults = document.getElementById('search-results');
-        var searchData = null;
+    
+<script src="/js/search.js"></script>
 
-        function loadSearchData(callback) {
-            if (searchData) { callback(); return; }
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/search.xml', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var parser = new DOMParser();
-                    var xml = parser.parseFromString(xhr.responseText, 'text/xml');
-                    searchData = xml.querySelectorAll('entry');
-                    callback();
-                }
-            };
-            xhr.send();
-        }
+    
+<script src="/js/mobile.js"></script>
 
-        searchInput.addEventListener('input', function() {
-            var query = this.value.trim().toLowerCase();
-            if (!query) { searchResults.innerHTML = ''; return; }
+    
+<script src="/js/i18n.js"></script>
 
-            loadSearchData(function() {
-                var html = '';
-                var count = 0;
-                searchData.forEach(function(entry) {
-                    var title = entry.querySelector('title').textContent.toLowerCase();
-                    var content = entry.querySelector('content').textContent.toLowerCase();
-                    if (title.indexOf(query) > -1 || content.indexOf(query) > -1) {
-                        var url = entry.querySelector('url').textContent;
-                        var displayTitle = entry.querySelector('title').textContent;
-                        html += '<a class="search-result-item" href="' + url + '">' + displayTitle + '</a>';
-                        count++;
-                        if (count >= 8) return;
-                    }
-                });
-                searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
-            });
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                searchResults.innerHTML = '';
-            }
-        });
-    })();
-
-    // 移动端汉堡菜单
-    (function() {
-        var hamburger = document.getElementById('mobile-hamburger');
-        var overlay = document.getElementById('mobile-overlay');
-        var sidebar = document.querySelector('.sidebar-left');
-        var menuLinks = sidebar ? sidebar.querySelectorAll('.site-nav a') : [];
-
-        function openMenu() {
-            sidebar.classList.add('open');
-            overlay.classList.add('open');
-        }
-        function closeMenu() {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('open');
-        }
-
-        hamburger.addEventListener('click', function() {
-            if (sidebar.classList.contains('open')) { closeMenu(); }
-            else { openMenu(); }
-        });
-
-        overlay.addEventListener('click', closeMenu);
-
-        menuLinks.forEach(function(link) {
-            link.addEventListener('click', closeMenu);
-        });
-    })();
-
-    // 移动端主题切换
-    (function() {
-        var mobileToggle = document.getElementById('mobile-theme-toggle');
-        var mobileIcon = document.getElementById('mobile-theme-icon');
-        var desktopIcon = document.getElementById('theme-icon');
-
-        // 同步初始状态
-        if (htmlElement.getAttribute('data-theme') === 'dark') {
-            mobileIcon.innerText = '☀️';
-        }
-
-        mobileToggle.addEventListener('click', function() {
-            var theme = htmlElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                htmlElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                mobileIcon.innerText = '🌙';
-                desktopIcon.innerText = '🌙';
-            } else {
-                htmlElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                mobileIcon.innerText = '☀️';
-                desktopIcon.innerText = '☀️';
-            }
-        });
-    })();
-
-    // 移动端搜索
-    (function() {
-        var searchBtn = document.getElementById('mobile-search-btn');
-        var searchBar = document.getElementById('mobile-search-bar');
-        var searchInput = document.getElementById('mobile-search-input');
-        var searchResults = document.getElementById('mobile-search-results');
-        var searchData = null;
-
-        searchBtn.addEventListener('click', function() {
-            searchBar.classList.toggle('open');
-            if (searchBar.classList.contains('open')) {
-                searchInput.focus();
-            } else {
-                searchResults.innerHTML = '';
-                searchInput.value = '';
-            }
-        });
-
-        function loadSearchData(callback) {
-            if (searchData) { callback(); return; }
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/search.xml', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var parser = new DOMParser();
-                    var xml = parser.parseFromString(xhr.responseText, 'text/xml');
-                    searchData = xml.querySelectorAll('entry');
-                    callback();
-                }
-            };
-            xhr.send();
-        }
-
-        searchInput.addEventListener('input', function() {
-            var query = this.value.trim().toLowerCase();
-            if (!query) { searchResults.innerHTML = ''; return; }
-
-            loadSearchData(function() {
-                var html = '';
-                var count = 0;
-                searchData.forEach(function(entry) {
-                    var title = entry.querySelector('title').textContent.toLowerCase();
-                    var content = entry.querySelector('content').textContent.toLowerCase();
-                    if (title.indexOf(query) > -1 || content.indexOf(query) > -1) {
-                        var url = entry.querySelector('url').textContent;
-                        var displayTitle = entry.querySelector('title').textContent;
-                        html += '<a class="search-result-item" href="' + url + '">' + displayTitle + '</a>';
-                        count++;
-                        if (count >= 8) return;
-                    }
-                });
-                searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
-            });
-        });
-    })();
-
-    // 语言切换
-    (function() {
-        var translations = {
-            en: {
-                search: 'Search',
-                search_placeholder: 'Search articles...',
-                no_result: 'No results found',
-                toc: 'Table of Contents',
-                hot_tags: 'Popular Tags',
-                calendar: 'Calendar',
-                movies: 'Movies',
-                books: 'Books',
-                music: 'Music',
-                all: 'All',
-                watched: 'Watched',
-                want_to_watch: 'Want to Watch',
-                read: 'Read',
-                in_read: 'Reading',
-                want_to_read: 'Want to Read',
-                read_more: 'Read more »',
-                prev_page: 'Previous',
-                next_page: 'Next',
-                categories: 'Categories',
-                articles_unit: 'articles',
-                friend_links: 'Friend Links',
-                hobbies: 'Hobbies',
-                published_on: 'Published: ',
-                month_suffix: '',
-                months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-                days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'},
-                cat: {
-                    'AI 公式': 'AI Formulas', '深度学习中的数学公式推导与解析': 'Math formula derivations in deep learning',
-                    '电影': 'Movies', '看过的电影与观影感想': 'Movies I\'ve watched and my thoughts',
-                    '书籍': 'Books', '读过的书与读书笔记': 'Books I\'ve read and my notes',
-                    '音乐': 'Music', '喜欢的音乐与背后故事': 'Favorite music and stories behind them',
-                    '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton technique notes and competition insights',
-                    '猝不及防的死亡': 'Unexpected Deaths', '那些令人唏嘘的意外与逝去': 'Lamentable accidents and losses',
-                    '神童的悲惨故事': 'Tragic Stories of Prodigies', '被天赋与期望裹挟的人生': 'Lives engulfed by talent and expectations',
-                    '生活随笔': 'Life Notes', '情感与心理': 'Emotions & Psychology', '社会观察': 'Social Observations', '技术笔记': 'Tech Notes', '读书与思考': 'Reading & Reflection', '转载': 'Reposts',
-                    '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
-                }
-            },
-            de: {
-                search: 'Suche',
-                search_placeholder: 'Artikel suchen...',
-                no_result: 'Keine Ergebnisse gefunden',
-                toc: 'Inhaltsverzeichnis',
-                hot_tags: 'Beliebte Tags',
-                calendar: 'Kalender',
-                movies: 'Filme',
-                books: 'Bücher',
-                music: 'Musik',
-                all: 'Alle',
-                watched: 'Gesehen',
-                want_to_watch: 'Möchte sehen',
-                read: 'Gelesen',
-                in_read: 'Am Lesen',
-                want_to_read: 'Möchte lesen',
-                read_more: 'Weiterlesen »',
-                prev_page: 'Zurück',
-                next_page: 'Weiter',
-                categories: 'Kategorien',
-                articles_unit: 'Artikel',
-                friend_links: 'Empfehlungen',
-                hobbies: 'Hobbys',
-                published_on: 'Veröffentlicht: ',
-                month_suffix: '',
-                months: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
-                days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-                menu: {'首页':'Startseite','归档':'Archiv','分类':'Kategorien','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Streich'},
-                cat: {
-                    'AI 公式': 'KI-Formeln', '深度学习中的数学公式推导与解析': 'Mathematische Formelableitungen im Deep Learning',
-                    '电影': 'Filme', '看过的电影与观影感想': 'Filme die ich gesehen habe und meine Gedanken',
-                    '书籍': 'Bücher', '读过的书与读书笔记': 'Gelesene Bücher und meine Notizen',
-                    '音乐': 'Musik', '喜欢的音乐与背后故事': 'Lieblingsmusik und die Geschichten dahinter',
-                    '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton-Technik und Wettbewerbserfahrungen',
-                    '猝不及防的死亡': 'Unerwartete Todesfälle', '那些令人唏嘘的意外与逝去': 'Bedauerliche Unfälle und Verluste',
-                    '神童的悲惨故事': 'Tragische Wunderkind-Geschichten', '被天赋与期望裹挟的人生': 'Leben im Griff von Talent und Erwartungen',
-                    '生活随笔': 'Lebensnotizen', '情感与心理': 'Gefühle & Psychologie', '社会观察': 'Gesellschaftsbeobachtungen', '技术笔记': 'Techniknotizen', '读书与思考': 'Lesen & Nachdenken', '转载': 'Reposts',
-                    '前端': 'Frontend', '后端': 'Backend', '综合': 'Allgemein', '独立博客': 'Persönliche Blogs', '技术服务': 'Tech-Dienste', '社区论坛': 'Community-Foren', '效率工具': 'Produktivitätstools'
-                }
-            },
-            zh: {
-                search: '搜索',
-                search_placeholder: '搜索文章...',
-                no_result: '未找到相关文章',
-                toc: '文章目录',
-                hot_tags: '热门标签',
-                calendar: '日历',
-                movies: '电影',
-                books: '书籍',
-                music: '音乐',
-                all: '全部',
-                watched: '已看',
-                want_to_watch: '想看',
-                read: '已读',
-                in_read: '在读',
-                want_to_read: '想读',
-                read_more: '阅读全文 »',
-                prev_page: '上一页',
-                next_page: '下一页',
-                categories: '分类',
-                articles_unit: '篇文章',
-                friend_links: '友情链接',
-                hobbies: '兴趣爱好',
-                published_on: '发布于：',
-                month_suffix: ' 月',
-                months: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-                days: ['日','一','二','三','四','五','六'],
-                menu: {},
-                cat: {}
-            }
-        };
-
-        var langBtns = document.querySelectorAll('.lang-btn');
-        var defaultLang = 'de';
-        var currentLang = localStorage.getItem('lang') || defaultLang;
-
-        function updateLangButtons(lang) {
-            langBtns.forEach(function(btn) {
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-
-        function applyLang(lang) {
-            var t = translations[lang];
-            // data-i18n text
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                if (!el.getAttribute('data-original')) {
-                    el.setAttribute('data-original', el.textContent.trim());
-                }
-                if (t[key]) {
-                    el.textContent = t[key];
-                } else {
-                    el.textContent = el.getAttribute('data-original');
-                }
-            });
-            // data-i18n-placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) el.placeholder = t[key];
-            });
-            // data-i18n-cat (category/tag translations)
-            document.querySelectorAll('[data-i18n-cat]').forEach(function(el) {
-                var zhName = el.getAttribute('data-i18n-cat');
-                if (!el.getAttribute('data-original')) {
-                    el.setAttribute('data-original', el.textContent.trim());
-                }
-                if (lang !== 'zh' && t.cat && t.cat[zhName] !== undefined) {
-                    el.textContent = t.cat[zhName];
-                } else {
-                    el.textContent = el.getAttribute('data-original');
-                }
-            });
-            // Archive month suffix
-            document.querySelectorAll('.month-suffix').forEach(function(el) {
-                el.textContent = t.month_suffix !== undefined ? t.month_suffix : ' 月';
-            });
-            // Paginator prev/next text
-            document.querySelectorAll('.paginator a').forEach(function(a) {
-                if (!a.getAttribute('data-dir')) {
-                    // Detect direction on first run (Chinese original text)
-                    if (a.textContent.indexOf('上一页') > -1) {
-                        a.setAttribute('data-dir', 'prev');
-                    } else if (a.textContent.indexOf('下一页') > -1) {
-                        a.setAttribute('data-dir', 'next');
-                    } else if (a.innerHTML.indexOf('&laquo;') > -1 || a.innerHTML.indexOf('«') > -1) {
-                        a.setAttribute('data-dir', 'prev');
-                    } else if (a.innerHTML.indexOf('&raquo;') > -1 || a.innerHTML.indexOf('»') > -1) {
-                        a.setAttribute('data-dir', 'next');
-                    }
-                }
-                var dir = a.getAttribute('data-dir');
-                if (dir === 'prev') a.innerHTML = '&laquo; ' + t.prev_page;
-                else if (dir === 'next') a.innerHTML = t.next_page + ' &raquo;';
-            });
-            // Page title (post-title from front matter)
-            var pageTitle = document.querySelector('.post-title');
-            if (pageTitle) {
-                if (!pageTitle.getAttribute('data-original')) {
-                    pageTitle.setAttribute('data-original', pageTitle.textContent.trim());
-                }
-                var orig = pageTitle.getAttribute('data-original');
-                if (lang !== 'zh') {
-                    if (t.menu && t.menu[orig] !== undefined) {
-                        pageTitle.textContent = t.menu[orig];
-                    } else if (orig === 'about') {
-                        var aboutMap = {en: 'About', de: 'Über mich'};
-                        pageTitle.textContent = aboutMap[lang] || orig;
-                    }
-                } else {
-                    pageTitle.textContent = orig;
-                }
-            }
-            // Navigation menu
-            document.querySelectorAll('.site-nav a').forEach(function(a) {
-                var spans = a.querySelectorAll('span');
-                var textNode = spans.length > 0 ? spans[0].nextSibling : a.childNodes[1];
-                if (!a.getAttribute('data-original')) {
-                    a.setAttribute('data-original', textNode ? textNode.textContent.trim() : '');
-                }
-                var orig = a.getAttribute('data-original');
-                if (lang !== 'zh' && t.menu && t.menu[orig] !== undefined) {
-                    if (textNode) textNode.textContent = t.menu[orig];
-                } else {
-                    if (textNode) textNode.textContent = orig;
-                }
-            });
-            // Update lang buttons
-            updateLangButtons(lang);
-            // Rebuild calendar
-            buildCalendarLang(lang, t);
-        }
-
-        window.buildCalendarLang = function(lang, t) {
-            var grid = document.getElementById('calendar-grid');
-            var monthHeader = document.getElementById('calendar-month');
-            if (!grid || !monthHeader) return;
-            var now = new Date();
-            var year = now.getFullYear();
-            var month = now.getMonth();
-            var today = now.getDate();
-            monthHeader.innerText = t.months[month] + ' ' + year;
-            var firstDay = new Date(year, month, 1).getDay();
-            var daysInMonth = new Date(year, month + 1, 0).getDate();
-            grid.innerHTML = '';
-            for (var i = 0; i < firstDay; i++) grid.innerHTML += '<span></span>';
-            for (var d = 1; d <= daysInMonth; d++) {
-                grid.innerHTML += '<span' + (d === today ? ' class="today"' : '') + '>' + d + '</span>';
-            }
-            // Day headers
-            var dayRow = document.querySelector('.calendar-days');
-            if (dayRow) {
-                dayRow.innerHTML = t.days.map(function(d){ return '<span>' + d + '</span>'; }).join('');
-            }
-        };
-
-        // Override no-result text
-        var origNoResult = '未找到相关文章';
-
-        langBtns.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                currentLang = btn.getAttribute('data-lang');
-                localStorage.setItem('lang', currentLang);
-                applyLang(currentLang);
-            });
-        });
-
-        // Apply saved lang on load
-        if (currentLang !== 'zh') applyLang(currentLang);
-        updateLangButtons(currentLang);
-    })();
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
 </body>

@@ -19,95 +19,92 @@
 <meta name="generator" content="Hexo 7.3.0"></head>
 <body>
     <!-- 移动端顶栏（桌面端隐藏） -->
-    <div class="mobile-header">
-        <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
-        <span class="mobile-title">与买桂花同载酒</span>
-        <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
-        <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
-            <span id="mobile-theme-icon">🌙</span>
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/favicon.png" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/2048">
+                <span></span>
+                2048小游戏
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+    </nav>
+
+    <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
+        
+        <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
+        
+        
+        <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
+            <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
+            <button class="lang-btn" data-lang="en" title="English">EN</button>
+            <button class="lang-btn" data-lang="zh" title="中文">中</button>
+        </div>
+        
+        <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
+            <span id="theme-icon">🌙</span>
         </a>
     </div>
-    <div class="mobile-search-bar" id="mobile-search-bar">
-        <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
-        <div class="mobile-search-results" id="mobile-search-results"></div>
-    </div>
-    <div class="mobile-overlay" id="mobile-overlay"></div>
-
-    <div class="main-container">
-        
-        <aside class="sidebar-left">
-            <div class="avatar-box">
-                <img src="/img/favicon.png" alt="Avatar" class="avatar">
-                <h2 class="author-name">Nathan Gao</h2>
-                <p class="author-bio">人生天地间，忽如远行客。</p>
-            </div>
-            
-            <nav class="site-nav">
-                
-                    <a href="/">
-                        <span></span>
-                        首页
-                    </a>
-                
-                    <a href="/archives">
-                        <span></span>
-                        归档
-                    </a>
-                
-                    <a href="/categories">
-                        <span></span>
-                        分类
-                    </a>
-                
-                    <a href="/links">
-                        <span></span>
-                        友链
-                    </a>
-                
-                    <a href="/hobbies">
-                        <span></span>
-                        兴趣爱好
-                    </a>
-                
-                    <a href="/about">
-                        <span></span>
-                        关于
-                    </a>
-                
-                    <a href="/wiki">
-                        <span></span>
-                        Wiki
-                    </a>
-                
-                    <a href="/smallgame/2048">
-                        <span></span>
-                        2048小游戏
-                    </a>
-                
-                    <a href="/smallgame/trick">
-                        <span></span>
-                        谢益辉的恶作剧
-                    </a>
-                
-            </nav>
-            
-            <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
-                
-                <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
-                
-                
-                <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
-                    <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
-                    <button class="lang-btn" data-lang="en" title="English">EN</button>
-                    <button class="lang-btn" data-lang="zh" title="中文">中</button>
-                </div>
-                
-                <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
-                    <span id="theme-icon">🌙</span>
-                </a>
-            </div>
-        </aside>
-
+</aside>
         <main class="content-mid">
             <article class="post-detail">
     <header class="post-header">
@@ -130,12 +127,12 @@
      data-hbe-format="4"
      data-wpm="密码错误，请重试。"
      data-whm="密码错误，请重试。"
-     data-salt="a97a2eca524fffbe992b8df2fb2a380999854db0af8b0d6150089fa5ef849ca1"
-     data-nonce="d83393e185276909ce6dae9e"
+     data-salt="c1e5325ea5571223e3d519e4d5989b6a8167b1f09e3198caaf2866380d23faf9"
+     data-nonce="f46512a5b48a9b7e3355d3ef"
      data-kdf-iterations="600000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    f7a3491d8e1b2c8d1fd4b305cb466c47358a98d8efb662e91eab9ad627a9233c100fb73d60f44c865cb579330d2211ed03363dea4cd05f3a98730fc00c481d6cb717efedca4ca8e39f35aa40e5fabb18b7e452099daf902e793800cc6379c8f8e7c616a78882d6e570b9374ac81729a0aab679f0239383d90c33bf552b594de2cf65fefb8e2592e049fafaaddd41dde0cb2d76894154c39c38a4e55e28fe609716c612fc40e98f38b8cd77b241c7b64208ba5b7c7976b6c02b40ea82ea5f8b89e3acfc456cb40a9cfe7298d3c5a304ebdc25685f48279751a56c504fb9c128229975851a21aa756cec6c96d8987e0836d8074b27c3131b8cee2aba89e7d5a8031fa07ec8ffd39257b3d60fc372e52de0641d4661faecb112cab782c54b4bb95aaa04cee8e57fb0663c9b3adefee8a2776928b7344f1f646d415a765d323bb60f3e68b73970993740040c1af786cf252b64c19549418a3c529e715d74db47c29f1b7a2b5b9ae1c77a651efdf8c5f4a121990e4ff4c3fbbdb46a0c2846ea3c0f6e536460f8d8779f31f9d780558968db42802f8cb94862f3b23dba181009cd724ea4e11037c3b0aebfdefb7227a3c774e767fea4b087c71820d32230eed813682d0661092ea74b024858da82548d4e389cb91ea0dedd7cb8976c586d96ca09fa8bb04727cc378424bc67aa4f3417c4400775c52695b1a2816960e402cd65546b894a36fca5a7fb7d72845788e33de10a9c5e9d6f1f1b6d0a5582f87ca29870d97f12a71be011218c8c491a004e73b307cbc323a974d7d794914adf20544b136bd1209dbf0b97ce37c60bb06a682dd38f214750e2a8466944b129ca35a22ce452ca55488588cea96cb9dae11ee598cc9480b405102d3feb1aa247d9e49219e272ebf1fc21245234ba2a7065cb453f4e02e5b6361bf6b9497e1ddfafaa747693b7f00dcf927958b35be1a3f835847b9025c0e79d827556ac77ae877910b04924c4a61896386a0c7394d8c98b7154e0236f9f54ecee2439f8a691f9eedf460db0e03b59b686de7456905aec3265bbb544e94afd55abf548e99f7078cde2cf48645ce382d3a7aeeb05b442833573f88d438937678c4c23081983a114c3a5e4eb57fcde62bcb094e336c94048eb9f4ea7fbb79fbd3c2956b9ce9e77f779b740f4fdeb05cc7389d58daf0954c54ed3950af5c7e6c7a8ad9618e17706169e9e2222db1d4ae714fc61e443762889cf9434bdb3dcb56bfa4693fb47ff295e6b49f41fcb159bb7131329c23b9238086e5c18430aa65fefdefe9e38e023bd77f1c5e38336b4d63f825d0e8697d8c3615f91106a1e770697d98ba2903b92208b034797f382c6a01aebc522f900852dec052320baa05a68b87b9711d673b798784a9b8b5335b2d014d5d73d6cd6d98152c521ab6d9564e95f0a2d1fc8ed340073390805392a1b06ee69bd46c659d1f402e61445885a77e8675bf150a5ab34779fc3de8987b3ff959c6f728ff4748c1fda5bd862b55ec98082f4fdd71d2df5c2d63b3d800996d9024e6d63f3d5cb68377b928141f2e0ea31097eaa2b302b80fe305a400e747ad29716fceff26292cbaadd5fc07924b1fc0b9c42e723641777a5f59e34d85b8dc1f2da9a3f9823adb48127c0d61825aa11fc74c5e103ec66d01cc58d7548bd0f9907a417cb8e71ba940f1a45407c37adfef44f0ac052a00b0816632c2e6e123c8d732f0d180fc87254bdd5d2e187babc9b5601a554cb251b27e48d63d6b2432f81011512f0429723959837b69fdc94f23276328b4fd6d4bf33deaad37e61a2eefd83d4da4098d90197f9fa2c47cf2c72e3d3a02b45c85290831819a96426fe85b42ea59ca93989fa071d7d13ccd551e17c603b8f5d2437b0c69fe0ffecf68ecfa710fb5b2f9449e102b933847983d4b8a45fb6f787950dad41031d3a7e5c50b9fbe5bd7b390c52979b56f94ae48393a7958992c14cdfed3b11061441a2eee74aca19fc4621a84f9ac5aa2fd7a68b3ba8081c288d4777a93dd265ff447fa56cdea854b3610f36c123f57f4f0e202a6da673f36e27b4ba37e77267a840e48ad5db1ecd3cc29a829ea49dbbc9dcb51fb920252562f09c00c1b6c7580ff27f0e0c983eee033b181bd751910fb88b309ed604c59f9a223a4b1a31d07152b91fa75213043a01161a48d4738594c3be41d83b36b527bf7da40719869eb001b31dbcaaad24851017fd616bdd3491321e1b73c12d4f5e7c557ff3c029d2b60e13cd6ebca447c5ecb40a8b1dd151dafb75e31a91d01980192a6d58e296731070cbb9c0fff5ff3669fc90504326fdd8a6152af2b0841107681b41f19254a355b72b756677a2b61f05f9e6ec00c6f62284ebbf3120925a5a25bcb28bfe4222fb10ee4ed5c7c35f532b2f72954cddc26a3a53297d1a5c3ab0b2073cf40c8aec7bc71f0eaf6bceebef03456d549b15ab78607257aa3bea8ec59539d09b8f3932d1a855a44d5e95b4972c9b8d81a92dd84c83e794043699f303fc9d04a39fdcae9f88ab2181c3ce7e7ae57facd60479fc7d173117fce3b3a2b4998de779f6b0200cc7c752b9d14582e3c4013a4fefe9265b424ed2b461a003b7cee9718a8e8f9131094ab122ece6e3a9865098fceba1c270a34a844e0e6fe12b7b0aae543caaeb04055b7ef3368ba661900a87505caef9deafa847140c641ade4dfe54fcc5166da226c0267405e8131081c237464278d0d6036b78cd2b6cf682aa75bdc1352e19ba774b0c203232602d6b0670d0f8040717e76281c43a360dec20880461985cb98c9746d579086194e381876b3f3cbfed66267183850d206794c2420f2b4b47da2dccc342dfcd60214d42efb47c47d7153f1f82cdf03ec5045d58e8f367c7628ffece66eecc6d4b2aa683dcdbb1a035b53b0fa127372e1aeb6c038b2c01bbfa37c162cf01fae72090e5ce048ffcc58d0ea797d31f2885a85cf362bd1f9f288747d18f036e99f3a949518c4a2ceaa455e0a358bdcd3f38316f01e201076e0aa223e842f1307507486d1a8f27ff2ddc99890cbf3f472cb40a5fbd25dcac6a9212978d9457e828893798f32e6e3aaaaa8f61d2181e34651fe1cf8522fd96756b85d5da719d0ef714fa28ee884c274692bd0a6c52d7202c73493590f2c2d0e63abaa6ac83b9b897239e6eaf00ce4963ee0a25f54055267187039d8794286ed7cb0fe8af91859ba7a52ba07886cfdbb105cf222c5c8dc2cd3fdd18ec128f133124c33a4d203b54e719819c1f5c4f36931df438c947e5cc1c862153946dc644badd0544d4904bfdf7e38b1b1d90a1061d6cad1adc59a46c58a46720af48dbaf7827e9a94dc5674a5e34f3d6a7200f90b1729bfb5bb85e00edb36950e1c433859bdf15d60ecf38113cce08f70ef3b91cdd0e7543ba1a4df48a2d9d6b8996f7478101cc1a2ad4786c2b751fdee77626420bb346621071e05bc7084a8ae5bece0bb8e86f5d70a5774adc6cd3614ba03032713999ba46d098d2ed423863ff5acf0a3a3069e23cda11d123fc1d9bcfc90b8265b731bf81c0685d91e5165af367e00f49886acd061fae5c59a75b67746edc1b37a69b986ce94493206677978653f2a4150bef96f3a267952a7984d96c6207055509ad96afc061c1bc8b98c70f571d606459cf58b9ca72a6abf4855a77f004eb7502fa2c27e448a35a922eee49ef2b3b688bdce2effdab46fa4aa0959e81c6461e43b46bbbcf81623723b970a6aaa942fd26688c76fb3f98f349b0bf9b959073ba4d70776d38c06e3e530a5d8fd9121b144d0e370f60e15b7545c80d83b223a686c1798c599afc4a2b8d7e52ac9afa89f017cb4ef4654b9aa0573dcf398334d2d17975cd8a2f304273471b8c3853e9f36bd574e470edd0c67a83139baba5cd99f4c8cabfc7ed7aded40e45da2ad63caa4ccaa13451c1a68db1689a103722afaedfb54e2aa36e2ca3792a712d1047765b64b68be9079b99b8d9c2163d6ebc13fd9115ef5735b8fcf33cef61fc4800dbfeaf06638191bff5ba0e72232b1e91e5b27f1c7a524b82fe50a1e9d1205b478313388d65e73b674af6aa0f5a0583b9b1f251495a50f44cc5f7a7bc10cc6390ff07a4f0e0cecbe94065047cafca3016303afcc372901eb345227846a51a9b14fe41f9f4f8634f692fbe3be1b92ba7e62ab095d6c235e10be5be6f120ab23e82f0ae885b1eb7bd8a41dfab96e1ec97cc3f1f580390de0d20f0706098a97bd329e545983ffee2860c2f46eddf443af3ad74254f65538969564e4acdcea2c815dd08dc09e811f9cc480345173802380e3be6dcf81df6ff0127d2f431a98c0b8341a6dbd7d40586faf88e32fb6d12036335b23d19065b73d0f07e69e54dbbdd09cba11f80cd7bbe24f07e7f13ea46b9fe727f8972ec14d53f4f15e6ed1f2ad8670792aa9eeb449ad001bf6ed60ff10b7c760ef19627d71ed88a85bb54f4cf727e9038aacc94d3939d9aa8a62c21c5fe6f7d62c56eb7e86cb55a9629295c9db4b295908d65dc550555e599f6c3da67d6e2e0e4e0695c0afe2959af50e167377c7b5472f5494121ff948bb1a5001c93b7123df9d697290fcb17a43a9d7bf30a7734f06a01cdbdda0adcf7be6b3e0235725d99e30999b7b40c585214b8a06e84bcd305006c8f1f3c94a393c343d9f29cbdde08e8799768279a61049e9987c3609b370147250531560322231200e108a5beca51b56a90d8a03432357294b643c8beec4ab19665eaaf2bb9085859bfb54e34932214f09d5585f595e4b59040e71dd9dd7aba4014e677bc20df0b09097c0486a4f72405fc7374fd34f417c4ccd30508e8d64d6766914ae9f4d5ae9ecd5055f3c5d6e2cfa608752525bfe962d54bf547b633e7b9754c1634e44b958edb33eef459f0
+    0feb9b451177b594671db7e3683790e0833744e76d27169b4262aac7acca45d5098f652cf4e5c6dcb1632b54980d55209aa544533b380d7c0912ea191a06f78c715ad634f2c485ce297812d4edda6a5eb55a0c355bb0416e814f9b3c5bc167d6d454a9b1449b9629b24f909e3b49089168ecdd6808c90dc085ae79e9fad15111a4e377917b1244053bf15be38fcedb73ad64cafb5ebaacd9c464b7a451744b8a3ca1ea104ba1b63b5e211d998531d7bb11aef0f84ca1106d07e75148f438e55b731bb4628f51ed347fa2e602861aefbc8752d886d49b340184eea4d0c105c88e3aa8067bb01f48b241abb5277f446386172eb09308250a2991fbc0bc2d26fb6eb1f8a9660ed792b34b2bddc39ef968b5db8aea986e0e930ef00331df8e65d7389192d88f739fae691d33d4266def83bb86e959de4cfdb18c8645edbf9a3059997324799bba70c858ba82ba409a183e29702a2d02ab232e51cea9ffcbbd6f6ce24d60ddf6a175bb8322c85b8b744f9e50e7ea3036dbc4f2b851bc2a67d36d25d2302a82c9dcb47f9d4671642dc10f806b47249c323b9955a134f9d65995964e60ce0ba02caedc06b9772b0b4e8e48d17cd330c5f204a4c460028ad99c04292c26fc46552276af9981e9d4ceac051b4cc3efaf7318d9ee043fc6f2987ac1d911c1e654886bc4aeffabcead8ca11c102713a509b75e0c44e618d4a4e444f70fcfddb552d0e37c9f65aa4445171156ef81bd9cc17d67593cbd98d65f5031a126eb22340ae6027267e117ea823254c18da71787dae39c7c986ffb36dca4b9c926b237e68ce510414f7e4e69cb29b884339951b190d184a5d38b6870e8b191a186b6fbad0df0288f2227d8685e3fcde52c73e89113d4ab5a0b9de21277a2e5c7db6acd13f1605e4fd523628d8a3fa0585c3169181b02f6078e7e845709522d5b288b0d95c84e682830753cf987fe4ffaeb5920c753404760986bb7c61b9a885ff8eeb6dd5d323ee3dbe39d30d94711d503399456d92789aadc18618b53c5407705e9f44ea613f8c9992c3f7595a0be891fa629d4ce890bc9e419431c1a76b86e79c465ff3e1e939da9b46d1abf921b81642f8818a8b35f41de08088bf96a1ccca3270428cc9d65f7a15f596c76b73343305f7e16ec32fadc6874f13330824a33bc6358c97e47adc7c53c2a47eb91d5b9e173cca86cb4726562056ff5bcdcd25bf5c60904c528e7c62afd1bdf21305939efebdeeb9bb48dca04f67e41ee46e6ff32985065548c8ece5a4829dd8d8a16eacadacd3a722cb60a9807be7bbfaa4646257300dfdc2dd1c4b2b473911d1472ef70a5a88fae755ff9532b8f10bf75dbf877240f24727ae8e0384dfb99f21d6860eb1e0e39b4f6554f8efb9e139aced58848b19da6188e46034c33b8b15b5855f7c70b8f8b04d1685054df1f1c3043dba31acfab39a93b90103faa4974245412d8ca35391fe570e9f856498d7ea91310ad2ecae7fac0c38ced32f3a7cf340f718b52fb875fe4d51e98404b53adec3a835d35f8591b214273e060ae916489af13a4b506428634cde2304bb046dec637b41a260dad5f97cf928a1119453b84ab6ad01fd9fd4b32bb166144b83eacfbb319bf25bf0649a4f99e2b010bf3b800fdf9fd1375d69a1eb922d0c0b472106c5f12c87a5626bfd3b458896243053f12570abfe8c919fe176f24b1f8d4b9dda56c02abbe013f7e4a13944fe3c6da07529cbb338de3203602e479ed2627b658472adfad660f86a663af958211c80729a3f9de35a40f756ea640efde38f752da96ce792d6a0a8912fe1993fcc55b238e9948fb2b6423db768f4293f4ea4735ad1dbcbdf58d2352c8f4c7b848847a7b325111b82856f384af8be94ade5fe94ad596b3f7b073eb2895a05a054bd798b97e83e60d3a882b0eb80bdea22d0cf23e38b6448c3ee264f799531a81424578a3e35e6e01506845006841a3b52c75534d91b94b9a1f567b362b4b80d99a33371eb81e07ccfc40b3edefb75eebbb857d83e3db39cda8bf7b4d410c914523c5835c0d560fb12d69a1052cf60e0e5023e91c4413efa5517bcb33214c82340609d2b3f866897b9ef7bff7852a0dd26f0ee0f15f7f643a4db349bce58c7db5c91d4642f9ed744e67d7bb6ef6bb04862c89842d9488104a884a003c29162259350f90f82c4fedd852f93a7e76496e7abc6f2d33c4fd1b052876f4e1b0eeb84637441dd997e3c12051fceda428928a887cf885d36f92e1b4f16b2d11ccd318ccfcb60ea40aac11d4dd2494b26fb57f7b306d9b0e11d0082a7cef3241bb5c07b07087cbd40187ce7c8a48617761f5f942ec6a6f2391c21609070663c340d98c3c3d4ee095ca085bf9c08fddad9d382bbec2047bd0b17a9cc887c5780c66433b21f920a1b44e21a7fdfb4c2109f17e51b9b38f57e9bbfb4881ee0fa54a818c1d25815bcfd03f4626c4dfaa9bbd6629164bc11a0ce128363889e2df40077e3885e1e9f078f5a5b482153fb87f0ffe4f4950e15aef8972f58c2218565253445f19274692e67d3f0e7257766afeafac32527907789e4dcf77632adb5a339a4faccd0807227e3c3c17dd006a32c2e6b5ec16ed272a7e38056e7c88259625fd6692c36d058c0e071dff62c92c2c0d28eead0a387c1d2fbf831ae6a77edc470c2cca610eaee71a4fd4d051ff1f1b525b1df4f4713e88034157029d44bc6425dfcde6478252c89ddfce4069fe1af5b74d237672947aca55b18d9dce8d15a9f7228a31c31f8851088600b7e222c6de49302e1155d9b9b6eab6fe61512ed857e55942826257f70dfcab07b14286d147db3cacd2a3b07f5a6a00ba6b10af719b84fca1f5ecbae170146b6890bd04442f21b3e2266dea97fec90b8fa1451ddcab4c71a69ee396bf0366f1fd90da578748424235dc181702d5cf4edf010ae9863af891b459eda6f94cae6c1df26e3107d1ab21e612ff22d4e6bc5e654e33fb9b121780171973fd5642d143ddcc7db28d698fdac04dcec27cdd4f5c87910474799fda1cb699239e2e13fdbb22fcf6557b0117fae0b5ab1796ff4d78b454ecd2dffcb0dd9b2142e9b136a69fe471036377b8c24576078fe9da3d6493b2bfa3a1de99ae52e18d5ea0c951724374dce6e31bf3b1cc84d1502e9eb2c2a2a08ee6cb4548c2110fe711990f7ccfea8a00ba90c88ee9f0c8a916ac49c9355cc86f8159ff451b853cbbe5d66c60a1eabbf8a1ebeca2b77cb70286e725e39c60d056cbad5eb1c2b5550aadd0740b9caa737c9cda893419cd8ad459dde66b38349cb4c0dd30e6150db4cfa872fa782252418fc83d6e19bac7dd926b1d4395fa5f61a396e6221e78fbd8c9963179a163239cf7c43256b72fb78a7edc3c9984b0e94acacfdee1cac9b994103da667c03a22d1869cf73455adf3ec9aae6df725e6f38cfde3d87b2589282153c40bc5bf6022d89edaaaf7dc0b2765ae71bd35c6e2a32155aa7d004ac89ae1939278683bc7645624846c3930e8cac048ffc5788b5a72f4fd9062b24186f724b844dff04ed57b043c65d42916bd35ba898b7679f30b76e90c053a21791458385f25447d38c78fdf4ef2a73c4fe6f7aecb81595a099238914161337af988777ceed0619e81d224ed6305407fe677c0048c9bd4776ea6ea25f14770d39e6dac3628da4a4727bea5f6ef06743d034858e5b454cbe3712cc84f5bf8f6fd5755acfa30de06030fc117e077f605b6d3d4544c2c341a69686c25b9c7e07746b05c14431cfbe42708ac0fd7ba6590e0e27148f3a6958b10f885d2e746583a8279045d15608a90a704f7eb7992a007b6b41b880ebc60da91bbf0d95e1f79aceaddc979043a4b928cccad462d0830bcd23ed2c5792e65bdd0ff0b001bd63baed6210a1ee668456c587afb5abcc6a95aa8e96290efdae8ca53cf8a76ff9b7ac31a7f3a51c9e915db5e19344561778fcfb2dabb38eba1d09b482bc5048075570aa1e2d19bd413abca0a6dafbabeb5ce7300c1bedb766fd2e42f38a578f139f6d8179e27d544daddeeb960f55cbc34c7635f72ebff2fca8230611986b5dea6c9299a576110137353d7872e5236ed5fe06cf24b3998484cb0f87d0d90b60f1ef6e6a8f000f9853446e96e30e162413ad6af9958b3366ecf8f67144339280935bbbe4ecebab5105aff890bd4a0f2c51588c748ca6221216f29aa1b1a3ddbc57aa687647d868af2eff62db2800b6bde3a2c6499bd4476d552f7add8d767796a000ae164598c8d6f7566eda980b3d22efc39910a1d3d9c601e6a92f2959188f4dd8d4da7900c030cf169f6f615cf631899d13701940679014d51b1f65814732f9ea81862b99563dbc621265327123edd72e161a15c1e02b286de64e70aa4eb48737fd41f24393a0a5fa77737b0ca5836e5ec344740cfd5c41e94b8e63a99b056c7d2dcd8a81c56e8e53575197261251413994c857e2e09716d879c23e52176849b3dad26113ffbd1e63139dbbeaaf88be27c81da54841210ed1beb4a4e8bd84378390392b5d1015a0037841c243a3f44e6fcb45f8c11a04f954976257a9b5fe0a1802c50b2dba0e61002777b0ed4405317537f269d922f9b0e731c00ea52f5f2e203c90d2c36f3a07b67074b1f95335bb458f871634b7d6d6e2f6569950f5bb418fcdd8be01bc5c3ccd02f843248e848ebe5da1e3b2fb576c9619df6e5de8b2b3a0dd45ca03eae7bfb1c8a25609acaa21e9178af31e8cfa50878d4a62fb7475a08c9b2248ac63f23d23ce5d69bd2212bc653ae8ef4e605e238a6e6e161b618e91d273b6f624508e72069d033a081bc7230c3af3b9db1203c7e87dd2c767b3a122a289a77a2b30c0bf3fa67be003b8b6b9e0bdcfdc4ee0dbe3e346bafa05d95cbfa177e12604d6316
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form" onsubmit="return false">
@@ -152,530 +149,66 @@
 </div>
 <script data-pjax src="/lib/hbe.9a88ff0505.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
     </div>
-</article> 
+</article>
         </main>
-
         <aside class="sidebar-right">
 
-            <div class="widget search-widget">
-                <h3 data-i18n="search">搜索</h3>
-                <div class="search-box">
-                    <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
-                    <div class="search-results" id="search-results"></div>
-                </div>
-            </div>
-
-            
-                <div class="widget toc-widget">
-                    <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
-                    <div class="toc-content">
-                        
-                    </div>
-                </div>
-            
-
-            <div class="widget tags-widget">
-                <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
-                <div class="tags-cloud">
-                    <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/self-reflection/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/china-issues/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/internet-culture/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/intimate-relationships/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
-                </div>
-            </div>
-
-            <div class="widget calendar-widget">
-                <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
-                <div class="calendar-container">
-                    <div class="calendar-header">
-                        <span class="month" id="calendar-month"></span>
-                    </div>
-                    <div class="calendar-days">
-                        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
-                    </div>
-                    <div class="calendar-grid" id="calendar-grid">
-                        </div>
-                </div>
-            </div>
-        </aside>
-
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
     </div>
-    <script>
-    const toggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-    const htmlElement = document.documentElement;
 
-    const currentTheme = localStorage.getItem('theme');
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                
+            </div>
+        </div>
+    
 
-    if (currentTheme === 'dark') {
-        htmlElement.setAttribute('data-theme', 'dark');
-        themeIcon.innerText = '☀️'; // 变成了太阳
-    }
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 15.43px; color: #b47885">AI</a> <a href="/tags/C/" style="font-size: 14.29px; color: #ab838c">C#</a> <a href="/tags/WPF/" style="font-size: 13.14px; color: #a28e92">WPF</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/self-reflection/" style="font-size: 18.86px; color: #cf5672">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/china-issues/" style="font-size: 16.57px; color: #bd6c7f">中国问题</a> <a href="/tags/internet-culture/" style="font-size: 17.71px; color: #c66178">互联网文化</a> <a href="/tags/intimate-relationships/" style="font-size: 20px; color: #d84b6b">亲密关系</a>
+        </div>
+    </div>
 
-    toggleBtn.addEventListener('click', () => {
-        let theme = htmlElement.getAttribute('data-theme');
-        
-        if (theme === 'dark') {
-            htmlElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-            themeIcon.innerText = '🌙'; // 变回月亮
-        } else {
-            htmlElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-            themeIcon.innerText = '☀️'; // 变成太阳
-        }
-    });
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    
+<script src="/js/theme-toggle.js"></script>
 
-    function buildCalendar() {
-        const grid = document.getElementById('calendar-grid');
-        const monthHeader = document.getElementById('calendar-month'); // 🎯 获取标题元素
-        if (!grid || !monthHeader) return;
-        
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth();
-        const today = now.getDate();
-        
-        // 🎯 动态写入当前的月份和年份
-        const monthNames = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
-        monthHeader.innerText = `${monthNames[month]} ${year}`;
-        
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-        
-        grid.innerHTML = ''; // 清空旧数据
-        
-        // 填充空白
-        for (let i = 0; i < firstDay; i++) {
-            grid.innerHTML += '<span></span>';
-        }
-        
-        // 填充日期
-        for (let d = 1; d <= daysInMonth; d++) {
-            const isToday = d === today ? 'class="today"' : '';
-            grid.innerHTML += `<span ${isToday}>${d}</span>`;
-        }
-    }
-    buildCalendar();
+    
+<script src="/js/calendar.js"></script>
 
-    // 搜索功能
-    (function() {
-        var searchInput = document.getElementById('search-input');
-        var searchResults = document.getElementById('search-results');
-        var searchData = null;
+    
+<script src="/js/search.js"></script>
 
-        function loadSearchData(callback) {
-            if (searchData) { callback(); return; }
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/search.xml', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var parser = new DOMParser();
-                    var xml = parser.parseFromString(xhr.responseText, 'text/xml');
-                    searchData = xml.querySelectorAll('entry');
-                    callback();
-                }
-            };
-            xhr.send();
-        }
+    
+<script src="/js/mobile.js"></script>
 
-        searchInput.addEventListener('input', function() {
-            var query = this.value.trim().toLowerCase();
-            if (!query) { searchResults.innerHTML = ''; return; }
+    
+<script src="/js/i18n.js"></script>
 
-            loadSearchData(function() {
-                var html = '';
-                var count = 0;
-                searchData.forEach(function(entry) {
-                    var title = entry.querySelector('title').textContent.toLowerCase();
-                    var content = entry.querySelector('content').textContent.toLowerCase();
-                    if (title.indexOf(query) > -1 || content.indexOf(query) > -1) {
-                        var url = entry.querySelector('url').textContent;
-                        var displayTitle = entry.querySelector('title').textContent;
-                        html += '<a class="search-result-item" href="' + url + '">' + displayTitle + '</a>';
-                        count++;
-                        if (count >= 8) return;
-                    }
-                });
-                searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
-            });
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                searchResults.innerHTML = '';
-            }
-        });
-    })();
-
-    // 移动端汉堡菜单
-    (function() {
-        var hamburger = document.getElementById('mobile-hamburger');
-        var overlay = document.getElementById('mobile-overlay');
-        var sidebar = document.querySelector('.sidebar-left');
-        var menuLinks = sidebar ? sidebar.querySelectorAll('.site-nav a') : [];
-
-        function openMenu() {
-            sidebar.classList.add('open');
-            overlay.classList.add('open');
-        }
-        function closeMenu() {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('open');
-        }
-
-        hamburger.addEventListener('click', function() {
-            if (sidebar.classList.contains('open')) { closeMenu(); }
-            else { openMenu(); }
-        });
-
-        overlay.addEventListener('click', closeMenu);
-
-        menuLinks.forEach(function(link) {
-            link.addEventListener('click', closeMenu);
-        });
-    })();
-
-    // 移动端主题切换
-    (function() {
-        var mobileToggle = document.getElementById('mobile-theme-toggle');
-        var mobileIcon = document.getElementById('mobile-theme-icon');
-        var desktopIcon = document.getElementById('theme-icon');
-
-        // 同步初始状态
-        if (htmlElement.getAttribute('data-theme') === 'dark') {
-            mobileIcon.innerText = '☀️';
-        }
-
-        mobileToggle.addEventListener('click', function() {
-            var theme = htmlElement.getAttribute('data-theme');
-            if (theme === 'dark') {
-                htmlElement.removeAttribute('data-theme');
-                localStorage.setItem('theme', 'light');
-                mobileIcon.innerText = '🌙';
-                desktopIcon.innerText = '🌙';
-            } else {
-                htmlElement.setAttribute('data-theme', 'dark');
-                localStorage.setItem('theme', 'dark');
-                mobileIcon.innerText = '☀️';
-                desktopIcon.innerText = '☀️';
-            }
-        });
-    })();
-
-    // 移动端搜索
-    (function() {
-        var searchBtn = document.getElementById('mobile-search-btn');
-        var searchBar = document.getElementById('mobile-search-bar');
-        var searchInput = document.getElementById('mobile-search-input');
-        var searchResults = document.getElementById('mobile-search-results');
-        var searchData = null;
-
-        searchBtn.addEventListener('click', function() {
-            searchBar.classList.toggle('open');
-            if (searchBar.classList.contains('open')) {
-                searchInput.focus();
-            } else {
-                searchResults.innerHTML = '';
-                searchInput.value = '';
-            }
-        });
-
-        function loadSearchData(callback) {
-            if (searchData) { callback(); return; }
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/search.xml', true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    var parser = new DOMParser();
-                    var xml = parser.parseFromString(xhr.responseText, 'text/xml');
-                    searchData = xml.querySelectorAll('entry');
-                    callback();
-                }
-            };
-            xhr.send();
-        }
-
-        searchInput.addEventListener('input', function() {
-            var query = this.value.trim().toLowerCase();
-            if (!query) { searchResults.innerHTML = ''; return; }
-
-            loadSearchData(function() {
-                var html = '';
-                var count = 0;
-                searchData.forEach(function(entry) {
-                    var title = entry.querySelector('title').textContent.toLowerCase();
-                    var content = entry.querySelector('content').textContent.toLowerCase();
-                    if (title.indexOf(query) > -1 || content.indexOf(query) > -1) {
-                        var url = entry.querySelector('url').textContent;
-                        var displayTitle = entry.querySelector('title').textContent;
-                        html += '<a class="search-result-item" href="' + url + '">' + displayTitle + '</a>';
-                        count++;
-                        if (count >= 8) return;
-                    }
-                });
-                searchResults.innerHTML = html || '<div class="search-no-result">未找到相关文章</div>';
-            });
-        });
-    })();
-
-    // 语言切换
-    (function() {
-        var translations = {
-            en: {
-                search: 'Search',
-                search_placeholder: 'Search articles...',
-                no_result: 'No results found',
-                toc: 'Table of Contents',
-                hot_tags: 'Popular Tags',
-                calendar: 'Calendar',
-                movies: 'Movies',
-                books: 'Books',
-                music: 'Music',
-                all: 'All',
-                watched: 'Watched',
-                want_to_watch: 'Want to Watch',
-                read: 'Read',
-                in_read: 'Reading',
-                want_to_read: 'Want to Read',
-                read_more: 'Read more »',
-                prev_page: 'Previous',
-                next_page: 'Next',
-                categories: 'Categories',
-                articles_unit: 'articles',
-                friend_links: 'Friend Links',
-                hobbies: 'Hobbies',
-                published_on: 'Published: ',
-                month_suffix: '',
-                months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-                days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-                menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank'},
-                cat: {
-                    'AI 公式': 'AI Formulas', '深度学习中的数学公式推导与解析': 'Math formula derivations in deep learning',
-                    '电影': 'Movies', '看过的电影与观影感想': 'Movies I\'ve watched and my thoughts',
-                    '书籍': 'Books', '读过的书与读书笔记': 'Books I\'ve read and my notes',
-                    '音乐': 'Music', '喜欢的音乐与背后故事': 'Favorite music and stories behind them',
-                    '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton technique notes and competition insights',
-                    '猝不及防的死亡': 'Unexpected Deaths', '那些令人唏嘘的意外与逝去': 'Lamentable accidents and losses',
-                    '神童的悲惨故事': 'Tragic Stories of Prodigies', '被天赋与期望裹挟的人生': 'Lives engulfed by talent and expectations',
-                    '生活随笔': 'Life Notes', '情感与心理': 'Emotions & Psychology', '社会观察': 'Social Observations', '技术笔记': 'Tech Notes', '读书与思考': 'Reading & Reflection', '转载': 'Reposts',
-                    '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
-                }
-            },
-            de: {
-                search: 'Suche',
-                search_placeholder: 'Artikel suchen...',
-                no_result: 'Keine Ergebnisse gefunden',
-                toc: 'Inhaltsverzeichnis',
-                hot_tags: 'Beliebte Tags',
-                calendar: 'Kalender',
-                movies: 'Filme',
-                books: 'Bücher',
-                music: 'Musik',
-                all: 'Alle',
-                watched: 'Gesehen',
-                want_to_watch: 'Möchte sehen',
-                read: 'Gelesen',
-                in_read: 'Am Lesen',
-                want_to_read: 'Möchte lesen',
-                read_more: 'Weiterlesen »',
-                prev_page: 'Zurück',
-                next_page: 'Weiter',
-                categories: 'Kategorien',
-                articles_unit: 'Artikel',
-                friend_links: 'Empfehlungen',
-                hobbies: 'Hobbys',
-                published_on: 'Veröffentlicht: ',
-                month_suffix: '',
-                months: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
-                days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-                menu: {'首页':'Startseite','归档':'Archiv','分类':'Kategorien','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Streich'},
-                cat: {
-                    'AI 公式': 'KI-Formeln', '深度学习中的数学公式推导与解析': 'Mathematische Formelableitungen im Deep Learning',
-                    '电影': 'Filme', '看过的电影与观影感想': 'Filme die ich gesehen habe und meine Gedanken',
-                    '书籍': 'Bücher', '读过的书与读书笔记': 'Gelesene Bücher und meine Notizen',
-                    '音乐': 'Musik', '喜欢的音乐与背后故事': 'Lieblingsmusik und die Geschichten dahinter',
-                    '羽毛球': 'Badminton', '羽毛球技术笔记与比赛心得': 'Badminton-Technik und Wettbewerbserfahrungen',
-                    '猝不及防的死亡': 'Unerwartete Todesfälle', '那些令人唏嘘的意外与逝去': 'Bedauerliche Unfälle und Verluste',
-                    '神童的悲惨故事': 'Tragische Wunderkind-Geschichten', '被天赋与期望裹挟的人生': 'Leben im Griff von Talent und Erwartungen',
-                    '生活随笔': 'Lebensnotizen', '情感与心理': 'Gefühle & Psychologie', '社会观察': 'Gesellschaftsbeobachtungen', '技术笔记': 'Techniknotizen', '读书与思考': 'Lesen & Nachdenken', '转载': 'Reposts',
-                    '前端': 'Frontend', '后端': 'Backend', '综合': 'Allgemein', '独立博客': 'Persönliche Blogs', '技术服务': 'Tech-Dienste', '社区论坛': 'Community-Foren', '效率工具': 'Produktivitätstools'
-                }
-            },
-            zh: {
-                search: '搜索',
-                search_placeholder: '搜索文章...',
-                no_result: '未找到相关文章',
-                toc: '文章目录',
-                hot_tags: '热门标签',
-                calendar: '日历',
-                movies: '电影',
-                books: '书籍',
-                music: '音乐',
-                all: '全部',
-                watched: '已看',
-                want_to_watch: '想看',
-                read: '已读',
-                in_read: '在读',
-                want_to_read: '想读',
-                read_more: '阅读全文 »',
-                prev_page: '上一页',
-                next_page: '下一页',
-                categories: '分类',
-                articles_unit: '篇文章',
-                friend_links: '友情链接',
-                hobbies: '兴趣爱好',
-                published_on: '发布于：',
-                month_suffix: ' 月',
-                months: ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-                days: ['日','一','二','三','四','五','六'],
-                menu: {},
-                cat: {}
-            }
-        };
-
-        var langBtns = document.querySelectorAll('.lang-btn');
-        var defaultLang = 'de';
-        var currentLang = localStorage.getItem('lang') || defaultLang;
-
-        function updateLangButtons(lang) {
-            langBtns.forEach(function(btn) {
-                if (btn.getAttribute('data-lang') === lang) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-        }
-
-        function applyLang(lang) {
-            var t = translations[lang];
-            // data-i18n text
-            document.querySelectorAll('[data-i18n]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n');
-                if (!el.getAttribute('data-original')) {
-                    el.setAttribute('data-original', el.textContent.trim());
-                }
-                if (t[key]) {
-                    el.textContent = t[key];
-                } else {
-                    el.textContent = el.getAttribute('data-original');
-                }
-            });
-            // data-i18n-placeholder
-            document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-                var key = el.getAttribute('data-i18n-placeholder');
-                if (t[key]) el.placeholder = t[key];
-            });
-            // data-i18n-cat (category/tag translations)
-            document.querySelectorAll('[data-i18n-cat]').forEach(function(el) {
-                var zhName = el.getAttribute('data-i18n-cat');
-                if (!el.getAttribute('data-original')) {
-                    el.setAttribute('data-original', el.textContent.trim());
-                }
-                if (lang !== 'zh' && t.cat && t.cat[zhName] !== undefined) {
-                    el.textContent = t.cat[zhName];
-                } else {
-                    el.textContent = el.getAttribute('data-original');
-                }
-            });
-            // Archive month suffix
-            document.querySelectorAll('.month-suffix').forEach(function(el) {
-                el.textContent = t.month_suffix !== undefined ? t.month_suffix : ' 月';
-            });
-            // Paginator prev/next text
-            document.querySelectorAll('.paginator a').forEach(function(a) {
-                if (!a.getAttribute('data-dir')) {
-                    // Detect direction on first run (Chinese original text)
-                    if (a.textContent.indexOf('上一页') > -1) {
-                        a.setAttribute('data-dir', 'prev');
-                    } else if (a.textContent.indexOf('下一页') > -1) {
-                        a.setAttribute('data-dir', 'next');
-                    } else if (a.innerHTML.indexOf('&laquo;') > -1 || a.innerHTML.indexOf('«') > -1) {
-                        a.setAttribute('data-dir', 'prev');
-                    } else if (a.innerHTML.indexOf('&raquo;') > -1 || a.innerHTML.indexOf('»') > -1) {
-                        a.setAttribute('data-dir', 'next');
-                    }
-                }
-                var dir = a.getAttribute('data-dir');
-                if (dir === 'prev') a.innerHTML = '&laquo; ' + t.prev_page;
-                else if (dir === 'next') a.innerHTML = t.next_page + ' &raquo;';
-            });
-            // Page title (post-title from front matter)
-            var pageTitle = document.querySelector('.post-title');
-            if (pageTitle) {
-                if (!pageTitle.getAttribute('data-original')) {
-                    pageTitle.setAttribute('data-original', pageTitle.textContent.trim());
-                }
-                var orig = pageTitle.getAttribute('data-original');
-                if (lang !== 'zh') {
-                    if (t.menu && t.menu[orig] !== undefined) {
-                        pageTitle.textContent = t.menu[orig];
-                    } else if (orig === 'about') {
-                        var aboutMap = {en: 'About', de: 'Über mich'};
-                        pageTitle.textContent = aboutMap[lang] || orig;
-                    }
-                } else {
-                    pageTitle.textContent = orig;
-                }
-            }
-            // Navigation menu
-            document.querySelectorAll('.site-nav a').forEach(function(a) {
-                var spans = a.querySelectorAll('span');
-                var textNode = spans.length > 0 ? spans[0].nextSibling : a.childNodes[1];
-                if (!a.getAttribute('data-original')) {
-                    a.setAttribute('data-original', textNode ? textNode.textContent.trim() : '');
-                }
-                var orig = a.getAttribute('data-original');
-                if (lang !== 'zh' && t.menu && t.menu[orig] !== undefined) {
-                    if (textNode) textNode.textContent = t.menu[orig];
-                } else {
-                    if (textNode) textNode.textContent = orig;
-                }
-            });
-            // Update lang buttons
-            updateLangButtons(lang);
-            // Rebuild calendar
-            buildCalendarLang(lang, t);
-        }
-
-        window.buildCalendarLang = function(lang, t) {
-            var grid = document.getElementById('calendar-grid');
-            var monthHeader = document.getElementById('calendar-month');
-            if (!grid || !monthHeader) return;
-            var now = new Date();
-            var year = now.getFullYear();
-            var month = now.getMonth();
-            var today = now.getDate();
-            monthHeader.innerText = t.months[month] + ' ' + year;
-            var firstDay = new Date(year, month, 1).getDay();
-            var daysInMonth = new Date(year, month + 1, 0).getDate();
-            grid.innerHTML = '';
-            for (var i = 0; i < firstDay; i++) grid.innerHTML += '<span></span>';
-            for (var d = 1; d <= daysInMonth; d++) {
-                grid.innerHTML += '<span' + (d === today ? ' class="today"' : '') + '>' + d + '</span>';
-            }
-            // Day headers
-            var dayRow = document.querySelector('.calendar-days');
-            if (dayRow) {
-                dayRow.innerHTML = t.days.map(function(d){ return '<span>' + d + '</span>'; }).join('');
-            }
-        };
-
-        // Override no-result text
-        var origNoResult = '未找到相关文章';
-
-        langBtns.forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                currentLang = btn.getAttribute('data-lang');
-                localStorage.setItem('lang', currentLang);
-                applyLang(currentLang);
-            });
-        });
-
-        // Apply saved lang on load
-        if (currentLang !== 'zh') applyLang(currentLang);
-        updateLangButtons(currentLang);
-    })();
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
 </body>
