@@ -864,11 +864,18 @@
             // Page title (post-title from front matter)
             var pageTitle = document.querySelector('.post-title');
             if (pageTitle) {
-                var zhTitle = pageTitle.textContent.trim();
-                if (t.menu && t.menu[zhTitle] !== undefined) {
-                    pageTitle.textContent = t.menu[zhTitle];
-                } else if (zhTitle === 'about') {
-                    pageTitle.textContent = lang === 'en' ? 'About' : '关于';
+                if (!pageTitle.getAttribute('data-original')) {
+                    pageTitle.setAttribute('data-original', pageTitle.textContent.trim());
+                }
+                var orig = pageTitle.getAttribute('data-original');
+                if (lang === 'en') {
+                    if (t.menu && t.menu[orig] !== undefined) {
+                        pageTitle.textContent = t.menu[orig];
+                    } else if (orig === 'about') {
+                        pageTitle.textContent = 'About';
+                    }
+                } else {
+                    pageTitle.textContent = orig;
                 }
             }
             // Navigation menu
