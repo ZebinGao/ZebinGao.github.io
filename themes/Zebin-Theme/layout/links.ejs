@@ -1,6 +1,6 @@
 <article class="post-detail links-page">
     <header class="post-header">
-        <h1 class="post-title">友情链接</h1>
+        <h1 class="post-title" data-i18n="friend_links">友情链接</h1>
     </header>
 
     <div class="content markdown">
@@ -23,17 +23,17 @@
         %>
 
         <div class="link-category-tabs">
-            <button class="category-tab active" data-filter="all">全部</button>
+            <button class="category-tab active" data-filter="all" data-i18n="all">全部</button>
             <% categories.forEach(function(cat) { %>
-                <button class="category-tab" data-filter="<%= cat %>"><%= cat %></button>
+                <button class="category-tab" data-filter="<%= cat %>" data-i18n-cat="<%= cat %>"><%= cat %></button>
             <% }) %>
         </div>
 
         <% Object.keys(subcategories).forEach(function(cat) { %>
             <div class="link-subcategory-tabs" data-parent="<%= cat %>" style="display:none;">
-                <button class="category-tab active" data-filter="all">全部</button>
+                <button class="category-tab active" data-filter="all" data-i18n="all">全部</button>
                 <% subcategories[cat].forEach(function(sub) { %>
-                    <button class="category-tab" data-filter="<%= sub %>"><%= sub %></button>
+                    <button class="category-tab" data-filter="<%= sub %>" data-i18n-cat="<%= sub %>"><%= sub %></button>
                 <% }) %>
             </div>
         <% }) %>

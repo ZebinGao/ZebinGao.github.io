@@ -1,6 +1,6 @@
 <article class="post-detail">
     <header class="post-header">
-        <h1 class="post-title">分类</h1>
+        <h1 class="post-title" data-i18n="categories">分类</h1>
     </header>
 
     <div class="content markdown">
@@ -8,8 +8,8 @@
             <% if (site.categories && site.categories.length) { %>
                 <% site.categories.forEach(function(cat) { %>
                     <a class="wiki-category-card" href="<%- url_for(cat.path) %>">
-                        <div class="wiki-category-name"><%- cat.name %></div>
-                        <div class="wiki-category-desc"><%- cat.length %> 篇文章</div>
+                        <div class="wiki-category-name" data-i18n-cat="<%- cat.name %>"><%- cat.name %></div>
+                        <div class="wiki-category-desc"><%- cat.length %> <span data-i18n="articles_unit">篇文章</span></div>
                     </a>
                 <% }) %>
             <% } %>
