@@ -127,7 +127,7 @@
 
         <div class="archive-item">
             <time>03-29</time>
-            <a href="/post/2026/3/1-23-%E5%8F%8D996%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%BB%8F%E7%90%86%E8%87%AA%E5%B7%B1996.html">反对996</a>
+            <a href="/post/2026/3/1-24-analysis_article.html">反对996</a>
         </div>
 
     
@@ -138,7 +138,7 @@
 
         <div class="archive-item">
             <time>03-29</time>
-            <a href="/post/2026/3/1-24-analysis_article.html">反对996</a>
+            <a href="/post/2026/3/1-23-%E5%8F%8D996%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%91%98%E7%BB%8F%E7%90%86%E8%87%AA%E5%B7%B1996.html">反对996</a>
         </div>
 
     
@@ -571,7 +571,7 @@
                 if (!el.getAttribute('data-original')) {
                     el.setAttribute('data-original', el.textContent.trim());
                 }
-                if (lang === 'en' && t.cat && t.cat[zhName] !== undefined) {
+                if (lang !== 'zh' && t.cat && t.cat[zhName] !== undefined) {
                     el.textContent = t.cat[zhName];
                 } else {
                     el.textContent = el.getAttribute('data-original');
@@ -583,8 +583,21 @@
             });
             // Paginator prev/next text
             document.querySelectorAll('.paginator a').forEach(function(a) {
-                if (a.textContent.indexOf('上一页') > -1) a.innerHTML = '&laquo; ' + t.prev_page;
-                if (a.textContent.indexOf('下一页') > -1) a.innerHTML = t.next_page + ' &raquo;';
+                if (!a.getAttribute('data-dir')) {
+                    // Detect direction on first run (Chinese original text)
+                    if (a.textContent.indexOf('上一页') > -1) {
+                        a.setAttribute('data-dir', 'prev');
+                    } else if (a.textContent.indexOf('下一页') > -1) {
+                        a.setAttribute('data-dir', 'next');
+                    } else if (a.innerHTML.indexOf('&laquo;') > -1 || a.innerHTML.indexOf('«') > -1) {
+                        a.setAttribute('data-dir', 'prev');
+                    } else if (a.innerHTML.indexOf('&raquo;') > -1 || a.innerHTML.indexOf('»') > -1) {
+                        a.setAttribute('data-dir', 'next');
+                    }
+                }
+                var dir = a.getAttribute('data-dir');
+                if (dir === 'prev') a.innerHTML = '&laquo; ' + t.prev_page;
+                else if (dir === 'next') a.innerHTML = t.next_page + ' &raquo;';
             });
             // Page title (post-title from front matter)
             var pageTitle = document.querySelector('.post-title');
@@ -593,11 +606,12 @@
                     pageTitle.setAttribute('data-original', pageTitle.textContent.trim());
                 }
                 var orig = pageTitle.getAttribute('data-original');
-                if (lang === 'en') {
+                if (lang !== 'zh') {
                     if (t.menu && t.menu[orig] !== undefined) {
                         pageTitle.textContent = t.menu[orig];
                     } else if (orig === 'about') {
-                        pageTitle.textContent = 'About';
+                        var aboutMap = {en: 'About', de: 'Über mich'};
+                        pageTitle.textContent = aboutMap[lang] || orig;
                     }
                 } else {
                     pageTitle.textContent = orig;
@@ -611,7 +625,7 @@
                     a.setAttribute('data-original', textNode ? textNode.textContent.trim() : '');
                 }
                 var orig = a.getAttribute('data-original');
-                if (lang === 'en' && t.menu && t.menu[orig] !== undefined) {
+                if (lang !== 'zh' && t.menu && t.menu[orig] !== undefined) {
                     if (textNode) textNode.textContent = t.menu[orig];
                 } else {
                     if (textNode) textNode.textContent = orig;
