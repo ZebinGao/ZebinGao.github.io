@@ -36,6 +36,21 @@
 
     <!-- 主题切换 -->
     <section class="settings-section">
+        <h2 data-i18n="settings_tone">色调</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_tone_desc">选择整体色彩风格</span>
+            <select class="settings-font-select" id="settings-tone">
+                <option value="rose" data-i18n="settings_tone_rose">玫红</option>
+                <option value="blue" data-i18n="settings_tone_blue">蓝调</option>
+                <option value="purple" data-i18n="settings_tone_purple">紫韵</option>
+                <option value="orange" data-i18n="settings_tone_orange">暖橙</option>
+                <option value="teal" data-i18n="settings_tone_teal">青碧</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- 明暗切换 -->
+    <section class="settings-section">
         <h2 data-i18n="settings_theme">外观主题</h2>
         <div class="settings-option">
             <span data-i18n="settings_theme_desc">选择明暗主题模式</span>
@@ -131,6 +146,34 @@
 
     // === 主题切换 ===
     var htmlElement = document.documentElement;
+
+    // === 色调切换 ===
+    var tonePresets = {
+        'rose':   { accent: '#d84b6b', rgb: '216, 75, 107',  accentDark: '#e05577', rgbDark: '224, 85, 119' },
+        'blue':   { accent: '#3b82f6', rgb: '59, 130, 246',   accentDark: '#60a5fa', rgbDark: '96, 165, 250' },
+        'purple': { accent: '#8b5cf6', rgb: '139, 92, 246',   accentDark: '#a78bfa', rgbDark: '167, 139, 250' },
+        'orange': { accent: '#f59e0b', rgb: '245, 158, 11',   accentDark: '#fbbf24', rgbDark: '251, 191, 36' },
+        'teal':   { accent: '#06b6d4', rgb: '6, 182, 212',    accentDark: '#22d3ee', rgbDark: '34, 211, 238' }
+    };
+
+    function applyTone(tone) {
+        var preset = tonePresets[tone];
+        if (!preset) return;
+        var isDark = htmlElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.style.setProperty('--accent', isDark ? preset.accentDark : preset.accent);
+        document.documentElement.style.setProperty('--accent-rgb', isDark ? preset.rgbDark : preset.rgb);
+    }
+
+    var toneSelect = document.getElementById('settings-tone');
+    var savedTone = localStorage.getItem('tone') || 'rose';
+    toneSelect.value = savedTone;
+    if (savedTone !== 'rose') applyTone(savedTone);
+
+    toneSelect.addEventListener('change', function() {
+        var tone = toneSelect.value;
+        localStorage.setItem('tone', tone);
+        applyTone(tone);
+    });
     var currentTheme = localStorage.getItem('theme');
 
     function updateThemeButtons(theme) {
@@ -154,6 +197,9 @@
         updateThemeButtons('light');
         var themeIcon = document.getElementById('theme-icon');
         if (themeIcon) themeIcon.innerText = '🌙';
+        // 重新应用色调（亮色版）
+        var currentTone = localStorage.getItem('tone') || 'rose';
+        applyTone(currentTone);
     });
 
     document.getElementById('settings-theme-dark').addEventListener('click', function() {
@@ -162,6 +208,9 @@
         updateThemeButtons('dark');
         var themeIcon = document.getElementById('theme-icon');
         if (themeIcon) themeIcon.innerText = '☀️';
+        // 重新应用色调（暗色版）
+        var currentTone = localStorage.getItem('tone') || 'rose';
+        applyTone(currentTone);
     });
 })();
 </script>
