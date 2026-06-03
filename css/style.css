@@ -1035,8 +1035,8 @@ a.movie-item:hover {
     --theme-color: #42b983;
 
     /* 强调色（色调切换用） */
-    --accent: #d84b6b;
-    --accent-rgb: 216, 75, 107;
+    --accent: #f0849a;
+    --accent-rgb: 240, 132, 154;
 }
 
 /* 🌙 暗黑模式 */
@@ -1060,8 +1060,8 @@ a.movie-item:hover {
     --theme-color: #4eb782;      /* 暗黑模式下的主色调稍微调亮一点，增加对比度 */
 
     /* 强调色（色调切换用） */
-    --accent: #e05577;
-    --accent-rgb: 224, 85, 119;
+    --accent: #d84b6b;
+    --accent-rgb: 216, 75, 107;
 }
 
 /* =========================================
