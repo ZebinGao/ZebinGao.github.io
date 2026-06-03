@@ -116,7 +116,7 @@ body {
         font-family: inherit;
     }
     .mobile-search-bar input:focus {
-        border-color: #d84b6b;
+        border-color: var(--accent);
     }
     .mobile-search-results {
         margin-top: 8px;
@@ -244,7 +244,7 @@ body {
     transition: color 0.3s ease;
 }
 .post-title a:hover {
-    color: #d84b6b; /* 悬浮时变成喵神博客那种暗红色 */
+    color: var(--accent); /* 悬浮时变成喵神博客那种暗红色 */
 }
 .post-meta {
     color: #999;
@@ -286,9 +286,9 @@ body {
     text-decoration: none;
 }
 .paginator .current {
-    background: #d84b6b;
+    background: var(--accent);
     color: #fff;
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 .paginator-ellipsis {
     padding: 8px 12px;
@@ -374,7 +374,7 @@ body {
 }
 .site-nav a:hover {
     background: #f4f6f9;
-    color: #d84b6b; /* 悬浮变色 */
+    color: var(--accent); /* 悬浮变色 */
     transform: translateX(5px); /* 悬浮时菜单稍微向右位移，增加互动感 */
 }
 
@@ -394,7 +394,7 @@ body {
     transition: background 0.3s;
 }
 .social-links a:hover {
-    background: #d84b6b;
+    background: var(--accent);
     color: #fff;
 }
 .lang-btn {
@@ -409,13 +409,13 @@ body {
     font-family: inherit;
 }
 .lang-btn:hover {
-    border-color: #d84b6b;
-    color: #d84b6b;
+    border-color: var(--accent);
+    color: var(--accent);
 }
 .lang-btn.active {
-    background: #d84b6b;
+    background: var(--accent);
     color: #fff;
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 
 /* =========================================================
@@ -443,7 +443,7 @@ body {
 .card:hover {
     box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     transform: translateY(-5px);
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 .card img {
     width: 70px;
@@ -496,15 +496,15 @@ body {
 }
 
 .category-tab:hover {
-    color: #d84b6b;
-    border-color: #d84b6b;
-    background: rgba(216, 75, 107, 0.05);
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.05);
 }
 
 .category-tab.active {
     color: #fff;
-    background: #d84b6b;
-    border-color: #d84b6b;
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 .link-card-wrap.hidden {
@@ -582,7 +582,7 @@ a.movie-item:hover {
 .hobby-card[href]:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transform: translateY(-3px);
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 
 .hobby-card-title {
@@ -661,7 +661,7 @@ a.movie-item:hover {
 .wiki-category-card:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transform: translateY(-3px);
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 
 .wiki-category-name {
@@ -700,7 +700,7 @@ a.movie-item:hover {
 .wiki-article-card:hover {
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transform: translateY(-3px);
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 
 .wiki-article-title {
@@ -757,7 +757,7 @@ a.movie-item:hover {
     font-family: inherit;
 }
 .search-box input:focus {
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 .search-box input::placeholder {
     color: var(--text-muted);
@@ -779,7 +779,7 @@ a.movie-item:hover {
 }
 .search-result-item:hover {
     background: var(--bg-button);
-    color: #d84b6b;
+    color: var(--accent);
 }
 .search-no-result {
     font-size: 0.82rem;
@@ -808,7 +808,7 @@ a.movie-item:hover {
     line-height: 1.4;
 }
 .toc-content .toc-link:hover {
-    color: #d84b6b;
+    color: var(--accent);
     padding-left: 5px;
 }
 /* 层级缩进 */
@@ -839,7 +839,7 @@ a.movie-item:hover {
 .calendar-header {
     font-weight: bold;
     margin-bottom: 10px;
-    color: #d84b6b;
+    color: var(--accent);
 }
 .calendar-days {
     display: grid;
@@ -859,7 +859,7 @@ a.movie-item:hover {
     border-radius: 4px;
 }
 .calendar-grid .today {
-    background: #d84b6b;
+    background: var(--accent);
     color: var(--bg-card);
     font-weight: bold;
 }
@@ -931,7 +931,7 @@ a.movie-item:hover {
 /* 补充：对于单行行内代码 (如 `code`) 的高亮 */
 .content.markdown p code, .content.markdown li code {
     background: #f4f5f6;
-    color: #d84b6b; /* 使用你主题里的那抹暗红色 */
+    color: var(--accent); /* 使用你主题里的那抹暗红色 */
     padding: 2px 6px;
     border-radius: 4px;
     font-family: 'Consolas', monospace;
@@ -968,7 +968,7 @@ a.movie-item:hover {
     color: var(--text-muted);
     margin: 20px 0 10px 0;
     padding-left: 4px;
-    border-left: 3px solid #d84b6b;
+    border-left: 3px solid var(--accent);
     padding-left: 10px;
 }
 .archive-month:first-child {
@@ -1006,8 +1006,8 @@ a.movie-item:hover {
 }
 
 .archive-item a:hover {
-    color: #d84b6b; /* 悬浮时变色 */
-    border-bottom-color: #d84b6b;
+    color: var(--accent); /* 悬浮时变色 */
+    border-bottom-color: var(--accent);
 }
 
 /* =========================================
@@ -1032,7 +1032,11 @@ a.movie-item:hover {
     --shadow-color: rgba(0, 0, 0, 0.05); /* 淡淡的卡片阴影 */
 
     /* 主题强调色 (保持你的品牌色不变) */
-    --theme-color: #42b983;      
+    --theme-color: #42b983;
+
+    /* 强调色（色调切换用） */
+    --accent: #d84b6b;
+    --accent-rgb: 216, 75, 107;
 }
 
 /* 🌙 暗黑模式 */
@@ -1054,6 +1058,10 @@ a.movie-item:hover {
 
     /* 主题强调色 */
     --theme-color: #4eb782;      /* 暗黑模式下的主色调稍微调亮一点，增加对比度 */
+
+    /* 强调色（色调切换用） */
+    --accent: #e05577;
+    --accent-rgb: 224, 85, 119;
 }
 
 /* =========================================
@@ -1212,11 +1220,11 @@ a, button, .read-more, .theme-toggle {
     transition: all 0.2s;
 }
 .settings-theme-btn:hover {
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 .settings-theme-btn.active {
-    border-color: #d84b6b;
-    background: #d84b6b;
+    border-color: var(--accent);
+    background: var(--accent);
     color: #fff;
 }
 
@@ -1237,11 +1245,11 @@ a, button, .read-more, .theme-toggle {
     transition: all 0.2s;
 }
 .settings-lang-btn:hover {
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 .settings-lang-btn.active {
-    border-color: #d84b6b;
-    background: #d84b6b;
+    border-color: var(--accent);
+    background: var(--accent);
     color: #fff;
 }
 
@@ -1259,8 +1267,8 @@ a, button, .read-more, .theme-toggle {
     transition: all 0.2s;
 }
 .settings-rss-link:hover {
-    border-color: #d84b6b;
-    color: #d84b6b;
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
 /* 设置页移动端适配 */
@@ -1288,8 +1296,8 @@ a, button, .read-more, .theme-toggle {
     appearance: auto;
 }
 .settings-font-select:hover {
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
 .settings-font-select:focus {
-    border-color: #d84b6b;
+    border-color: var(--accent);
 }
