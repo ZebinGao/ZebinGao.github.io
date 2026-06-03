@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共享代码库引发的编译错误排查 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/favicon.png" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/2048">
+                <span></span>
+                2048小游戏
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+    </nav>
+
+    <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
+        
+        <a href="/atom.xml" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
+        
+        
+        <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
+            <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
+            <button class="lang-btn" data-lang="en" title="English">EN</button>
+            <button class="lang-btn" data-lang="zh" title="中文">中</button>
+        </div>
+        
+        <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
+            <span id="theme-icon">🌙</span>
+        </a>
+    </div>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">共享代码库引发的编译错误排查</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年06月03日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/git/" rel="tag">git</a>, <a class="tag-none-link" href="/tags/%E4%BE%9D%E8%B5%96/" rel="tag">依赖</a>, <a class="tag-none-link" href="/tags/%E8%B0%83%E8%AF%95%E6%8E%92%E6%9F%A5/" rel="tag">调试排查</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        <h1 id="共享代码库引发的编译错误排查"><a href="#共享代码库引发的编译错误排查" class="headerlink" title="共享代码库引发的编译错误排查"></a>共享代码库引发的编译错误排查</h1><h2 id="一个故事"><a href="#一个故事" class="headerlink" title="一个故事"></a>一个故事</h2><p>团队里多个产品共用一套 BeanUI 代码库，就好比几家人共用一间厨房。某天，产品 A 的开发者在自己的 <code>ScreenLoader.cs</code> 里用了厨房里的”老王牌炒锅”（一个叫 <code>XXXViewModel</code> 的类），用得好好的，编译也通过。</p>
+<p>过了段时间，产品 B 的开发者来厨房大扫除——把”老王牌炒锅”扔了，换了个”新款炒锅”（<code>YYYViewModel</code>）。他把自己家（产品 B）的菜谱都更新了，用新锅炒菜，编译通过，皆大欢喜。但他不知道产品 A 的菜谱上还写着”用老王牌炒锅”。</p>
+<p>又过了一段时间，产品 A 合并了别人的代码，突然编译报错：<strong>找不到 <code>XXXViewModel</code></strong>。产品 A 的开发者一脸懵——我的 <code>ScreenLoader.cs</code> 很久没改过了啊，怎么突然编译不过了？</p>
+<h2 id="到底发生了什么"><a href="#到底发生了什么" class="headerlink" title="到底发生了什么"></a>到底发生了什么</h2><p>这类问题的本质很简单：<strong>另一个产品改了共享代码库 BeanUI，改完合并到主干，你的产品就编译不过了。</strong></p>
+<p>从 Git 历史上看，报错文件的最后一次改动是很久以前的提交，当时编译没问题。出问题是因为另一个产品的开发者在 BeanUI 里删除或重命名了一个类，更新了自己的调用方，但没管你的产品。等这个改动合并到主干，你的代码就找不到那个类了。</p>
+<p>这种情况有个迷惑性：<strong>你改的代码没问题，问题出在别人动了你们共同依赖的基础设施。</strong></p>
+<h2 id="怎么排查"><a href="#怎么排查" class="headerlink" title="怎么排查"></a>怎么排查</h2><p>遇到”以前能编译现在不行，但我的文件没改过”这种情况，思路很简单：</p>
+<p>先在整个仓库搜索报错的那个类名，看它定义在哪里。如果搜不到定义，说明它已经被删了。然后用 <code>git log --all --oneline --diff-filter=D -- &quot;**/类名*&quot;</code> 找到是哪个提交删的。接着确认你的项目是否引用了共享代码库（检查 <code>.csproj</code> 中的 <code>ProjectReference</code>）。最后用 <code>git log --oneline --ancestry-path</code> 把删除提交和报错提交之间的历史串起来，就能还原完整的时间线。修复时参考那个删除操作的提交——看它怎么改的，照着同步更新就行了。</p>
+<h2 id="怎么预防"><a href="#怎么预防" class="headerlink" title="怎么预防"></a>怎么预防</h2><p>最有效的办法就一句话：<strong>改共享代码的时候，grep 整个仓库，确认所有用到的地方都更新了</strong>。不要只看自己负责的产品目录。</p>
+<p>从流程上讲，CI 流水线应该编译整个解决方案而不是单个项目，这样即使开发者本地漏了，CI 也能拦住。代码评审时，如果看到共享代码库中有类被删除或重命名，reviewer 应该主动检查一下有没有其他产品在用。</p>
+<h2 id="几点体会"><a href="#几点体会" class="headerlink" title="几点体会"></a>几点体会</h2><ul>
+<li><strong>Git blame 只能告诉你这行代码谁写的，不能告诉你这行代码为什么编译不过。</strong> 编译依赖的是整个代码库的状态，不是单个文件的历史。</li>
+<li><strong>“当时能编译”不代表”永远能编译”。</strong> 代码没变，但共享依赖被别人改了，这是共用代码库架构特有的风险。</li>
+<li><strong>共享代码库是隐性耦合的高风险区。</strong> 各产品的调用方散落在各自的目录里，改共享代码时很难一眼看到全貌，全靠开发者自觉地全局搜索。</li>
+</ul>
+
+    </div>
+</article>
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E4%BB%A3%E7%A0%81%E5%BA%93%E5%BC%95%E5%8F%91%E7%9A%84%E7%BC%96%E8%AF%91%E9%94%99%E8%AF%AF%E6%8E%92%E6%9F%A5"><span class="toc-text">共享代码库引发的编译错误排查</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B"><span class="toc-text">一个故事</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B0%E5%BA%95%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">到底发生了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E6%8E%92%E6%9F%A5"><span class="toc-text">怎么排查</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E9%A2%84%E9%98%B2"><span class="toc-text">怎么预防</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%A0%E7%82%B9%E4%BD%93%E4%BC%9A"><span class="toc-text">几点体会</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px; color: #999">360</a> <a href="/tags/AI/" style="font-size: 16px; color: #b97282">AI</a> <a href="/tags/C/" style="font-size: 14.67px; color: #ae7f8a">C#</a> <a href="/tags/WPF/" style="font-size: 13.33px; color: #a48c91">WPF</a> <a href="/tags/git/" style="font-size: 12px; color: #999">git</a> <a href="/tags/vpn/" style="font-size: 12px; color: #999">vpn</a> <a href="/tags/self-reflection/" style="font-size: 20px; color: #d84b6b">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px; color: #999">个人成长</a> <a href="/tags/china-issues/" style="font-size: 17.33px; color: #c3657a">中国问题</a> <a href="/tags/internet-culture/" style="font-size: 18.67px; color: #ce5873">互联网文化</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+</body>
+</html>
