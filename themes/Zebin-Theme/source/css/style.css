@@ -4,7 +4,7 @@ html { scroll-padding-top: 80px; }
 body {
     background-color: var(--bg-card); /* 明暗主题*/
     color: var(--text-main);
-    font-family: "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif; /* 之前说的思源宋体 */
+    font-family: var(--font-main, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif); /* 字体切换通过 CSS 变量控制 */
     line-height: 1.6;
 }
 
@@ -1270,4 +1270,26 @@ a, button, .read-more, .theme-toggle {
         align-items: flex-start;
         gap: 12px;
     }
+}
+
+/* 字体切换下拉框 */
+.settings-font-select {
+    padding: 8px 14px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-button);
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s;
+    min-width: 160px;
+    outline: none;
+    appearance: auto;
+}
+.settings-font-select:hover {
+    border-color: #d84b6b;
+}
+.settings-font-select:focus {
+    border-color: #d84b6b;
 }

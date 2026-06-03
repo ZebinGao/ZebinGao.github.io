@@ -9,6 +9,23 @@
         <%- partial('_partial/sidebar-right') %>
     </div>
     <script>window.__i18n_default = "<%- (theme.i18n && theme.i18n.default) || 'zh' %>";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+    })();
+    </script>
     <%- js('js/theme-toggle') %>
     <%- js('js/calendar') %>
     <%- js('js/search') %>
