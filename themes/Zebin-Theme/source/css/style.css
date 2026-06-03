@@ -1,6 +1,6 @@
 /* --- 1. 基础重置与字体 --- */
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-padding-top: 80px; }
+html { scroll-padding-top: 80px; font-size: var(--font-size, 16px); }
 body {
     background-color: var(--bg-card); /* 明暗主题*/
     color: var(--text-main);
