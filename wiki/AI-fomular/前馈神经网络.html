@@ -283,6 +283,10 @@ b_2 = [1, \quad 1]</script><p><strong>计算过程：</strong></p>
         if (f && f !== 'default' && fontMap[f]) {
             document.documentElement.style.setProperty('--font-main', fontMap[f]);
         }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
     })();
     </script>
     

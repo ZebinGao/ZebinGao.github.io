@@ -113,6 +113,21 @@
         </div>
     </section>
 
+    <!-- 字体大小 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_fontsize">字体大小</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_fontsize_desc">调整正文字体大小</span>
+            <select class="settings-font-select" id="settings-fontsize">
+                <option value="14" data-i18n="settings_fontsize_small">小</option>
+                <option value="16" data-i18n="settings_fontsize_default">默认</option>
+                <option value="18" data-i18n="settings_fontsize_medium">中</option>
+                <option value="20" data-i18n="settings_fontsize_large">大</option>
+                <option value="22" data-i18n="settings_fontsize_xlarge">特大</option>
+            </select>
+        </div>
+    </section>
+
     <!-- 主题切换 -->
     <section class="settings-section">
         <h2 data-i18n="settings_theme">外观主题</h2>
@@ -186,6 +201,25 @@
             document.documentElement.style.setProperty('--font-main', fontMap[font]);
         } else {
             document.documentElement.style.removeProperty('--font-main');
+        }
+    });
+
+    // === 字体大小 ===
+    var fontsizeSelect = document.getElementById('settings-fontsize');
+    var savedFontsize = localStorage.getItem('fontsize') || '16';
+    fontsizeSelect.value = savedFontsize;
+
+    if (savedFontsize !== '16') {
+        document.documentElement.style.setProperty('--font-size', savedFontsize + 'px');
+    }
+
+    fontsizeSelect.addEventListener('change', function() {
+        var size = fontsizeSelect.value;
+        localStorage.setItem('fontsize', size);
+        if (size !== '16') {
+            document.documentElement.style.setProperty('--font-size', size + 'px');
+        } else {
+            document.documentElement.style.removeProperty('--font-size');
         }
     });
 
@@ -277,6 +311,10 @@
         var f = localStorage.getItem('font');
         if (f && f !== 'default' && fontMap[f]) {
             document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
         }
     })();
     </script>

@@ -225,6 +225,10 @@ f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x^2}</script>
         if (f && f !== 'default' && fontMap[f]) {
             document.documentElement.style.setProperty('--font-main', fontMap[f]);
         }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
     })();
     </script>
     

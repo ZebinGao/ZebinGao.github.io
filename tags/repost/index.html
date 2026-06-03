@@ -132,7 +132,7 @@
 
         <div class="archive-item">
             <time>03-29</time>
-            <a href="/post/2026/3/content.html">遗孀</a>
+            <a href="/post/2026/3/1-24-analysis_article.html">反对996</a>
         </div>
 
     
@@ -143,7 +143,7 @@
 
         <div class="archive-item">
             <time>03-29</time>
-            <a href="/post/2026/3/1-24-analysis_article.html">反对996</a>
+            <a href="/post/2026/3/content.html">遗孀</a>
         </div>
 
     
@@ -437,6 +437,10 @@
         var f = localStorage.getItem('font');
         if (f && f !== 'default' && fontMap[f]) {
             document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
         }
     })();
     </script>

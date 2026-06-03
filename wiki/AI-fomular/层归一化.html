@@ -217,6 +217,10 @@ y = \hat{x} \cdot \gamma + \beta</script><p>这一步的目的是<strong>“赋�
         if (f && f !== 'default' && fontMap[f]) {
             document.documentElement.style.setProperty('--font-main', fontMap[f]);
         }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
     })();
     </script>
     
