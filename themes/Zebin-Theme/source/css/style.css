@@ -258,17 +258,16 @@ body {
 .read-more {
     display: inline-block;
     padding: 8px 16px;
-    /* 🎯 关键：使用变量，这样它在暗处就会变深，在明处就会变浅 */
-    background: var(--bg-button);
-    color: var(--text-main);
+    background: var(--accent);
+    color: #fff;
     text-decoration: none;
     border-radius: 4px;
     font-size: 0.9rem;
     transition: all 0.3s;
 }
 .read-more:hover {
-    background: var(--text-main);
-    color: var(--bg-card);
+    opacity: 0.85;
+    color: #fff;
 }
 
 /* --- 翻页组件样式 --- */
