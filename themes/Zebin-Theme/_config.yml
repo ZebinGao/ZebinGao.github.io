@@ -17,6 +17,7 @@ menu:
   关于: /about
   Wiki: /wiki
   谢益辉的恶作剧: /smallgame/trick
+  设置: /settings
 
 # 为每个菜单项分配一个图标
 menu_icons:
@@ -28,6 +29,7 @@ menu_icons:
   关于: ""
   Wiki: ""
   谢益辉的恶作剧: ""
+  设置: ""
 
 # 是否显示文章目录（TOC）
 # 即使全局关闭，也可以在单篇文章的 front-matter 中通过 toc: true 单独开启

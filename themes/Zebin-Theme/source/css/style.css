@@ -1159,3 +1159,115 @@ a, button, .read-more, .theme-toggle {
     background: var(--border-color);
     border-radius: 2px;
 }
+
+/* --- 设置页样式 --- */
+.settings-page {
+    max-width: 600px;
+}
+.settings-page .post-title {
+    text-align: left;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+.settings-section {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.settings-section:last-child {
+    border-bottom: none;
+}
+.settings-section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+.settings-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+.settings-option > span {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+}
+
+/* 主题切换按钮组 */
+.settings-theme-buttons {
+    display: flex;
+    gap: 8px;
+}
+.settings-theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-button);
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+.settings-theme-btn:hover {
+    border-color: #d84b6b;
+}
+.settings-theme-btn.active {
+    border-color: #d84b6b;
+    background: #d84b6b;
+    color: #fff;
+}
+
+/* 语言切换按钮组 */
+.settings-lang-buttons {
+    display: flex;
+    gap: 8px;
+}
+.settings-lang-btn {
+    padding: 8px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-button);
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+.settings-lang-btn:hover {
+    border-color: #d84b6b;
+}
+.settings-lang-btn.active {
+    border-color: #d84b6b;
+    background: #d84b6b;
+    color: #fff;
+}
+
+/* RSS 链接 */
+.settings-rss-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.settings-rss-link:hover {
+    border-color: #d84b6b;
+    color: #d84b6b;
+}
+
+/* 设置页移动端适配 */
+@media (max-width: 900px) {
+    .settings-option {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}

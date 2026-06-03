@@ -1,0 +1,85 @@
+<div class="settings-page">
+    <h1 class="post-title" data-i18n="settings">设置</h1>
+
+    <!-- 主题切换 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_theme">外观主题</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_theme_desc">选择明暗主题模式</span>
+            <div class="settings-theme-buttons">
+                <button class="settings-theme-btn" id="settings-theme-light" title="Light">
+                    <span class="theme-icon">☀️</span>
+                    <span data-i18n="settings_light">明亮</span>
+                </button>
+                <button class="settings-theme-btn" id="settings-theme-dark" title="Dark">
+                    <span class="theme-icon">🌙</span>
+                    <span data-i18n="settings_dark">暗黑</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 语言切换 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_language">语言</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_language_desc">选择界面显示语言</span>
+            <div class="settings-lang-buttons">
+                <button class="settings-lang-btn lang-btn" data-lang="zh" title="中文">中文</button>
+                <button class="settings-lang-btn lang-btn" data-lang="en" title="English">English</button>
+                <button class="settings-lang-btn lang-btn" data-lang="de" title="Deutsch">Deutsch</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSS 订阅 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_rss">RSS 订阅</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_rss_desc">通过 RSS 阅读器订阅博客更新</span>
+            <a href="<%- url_for(theme.rss || 'atom.xml') %>" class="settings-rss-link" target="_blank">
+                📡 <span data-i18n="settings_rss_subscribe">订阅 RSS</span>
+            </a>
+        </div>
+    </section>
+</div>
+
+<script>
+(function() {
+    // 主题切换
+    var htmlElement = document.documentElement;
+    var currentTheme = localStorage.getItem('theme');
+
+    function updateThemeButtons(theme) {
+        var lightBtn = document.getElementById('settings-theme-light');
+        var darkBtn = document.getElementById('settings-theme-dark');
+        if (theme === 'dark') {
+            lightBtn.classList.remove('active');
+            darkBtn.classList.add('active');
+        } else {
+            lightBtn.classList.add('active');
+            darkBtn.classList.remove('active');
+        }
+    }
+
+    // 初始化按钮状态
+    updateThemeButtons(currentTheme);
+
+    document.getElementById('settings-theme-light').addEventListener('click', function() {
+        htmlElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        updateThemeButtons('light');
+        // 同步侧边栏图标（如果存在）
+        var themeIcon = document.getElementById('theme-icon');
+        if (themeIcon) themeIcon.innerText = '🌙';
+    });
+
+    document.getElementById('settings-theme-dark').addEventListener('click', function() {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        updateThemeButtons('dark');
+        var themeIcon = document.getElementById('theme-icon');
+        if (themeIcon) themeIcon.innerText = '☀️';
+    });
+})();
+</script>

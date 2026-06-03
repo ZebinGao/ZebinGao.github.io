@@ -13,20 +13,4 @@
             </a>
         <% } %>
     </nav>
-
-    <div class="social-links" style="display: flex; align-items: center; justify-content: center; gap: 9px;">
-        <% if (theme.rss) { %>
-        <a href="<%- url_for(theme.rss) %>" title="RSS 订阅" target="_blank" style="font-size: 0.8em;">📡</a>
-        <% } %>
-        <% if (theme.i18n && theme.i18n.enable) { %>
-        <div class="lang-switcher" id="lang-switcher" style="display: flex; gap: 4px;">
-            <button class="lang-btn" data-lang="de" title="Deutsch">DE</button>
-            <button class="lang-btn" data-lang="en" title="English">EN</button>
-            <button class="lang-btn" data-lang="zh" title="中文">中</button>
-        </div>
-        <% } %>
-        <a class="theme-toggle" id="theme-toggle" title="切换主题" style="cursor: pointer; font-size: 0.8em;">
-            <span id="theme-icon">🌙</span>
-        </a>
-    </div>
 </aside>
