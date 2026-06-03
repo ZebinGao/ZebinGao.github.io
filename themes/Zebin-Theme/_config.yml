@@ -16,7 +16,6 @@ menu:
   兴趣爱好: /hobbies
   关于: /about
   Wiki: /wiki
-  2048小游戏: /smallgame/2048
   谢益辉的恶作剧: /smallgame/trick
 
 # 为每个菜单项分配一个图标
@@ -28,7 +27,6 @@ menu_icons:
   兴趣爱好: ""
   关于: ""
   Wiki: ""
-  2048小游戏: ""
   谢益辉的恶作剧: ""
 
 # 是否显示文章目录（TOC）
