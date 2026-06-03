@@ -824,11 +824,12 @@ a.movie-item:hover {
     text-decoration: none;
     padding: 2px 8px;
     border-radius: 4px;
-    transition: transform 0.2s;
+    color: var(--accent);
+    transition: transform 0.2s, color 0.2s;
 }
 .tags-cloud a:hover {
     transform: scale(1.1);
-    background: #f0f0f0;
+    background: rgba(var(--accent-rgb), 0.1);
 }
 
 /* --- 极简日历样式 --- */
