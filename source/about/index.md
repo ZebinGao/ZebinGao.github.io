@@ -23,9 +23,7 @@ type: "page"
   <button class="poem-nav-btn" id="poem-next" title="下一首">›</button>
   <button class="poem-nav-btn poem-shuffle-btn" id="poem-shuffle" title="随机一首">🎲</button>
 </div>
-
 </div>
-
 </div>
 
 <script>
