@@ -53,5 +53,6 @@
     <%- js('js/i18n') %>
     <%- partial('_partial/math') %>
     <% if (page.poems) { %><%- js('js/poems') %><% } %>
+    <% if (page.map) { %><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><%- js('js/map') %><% } %>
 </body>
 </html>

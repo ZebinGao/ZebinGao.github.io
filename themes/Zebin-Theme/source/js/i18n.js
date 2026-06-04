@@ -58,7 +58,7 @@
             month_suffix: '',
             months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-            menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank','设置':'Settings'},
+            menu: {'首页':'Home','归档':'Archives','分类':'Categories','友链':'Links','兴趣爱好':'Hobbies','关于':'About','足迹':'Footprints','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Prank','设置':'Settings'},
             cat: {
                 'AI 公式': 'AI Formulas', '深度学习中的数学公式推导与解析': 'Math formula derivations in deep learning',
                 '电影': 'Movies', '看过的电影与观影感想': 'Movies I\'ve watched and my thoughts',
@@ -125,7 +125,7 @@
             month_suffix: '',
             months: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
             days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-            menu: {'首页':'Startseite','归档':'Archiv','分类':'Kategorien','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Streich','设置':'Einstellungen'},
+            menu: {'首页':'Startseite','归档':'Archiv','分类':'Kategorien','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','足迹':'Fußspuren','Wiki':'Wiki','2048小游戏':'2048','谢益辉的恶作剧':'Streich','设置':'Einstellungen'},
             cat: {
                 'AI 公式': 'KI-Formeln', '深度学习中的数学公式推导与解析': 'Mathematische Formelableitungen im Deep Learning',
                 '电影': 'Filme', '看过的电影与观影感想': 'Filme die ich gesehen habe und meine Gedanken',

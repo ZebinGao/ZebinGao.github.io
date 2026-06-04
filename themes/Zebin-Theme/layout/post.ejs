@@ -17,6 +17,8 @@
     <div class="content markdown">
         <% if (page.poems) { %>
             <%- partial('_partial/poems') %>
+        <% } else if (page.map) { %>
+            <%- partial('_partial/map') %>
         <% } else { %>
             <%- page.content %>
         <% } %>
