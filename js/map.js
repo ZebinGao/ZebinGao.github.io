@@ -14,6 +14,14 @@
     maxZoom: 18,
   }).addTo(map);
 
+  var starIcon = L.divIcon({
+    className: "map-star-icon",
+    html: "",
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    popupAnchor: [0, -12],
+  });
+
   var visitedIcon = L.divIcon({
     className: "map-visited-icon",
     html: "",
@@ -40,7 +48,7 @@
 
   var markers = [];
   places.forEach(function (place) {
-    var icon = place.want ? wantIcon : (place.fav ? heartIcon : visitedIcon);
+    var icon = place.star ? starIcon : (place.want ? wantIcon : (place.fav ? heartIcon : visitedIcon));
     var marker = L.marker([place.lat, place.lng], { icon: icon }).addTo(map);
     var popup = "<strong>" + place.name + "</strong>";
     if (place.address) popup += "<br><span style='color:#888;font-size:0.9em'>" + place.address + "</span>";
