@@ -1054,9 +1054,9 @@ a.movie-item:hover {
     --bg-nav-hover: #374151;     /* 导航菜单悬停背景 (gray-700) */
 
     /* 文字色系 */
-    --text-main: #e5e7eb;        /* 亮灰正文 (gray-200) */
-    --text-muted: #9ca3af;       /* 次要文字 (gray-400) */
-    --text-strong: #ffffff;      /* 极度强调 */
+    --text-main: #d1d5db;        /* 正文 (gray-300)，温和护眼 */
+    --text-muted: #6b7280;       /* 次要信息：日期、标签 (gray-500) */
+    --text-strong: #e5e7eb;      /* 标题/强调 (gray-200)，避免纯白 */
 
     /* 边框与阴影 */
     --border-color: #374151;     /* 边框 (gray-700) */
