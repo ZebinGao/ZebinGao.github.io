@@ -103,7 +103,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="缩放点积注意力"><a href="#缩放点积注意力" class="headerlink" title="缩放点积注意力"></a>缩放点积注意力</h1><script type="math/tex; mode=display">\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V</script><ul>
+        
+            <h1 id="缩放点积注意力"><a href="#缩放点积注意力" class="headerlink" title="缩放点积注意力"></a>缩放点积注意力</h1><script type="math/tex; mode=display">\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V</script><ul>
 <li>$Q$ (Query): 你的查询意图。比如你手里拿着一张写着“哈利波特”的纸条。</li>
 <li>$K$ (Key): 图书的索引/标签。图书馆里每本书脊上贴的标签，比如“科幻”、“魔法”、“传记”。</li>
 <li>$V$ (Value): 书的内容本身。书里具体的文字信息。</li>
@@ -194,6 +195,7 @@
 </ul>
 </blockquote>
 
+        
     </div>
 </article>
         </main>
@@ -287,5 +289,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

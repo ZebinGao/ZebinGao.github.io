@@ -109,7 +109,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="共享代码库引发的编译错误排查"><a href="#共享代码库引发的编译错误排查" class="headerlink" title="共享代码库引发的编译错误排查"></a>共享代码库引发的编译错误排查</h1><h2 id="一个故事"><a href="#一个故事" class="headerlink" title="一个故事"></a>一个故事</h2><p>团队里多个产品共用一套 BeanUI 代码库，就好比几家人共用一间厨房。某天，产品 A 的开发者在自己的 <code>ScreenLoader.cs</code> 里用了厨房里的”老王牌炒锅”（一个叫 <code>XXXViewModel</code> 的类），用得好好的，编译也通过。</p>
+        
+            <h1 id="共享代码库引发的编译错误排查"><a href="#共享代码库引发的编译错误排查" class="headerlink" title="共享代码库引发的编译错误排查"></a>共享代码库引发的编译错误排查</h1><h2 id="一个故事"><a href="#一个故事" class="headerlink" title="一个故事"></a>一个故事</h2><p>团队里多个产品共用一套 BeanUI 代码库，就好比几家人共用一间厨房。某天，产品 A 的开发者在自己的 <code>ScreenLoader.cs</code> 里用了厨房里的”老王牌炒锅”（一个叫 <code>XXXViewModel</code> 的类），用得好好的，编译也通过。</p>
 <p>过了段时间，产品 B 的开发者来厨房大扫除——把”老王牌炒锅”扔了，换了个”新款炒锅”（<code>YYYViewModel</code>）。他把自己家（产品 B）的菜谱都更新了，用新锅炒菜，编译通过，皆大欢喜。但他不知道产品 A 的菜谱上还写着”用老王牌炒锅”。</p>
 <p>又过了一段时间，产品 A 合并了别人的代码，突然编译报错：<strong>找不到 <code>XXXViewModel</code></strong>。产品 A 的开发者一脸懵——我的 <code>ScreenLoader.cs</code> 很久没改过了啊，怎么突然编译不过了？</p>
 <h2 id="到底发生了什么"><a href="#到底发生了什么" class="headerlink" title="到底发生了什么"></a>到底发生了什么</h2><p>这类问题的本质很简单：<strong>另一个产品改了共享代码库 BeanUI，改完合并到主干，你的产品就编译不过了。</strong></p>
@@ -125,6 +126,7 @@
 <li><strong>共享代码库是隐性耦合的高风险区。</strong> 各产品的调用方散落在各自的目录里，改共享代码时很难一眼看到全貌，全靠开发者自觉地全局搜索。</li>
 </ul>
 
+        
     </div>
 </article>
         </main>
@@ -225,5 +227,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

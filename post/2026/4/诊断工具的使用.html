@@ -109,7 +109,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="Visual-Studio-诊断工具避坑指南：WPF-内存泄漏排查的高阶心法"><a href="#Visual-Studio-诊断工具避坑指南：WPF-内存泄漏排查的高阶心法" class="headerlink" title="Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法"></a>Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法</h1><p>面对动辄几个 G 的 Dump 文件和几千万个内存对象，常规的代码 Review 往往无济于事。Visual Studio 内置的内存诊断工具（Diagnostic Tools）是我们给程序“开膛破肚”的最强利器。</p>
+        
+            <h1 id="Visual-Studio-诊断工具避坑指南：WPF-内存泄漏排查的高阶心法"><a href="#Visual-Studio-诊断工具避坑指南：WPF-内存泄漏排查的高阶心法" class="headerlink" title="Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法"></a>Visual Studio 诊断工具避坑指南：WPF 内存泄漏排查的高阶心法</h1><p>面对动辄几个 G 的 Dump 文件和几千万个内存对象，常规的代码 Review 往往无济于事。Visual Studio 内置的内存诊断工具（Diagnostic Tools）是我们给程序“开膛破肚”的最强利器。</p>
 <p>然而，在这个工具极其强大的表象下，隐藏着极深的算法逻辑与“视觉欺骗”。特别是在极其复杂的 WPF 框架中，如果不了解 .NET 的底层机制和工具的寻路逻辑，你极有可能被它带进沟里。本文将从基础的内存指标认知识别讲起，结合一次真实的千万级对象泄漏实战，为你提炼出一套使用 VS 诊断工具的高阶心法与避坑指南。</p>
 <h2 id="一、-内存泄漏的“体征指标”：认清-Commit-Size-与-GC-原理"><a href="#一、-内存泄漏的“体征指标”：认清-Commit-Size-与-GC-原理" class="headerlink" title="一、 内存泄漏的“体征指标”：认清 Commit Size 与 GC 原理"></a>一、 内存泄漏的“体征指标”：认清 Commit Size 与 GC 原理</h2><p>在动手使用工具之前，你必须先搞懂两个底层概念，否则你连“程序到底漏没漏”都无法准确判断。</p>
 <h3 id="1-别看错任务管理器：Commit-Size（提交大小）才是真理"><a href="#1-别看错任务管理器：Commit-Size（提交大小）才是真理" class="headerlink" title="1. 别看错任务管理器：Commit Size（提交大小）才是真理"></a>1. 别看错任务管理器：Commit Size（提交大小）才是真理</h3><p>很多开发者习惯打开任务管理器，看着默认的“内存”列（其实是 <strong>Working Set / 工作集</strong>）来判断泄漏。这是极其错误的。</p>
@@ -168,6 +169,7 @@
 <p>高级的内存排查，永远是<strong>理论先行，工具验证</strong>：<br>认清 Commit Size 确认泄漏 ➡ 抓取 Managed Memory 过滤非托管噪音 ➡ 关闭热重载排除工具自身干扰 ➡ 通过代码赋 null 越过最短路径的视觉欺骗 ➡ 定位到静态变量或未释放的强事件 ➡ 执行精准的物理斩断。</p>
 <p>掌握了这些底层逻辑，再庞大的 Dump 文件，在你眼里也不过是条理清晰的嫌疑人名单。</p>
 
+        
     </div>
 </article>
         </main>
@@ -268,5 +270,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

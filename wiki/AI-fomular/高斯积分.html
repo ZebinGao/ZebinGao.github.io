@@ -103,7 +103,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="数学推导：高斯积分与正态分布归一化系数"><a href="#数学推导：高斯积分与正态分布归一化系数" class="headerlink" title="数学推导：高斯积分与正态分布归一化系数"></a>数学推导：高斯积分与正态分布归一化系数</h1><p>我们要解决的核心问题是计算著名的 <strong>高斯积分 (Gaussian Integral)</strong>：</p>
+        
+            <h1 id="数学推导：高斯积分与正态分布归一化系数"><a href="#数学推导：高斯积分与正态分布归一化系数" class="headerlink" title="数学推导：高斯积分与正态分布归一化系数"></a>数学推导：高斯积分与正态分布归一化系数</h1><p>我们要解决的核心问题是计算著名的 <strong>高斯积分 (Gaussian Integral)</strong>：</p>
 <script type="math/tex; mode=display">
 I = \int_{-\infty}^{+\infty} e^{-x^2} dx</script><p>这是一个经典的数学难题，因为函数 $e^{-x^2}$ 的原函数不是初等函数（即无法通过常规积分法则直接写出）。</p>
 <p>解决方法是使用 <strong>泊松积分技巧 (Poisson Integral)</strong>：通过“升维打击”，将一重积分转化为二重极坐标积分来求解。</p>
@@ -171,6 +172,7 @@ I = \int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi}</script><hr>
 <p>这就是正态分布公式中 $\frac{1}{\sqrt{2\pi}}$ 的由来：</p>
 <script type="math/tex; mode=display">
 f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x^2}</script>
+        
     </div>
 </article>
         </main>
@@ -264,5 +266,6 @@ f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x^2}</script>
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

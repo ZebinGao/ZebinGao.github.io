@@ -109,7 +109,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="机台死锁问题排查总结"><a href="#机台死锁问题排查总结" class="headerlink" title="机台死锁问题排查总结"></a>机台死锁问题排查总结</h1><p>设备跑货时设备突然停机，报了死锁报警。现场情况是：只跑一个工艺步骤进 PMA 没问题，但加上第二个步骤要进 PMB 或 PMC 就会卡死。排查后发现是 Bug#474 的代码改动引起的。</p>
+        
+            <h1 id="机台死锁问题排查总结"><a href="#机台死锁问题排查总结" class="headerlink" title="机台死锁问题排查总结"></a>机台死锁问题排查总结</h1><p>设备跑货时设备突然停机，报了死锁报警。现场情况是：只跑一个工艺步骤进 PMA 没问题，但加上第二个步骤要进 PMB 或 PMC 就会卡死。排查后发现是 Bug#474 的代码改动引起的。</p>
 <h2 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h2><p>调度器就像一个调度员，负责把 wafer 按顺序送到各个腔去加工。调度员有个自我检查机制：如果发现有活要干，但连续 60 秒一个新任务都派不出去，就判定为”死锁”，说明哪里卡住了，需要报警让人来处理。</p>
 <h2 id="Bug-474-改了什么"><a href="#Bug-474-改了什么" class="headerlink" title="Bug#474 改了什么"></a>Bug#474 改了什么</h2><p>这次改动的目的是优化调度员的判断流程。调度员在送 wafer 进腔之前，会先看看哪些腔当前能接第一道工序的 wafer，然后拿着这份”可用腔名单”，去检查这个 Job 的每一道工序——每一步需要的腔在名单里能找到吗？都找得到，Job 就可以跑；哪一步找不到，就先 hold 住。</p>
 <h2 id="问题在哪"><a href="#问题在哪" class="headerlink" title="问题在哪"></a>问题在哪</h2><p>这份”可用腔名单”本身就只包含了<strong>第一道工序能用哪些腔</strong>，但它却被拿去检查了 Job 的<strong>所有工序</strong>。比如 Job 的第一道工序只指定 PMA，那名单上就只有 PMA，PMB 和 PMC 再空闲也不会出现在名单上。当调度员拿这份名单去检查第二道工序”需要 PMB”时，自然找不到，于是判定 Job 不能跑，hold 住——实际上 PMB 完全可以用，只是名单上根本没有它。</p>
@@ -119,6 +120,7 @@
 <h2 id="怎么修的"><a href="#怎么修的" class="headerlink" title="怎么修的"></a>怎么修的</h2><p>修复很简单：这份名单只用来检查<strong>第一道工序</strong>，后面的工序要让调度员去看<strong>所有腔</strong>，而不是只盯着这份只有第一道工序信息的名单。这样 step4 检查 PMB 时就能正确找到，不会误把 Job hold 住。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次问题的核心是<strong>拿了一个只包含部分信息的列表，当成了完整信息来用</strong>。<code>EstimateJustInTimeWaferLoading</code> 的职责是评估”第一片 wafer 当前能进哪些腔”，它天然只关注第一道工序对应的腔。但 <code>HoldNewJob</code> 需要的是”Job 的每一步都有腔可用”这个全局判断，两者需求不同，不能直接把前者的结果塞给后者用。</p>
 
+        
     </div>
 </article>
         </main>
@@ -219,5 +221,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

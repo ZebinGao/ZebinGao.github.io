@@ -103,7 +103,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="实例解析：位置编码叠加公式"><a href="#实例解析：位置编码叠加公式" class="headerlink" title="实例解析：位置编码叠加公式"></a>实例解析：位置编码叠加公式</h1><p>本例展示 Transformer 如何利用公式 <script type="math/tex">X_{final} = X_{embedding} + PE_{(pos)}</script> 将位置信息注入到词向量中。</p>
+        
+            <h1 id="实例解析：位置编码叠加公式"><a href="#实例解析：位置编码叠加公式" class="headerlink" title="实例解析：位置编码叠加公式"></a>实例解析：位置编码叠加公式</h1><p>本例展示 Transformer 如何利用公式 <script type="math/tex">X_{final} = X_{embedding} + PE_{(pos)}</script> 将位置信息注入到词向量中。</p>
 <h2 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h2><ul>
 <li><strong>输入句子</strong>：<code>Thinking Machines</code></li>
 <li><strong>目标对象</strong>：第一个单词 <strong>“Thinking”</strong>。</li>
@@ -160,6 +161,7 @@ X_{final} &= X_{\text{Thinking}} + PE_{(0)} \\
 </li>
 </ol>
 
+        
     </div>
 </article>
         </main>
@@ -253,5 +255,6 @@ X_{final} &= X_{\text{Thinking}} + PE_{(0)} \\
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

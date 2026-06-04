@@ -109,7 +109,8 @@
     </header>
 
     <div class="content markdown">
-        <h2 id="序言：消失的历史记录"><a href="#序言：消失的历史记录" class="headerlink" title="序言：消失的历史记录"></a>序言：消失的历史记录</h2><p>在半导体设备控制系统（基于 <strong>Cimetrix CCF</strong> 框架）的开发中，我们常遇到一个诡异的现象：通过 U 盘直接拷贝到本地文件夹的配方（Recipe），第一次打开时虽然能看到步骤和参数，但“配方历史（History）”却是一片空白；只有手动点击一次“保存”后，历史记录才会神奇地显现。</p>
+        
+            <h2 id="序言：消失的历史记录"><a href="#序言：消失的历史记录" class="headerlink" title="序言：消失的历史记录"></a>序言：消失的历史记录</h2><p>在半导体设备控制系统（基于 <strong>Cimetrix CCF</strong> 框架）的开发中，我们常遇到一个诡异的现象：通过 U 盘直接拷贝到本地文件夹的配方（Recipe），第一次打开时虽然能看到步骤和参数，但“配方历史（History）”却是一片空白；只有手动点击一次“保存”后，历史记录才会神奇地显现。</p>
 <p>通过对全栈代码的深度追踪，我们还原了一场关于<strong>物理肉体（磁盘文件）与数据库灵魂（Mongo索引）</strong>的同步之旅。这个链条完美展示了 MVVM 模式、WCF 跨进程通信、IoC 依赖注入 以及 Repository 仓储模式 是如何串联协作的。</p>
 <hr>
 <h2 id="一、-架构全链路解析：从点击到落盘"><a href="#一、-架构全链路解析：从点击到落盘" class="headerlink" title="一、 架构全链路解析：从点击到落盘"></a>一、 架构全链路解析：从点击到落盘</h2><p>这条调用链条展示了工业级软件如何通过多层架构实现界面与数据的彻底解耦。</p>
@@ -158,6 +159,7 @@
 </ol>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这一条从 <code>btnSave</code> 到 <code>FindOneAndReplace</code> 的调用链，体现了工业软件追求的高内聚、低耦合。它告诉我们：在复杂的系统中，看到的“现象”往往只是冰山一角，而底层的架构逻辑才是决定数据流转的隐形双手。</p>
 
+        
     </div>
 </article>
         </main>
@@ -258,5 +260,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>

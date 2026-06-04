@@ -109,7 +109,8 @@
     </header>
 
     <div class="content markdown">
-        <h1 id="问题排查报告：设备-Set-IO-Failed-及指令超时卡死分析"><a href="#问题排查报告：设备-Set-IO-Failed-及指令超时卡死分析" class="headerlink" title="问题排查报告：设备 Set IO Failed 及指令超时卡死分析"></a>问题排查报告：设备 <code>Set IO Failed</code> 及指令超时卡死分析</h1><p><strong>排查日期</strong>：2026/04/10<br><strong>涉及模块</strong>：Buffer Robot (BRB), Load Lock 1 (LL1), 运动控制与通讯底层，WPF UI 前端<br><strong>运行环境</strong>：Simulator (模拟器) / 本地调试环境</p>
+        
+            <h1 id="问题排查报告：设备-Set-IO-Failed-及指令超时卡死分析"><a href="#问题排查报告：设备-Set-IO-Failed-及指令超时卡死分析" class="headerlink" title="问题排查报告：设备 Set IO Failed 及指令超时卡死分析"></a>问题排查报告：设备 <code>Set IO Failed</code> 及指令超时卡死分析</h1><p><strong>排查日期</strong>：2026/04/10<br><strong>涉及模块</strong>：Buffer Robot (BRB), Load Lock 1 (LL1), 运动控制与通讯底层，WPF UI 前端<br><strong>运行环境</strong>：Simulator (模拟器) / 本地调试环境</p>
 <hr>
 <h2 id="1-故障现象描述"><a href="#1-故障现象描述" class="headerlink" title="1. 故障现象描述"></a>1. 故障现象描述</h2><ul>
 <li><strong>UI 状态表现</strong>：Buffer Robot (BRB) 的状态长时间卡在 <code>Performing</code>，而与之交互的 Load Lock 1 (LL1) 处于 <code>Idle</code> 状态。</li>
@@ -157,6 +158,7 @@
 <li><strong>增加防呆校验</strong>：在 <code>VHPDualArmRobotAdvForCalibration.RotateCanvas</code> 等动画数据处理点，增加 <code>if (double.IsNaN(angle))</code> 等防错判定，给予默认值或提前 Return，防止非法数据击穿 UI 层。</li>
 </ul>
 
+        
     </div>
 </article>
         </main>
@@ -257,5 +259,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
     onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
 </body>
 </html>
