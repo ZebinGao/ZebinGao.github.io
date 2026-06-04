@@ -427,7 +427,7 @@
     "lng": 8.562150,
     "address": "60547 Frankfurt am Main, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   },
   {
     "name": "Driving School Dilek Tirkes GmbH",
@@ -435,7 +435,7 @@
     "lng": 13.359210,
     "address": "Potsdamer Str. 172, 10783 Berlin, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   },
   {
     "name": "Fahrschule Europe",
@@ -443,7 +443,7 @@
     "lng": 13.35948,
     "address": "Müllerstraße 147, 13353 Berlin, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   },
   {
     "name": "Waldenserstraße 31",
@@ -451,7 +451,7 @@
     "lng": 13.34211,
     "address": "Waldenserstraße 31, 10551 Berlin, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   },
   {
     "name": "Moabit",
@@ -459,7 +459,7 @@
     "lng": 13.3444,
     "address": "Moabit, Berlin, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   },
   {
     "name": "奥林匹亚体育场",
@@ -467,7 +467,7 @@
     "lng": 13.23944,
     "address": "Olympischer Platz 3, 14053 Berlin, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   },
   {
     "name": "Böhmische Str. 8",
@@ -475,6 +475,6 @@
     "lng": 13.44315,
     "address": "Böhmische Str. 8, 12055 Berlin, 德国",
     "note": "想去的地点",
-    "fav": true
+    "want": true
   }
 ]
