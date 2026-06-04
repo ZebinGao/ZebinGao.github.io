@@ -15,6 +15,10 @@
     </header>
 
     <div class="content markdown">
-        <%- page.content %>
+        <% if (page.poems) { %>
+            <%- partial('_partial/poems') %>
+        <% } else { %>
+            <%- page.content %>
+        <% } %>
     </div>
 </article>

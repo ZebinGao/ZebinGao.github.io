@@ -1,0 +1,16 @@
+<div id="poem-app">
+<div class="poem-container">
+<div class="poem-header" id="poem-header"></div>
+<div class="poem-meta" id="poem-meta"></div>
+<div class="poem-body" id="poem-body"></div>
+<div class="poem-notes" id="poem-notes"></div>
+<div class="poem-background" id="poem-background"></div>
+<div class="poem-nav">
+<button class="poem-nav-btn" id="poem-prev" title="上一首">‹</button>
+<span class="poem-nav-indicator" id="poem-indicator"></span>
+<button class="poem-nav-btn" id="poem-next" title="下一首">›</button>
+<button class="poem-nav-btn poem-shuffle-btn" id="poem-shuffle" title="随机一首">🎲</button>
+</div>
+</div>
+</div>
+<script>window.poemData = <%- JSON.stringify(site.data.poems) %>;</script>
