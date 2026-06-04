@@ -2,9 +2,12 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-padding-top: 80px; font-size: var(--font-size, 16px); }
 body {
-    background-color: var(--bg-card); /* 明暗主题*/
+    background-color: var(--bg-body);
+    background-image:
+        radial-gradient(ellipse at 10% 20%, rgba(var(--accent-rgb), 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(var(--accent-rgb), 0.05) 0%, transparent 50%);
     color: var(--text-main);
-    font-family: var(--font-main, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif); /* 字体切换通过 CSS 变量控制 */
+    font-family: var(--font-main, "Noto Serif SC", "PingFang SC", "Microsoft YaHei", sans-serif);
     line-height: 1.6;
 }
 
@@ -25,27 +28,28 @@ body {
     background: var(--bg-card);
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05); /* 加一点优雅的微阴影 */
-    /* 精髓：向下滚动时，侧边栏会吸附在屏幕上，不会滚走 */
-    position: sticky; 
-    top: 40px; 
+    box-shadow:
+        inset 0 0 80px rgba(var(--accent-rgb), 0.16),
+        0 4px 12px var(--shadow-color),
+        0 0 30px rgba(var(--accent-rgb), 0.06);
+    position: sticky;
+    top: 40px;
 }
 
 /* 简单的左侧内部样式预览 */
 .avatar { width: 100px; height: 100px; border-radius: 50%; display: block; margin: 0 auto; }
 .author-name { text-align: center; margin-top: 10px; font-size: 1.2rem; }
 .site-nav { display: flex; flex-direction: column; margin-top: 20px; gap: 10px; text-align: center; }
-.site-nav a { text-decoration: none; color: #555; }
-.site-nav a:hover { color: #000; font-weight: bold; }
+.site-nav a { text-decoration: none; color: var(--text-main); }
+.site-nav a:hover { color: var(--accent); font-weight: bold; }
 
 /* 简单的中间区样式预览 */
 .content-mid {
-    background: var(--bg-card);
+    background: linear-gradient(to right, var(--bg-card), rgba(var(--accent-rgb), 0.05));
     border-radius: 12px;
-    /* 原来是 padding: 40px; 可以改成上下 40px，左右 30px */
     padding: 40px 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    min-height: 80vh; /* 保证高度足够好看 */
+    box-shadow: 0 4px 12px var(--shadow-color), 0 0 30px rgba(var(--accent-rgb), 0.06);
+    min-height: 80vh;
 }
 
 /* --- 4. 移动端适配 (响应式) --- */
@@ -247,12 +251,12 @@ body {
     color: var(--accent); /* 悬浮时变成喵神博客那种暗红色 */
 }
 .post-meta {
-    color: #999;
+    color: var(--text-muted);
     font-size: 0.9rem;
     margin: 10px 0 15px 0;
 }
 .post-excerpt {
-    color: #555;
+    color: var(--text-muted);
     margin-bottom: 20px;
 }
 .read-more {
@@ -330,7 +334,7 @@ body {
 .author-name {
     margin-top: 15px;
     font-size: 1.3rem;
-    color: #222;
+    color: var(--text-strong);
     font-weight: bold;
 }
 .author-bio {
@@ -350,7 +354,7 @@ body {
     display: flex;
     align-items: center;
     padding: 8px 15px; /* 缩小上下内边距 */
-    color: #555;
+    color: var(--text-main);
     text-decoration: none;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -372,7 +376,7 @@ body {
     font-size: 1.1rem;
 }
 .site-nav a:hover {
-    background: #f4f6f9;
+    background: var(--bg-nav-hover);
     color: var(--accent); /* 悬浮变色 */
     transform: translateX(5px); /* 悬浮时菜单稍微向右位移，增加互动感 */
 }
@@ -431,7 +435,7 @@ body {
     display: block;
 }
 .card {
-    border: 1px solid #f0f0f0;
+    border: 1px solid var(--border-color);
     padding: 20px 15px;
     border-radius: 12px;
     transition: all 0.3s;
@@ -458,7 +462,7 @@ body {
 }
 .card-text p {
     font-size: 0.85rem;
-    color: #777;
+    color: var(--text-muted);
     margin: 0;
     /* 超出两行显示省略号 */
     display: -webkit-box;
@@ -727,10 +731,10 @@ a.movie-item:hover {
 }
 .widget h3 {
     font-size: 1rem;
-    color: #444;
+    color: var(--text-main);
     margin-bottom: 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
 }
@@ -799,7 +803,7 @@ a.movie-item:hover {
     margin: 5px 0;
 }
 .toc-content .toc-link {
-    color: #666;
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 0.9rem;
     transition: all 0.3s;
@@ -942,10 +946,10 @@ a.movie-item:hover {
    归档页面 (Archive) 特化样式
 ========================================================= */
 .archive-container {
-    background: var(--bg-card);
+    background: linear-gradient(to right, var(--bg-card), rgba(var(--accent-rgb), 0.05));
     padding: 40px 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px var(--shadow-color), 0 0 30px rgba(var(--accent-rgb), 0.06);
     min-height: 80vh;
 }
 
@@ -1017,19 +1021,20 @@ a.movie-item:hover {
 /* ☀️ 明亮模式 (默认) */
 :root {
     /* 背景色系 */
-    --bg-body: #f4f5f7;          /* 网页最底层的背景 */
+    --bg-body: #f3f4f6;          /* 网页最底层的背景 (gray-100) */
     --bg-card: #ffffff;          /* 侧边栏、文章卡片的背景 */
     --bg-button: #f5f5f5;        /* 按钮(如阅读全文)、标签的背景 */
-    --bg-button-hover: #e8e8e8;  /* 按钮悬停背景 */
+    --bg-button-hover: #e5e7eb;  /* 按钮悬停背景 (gray-200) */
+    --bg-nav-hover: #f4f6f9;     /* 导航菜单悬停背景 */
 
     /* 文字色系 */
-    --text-main: #333333;        /* 正文、主标题 */
-    --text-muted: #888888;       /* 日期、文章摘要、次要图标 */
-    --text-strong: #000000;      /* 极度强调的文字 */
+    --text-main: #374151;        /* 正文、主标题 (gray-700) */
+    --text-muted: #9ca3af;       /* 日期、文章摘要、次要图标 (gray-400) */
+    --text-strong: #111827;      /* 极度强调的文字 (gray-900) */
 
     /* 边框与阴影 */
-    --border-color: #eeeeee;     /* 分割线 */
-    --shadow-color: rgba(0, 0, 0, 0.05); /* 淡淡的卡片阴影 */
+    --border-color: #e5e7eb;     /* 分割线 (gray-200) */
+    --shadow-color: rgba(0, 0, 0, 0.04); /* 淡淡的卡片阴影 */
 
     /* 主题强调色 (保持你的品牌色不变) */
     --theme-color: #42b983;
@@ -1042,22 +1047,23 @@ a.movie-item:hover {
 /* 🌙 暗黑模式 */
 [data-theme="dark"] {
     /* 背景色系 */
-    --bg-body: #121212;          /* 深邃黑底，不刺眼 */
-    --bg-card: #1e1e1e;          /* 稍微提亮的深灰卡片，拉开空间层次 */
-    --bg-button: #2d2d2d;        /* 按钮需要比卡片更亮一点点 */
-    --bg-button-hover: #3d3d3d;
+    --bg-body: #111827;          /* 深蓝灰底 (gray-900) */
+    --bg-card: #1f2937;          /* 稍浅的深灰卡片 (gray-800) */
+    --bg-button: #374151;        /* 按钮 (gray-700) */
+    --bg-button-hover: #4b5563;  /* 按钮悬停 (gray-600) */
+    --bg-nav-hover: #374151;     /* 导航菜单悬停背景 (gray-700) */
 
     /* 文字色系 */
-    --text-main: #cecece;        /* 🎯 暗黑模式下千万别用纯白，用浅灰护眼 */
-    --text-muted: #777777;       /* 次要文字 */
-    --text-strong: #ffffff;      /* 只有需要极度强调的地方才用纯白 */
+    --text-main: #e5e7eb;        /* 亮灰正文 (gray-200) */
+    --text-muted: #9ca3af;       /* 次要文字 (gray-400) */
+    --text-strong: #ffffff;      /* 极度强调 */
 
     /* 边框与阴影 */
-    --border-color: #333333;     /* 边框也要暗下去 */
-    --shadow-color: rgba(0, 0, 0, 0.4); /* 🎯 阴影必须加深，压住底色 */
+    --border-color: #374151;     /* 边框 (gray-700) */
+    --shadow-color: rgba(0, 0, 0, 0.3); /* 阴影加深，压住底色 */
 
     /* 主题强调色 */
-    --theme-color: #4eb782;      /* 暗黑模式下的主色调稍微调亮一点，增加对比度 */
+    --theme-color: #4eb782;
 
     /* 强调色（色调切换用） */
     --accent: #d84b6b;
