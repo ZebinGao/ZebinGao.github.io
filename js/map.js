@@ -14,9 +14,20 @@
     maxZoom: 18,
   }).addTo(map);
 
+  var heartIcon = L.divIcon({
+    className: "map-fav-icon",
+    html: "",
+    iconSize: [18, 18],
+    iconAnchor: [9, 9],
+    popupAnchor: [0, -12],
+  });
+
+  var defaultIcon = new L.Icon.Default();
+
   var markers = [];
   places.forEach(function (place) {
-    var marker = L.marker([place.lat, place.lng]).addTo(map);
+    var icon = place.fav ? heartIcon : defaultIcon;
+    var marker = L.marker([place.lat, place.lng], { icon: icon }).addTo(map);
     var popup = "<strong>" + place.name + "</strong>";
     if (place.address) popup += "<br><span style='color:#888;font-size:0.9em'>" + place.address + "</span>";
     if (place.date) popup += "<br><span style='color:#888'>" + place.date + "</span>";

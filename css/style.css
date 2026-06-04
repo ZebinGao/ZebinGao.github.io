@@ -1221,6 +1221,20 @@ a, button, .read-more, .theme-toggle {
     border: 1px solid var(--border-color);
     overflow: hidden;
 }
+.map-fav-icon {
+    background: none !important;
+    border: none !important;
+}
+.map-fav-icon::after {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #f97316;
+    border: 2.5px solid #fff;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
 @media (max-width: 900px) {
     #map-container {
         height: 400px;
