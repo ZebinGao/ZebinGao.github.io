@@ -35,7 +35,7 @@
     "lng": 8.6666030,
     "date": "2020-08-09",
     "address": "Prinz-Christians-Weg 13, 64287 Darmstadt, 德国",
-    "note": "达姆施塔特"
+    "note": "达姆施塔特,我的画,收藏的地点"
   },
   {
     "name": "FKK Sauna-Club Oase",
@@ -110,13 +110,6 @@
     "note": "tm, 只有一个破信箱"
   },
   {
-    "name": "Schule",
-    "lat": 52.49282,
-    "lng": 13.36249,
-    "address": "Steinmetzstraße 46, 10783 Berlin, 德国",
-    "note": "Berlin"
-  },
-  {
     "name": "明天去",
     "lat": 52.5473459,
     "lng": 13.3636087,
@@ -135,13 +128,6 @@
     "lat": 52.54508,
     "lng": 13.453949999999999,
     "address": "Puccinistraße 6, 13088 Berlin, 德国",
-    "note": "Berlin"
-  },
-  {
-    "name": "Kleinergarten E.v",
-    "lat": 52.4683826,
-    "lng": 13.386089499999999,
-    "address": "Tempelhofer Damm 125, 12099 Berlin, 德国",
     "note": "Berlin"
   },
   {
@@ -252,14 +238,6 @@
     "fav": true
   },
   {
-    "name": "Maverick Hostel & Ensuites Budapest",
-    "lat": 47.49294,
-    "lng": 19.05581,
-    "address": "Ferenciek tere 2, 1051 Budapest, 匈牙利",
-    "note": "收藏的地点",
-    "fav": true
-  },
-  {
     "name": "Prime Location Superior Rooms",
     "lat": 47.49352,
     "lng": 19.05432,
@@ -273,14 +251,6 @@
     "lng": 13.19842,
     "address": "Am Juliusturm 53, 13599 Berlin, 德国",
     "note": "妓院推荐,收藏的地点",
-    "fav": true
-  },
-  {
-    "name": "Vortex Garden - Mathildenhoehe",
-    "lat": 49.8767,
-    "lng": 8.6664,
-    "address": "Prinz-Christians-Weg 13, 64287 Darmstadt, 德国",
-    "note": "我的画,收藏的地点",
     "fav": true
   },
   {
@@ -388,7 +358,7 @@
     "fav": true
   },
   {
-    "name": "Steinmetzstraße 46",
+    "name": "Schule",
     "lat": 52.495730,
     "lng": 13.361520,
     "address": "Steinmetzstraße 46, 10783 Berlin, 德国",
@@ -404,7 +374,7 @@
     "fav": true
   },
   {
-    "name": "Tempelhofer Damm 125",
+    "name": "Kleinergarten E.v",
     "lat": 52.470550,
     "lng": 13.384560,
     "address": "Tempelhofer Damm 125, 12099 Berlin, 德国",
@@ -432,14 +402,6 @@
     "lat": 52.46312,
     "lng": 13.29214,
     "address": "Goßlerstraße 2-4, 14195 Berlin, 德国",
-    "note": "收藏的地点",
-    "fav": true
-  },
-  {
-    "name": "Schönwalder Str. 68",
-    "lat": 52.54593,
-    "lng": 13.36442,
-    "address": "Schönwalder Str. 68, 13347 Berlin, 德国",
     "note": "收藏的地点",
     "fav": true
   },
@@ -476,22 +438,6 @@
     "fav": true
   },
   {
-    "name": "Maverick Hostel & Ensuites Budapest",
-    "lat": 47.492940,
-    "lng": 19.055810,
-    "address": "Ferenciek tere 2, 1051 Budapest, 匈牙利",
-    "note": "good,想去的地点",
-    "fav": true
-  },
-  {
-    "name": "Klunkerkranich",
-    "lat": 52.482150,
-    "lng": 13.433220,
-    "address": "Karl-Marx-Straße 66, 12043 Berlin, 德国",
-    "note": "想去的地点",
-    "fav": true
-  },
-  {
     "name": "Fahrschule Europe",
     "lat": 52.54611,
     "lng": 13.35948,
@@ -520,14 +466,6 @@
     "lat": 52.51472,
     "lng": 13.23944,
     "address": "Olympischer Platz 3, 14053 Berlin, 德国",
-    "note": "想去的地点",
-    "fav": true
-  },
-  {
-    "name": "Goßlerstraße 2",
-    "lat": 52.46312,
-    "lng": 13.29214,
-    "address": "Goßlerstraße 2, 14195 Berlin, 德国",
     "note": "想去的地点",
     "fav": true
   },
