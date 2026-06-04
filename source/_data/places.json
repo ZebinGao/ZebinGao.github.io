@@ -186,5 +186,357 @@
     "lng": 13.389235999999999,
     "address": "Invalidenstraße 19, 10115 Berlin, 德国",
     "note": "Berlin"
+  },
+  {
+    "name": "Hedderichstraße 51",
+    "lat": 50.099984,
+    "lng": 8.685810,
+    "address": "Hedderichstraße 51, 60594 Frankfurt am Main, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "BFZ Frankfurt Süd",
+    "lat": 50.095030,
+    "lng": 8.694180,
+    "address": "Darmstädter Landstraße 113, 60598 Frankfurt am Main, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Schlangenbader Str. 14",
+    "lat": 52.483420,
+    "lng": 13.308890,
+    "address": "Schlangenbader Str. 14, 14197 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Com Viet",
+    "lat": 52.502890,
+    "lng": 13.336440,
+    "address": "Kurfürstenstraße 79, 10787 Berlin, 德国",
+    "note": "收藏/想去",
+    "fav": true
+  },
+  {
+    "name": "Pichelsdorfer Str. 97",
+    "lat": 52.518620,
+    "lng": 13.197310,
+    "address": "Pichelsdorfer Str. 97, 13595 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "KTV Karaoke Bar",
+    "lat": 52.50734,
+    "lng": 13.33123,
+    "address": "Kaiser-Friedrich-Straße 90, 10585 Berlin, 德国",
+    "note": "大老板,收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Happy Panda",
+    "lat": 52.54593,
+    "lng": 13.36442,
+    "address": "Schönwalder Str. 68, 13347 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "沸腾魚乡 布达佩斯 Spicy Fish Budapest",
+    "lat": 47.4812,
+    "lng": 19.1432,
+    "address": "Jegenye u. 26, 1107 Budapest, 匈牙利",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Maverick Hostel & Ensuites Budapest",
+    "lat": 47.49294,
+    "lng": 19.05581,
+    "address": "Ferenciek tere 2, 1051 Budapest, 匈牙利",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Prime Location Superior Rooms",
+    "lat": 47.49352,
+    "lng": 19.05432,
+    "address": "Váci u. 12, 1052 Budapest, 匈牙利",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "FKK-Oase",
+    "lat": 52.53124,
+    "lng": 13.19842,
+    "address": "Am Juliusturm 53, 13599 Berlin, 德国",
+    "note": "妓院推荐,收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Vortex Garden - Mathildenhoehe",
+    "lat": 49.8767,
+    "lng": 8.6664,
+    "address": "Prinz-Christians-Weg 13, 64287 Darmstadt, 德国",
+    "note": "我的画,收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "腓特烈港",
+    "lat": 47.6536,
+    "lng": 9.4739,
+    "address": "Friedrichshafen, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Praha Florenc",
+    "lat": 50.0894,
+    "lng": 14.4394,
+    "address": "Křižíkova 6, 186 00 Praha 8, 捷克",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Klunkerkranich",
+    "lat": 52.48215,
+    "lng": 13.43322,
+    "address": "Karl-Marx-Straße 66, 12043 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "特罗姆瑟丽笙布鲁酒店",
+    "lat": 69.649049,
+    "lng": 18.959967,
+    "address": "Sjøgata 7, 9259 Tromsø, 挪威",
+    "note": "集合地点,收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Bayrische Str.",
+    "lat": 52.4932,
+    "lng": 13.3155,
+    "address": "Bayerische Str., Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Gret-Palucca-Straße 9",
+    "lat": 51.0381,
+    "lng": 13.7431,
+    "address": "Gret-Palucca-Straße 9, 01069 Dresden, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Bürgeramt",
+    "lat": 52.51732,
+    "lng": 13.38884,
+    "address": "Bürgeramt Mitte, 10178 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Chinarestaurant Man Kee (früher Plumhaus)",
+    "lat": 52.54421,
+    "lng": 13.36531,
+    "address": "Müllerstraße 49, 13349 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "U Ruhleben",
+    "lat": 52.5255,
+    "lng": 13.2415,
+    "address": "Ruhleben, 13597 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Eigenherd-Schule Kleinmachnow",
+    "lat": 52.3995,
+    "lng": 13.2262,
+    "address": "Förster-Funke-Allee 106, 14532 Kleinmachnow, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Savory Chay",
+    "lat": 52.50842,
+    "lng": 13.43542,
+    "address": "Kopernikusstraße 15, 10245 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Pauls Küche",
+    "lat": 52.54712,
+    "lng": 13.35921,
+    "address": "Müllerstraße 143, 13353 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "YUN Berlin",
+    "lat": 52.526840,
+    "lng": 13.402210,
+    "address": "Rosenthaler Str. 11, 10119 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Steinmetzstraße 46",
+    "lat": 52.495730,
+    "lng": 13.361520,
+    "address": "Steinmetzstraße 46, 10783 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Kreuzberg",
+    "lat": 52.498400,
+    "lng": 13.391800,
+    "address": "Kreuzberg, Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Tempelhofer Damm 125",
+    "lat": 52.470550,
+    "lng": 13.384560,
+    "address": "Tempelhofer Damm 125, 12099 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Humboldt-Institut Berlin",
+    "lat": 52.531230,
+    "lng": 13.387740,
+    "address": "Invalidenstraße 122, 10115 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Buckower Damm 146",
+    "lat": 52.4348,
+    "lng": 13.4357,
+    "address": "Buckower Damm 146, 12349 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Konfuzius-Institut",
+    "lat": 52.46312,
+    "lng": 13.29214,
+    "address": "Goßlerstraße 2-4, 14195 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Schönwalder Str. 68",
+    "lat": 52.54593,
+    "lng": 13.36442,
+    "address": "Schönwalder Str. 68, 13347 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "Selig Chinesisches Restaurant Berlin",
+    "lat": 52.51892,
+    "lng": 13.30453,
+    "address": "Kaiser-Friedrich-Straße 81, 10583 Berlin, 德国",
+    "note": "收藏的地点",
+    "fav": true
+  },
+  {
+    "name": "H0105 Audimax",
+    "lat": 52.5134,
+    "lng": 13.3268,
+    "address": "Straße des 17. Juni 135, 10623 Berlin, 德国",
+    "note": "",
+    "fav": true
+  },
+  {
+    "name": "法兰克福机场",
+    "lat": 50.037930,
+    "lng": 8.562150,
+    "address": "60547 Frankfurt am Main, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Driving School Dilek Tirkes GmbH",
+    "lat": 52.492510,
+    "lng": 13.359210,
+    "address": "Potsdamer Str. 172, 10783 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Maverick Hostel & Ensuites Budapest",
+    "lat": 47.492940,
+    "lng": 19.055810,
+    "address": "Ferenciek tere 2, 1051 Budapest, 匈牙利",
+    "note": "good,想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Klunkerkranich",
+    "lat": 52.482150,
+    "lng": 13.433220,
+    "address": "Karl-Marx-Straße 66, 12043 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  }
+  {
+    "name": "Fahrschule Europe",
+    "lat": 52.54611,
+    "lng": 13.35948,
+    "address": "Müllerstraße 147, 13353 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Waldenserstraße 31",
+    "lat": 52.52512,
+    "lng": 13.34211,
+    "address": "Waldenserstraße 31, 10551 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Moabit",
+    "lat": 52.5252,
+    "lng": 13.3444,
+    "address": "Moabit, Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "奥林匹亚体育场",
+    "lat": 52.51472,
+    "lng": 13.23944,
+    "address": "Olympischer Platz 3, 14053 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Goßlerstraße 2",
+    "lat": 52.46312,
+    "lng": 13.29214,
+    "address": "Goßlerstraße 2, 14195 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
+  },
+  {
+    "name": "Böhmische Str. 8",
+    "lat": 52.47843,
+    "lng": 13.44315,
+    "address": "Böhmische Str. 8, 12055 Berlin, 德国",
+    "note": "想去的地点",
+    "fav": true
   }
 ]
