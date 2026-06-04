@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足迹 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/favicon.png" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">足迹</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2025年06月04日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <div id="map-app">
+<div id="map-container"></div>
+</div>
+<script>window.placeData = [{"name":"家","lat":52.4115814,"lng":13.40021,"address":"Feldstedter Weg 12, 12305 Berlin, 德国","note":"Berlin"},{"name":"工作","lat":52.4914422,"lng":13.4233618,"address":"Kottbusser Damm 79, 10967 Berlin, 德国","note":"Berlin"},{"name":"玛维里克旅馆及套房","lat":47.4926509,"lng":19.0553786,"date":"2020-08-12","address":"Ferenciek tere 2, 1053 Budapest, 匈牙利","note":"布达佩斯"},{"name":"A＆O布拉格瑞亚酒店","lat":50.0799772,"lng":14.4993241,"date":"2020-07-23","address":"V Úžlabině 3068, Strašnice, 108 00 Praha, 捷克","note":"布拉格"},{"name":"Vortex Garden - Mathildenhoehe","lat":49.875119,"lng":8.666603,"date":"2020-08-09","address":"Prinz-Christians-Weg 13, 64287 Darmstadt, 德国","note":"达姆施塔特"},{"name":"FKK Sauna-Club Oase","lat":50.2419182,"lng":8.675637,"date":"2020-08-10","address":"Ober-Erlenbacher Str. 109, 61381 Friedrichsdorf, 德国","note":"Bad Homburg"},{"name":"Com Viet","lat":52.5239938,"lng":13.408986,"date":"2020-10-18","address":"Münzstraße 3, 10178 Berlin, 德国","note":"Berlin"},{"name":"The Tree","lat":52.5337744,"lng":13.3980739,"date":"2018-02-01","address":"Brunnenstraße 167, 10119 Berlin, 德国","note":"Berlin"},{"name":"中国大使馆领事部","lat":52.512715,"lng":13.4171594,"date":"2018-03-22","address":"Brückenstraße 10, 10179 Berlin, 德国","note":"Berlin"},{"name":"St. Joseph-Krankenhaus","lat":52.4778233,"lng":13.3717071,"date":"2018-03-02","address":"Gontermannstraße 41, 12101 Berlin, 德国","note":"Berlin"},{"name":"Ming Dynastie West","lat":52.5047125,"lng":13.3374398,"date":"2020-09-20","address":"Tauentzienstraße 9-12, 10789 Berlin, 德国","note":"用餐环境很好"},{"name":"Yuzu Ramen","lat":52.505808,"lng":13.3376566,"date":"2020-09-08","address":"Budapester Str. 38-50, 10787 Berlin, 德国","note":"不知道为什么评分不高，但真的很好吃啊！"},{"name":"Sasaya","lat":52.5443009,"lng":13.4185897,"date":"2020-09-08","address":"Lychener Str. 50, 10437 Berlin, 德国","note":"生意太好了"},{"name":"中国驻德大使馆教育处","lat":52.5065189,"lng":13.4138817,"date":"2021-03-01","address":"Dresdener Str. 44, 10179 Berlin, 德国","note":"tm, 只有一个破信箱"},{"name":"Schule","lat":52.49282,"lng":13.36249,"address":"Steinmetzstraße 46, 10783 Berlin, 德国","note":"Berlin"},{"name":"明天去","lat":52.5473459,"lng":13.3636087,"address":"Antonstraße 37, 13347 Berlin, 德国","note":"Berlin"},{"name":"Freie Universität (Thielplatz)","lat":52.451,"lng":13.281651,"address":"14195 Berlin-Steglitz-Zehlendorf, 德国","note":"Berlin"},{"name":"Badminton","lat":52.54508,"lng":13.453949999999999,"address":"Puccinistraße 6, 13088 Berlin, 德国","note":"Berlin"},{"name":"Kleinergarten E.v","lat":52.4683826,"lng":13.386089499999999,"address":"Tempelhofer Damm 125, 12099 Berlin, 德国","note":"Berlin"},{"name":"Ehrenamt","lat":52.4544363,"lng":13.382570099999999,"address":"Viktoriastraße 13, 12105 Berlin, 德国","note":"Berlin"},{"name":"comebuy","lat":52.525478899999996,"lng":13.4035307,"address":"Rosenthaler Str. 28-31, 10178 Berlin, 德国","note":"Berlin"},{"name":"testdaf","lat":52.4922985,"lng":13.3493208,"address":"Eisenacher Str., Berlin, 德国","note":"Berlin"},{"name":"oestliche Kunst","lat":52.500971199999995,"lng":13.337310899999999,"address":"Nürnberger Str. 49, 10789 Berlin, 德国","note":"Berlin"},{"name":"Köttgenstraße 5","lat":52.5412,"lng":13.2474,"date":"2018-01-11","address":"Köttgenstraße 5, 13629 Berlin, 德国","note":"Berlin-Spandau"},{"name":"testdaf.4","lat":52.5318409,"lng":13.389235999999999,"address":"Invalidenstraße 19, 10115 Berlin, 德国","note":"Berlin"}];</script>
+
+        
+    </div>
+</article>
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 16.8px;">AI</a> <a href="/tags/C/" style="font-size: 15.2px;">C#</a> <a href="/tags/WPF/" style="font-size: 13.6px;">WPF</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 12px;">hexo</a> <a href="/tags/vpn/" style="font-size: 12px;">vpn</a> <a href="/tags/self-reflection/" style="font-size: 20px;">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px;">个人成长</a> <a href="/tags/china-issues/" style="font-size: 18.4px;">中国问题</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/js/map.js"></script>
+
+</body>
+</html>
