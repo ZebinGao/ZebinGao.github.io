@@ -51,7 +51,8 @@
     "lng": 13.4089860,
     "date": "2020-10-18",
     "address": "Münzstraße 3, 10178 Berlin, 德国",
-    "note": "Berlin"
+    "note": "Berlin",
+    "star": true
   },
   {
     "name": "The Tree",
@@ -121,7 +122,8 @@
     "lat": 52.451,
     "lng": 13.281651,
     "address": "14195 Berlin-Steglitz-Zehlendorf, 德国",
-    "note": "Berlin"
+    "note": "Berlin",
+    "star": true 
   },
   {
     "name": "Badminton",
@@ -203,7 +205,7 @@
     "lng": 13.336440,
     "address": "Kurfürstenstraße 79, 10787 Berlin, 德国",
     "note": "收藏/想去",
-    "fav": true
+    "star": true
   },
   {
     "name": "Pichelsdorfer Str. 97",
@@ -259,7 +261,7 @@
     "lng": 9.4739,
     "address": "Friedrichshafen, 德国",
     "note": "收藏的地点",
-    "fav": true
+    "star": true
   },
   {
     "name": "Praha Florenc",
@@ -323,7 +325,7 @@
     "lng": 13.2415,
     "address": "Ruhleben, 13597 Berlin, 德国",
     "note": "收藏的地点",
-    "fav": true
+    "star": true
   },
   {
     "name": "Eigenherd-Schule Kleinmachnow",
@@ -403,7 +405,7 @@
     "lng": 13.29214,
     "address": "Goßlerstraße 2-4, 14195 Berlin, 德国",
     "note": "收藏的地点",
-    "fav": true
+    "star": true
   },
   {
     "name": "Selig Chinesisches Restaurant Berlin",
@@ -419,7 +421,7 @@
     "lng": 13.3268,
     "address": "Straße des 17. Juni 135, 10623 Berlin, 德国",
     "note": "",
-    "fav": true
+    "star": true
   },
   {
     "name": "法兰克福机场",
@@ -467,7 +469,7 @@
     "lng": 13.23944,
     "address": "Olympischer Platz 3, 14053 Berlin, 德国",
     "note": "想去的地点",
-    "want": true
+    "star": true
   },
   {
     "name": "Böhmische Str. 8",
