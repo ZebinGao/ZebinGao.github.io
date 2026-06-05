@@ -19,9 +19,14 @@
     maxZoom: 18,
   });
 
-  osmLayer.addTo(map);
+  var arcgisLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 18,
+  });
+
+  arcgisLayer.addTo(map);
 
   L.control.layers({
+    "ArcGIS": arcgisLayer,
     "OpenStreetMap": osmLayer,
     "高德地图": gaodeLayer
   }, null, { position: "topright" }).addTo(map);
