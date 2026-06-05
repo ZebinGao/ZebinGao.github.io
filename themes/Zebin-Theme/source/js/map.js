@@ -9,6 +9,10 @@
     scrollWheelZoom: true,
   });
 
+  var arcgisLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 18,
+  });
+
   var osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: '&copy; OpenStreetMap',
     maxZoom: 18,
@@ -16,10 +20,6 @@
 
   var gaodeLayer = L.tileLayer("https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
     subdomains: "1234",
-    maxZoom: 18,
-  });
-
-  var arcgisLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}", {
     maxZoom: 18,
   });
 

@@ -1277,6 +1277,30 @@ a, button, .read-more, .theme-toggle {
     border: 2.5px solid #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
+/* Leaflet 暗色模式 — 用 CSS filter 反转瓦片颜色，不换瓦片服务器 */
+[data-theme="dark"] .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+}
+[data-theme="dark"] .leaflet-popup-content-wrapper {
+    background: #1f2937;
+    color: #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .leaflet-popup-tip {
+    background: #1f2937;
+}
+[data-theme="dark"] .leaflet-popup-content span {
+    color: #9ca3af !important;
+}
+[data-theme="dark"] .leaflet-control-layers {
+    background: #1f2937;
+    color: #e5e7eb;
+    border-color: #374151;
+}
+[data-theme="dark"] .leaflet-control-layers-selector {
+    filter: invert(1);
+}
+
 @media (max-width: 900px) {
     #map-container {
         height: 400px;
