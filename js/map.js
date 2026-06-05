@@ -9,10 +9,22 @@
     scrollWheelZoom: true,
   });
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+  var osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; OpenStreetMap',
     maxZoom: 18,
-  }).addTo(map);
+  });
+
+  var gaodeLayer = L.tileLayer("https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}", {
+    subdomains: "1234",
+    maxZoom: 18,
+  });
+
+  osmLayer.addTo(map);
+
+  L.control.layers({
+    "OpenStreetMap": osmLayer,
+    "高德地图": gaodeLayer
+  }, null, { position: "topright" }).addTo(map);
 
   var starIcon = L.divIcon({
     className: "map-star-icon",
