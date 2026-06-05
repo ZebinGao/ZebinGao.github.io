@@ -1277,6 +1277,27 @@ a, button, .read-more, .theme-toggle {
     border: 2.5px solid #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
+/* 地图标记暗色模式 — 更亮的颜色 + 深色边框 + 发光阴影 */
+[data-theme="dark"] .map-star-icon::after {
+    background: #f87171;
+    border-color: #374151;
+    box-shadow: 0 0 6px rgba(248,113,113,0.5);
+}
+[data-theme="dark"] .map-visited-icon::after {
+    background: #60a5fa;
+    border-color: #374151;
+    box-shadow: 0 0 6px rgba(96,165,250,0.5);
+}
+[data-theme="dark"] .map-fav-icon::after {
+    background: #fb923c;
+    border-color: #374151;
+    box-shadow: 0 0 6px rgba(251,146,60,0.5);
+}
+[data-theme="dark"] .map-want-icon::after {
+    background: #22d3ee;
+    border-color: #374151;
+    box-shadow: 0 0 6px rgba(34,211,238,0.5);
+}
 /* Leaflet 暗色模式 — 用 CSS filter 反转瓦片颜色，不换瓦片服务器 */
 [data-theme="dark"] .leaflet-tile-pane {
     filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
