@@ -68,6 +68,7 @@
                 '猝不及防的死亡': 'A Mickey Mouse operation', '那些令人唏嘘的意外与逝去': 'Lamentable accidents and losses',
                 '神童的悲惨故事': 'Become an ordinary person', '被天赋与期望裹挟的人生': 'Lives engulfed by talent and expectations',
                 '青春的故事': 'Stories of Youth', '那些关于青春的回忆与感悟': 'Memories and Reflections on Youth',
+                '产业界资讯': 'Industry News', '最新的产业界动态与分析': 'Latest Industry Updates and Analysis',
                 '生活随笔': 'Life Notes', '情感与心理': 'Emotions & Psychology', '社会观察': 'Social Observations', '技术笔记': 'Tech Notes', '读书与思考': 'Reading & Reflection', '转载': 'Reposts',
                 '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
             }
@@ -136,6 +137,7 @@
                 '猝不及防的死亡': 'Der Saftladen', '那些令人唏嘘的意外与逝去': 'Bedauerliche Unfälle und Verluste',
                 '神童的悲惨故事': 'Zu einem gewöhnlichen Menschen werden', '被天赋与期望裹挟的人生': 'Leben im Griff von Talent und Erwartungen',
                 '青春的故事': 'Geschichten der Jugend', '那些关于青春的回忆与感悟': 'Erinnerungen und Erkenntnisse über die Jugend',
+                '产业界资讯': 'Branchennews', '最新的产业界动态与分析': 'Neueste Branchenupdates und Analysen',
                 '生活随笔': 'Lebensnotizen', '情感与心理': 'Gefühle & Psychologie', '社会观察': 'Gesellschaftsbeobachtungen', '技术笔记': 'Techniknotizen', '读书与思考': 'Lesen & Nachdenken', '转载': 'Reposts',
                 '前端': 'Frontend', '后端': 'Backend', '综合': 'Allgemein', '独立博客': 'Persönliche Blogs', '技术服务': 'Tech-Dienste', '社区论坛': 'Community-Foren', '效率工具': 'Produktivitätstools'
             }
