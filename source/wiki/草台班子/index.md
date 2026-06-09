@@ -1,157 +1,157 @@
 ---
-title: 猝不及防的死亡
+title: 草台班子
 date: 2026-06-01
 type: "page"
 ---
 
 <div class="wiki-articles">
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/乔布斯.html">
+<a class="wiki-article-card" href="/wiki/草台班子/乔布斯.html">
   <div class="wiki-article-title">史蒂夫·乔布斯逝世事件</div>
   <div class="wiki-article-desc">改变世界的科技巨擘，苹果公司联合创始人，与胰腺神经内分泌肿瘤抗争后离世，享年56岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/王小波.html">
+<a class="wiki-article-card" href="/wiki/草台班子/王小波.html">
   <div class="wiki-article-title">王小波逝世事件</div>
   <div class="wiki-article-desc">中国当代著名作家，被誉为"中国的乔伊斯兼卡夫卡"，45岁因突发心脏病独自在家中离世</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/潘光旦.html">
+<a class="wiki-article-card" href="/wiki/草台班子/潘光旦.html">
   <div class="wiki-article-title">潘光旦逝世事件</div>
   <div class="wiki-article-desc">中国社会学奠基人之一，文革中遭残酷批斗，病逝于学生费孝通怀中，享年68岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/陈皓.html">
+<a class="wiki-article-card" href="/wiki/草台班子/陈皓.html">
   <div class="wiki-article-title">陈皓（左耳朵耗子）逝世事件</div>
   <div class="wiki-article-desc">中国技术圈精神领袖、MegaEase创始人，因突发心梗离世，享年47岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/张首晟.html">
+<a class="wiki-article-card" href="/wiki/草台班子/张首晟.html">
   <div class="wiki-article-title">张首晟逝世事件</div>
   <div class="wiki-article-desc">斯坦福终身教授、诺贝尔物理学奖有力竞争者，"拓扑绝缘体"理论开创者，意外离世享年55岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/汤晓鸥.html">
+<a class="wiki-article-card" href="/wiki/草台班子/汤晓鸥.html">
   <div class="wiki-article-title">汤晓鸥逝世事件</div>
   <div class="wiki-article-desc">中国AI领域领军人物、商汤科技创始人、计算机视觉泰斗，因病逝世享年55岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/李文亮.html">
+<a class="wiki-article-card" href="/wiki/草台班子/李文亮.html">
   <div class="wiki-article-title">李文亮医生逝世事件</div>
   <div class="wiki-article-desc">新冠疫情最早的"吹哨人"，因感染新冠肺炎不幸去世，年仅34岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/于娟.html">
+<a class="wiki-article-card" href="/wiki/草台班子/于娟.html">
   <div class="wiki-article-title">复旦大学教师于娟逝世事件</div>
   <div class="wiki-article-desc">复旦青年教师，患癌后写下《癌症日记》和《此生未完成》，以直面生死的坦诚震撼无数人</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/东思嘉.html">
+<a class="wiki-article-card" href="/wiki/草台班子/东思嘉.html">
   <div class="wiki-article-title">南京大学教师东思嘉逝世事件</div>
   <div class="wiki-article-desc">年仅33岁的南大博导、"学术新星"突然离世，引发对高校"非升即走"考核制度的广泛讨论</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/杜梅.html">
+<a class="wiki-article-card" href="/wiki/草台班子/杜梅.html">
   <div class="wiki-article-title">同济大学博士生杜梅逝世事件</div>
   <div class="wiki-article-desc">寒门贵子、同济博士生，留下《我不想我的人生如此沉寂》3000字自述后因癌症离世，年仅30岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/蒋伟.html">
+<a class="wiki-article-card" href="/wiki/草台班子/蒋伟.html">
   <div class="wiki-article-title">南方科技大学教授蒋伟逝世事件</div>
   <div class="wiki-article-desc">国家杰青获得者、中国超分子化学青年才俊，与癌症抗争一年半后逝世，年仅41岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/朱锐.html">
+<a class="wiki-article-card" href="/wiki/草台班子/朱锐.html">
   <div class="wiki-article-title">哲学家朱锐逝世事件</div>
   <div class="wiki-article-desc">人大哲学教授，生命最后阶段坚持带病授课，留下"哲学家是不惧怕死亡的"作为最后注脚</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/任航.html">
+<a class="wiki-article-card" href="/wiki/草台班子/任航.html">
   <div class="wiki-article-title">任航逝世事件</div>
   <div class="wiki-article-desc">中国新锐摄影师、诗人，以大胆的人体摄影享誉国际，因抑郁症跳楼自杀，年仅29岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/胡波.html">
+<a class="wiki-article-card" href="/wiki/草台班子/胡波.html">
   <div class="wiki-article-title">胡波逝世事件</div>
   <div class="wiki-article-desc">青年导演，遗作《大象席地而坐》获柏林电影节大奖，因创作权争夺与资本霸凌自缢，年仅29岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/范蕴若.html">
+<a class="wiki-article-card" href="/wiki/草台班子/范蕴若.html">
   <div class="wiki-article-title">范蕴若逝世事件</div>
   <div class="wiki-article-desc">中国围棋职业八段棋手，长期受抑郁症困扰，连续五天失眠后坠楼身亡，年仅24岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/石冲.html">
+<a class="wiki-article-card" href="/wiki/草台班子/石冲.html">
   <div class="wiki-article-title">石冲逝世事件</div>
   <div class="wiki-article-desc">中国"观念写实主义"绘画领军人物、清华大学美术学院教授，因突发心梗逝世，享年62岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/林奕含.html">
+<a class="wiki-article-card" href="/wiki/草台班子/林奕含.html">
   <div class="wiki-article-title">林奕含逝世及房思琪事件</div>
   <div class="wiki-article-desc">台湾才女作家，出版《房思琪的初恋乐园》两个月后自缢，书中性侵经历即其本人遭遇</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/符月华.html">
+<a class="wiki-article-card" href="/wiki/草台班子/符月华.html">
   <div class="wiki-article-title">符月华逝世及案件始末</div>
   <div class="wiki-article-desc">全县理科状元、华东师大女生，长期遭高中班主任性侵与精神控制，烧炭自杀年仅22岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/郑雯露.html">
+<a class="wiki-article-card" href="/wiki/草台班子/郑雯露.html">
   <div class="wiki-article-title">郑雯露离世事件</div>
   <div class="wiki-article-desc">中金公司女员工不幸离世，引发对金融行业降薪潮与高学历人才生存困境的激烈讨论</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/于轩一.html">
+<a class="wiki-article-card" href="/wiki/草台班子/于轩一.html">
   <div class="wiki-article-title">谷歌工程师于轩一遇害案</div>
   <div class="wiki-article-desc">清华毕业的谷歌女工程师，在美国家中被丈夫殴打致死，年仅27岁</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/吴谢宇.html">
+<a class="wiki-article-card" href="/wiki/草台班子/吴谢宇.html">
   <div class="wiki-article-title">吴谢宇执行死刑事件</div>
   <div class="wiki-article-desc">"北大学子弑母案"罪犯被执行死刑，跨度9年的案件引发关于家庭教育和高智商犯罪的持久讨论</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/刘某某.html">
+<a class="wiki-article-card" href="/wiki/草台班子/刘某某.html">
   <div class="wiki-article-title">河北孟村金昊杀妻案</div>
   <div class="wiki-article-desc">河北孟村发生的一起震惊全国的恶性案件</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/周某某.html">
+<a class="wiki-article-card" href="/wiki/草台班子/周某某.html">
   <div class="wiki-article-title">陕西旬阳新郎婚礼当天跳河事件</div>
   <div class="wiki-article-desc">29岁新郎在婚礼当天因琐事情绪失控跳河，折射当代年轻人的婚姻压力与心理健康困境</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/小洛熙.html">
+<a class="wiki-article-card" href="/wiki/草台班子/小洛熙.html">
   <div class="wiki-article-title">宁波小洛熙医疗纠纷致死事件</div>
   <div class="wiki-article-desc">5个月大早产女婴心脏手术后当晚死亡，尸检显示术前诊断存疑，引发对过度医疗的强烈质疑</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/魏亚蕊.html">
+<a class="wiki-article-card" href="/wiki/草台班子/魏亚蕊.html">
   <div class="wiki-article-title">魏亚蕊坠亡事件</div>
   <div class="wiki-article-desc">河南高中历史教师，长期遭受父母催婚压力，在婚礼当天坠楼身亡，引发对逼婚与女性困境的反思</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/王懿-阿基德.html">
+<a class="wiki-article-card" href="/wiki/草台班子/王懿-阿基德.html">
   <div class="wiki-article-title">王懿（阿基德）饿死东京事件</div>
   <div class="wiki-article-desc">16岁上985的天才少女，赴日后沉迷极端言论与虚拟货币，最终骨瘦如柴饿死在东京出租屋</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/joshua-上海虹口女子.html">
+<a class="wiki-article-card" href="/wiki/草台班子/joshua-上海虹口女子.html">
   <div class="wiki-article-title">上海虹口女子跳楼事件</div>
   <div class="wiki-article-desc">上海封控期间，为听障父亲送菜的女孩被网暴"200元太少"，在成千上万条辱骂中绝望跳楼</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/杨女士-武汉汉阳区销售.html">
+<a class="wiki-article-card" href="/wiki/草台班子/杨女士-武汉汉阳区销售.html">
   <div class="wiki-article-title">武汉汉阳区杨女士坠楼事件</div>
   <div class="wiki-article-desc">孩子在校内被老师驾车碾压身亡后，母亲因穿着打扮遭网暴攻击，最终在丧子之痛与舆论暴力中坠楼</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/郑灵华.html">
+<a class="wiki-article-card" href="/wiki/草台班子/郑灵华.html">
   <div class="wiki-article-title">郑灵华粉发女孩网暴事件</div>
   <div class="wiki-article-desc">因粉发与病床上的爷爷分享录取通知书照片，遭营销号造谣"陪酒女"，勇敢维权后仍不堪重负自杀</div>
 </a>
 
-<a class="wiki-article-card" href="/wiki/猝不及防的死亡/众生谢幕的反思与总结.html">
+<a class="wiki-article-card" href="/wiki/草台班子/众生谢幕的反思与总结.html">
   <div class="wiki-article-title">众生谢幕：关于时代、才华与命运的深度反思</div>
   <div class="wiki-article-desc">从个体的陨落中看见时代的切片，一幅当代社会的精神痛点图谱</div>
 </a>
