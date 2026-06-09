@@ -21,6 +21,11 @@ type: "page"
   <div class="wiki-article-desc">中国第一个大学少年班的标志性人物，2岁半背诗词、4岁认字，却三次考研退出的、三次托福不过，最终遁入空门</div>
 </a>
 
+<a class="wiki-article-card" href="/wiki/伤仲永/出家还俗的柳智宇.html">
+  <div class="wiki-article-title">出家还俗的柳智宇</div>
+  <div class="wiki-article-desc">IMO满分金牌、北大数学天才，放弃MIT全额奖学金剃度出家，历经学诚事件幻灭后还俗，以心理学渡人渡己</div>
+</a>
+
 <a class="wiki-article-card" href="/wiki/伤仲永/沉迷游戏的王思涵.html">
   <div class="wiki-article-title">沉迷游戏的王思涵</div>
   <div class="wiki-article-desc">14岁上大学的"神童"，因生活自理能力极差被学校责令退学，多年后坦言"公众热捧神童只会捧杀神童"</div>
