@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高考数学压轴题 | 与买桂花同载酒</title>
+    <title>等待证伪的高考数学压轴题 | 与买桂花同载酒</title>
     <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -100,7 +100,7 @@
         <main class="content-mid">
             <article class="post-detail">
     <header class="post-header">
-        <h1 class="post-title">高考数学压轴题</h1>
+        <h1 class="post-title">等待证伪的高考数学压轴题</h1>
         <div class="post-meta">
             <span>📅 <span data-i18n="published_on">发布于：</span>2026年06月15日</span>
             
@@ -183,6 +183,37 @@ f(x+h) > f(x) \iff h \in D
 <p>再结合集合一致性：若存在两点函数值不等，必然能找到某个 $h$，使得对部分基点满足 $f(x+h)&gt;f(x)$、对另一部分不满足，这与 $D(x) \equiv D(0)$ 矛盾。</p>
 <p>因此假设不成立，故</p>
 <script type="math/tex; mode=display">\boldsymbol{f(x) \text{ 为常函数}}</script><p>得证。</p>
+<h2 id="关于第-2-题的讨论"><a href="#关于第-2-题的讨论" class="headerlink" title="关于第 (2) 题的讨论"></a>关于第 (2) 题的讨论</h2><p>这道题本身可能存在问题，有两个层面值得分析。</p>
+<h3 id="原函数定义与奇函数条件矛盾"><a href="#原函数定义与奇函数条件矛盾" class="headerlink" title="原函数定义与奇函数条件矛盾"></a>原函数定义与奇函数条件矛盾</h3><p>第 (1) 题给定的分段函数为：</p>
+<script type="math/tex; mode=display">
+f(x)=\begin{cases}
+2^x, & x<0 \\
+1-x, & x \ge 0
+\end{cases}</script><p>而奇函数要求 $f(0)=0$，但按此定义 $f(0)=1-0=1 \ne 0$。因此原函数定义与奇函数条件无法同时满足——如果沿用第 (1) 题的函数，则 $f(x)$ 不可能是奇函数；如果改为奇函数，则必须重新定义 $f(x)$，第 (1) 题的前提就失效了。</p>
+<h3 id="一般奇函数下的反例"><a href="#一般奇函数下的反例" class="headerlink" title="一般奇函数下的反例"></a>一般奇函数下的反例</h3><p>即使抛开原函数定义，考虑一般奇函数，命题也不成立。取 $f(x)=\sin x$：</p>
+<ul>
+<li>令 $x_1=0$，$x_2=\dfrac{\pi}{2}$，满足 $x_1 &lt; x_2$。</li>
+<li>$D(0)={d \mid \sin d &gt; \sin 0}={d \mid \sin d &gt; 0}$，非空集（例如 $(0,\pi)$ 中的元素都属于它）。</li>
+<li>$D!\left(\dfrac{\pi}{2}\right)=\left{d \;\middle|\; \sin!\left(\dfrac{\pi}{2}+d\right) &gt; \sin\dfrac{\pi}{2}\right}={d \mid \sin!\left(\dfrac{\pi}{2}+d\right) &gt; 1}$。</li>
+</ul>
+<p>正弦函数最大值为 $1$，不存在使 $\sin!\left(\frac{\pi}{2}+d\right) &gt; 1$ 的实数 $d$，因此 $D!\left(\frac{\pi}{2}\right)=\emptyset$。</p>
+<p>显然 $D(0) \not\subseteq \emptyset$，与命题结论 $D(x_1) \subseteq D(x_2)$ 矛盾。</p>
+<p>这说明第 (2) 题对”奇函数”这一条件缺少额外限制（如单调性），命题在一般意义下不成立。可能的命题意图是要求 $f(x)$ 在原函数基础上”修改为奇函数且保持单调递减”，但题目表述未明确这一点。</p>
+<h2 id="关于第-3-题的讨论"><a href="#关于第-3-题的讨论" class="headerlink" title="关于第 (3) 题的讨论"></a>关于第 (3) 题的讨论</h2><p>第 (3) 题的关键在于集合 $D(x_0)$ 的定义方式。对比两种定义：</p>
+<h3 id="原定义（集合元素为平移量-d-）"><a href="#原定义（集合元素为平移量-d-）" class="headerlink" title="原定义（集合元素为平移量 $d$）"></a>原定义（集合元素为平移量 $d$）</h3><script type="math/tex; mode=display">D(x_0)=\{d \in \mathbb{R} \mid f(x_0+d) > f(x_0)\}</script><p>代入 $f(x)=x$：</p>
+<script type="math/tex; mode=display">D(x_0)=\{d \mid x_0+d > x_0\}=\{d \mid d > 0\}=(0, +\infty)</script><p>无论 $x_0$ 取何值，$D(x_0)$ 恒等于 $(0, +\infty)$。满足前提”对任意 $x$，均有 $D(x)=D(0)$”，但 $f(x)=x$ 不是常函数——命题被证伪。</p>
+<p>问题出在：一次函数 $f(x)=ax+b$（$a \ne 0$）都是反例——平移不改变差值 $f(x+d)-f(x)=ad$，”上升方向”与基点无关。更一般地，任何满足 $f(x+d)-f(x)$ 仅依赖于 $d$ 的函数都会使条件成立，但它们并非常函数。</p>
+<h3 id="修正后的定义（集合元素为自变量绝对位置-x-）"><a href="#修正后的定义（集合元素为自变量绝对位置-x-）" class="headerlink" title="修正后的定义（集合元素为自变量绝对位置 $x$）"></a>修正后的定义（集合元素为自变量绝对位置 $x$）</h3><script type="math/tex; mode=display">D(x_0)=\{x \in \mathbb{R} \mid f(x) > f(x_0)\}</script><p>同样代入 $f(x)=x$：</p>
+<script type="math/tex; mode=display">D(x_0)=\{x \mid x > x_0\}=(x_0, +\infty)</script><p>此时：</p>
+<ul>
+<li>$D(0)=(0, +\infty)$</li>
+<li>$D(1)=(1, +\infty)$</li>
+<li>$D(-5)=(-5, +\infty)$</li>
+</ul>
+<p>$D(1)$ 和 $D(0)$ 是不同的集合，$f(x)=x$ 根本不满足”$D(x)=D(0)$ 对任意 $x$ 成立”的前提条件。既然连前提都不满足，它就不能作为反例来推翻命题。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>如果原题使用的是”平移量 $d$”的定义，第 (3) 题存在反例，命题不成立；如果将定义修正为”绝对位置 $x$”，反例失效，命题可能成立。题目的表述方式决定了命题的真假。</p>
+<p>但需要注意：如果修改了 $D(x_0)$ 的定义，第 (1) 题的答案也会随之改变。例如在修正定义下：</p>
+<script type="math/tex; mode=display">D(-1)=\{x \mid f(x) > f(-1)\}=\{x \mid f(x) > 1/2\}</script><p>这与原定义下通过平移量 $d$ 求解的结果不同。因此两种定义不能混用——要么全文使用”平移量”定义（第 (3) 题有漏洞），要么全文使用”绝对位置”定义（第 (1) 题答案需要重新计算）。</p>
 
         
     </div>
@@ -202,7 +233,7 @@ f(x+h) > f(x) \iff h \in D
         <div class="widget toc-widget">
             <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
             <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-text">解答</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-1-%E9%A2%98%EF%BC%9A%E6%B1%82-D-1"><span class="toc-text">第 (1) 题：求 $D(-1)$</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-2-%E9%A2%98%EF%BC%9A-f-%E4%B8%BA%E5%A5%87%E5%87%BD%E6%95%B0%EF%BC%8C-x-1-lt-x-2-%EF%BC%8C%E8%AF%81-D-x-1-subseteq-D-x-2"><span class="toc-text">第 (2) 题：$f$ 为奇函数，$x_1 &lt; x_2$，证 $D(x_1) \subseteq D(x_2)$</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-3-%E9%A2%98%EF%BC%9A-forall-x-in-mathbb-R-D-x-D-0-%EF%BC%8C%E8%AF%81-f-%E4%B8%BA%E5%B8%B8%E5%87%BD%E6%95%B0"><span class="toc-text">第 (3) 题：$\forall x\in\mathbb{R},\ D(x)&#x3D;D(0)$，证 $f$ 为常函数</span></a></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E7%AD%94"><span class="toc-text">解答</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-1-%E9%A2%98%EF%BC%9A%E6%B1%82-D-1"><span class="toc-text">第 (1) 题：求 $D(-1)$</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-2-%E9%A2%98%EF%BC%9A-f-%E4%B8%BA%E5%A5%87%E5%87%BD%E6%95%B0%EF%BC%8C-x-1-lt-x-2-%EF%BC%8C%E8%AF%81-D-x-1-subseteq-D-x-2"><span class="toc-text">第 (2) 题：$f$ 为奇函数，$x_1 &lt; x_2$，证 $D(x_1) \subseteq D(x_2)$</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC-3-%E9%A2%98%EF%BC%9A-forall-x-in-mathbb-R-D-x-D-0-%EF%BC%8C%E8%AF%81-f-%E4%B8%BA%E5%B8%B8%E5%87%BD%E6%95%B0"><span class="toc-text">第 (3) 题：$\forall x\in\mathbb{R},\ D(x)&#x3D;D(0)$，证 $f$ 为常函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%AC%AC-2-%E9%A2%98%E7%9A%84%E8%AE%A8%E8%AE%BA"><span class="toc-text">关于第 (2) 题的讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%87%BD%E6%95%B0%E5%AE%9A%E4%B9%89%E4%B8%8E%E5%A5%87%E5%87%BD%E6%95%B0%E6%9D%A1%E4%BB%B6%E7%9F%9B%E7%9B%BE"><span class="toc-text">原函数定义与奇函数条件矛盾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%88%AC%E5%A5%87%E5%87%BD%E6%95%B0%E4%B8%8B%E7%9A%84%E5%8F%8D%E4%BE%8B"><span class="toc-text">一般奇函数下的反例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E7%AC%AC-3-%E9%A2%98%E7%9A%84%E8%AE%A8%E8%AE%BA"><span class="toc-text">关于第 (3) 题的讨论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AE%9A%E4%B9%89%EF%BC%88%E9%9B%86%E5%90%88%E5%85%83%E7%B4%A0%E4%B8%BA%E5%B9%B3%E7%A7%BB%E9%87%8F-d-%EF%BC%89"><span class="toc-text">原定义（集合元素为平移量 $d$）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%AD%A3%E5%90%8E%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%88%E9%9B%86%E5%90%88%E5%85%83%E7%B4%A0%E4%B8%BA%E8%87%AA%E5%8F%98%E9%87%8F%E7%BB%9D%E5%AF%B9%E4%BD%8D%E7%BD%AE-x-%EF%BC%89"><span class="toc-text">修正后的定义（集合元素为自变量绝对位置 $x$）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></li></ol>
             </div>
         </div>
     
