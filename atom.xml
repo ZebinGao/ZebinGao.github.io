@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Nathan Gao</rights>
   <subtitle>心之所向，素履以往</subtitle>
   <title>与买桂花同载酒</title>
-  <updated>2026-06-09T06:36:16.883Z</updated>
+  <updated>2026-06-10T02:52:57.327Z</updated>
   <entry>
     <author>
       <name>Nathan Gao</name>
@@ -30,7 +30,38 @@
 <p>]]>
     </summary>
     <title>世界是荒唐的</title>
-    <updated>2026-06-09T06:36:16.883Z</updated>
+    <updated>2026-06-10T02:52:57.327Z</updated>
+  </entry>
+  <entry>
+    <author>
+      <name>Nathan Gao</name>
+    </author>
+    <category term="社会观察" scheme="https://www.zebin-yue.top/categories/social-observations/"/>
+    <category term="高考" scheme="https://www.zebin-yue.top/tags/%E9%AB%98%E8%80%83/"/>
+    <category term="数学" scheme="https://www.zebin-yue.top/tags/%E6%95%B0%E5%AD%A6/"/>
+    <category term="解题" scheme="https://www.zebin-yue.top/tags/%E8%A7%A3%E9%A2%98/"/>
+    <content>
+      <![CDATA[<p>2026 江苏高考（新高考 Ⅰ 卷）数学最后压轴大题（第 19 题，回忆版）。</p><p>已知函数 (f(x)) 定义在 (\mathbb{R}) 上，且满足：</p><ul><li>当 (x \ge 0) 时，(f(x)=1-x)；</li><li>当 (x &lt; 0) 时，(f(x)=2^x)。</li></ul><p>对任意 (x_0 \in \mathbb{R})，定义集合：</p><script type="math/tex; mode=display">D(x_0)=\{\,d \in \mathbb{R} \mid f(x_0+d) > f(x_0)\,\}.</script><ol><li>求集合 (D(-1))；</li><li>若 (f(x)) 为奇函数，且 (x_1 &lt; x_2)，证明：(D(x_1) \subseteq D(x_2))；</li><li>若对任意 (x \in \mathbb{R})，均有 (D(x)=D(0))，证明：(f(x)) 是常函数。</li></ol><span id="more"></span><h2 id="第-1-题：求-D-1"><a href="#第-1-题：求-D-1" class="headerlink" title="第 (1) 题：求 (D(-1))"></a>第 (1) 题：求 (D(-1))</h2><p>已知：</p><script type="math/tex; mode=display">f(x)=\begin{cases}2^x, & x<0 \\1-x, & x\ge 0\end{cases}</script><p>计算 (f(-1)=2^{-1}=1/2)。</p><p>要使 (f(-1+d) &gt; 1/2)，令 (t=d-1)，即求 (f(t)&gt;1/2)：</p><ul><li>(t<0\) 时：\(2^t > 1/2 \Rightarrow t &gt; -1 \Rightarrow -1 &lt; t &lt; 0)</li><li>(t \ge 0) 时：(1-t &gt; 1/2 \Rightarrow t &lt; 1/2 \Rightarrow 0 \le t &lt; 1/2)</li></ul><p>合并得 (-1 &lt; t &lt; 1/2)，即 (-1 &lt; d-1 &lt; 1/2)，因此：</p><script type="math/tex; mode=display">\boxed{0 < d < \frac{3}{2}}</script><h2 id="第-2-题：-f-为奇函数，-x-1-lt-x-2-，证-D-x-1-subseteq-D-x-2"><a href="#第-2-题：-f-为奇函数，-x-1-lt-x-2-，证-D-x-1-subseteq-D-x-2" class="headerlink" title="第 (2) 题：(f) 为奇函数，(x_1 &lt; x_2)，证 (D(x_1) \subseteq D(x_2))"></a>第 (2) 题：(f) 为奇函数，(x_1 &lt; x_2)，证 (D(x_1) \subseteq D(x_2))</h2><p>奇函数 + 分段条件，可知 (f) 在 (\mathbb{R}) 上单调递减。</p><p>单调递减时：</p><script type="math/tex; mode=display">f(x+d) > f(x) \iff x+d < x \iff d < 0</script><p>所以所有 (D(x)) 都等于 ({d \mid d &lt; 0})，自然有：</p><script type="math/tex; mode=display">\boxed{D(x_1) \subseteq D(x_2)}</script><h2 id="第-3-题：-forall-x-D-x-D-0-，证-f-为常函数"><a href="#第-3-题：-forall-x-D-x-D-0-，证-f-为常函数" class="headerlink" title="第 (3) 题：(\forall x,\ D(x)=D(0))，证 (f) 为常函数"></a>第 (3) 题：(\forall x,\ D(x)=D(0))，证 (f) 为常函数</h2><p>一句话：”往同一方向移，永远变大 / 永远不变”，只能是平的。</p><p>记 (D = D(0))。条件：</p><script type="math/tex; mode=display">f(x+d) > f(x) \iff d \in D, \quad \forall x</script><p>取任意 (x, y)，令 (h = y - x)。</p><ul><li>若 (h \in D)，则 (f(y) &gt; f(x))；</li><li>若 (h \notin D)，则 (f(y) \le f(x))。</li></ul><p>假设 (f) 非常数，则存在 (a, b) 使 (f(a) \ne f(b))。</p><p>设 (f(b) &gt; f(a))，则 (h = b - a \in D)。</p><p>于是对任意 (t)，(f(t+h) &gt; f(t))，递推得：</p><script type="math/tex; mode=display">f(0) < f(h) < f(2h) < \cdots</script><p>同理 (-h \notin D)，即 (f(t-h) \le f(t))，往左不增。</p><p><strong>关键矛盾</strong>：若 (f) 有波动，必然存在某个 (h)，对某些 (x) 满足 (f(x+h) &gt; f(x))，对另一些不满足，这与 (D(x)) 全相同矛盾。</p><p>所以只能：</p><script type="math/tex; mode=display">\boxed{f(x) \text{ 为常函数}}</script>]]>
+    </content>
+    <id>https://www.zebin-yue.top/post/2026/6/%E6%95%B0%E5%AD%A6%E5%8E%8B%E8%BD%B4%E9%A2%98.html</id>
+    <link href="https://www.zebin-yue.top/post/2026/6/%E6%95%B0%E5%AD%A6%E5%8E%8B%E8%BD%B4%E9%A2%98.html"/>
+    <published>2026-06-15T13:30:00.000Z</published>
+    <summary>
+      <![CDATA[<p>2026 江苏高考（新高考 Ⅰ 卷）数学最后压轴大题（第 19 题，回忆版）。</p>
+<p>已知函数 (f(x)) 定义在 (\mathbb{R}) 上，且满足：</p>
+<ul>
+<li>当 (x \ge 0) 时，(f(x)=1-x)；</li>
+<li>当 (x &lt; 0) 时，(f(x)=2^x)。</li>
+</ul>
+<p>对任意 (x_0 \in \mathbb{R})，定义集合：</p>
+<script type="math/tex; mode=display">D(x_0)=\{\,d \in \mathbb{R} \mid f(x_0+d) > f(x_0)\,\}.</script><ol>
+<li>求集合 (D(-1))；</li>
+<li>若 (f(x)) 为奇函数，且 (x_1 &lt; x_2)，证明：(D(x_1) \subseteq D(x_2))；</li>
+<li>若对任意 (x \in \mathbb{R})，均有 (D(x)=D(0))，证明：(f(x)) 是常函数。</li>
+</ol>]]>
+    </summary>
+    <title>高考数学压轴题</title>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -52,7 +83,7 @@
 <h2 id="杨奇函：满分似乎只在技巧"><a href="#杨奇函：满分似乎只在技巧" class="headerlink" title="杨奇]]>
     </summary>
     <title>高考满分作文者的人生</title>
-    <updated>2026-06-09T06:36:16.884Z</updated>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -72,7 +103,7 @@
       <![CDATA[<h1 id="人生是虚无的"><a href="#人生是虚无的" class="headerlink" title="人生是虚无的"></a>人生是虚无的</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"><]]>
     </summary>
     <title>人生是虚无的</title>
-    <updated>2026-06-09T06:36:16.884Z</updated>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -93,7 +124,7 @@
 <p>之前和Gemini聊天，我意识到一个为人处世很重要的原则，那就是生活中没有对错。联想到我知道的身边认识的人的一些游走在甚至已经触犯法律的行为，我想对这句话补充一点，那就是法律有对错，生活没有对错。我们在生活中]]>
     </summary>
     <title>关于嫖娼一二事</title>
-    <updated>2026-06-09T06:36:16.884Z</updated>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -113,7 +144,7 @@
       <![CDATA[<p>在聊配色之前，先搞清楚一个很多人从没想过的问题：你手机屏幕上的颜色，和画纸上的颜色，其实不是同一回事。屏幕是发光的——在完全黑暗的房间里，每个像素点是三盏小灯泡（红、绿、蓝），往你眼睛里灌光。开一盏红灯加一盏绿灯，叠出黄色；三盏全开，叠出白色。光越加越亮，加到头就是白，这叫]]>
     </summary>
     <title>配色方案</title>
-    <updated>2026-06-09T06:36:16.884Z</updated>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -133,7 +164,7 @@
       <![CDATA[<h1 id="共享代码库引发的编译错误排查"><a href="#共享代码库引发的编译错误排查" class="headerlink" title="共享代码库引发的编译错误排查"></a>共享代码库引发的编译错误排查</h1><h2 id="一个故事"><a href="#一]]>
     </summary>
     <title>共享代码库引发的编译错误排查</title>
-    <updated>2026-06-09T06:36:16.884Z</updated>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -154,7 +185,7 @@
 <p>]]>
     </summary>
     <title>回顾我的高中</title>
-    <updated>2026-06-09T06:36:16.884Z</updated>
+    <updated>2026-06-10T02:52:57.328Z</updated>
   </entry>
   <entry>
     <author>
@@ -174,7 +205,7 @@
       <![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>这个文档记录了来自大学同学对于陈皓的追思， 因为大学同学很多都不是从事IT技术类相关的工作，因此一些只言片语的记录都会汇集到我这里来进行汇总]]>
     </summary>
     <title>纪念左耳朵耗子</title>
-    <updated>2026-06-09T06:36:16.883Z</updated>
+    <updated>2026-06-10T02:52:57.327Z</updated>
   </entry>
   <entry>
     <author>
@@ -194,29 +225,6 @@
       <![CDATA[<h2 id="我学写作文的经历及如何写好作文"><a href="#我学写作文的经历及如何写好作文" class="headerlink" title="　我学写作文的经历及如何写好作文"></a>　我学写作文的经历及如何写好作文</h2><p>本来是给陈莲春老师以后的学生，校]]>
     </summary>
     <title>我学写作文的经历及如何写好作文</title>
-    <updated>2026-06-09T06:36:16.883Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>Nathan Gao</name>
-    </author>
-    <category term="读书与思考" scheme="https://www.zebin-yue.top/categories/reading-reflection/"/>
-    <category term="亲密关系" scheme="https://www.zebin-yue.top/tags/intimate-relationships/"/>
-    <category term="哲学" scheme="https://www.zebin-yue.top/tags/philosophy/"/>
-    <category term="读书笔记" scheme="https://www.zebin-yue.top/tags/book-notes/"/>
-    <content>
-      <![CDATA[<p>C.S. 路易斯在《四种爱》（The Four Loves）中，用极其通透的笔触，将古希腊人对“爱”的四种分类进行了深度解剖。他把前三种称为“自然之爱”（源于人的天性和本能），把最后一种称为“神圣之爱”。</p><p>这四种爱分别是：</p><ol><li>Storge（亲爱 / 亲情）—— “最广泛、最舒适的爱”<br>姿态： 依偎、习惯、毫无防备。</li></ol><p>本质： 这种爱建立在“熟悉感”之上。它是父母对孩子、兄弟姐妹之间、甚至人与老狗/旧家具之间的那种爱。</p><p>特征： Storge 是最不挑剔的。你不需要对方多么优秀、多么漂亮，仅仅因为你们“长时间待在一起”，你就会对他产生感情。路易斯形容它就像“一双穿旧的旧鞋”，极其合脚、舒适、不需要你端着架子。</p><p>暗影（变质的时候）： 这种爱如果越界，就会变成“理所当然的索取”和“窒息的干涉”。比如父母打着“我都是为了你好”的旗号去控制孩子，或者亲戚之间没有边界感的冒犯。</p><ol><li>Philia（友爱 / 友情）—— “最不自然、但也最高阶的自然之爱”<br>姿态： 肩并肩（Side by side），共同看向前方。</li></ol><p>本质： Philia 不是因为血缘或熟悉，而是建立在“共同的视野、兴趣或真理”之上。</p><p>特征： 爱情（Eros）是两个人面对面，互相看着对方；而友情（Philia）是两个人肩并肩，共同看着前面的目标。路易斯有一句极度经典的关于友谊的定义：“当一个人对另一个人说：‘什么？你也是这样？我还以为只有我一个人是这样的呢！’ 这一瞬间，友谊就诞生了。” 它是灵魂的共振。</p><p>暗影： 纯粹的友爱极其排外。当一个小圈子里的人觉得自己掌握了某种别人不懂的“高级真理”时，Philia 就会变成傲慢的小团体主义（比如党同伐异的圈子文化）。</p><ol><li>Eros（情爱 / 浪漫之爱）—— “最迷醉、最危险的爱”<br>姿态： 面对面（Face to face），眼中只有彼此。</li></ol><p>本质： 就是我们刚才聊的、包含着强烈渴望、激情和占有欲的浪漫爱情。</p><p>特征： 路易斯特别强调，Eros 不仅仅是性欲（Venus）。性欲只是想要发泄，而 Eros 是“想要那个人本身”。当 Eros 降临时，人会产生一种壮烈的牺牲感，甚至愿意为了对方去死，它让人觉得对方就是整个宇宙。</p><p>暗影： 这是最危险的一种爱。因为它太像神圣的爱了（都要求全心全意），所以人们极其容易把 Eros 当成信仰本身。当爱情被当成至高无上的宗教时，它就会为了维护自己而践踏一切（比如为了爱情背叛朋友、抛弃责任，甚至走向极端的占有和毁灭）。</p><ol><li>Agape（圣爱 / 无条件之爱）—— “唯一的给予之爱”<br>姿态： 从高处倾注，托底。</li></ol><p>本质： 完全无私的、不求回报的、纯粹的给予。</p><p>特征： 前三种自然之爱，本质上都有“匮乏”和“需要”的成分（我需要家人的陪伴，我需要朋友的共鸣，我需要爱人的回应）。唯独 Agape 是绝对自足的，它是因为“你存在，所以我选择爱你、成全你”，即使你不可爱，即使你伤害了我。</p><p>路易斯的核心观点： Agape 就像是另外三种爱的“防腐剂”。<br>自然之爱（亲情、友情、爱情）如果任由其发展，最后都会因为人类的自私而变质腐烂。“当自然之爱试图成为神（至高无上）时，它就会变成恶魔。”<br>只有当 Agape（无条件的成全与宽容）注入到这三种爱中时，亲情才不会变成控制，友情才不会变成傲慢，爱情（Eros）才不会变成毁灭性的占有。</p><p>人类是有高级理智的。如果人类绝对理智，就会发现谈恋爱、生孩子、抚养后代是一件成本极高、极其消耗自身资源的事情。为了打破这种理智的算计，大自然在人类的大脑里植入了一个“特洛伊木马”——高浓度的神经递质风暴（多巴胺、催产素、内啡肽等）。</p><p>古希腊哲学家柏拉图在《会饮篇》里讲过一个著名的神话：人类原本是圆球形的，有四只手四条腿，非常强大，后来被宙斯劈成了两半。从那以后，每个人生来就是残缺的，终其一生都在疯狂寻找自己的“另一半”。</p><p><strong>为什么对方成了整个宇宙？</strong> 因为在那个瞬间，对方不再是一个普通的碳基生物，而是填补你灵魂黑洞的最后一块拼图。如果失去她，你失去的不是一个人，而是你刚刚完整起来的“精神宇宙”。为了保卫自己的精神宇宙不崩塌，人当然愿意付出生命的代价。</p><p>当你在极度的激情中与对方相爱时，你们的心理边界、甚至肉体边界都被短暂地打破了。这种“你中有我，我中有你”的融合感，让人体验到了一种类似于宗教狂热般的“神圣感”。<strong>牺牲感从何而来？</strong> 当“你”和“她”的边界消失，变成了“我们”时，为她去死，就不再是牺牲自己去成全别人，而是为了保卫这个神圣的“我们”所做出的最高级的献祭。</p><p>易斯极其敏锐地发现，现代人越来越害怕在爱里受伤，于是发明了各种“安全”的替代品（比如金钱交易、纯肉体契约、或者干脆只养宠物不谈恋爱）。</p><p>对此，他写下了整本书中最著名、也最震聋发聩的一段话，简直是对这种“避险心理”的终极审判：</p><p>“只要你爱，你的心必然会痛，甚至会碎。如果你想确保你的心完好无损，你必须不把它交给任何人，甚至连动物都不行。<br>你可以用各种小小的爱好和享受把它小心翼翼地包裹起来；避开所有的情感纠葛；把它安全地锁在你自私的棺材里。<br>但在那口棺材里——安全、黑暗、一动不动、无法呼吸——它会发生改变。它不会碎裂，它会变得坚不可摧、无法穿透、无法救赎。除了天堂，唯一绝对安全、不会受任何爱之困扰的地方，就是地狱。”</p><p><strong>另一种救赎</strong></p><p>欣赏之爱则说：“哪怕我得不到她，哪怕她与我毫无关系，她能存在于这个宇宙中，本身就是一件极度美好的事。”</p>]]>
-    </content>
-    <id>https://www.zebin-yue.top/post/2026/5/%E5%9B%9B%E7%A7%8D%E7%88%B1.html</id>
-    <link href="https://www.zebin-yue.top/post/2026/5/%E5%9B%9B%E7%A7%8D%E7%88%B1.html"/>
-    <published>2026-05-20T13:30:00.000Z</published>
-    <summary>
-      <![CDATA[<p>C.S. 路易斯在《四种爱》（The Four Loves）中，用极其通透的笔触，将古希腊人对“爱”的四种分类进行了深度解剖。他把前三种称为“自然之爱”（源于人的天性和本能），把最后一种称为“神圣之爱”。</p>
-<p>这四种爱分别是：</p>
-<ol>
-<li>Storg]]>
-    </summary>
-    <title>四种爱</title>
-    <updated>2026-06-09T06:36:16.883Z</updated>
+    <updated>2026-06-10T02:52:57.327Z</updated>
   </entry>
 </feed>
