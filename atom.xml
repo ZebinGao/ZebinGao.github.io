@@ -10,7 +10,7 @@
   <rights>All rights reserved 2026, Nathan Gao</rights>
   <subtitle>心之所向，素履以往</subtitle>
   <title>与买桂花同载酒</title>
-  <updated>2026-06-10T03:10:39.856Z</updated>
+  <updated>2026-06-10T03:17:40.407Z</updated>
   <entry>
     <author>
       <name>Nathan Gao</name>
@@ -30,7 +30,7 @@
 <p>]]>
     </summary>
     <title>世界是荒唐的</title>
-    <updated>2026-06-10T03:10:39.856Z</updated>
+    <updated>2026-06-10T03:17:40.407Z</updated>
   </entry>
   <entry>
     <author>
@@ -41,30 +41,16 @@
     <category term="数学" scheme="https://www.zebin-yue.top/tags/%E6%95%B0%E5%AD%A6/"/>
     <category term="解题" scheme="https://www.zebin-yue.top/tags/%E8%A7%A3%E9%A2%98/"/>
     <content>
-      <![CDATA[<p>2026 年高考落幕后，新高考 Ⅰ 卷数学第 19 题迅速成为热议话题。这道压轴大题以分段函数为载体，定义了一个与函数值比较相关的集合 $D(x_0)$，三问层层递进：从具体求值，到利用奇函数性质证明集合包含关系，再到抽象证明函数为常函数。题目不依赖复杂计算，更侧重逻辑推理能力，区分度很高。</p><p><strong>涉及的中学数学知识：</strong></p><ul><li>分段函数的定义与求值</li><li>函数的奇偶性、单调性</li><li>集合的包含关系与子集证明</li><li>不等式求解（指数不等式、一次不等式）</li></ul><p><strong>关联的高等数学背景：</strong></p><ul><li><strong>集合值映射（Set-valued mapping）</strong>：$D(x_0)$ 将每个点 $x_0$ 映射为一个实数集合，本质上是函数的”上升方向集”，在凸分析和非光滑分析中有重要地位。</li><li><strong>单调算子理论</strong>：第 (2) 题中单调递减函数的上升方向集恒为负半轴，这与单调算子的性质密切相关——单调算子是凸优化中梯度下降法收敛性分析的基础工具。</li><li><strong>平移不变性与常函数</strong>：第 (3) 题的核心条件 $D(x) \equiv D(0)$ 要求函数在每一点的”上升方向”完全相同，这种平移不变性在测度论中对应 Haar 测度的唯一性，在泛函分析中则与平移不变泛函相关。</li><li><strong>反证法与递推</strong>：第 (3) 题的证明思路——假设非常函数则构造严格递增列导致矛盾——与高等数学中证明确界存在性、Cauchy 收敛准则等定理的方法一脉相承。</li></ul><span id="more"></span><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>已知函数 $f(x)$ 定义在 $\mathbb{R}$ 上，且满足：</p><ul><li>当 $x \ge 0$ 时，$f(x)=1-x$；</li><li>当 $x &lt; 0$ 时，$f(x)=2^x$。</li></ul><p>对任意 $x_0 \in \mathbb{R}$，定义集合：</p><script type="math/tex; mode=display">D(x_0)=\{\,d\in\mathbb{R}\mid f(x_0+d) > f(x_0)\,\}</script><ol><li>求集合 $D(-1)$；</li><li>若 $f(x)$ 为奇函数，且 $x_1 &lt; x_2$，证明：$D(x_1) \subseteq D(x_2)$；</li><li>若对任意 $x \in \mathbb{R}$，均有 $D(x)=D(0)$，证明：$f(x)$ 是常函数。</li></ol><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><h2 id="第-1-题：求-D-1"><a href="#第-1-题：求-D-1" class="headerlink" title="第 (1) 题：求 $D(-1)$"></a>第 (1) 题：求 $D(-1)$</h2><p><strong>第一步：计算 $f(-1)$</strong></p><p>$-1 &lt; 0$，代入第二段解析式：</p><script type="math/tex; mode=display">f(-1)=2^{-1}=\dfrac{1}{2}</script><p><strong>第二步：令 $x_0=-1$，条件变为</strong></p><script type="math/tex; mode=display">f(-1+d) > \dfrac{1}{2}</script><p>设 $t=d-1$，即解 $f(t)&gt;\dfrac{1}{2}$，分两段讨论：</p><ul><li>当 $t&lt;0$ 时，$f(t)=2^t$：</li></ul><script type="math/tex; mode=display">2^t > \dfrac{1}{2} \implies 2^t > 2^{-1} \implies t > -1</script><p>结合前提 $t&lt;0$，得 $\boldsymbol{-1 &lt; t &lt; 0}$。</p><ul><li>当 $t \ge 0$ 时，$f(t)=1-t$：</li></ul><script type="math/tex; mode=display">1-t > \dfrac{1}{2} \implies t < \dfrac{1}{2}</script><p>结合前提 $t \ge 0$，得 $\boldsymbol{0 \le t &lt; \dfrac{1}{2}}$。</p><p><strong>第三步：综合两段</strong></p><script type="math/tex; mode=display">-1 < t < \dfrac{1}{2}</script><p>代回 $t=d-1$：</p><script type="math/tex; mode=display">-1 < d-1 < \dfrac{1}{2} \implies 0 < d < \dfrac{3}{2}</script><p>结论：</p><script type="math/tex; mode=display">\boldsymbol{D(-1)=\left\{\,d\,\bigg|\, 0 < d < \dfrac{3}{2}\,\right\}}</script><h2 id="第-2-题：-f-为奇函数，-x-1-lt-x-2-，证-D-x-1-subseteq-D-x-2"><a href="#第-2-题：-f-为奇函数，-x-1-lt-x-2-，证-D-x-1-subseteq-D-x-2" class="headerlink" title="第 (2) 题：$f$ 为奇函数，$x_1 &lt; x_2$，证 $D(x_1) \subseteq D(x_2)$"></a>第 (2) 题：$f$ 为奇函数，$x_1 &lt; x_2$，证 $D(x_1) \subseteq D(x_2)$</h2><p><strong>前置分析</strong></p><p>由原题分段式 + 奇函数性质，先补全 $f(x)$：</p><p>已知 $x&gt;0$ 时 $f(x)=1-x$；奇函数满足 $f(-x)=-f(x)$，且 $f(0)=0$。</p><ul><li>$x&gt;0$：$f(x)=1-x$，单调递减；</li><li>$x&lt;0$：$f(x)=-f(-x)=-[1-(-x)]=-1-x$，单调递减。</li></ul><p>可验证 $f(x)$ 在 $\mathbb{R}$ 上整体单调递减。</p><p><strong>集合定义分析</strong></p><script type="math/tex; mode=display">d \in D(x) \iff f(x+d) > f(x)</script><p>因 $f(x)$ 单调递减，不等号方向翻转：</p><script type="math/tex; mode=display">f(x+d) > f(x) \iff x+d < x \iff d < 0</script><p>即对任意 $x \in \mathbb{R}$，都有 $D(x)={\,d\mid d&lt;0\,}$。</p><p><strong>证明</strong></p><p>对任意 $d \in D(x_1)$，有 $d&lt;0$，则必然 $d \in D(x_2)$。</p><p>由子集定义：</p><script type="math/tex; mode=display">\boldsymbol{D(x_1) \subseteq D(x_2)}</script><p>得证。</p><h2 id="第-3-题：-forall-x-in-mathbb-R-D-x-D-0-，证-f-为常函数"><a href="#第-3-题：-forall-x-in-mathbb-R-D-x-D-0-，证-f-为常函数" class="headerlink" title="第 (3) 题：$\forall x\in\mathbb{R},\ D(x)=D(0)$，证 $f$ 为常函数"></a>第 (3) 题：$\forall x\in\mathbb{R},\ D(x)=D(0)$，证 $f$ 为常函数</h2><p><strong>条件整理</strong></p><p>记 $D=D(0)$，则对任意 $x$：</p><script type="math/tex; mode=display">f(x+d) > f(x) \iff d \in D, \quad \forall x \in \mathbb{R}</script><p><strong>反证法证明</strong></p><p>假设 $f(x)$ 不是常函数，则存在 $a, b \in \mathbb{R}$，使得 $f(a) \ne f(b)$。</p><p>取任意实数 $h$，对比两处条件：</p><script type="math/tex; mode=display">\begin{cases}f(0+h) > f(0) \iff h \in D \\f(x+h) > f(x) \iff h \in D\end{cases}</script><p>这说明：不等关系 $f(u+h)&gt;f(u)$ 与基点 $u$ 无关，仅由 $h$ 决定。</p><p><strong>任取两点分析</strong></p><p>任取两点 $x, y$，令 $h=y-x$，则 $y=x+h$。分类讨论：</p><ul><li>若 $h \in D$：则 $f(y)=f(x+h) &gt; f(x)$；</li><li>若 $h \notin D$：则 $f(y)=f(x+h) \le f(x)$。</li></ul><p><strong>构造矛盾</strong></p><p>假设存在 $x_0$ 使得 $f(x_0) \ne f(0)$：</p><p>不妨设 $f(x_0) &gt; f(0)$，令 $h=x_0$，则 $f(0+h) &gt; f(0)$，故 $h \in D$。</p><p>对任意 $t$，必有 $f(t+h) &gt; f(t)$。递推可得：</p><script type="math/tex; mode=display">f(0) < f(h) < f(2h) < f(3h) < \cdots</script><p>同时取 $-h$：因为 $h \in D$，即 $f(t+h)&gt;f(t)$ 恒成立，那么 $f(t-h) \le f(t) $ 恒成立，即 $-h \notin D$。</p><p>再结合集合一致性：若存在两点函数值不等，必然能找到某个 $h$，使得对部分基点满足 $f(x+h)&gt;f(x)$、对另一部分不满足，这与 $D(x) \equiv D(0)$ 矛盾。</p><p>因此假设不成立，故</p><script type="math/tex; mode=display">\boldsymbol{f(x) \text{ 为常函数}}</script><p>得证。</p>]]>
+      <![CDATA[<p>2026 新高考 Ⅰ 卷数学压轴题（第 19 题）以分段函数为载体，定义了函数的”上升方向集” $D(x_0)$，三问从具体求值到抽象证明层层递进。题目考查分段函数求值、奇偶性与单调性、集合包含等中学知识，背后则关联凸分析中的集合值映射、单调算子理论等高等数学概念。第 (3) 题的核心条件 $D(x) \equiv D(0)$ 本质是平移不变性——积分是典型的平移不变泛函，函数平移不改变积分值；这一性质在信号处理（线性时不变系统 LTI）、偏微分方程和傅里叶分析中都有核心地位。</p><span id="more"></span><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>已知函数 $f(x)$ 定义在 $\mathbb{R}$ 上，且满足：</p><ul><li>当 $x \ge 0$ 时，$f(x)=1-x$；</li><li>当 $x &lt; 0$ 时，$f(x)=2^x$。</li></ul><p>对任意 $x_0 \in \mathbb{R}$，定义集合：</p><script type="math/tex; mode=display">D(x_0)=\{\,d\in\mathbb{R}\mid f(x_0+d) > f(x_0)\,\}</script><ol><li>求集合 $D(-1)$；</li><li>若 $f(x)$ 为奇函数，且 $x_1 &lt; x_2$，证明：$D(x_1) \subseteq D(x_2)$；</li><li>若对任意 $x \in \mathbb{R}$，均有 $D(x)=D(0)$，证明：$f(x)$ 是常函数。</li></ol><h2 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h2><h2 id="第-1-题：求-D-1"><a href="#第-1-题：求-D-1" class="headerlink" title="第 (1) 题：求 $D(-1)$"></a>第 (1) 题：求 $D(-1)$</h2><p><strong>第一步：计算 $f(-1)$</strong></p><p>$-1 &lt; 0$，代入第二段解析式：</p><script type="math/tex; mode=display">f(-1)=2^{-1}=\dfrac{1}{2}</script><p><strong>第二步：令 $x_0=-1$，条件变为</strong></p><script type="math/tex; mode=display">f(-1+d) > \dfrac{1}{2}</script><p>设 $t=d-1$，即解 $f(t)&gt;\dfrac{1}{2}$，分两段讨论：</p><ul><li>当 $t&lt;0$ 时，$f(t)=2^t$：</li></ul><script type="math/tex; mode=display">2^t > \dfrac{1}{2} \implies 2^t > 2^{-1} \implies t > -1</script><p>结合前提 $t&lt;0$，得 $\boldsymbol{-1 &lt; t &lt; 0}$。</p><ul><li>当 $t \ge 0$ 时，$f(t)=1-t$：</li></ul><script type="math/tex; mode=display">1-t > \dfrac{1}{2} \implies t < \dfrac{1}{2}</script><p>结合前提 $t \ge 0$，得 $\boldsymbol{0 \le t &lt; \dfrac{1}{2}}$。</p><p><strong>第三步：综合两段</strong></p><script type="math/tex; mode=display">-1 < t < \dfrac{1}{2}</script><p>代回 $t=d-1$：</p><script type="math/tex; mode=display">-1 < d-1 < \dfrac{1}{2} \implies 0 < d < \dfrac{3}{2}</script><p>结论：</p><script type="math/tex; mode=display">\boldsymbol{D(-1)=\left\{\,d\,\bigg|\, 0 < d < \dfrac{3}{2}\,\right\}}</script><h2 id="第-2-题：-f-为奇函数，-x-1-lt-x-2-，证-D-x-1-subseteq-D-x-2"><a href="#第-2-题：-f-为奇函数，-x-1-lt-x-2-，证-D-x-1-subseteq-D-x-2" class="headerlink" title="第 (2) 题：$f$ 为奇函数，$x_1 &lt; x_2$，证 $D(x_1) \subseteq D(x_2)$"></a>第 (2) 题：$f$ 为奇函数，$x_1 &lt; x_2$，证 $D(x_1) \subseteq D(x_2)$</h2><p><strong>前置分析</strong></p><p>由原题分段式 + 奇函数性质，先补全 $f(x)$：</p><p>已知 $x&gt;0$ 时 $f(x)=1-x$；奇函数满足 $f(-x)=-f(x)$，且 $f(0)=0$。</p><ul><li>$x&gt;0$：$f(x)=1-x$，单调递减；</li><li>$x&lt;0$：$f(x)=-f(-x)=-[1-(-x)]=-1-x$，单调递减。</li></ul><p>可验证 $f(x)$ 在 $\mathbb{R}$ 上整体单调递减。</p><p><strong>集合定义分析</strong></p><script type="math/tex; mode=display">d \in D(x) \iff f(x+d) > f(x)</script><p>因 $f(x)$ 单调递减，不等号方向翻转：</p><script type="math/tex; mode=display">f(x+d) > f(x) \iff x+d < x \iff d < 0</script><p>即对任意 $x \in \mathbb{R}$，都有 $D(x)={\,d\mid d&lt;0\,}$。</p><p><strong>证明</strong></p><p>对任意 $d \in D(x_1)$，有 $d&lt;0$，则必然 $d \in D(x_2)$。</p><p>由子集定义：</p><script type="math/tex; mode=display">\boldsymbol{D(x_1) \subseteq D(x_2)}</script><p>得证。</p><h2 id="第-3-题：-forall-x-in-mathbb-R-D-x-D-0-，证-f-为常函数"><a href="#第-3-题：-forall-x-in-mathbb-R-D-x-D-0-，证-f-为常函数" class="headerlink" title="第 (3) 题：$\forall x\in\mathbb{R},\ D(x)=D(0)$，证 $f$ 为常函数"></a>第 (3) 题：$\forall x\in\mathbb{R},\ D(x)=D(0)$，证 $f$ 为常函数</h2><p><strong>条件整理</strong></p><p>记 $D=D(0)$，则对任意 $x$：</p><script type="math/tex; mode=display">f(x+d) > f(x) \iff d \in D, \quad \forall x \in \mathbb{R}</script><p><strong>反证法证明</strong></p><p>假设 $f(x)$ 不是常函数，则存在 $a, b \in \mathbb{R}$，使得 $f(a) \ne f(b)$。</p><p>取任意实数 $h$，对比两处条件：</p><script type="math/tex; mode=display">\begin{cases}f(0+h) > f(0) \iff h \in D \\f(x+h) > f(x) \iff h \in D\end{cases}</script><p>这说明：不等关系 $f(u+h)&gt;f(u)$ 与基点 $u$ 无关，仅由 $h$ 决定。</p><p><strong>任取两点分析</strong></p><p>任取两点 $x, y$，令 $h=y-x$，则 $y=x+h$。分类讨论：</p><ul><li>若 $h \in D$：则 $f(y)=f(x+h) &gt; f(x)$；</li><li>若 $h \notin D$：则 $f(y)=f(x+h) \le f(x)$。</li></ul><p><strong>构造矛盾</strong></p><p>假设存在 $x_0$ 使得 $f(x_0) \ne f(0)$：</p><p>不妨设 $f(x_0) &gt; f(0)$，令 $h=x_0$，则 $f(0+h) &gt; f(0)$，故 $h \in D$。</p><p>对任意 $t$，必有 $f(t+h) &gt; f(t)$。递推可得：</p><script type="math/tex; mode=display">f(0) < f(h) < f(2h) < f(3h) < \cdots</script><p>同时取 $-h$：因为 $h \in D$，即 $f(t+h)&gt;f(t)$ 恒成立，那么 $f(t-h) \le f(t) $ 恒成立，即 $-h \notin D$。</p><p>再结合集合一致性：若存在两点函数值不等，必然能找到某个 $h$，使得对部分基点满足 $f(x+h)&gt;f(x)$、对另一部分不满足，这与 $D(x) \equiv D(0)$ 矛盾。</p><p>因此假设不成立，故</p><script type="math/tex; mode=display">\boldsymbol{f(x) \text{ 为常函数}}</script><p>得证。</p>]]>
     </content>
     <id>https://www.zebin-yue.top/post/2026/6/%E6%95%B0%E5%AD%A6%E5%8E%8B%E8%BD%B4%E9%A2%98.html</id>
     <link href="https://www.zebin-yue.top/post/2026/6/%E6%95%B0%E5%AD%A6%E5%8E%8B%E8%BD%B4%E9%A2%98.html"/>
     <published>2026-06-15T13:30:00.000Z</published>
     <summary>
-      <![CDATA[<p>2026 年高考落幕后，新高考 Ⅰ 卷数学第 19 题迅速成为热议话题。这道压轴大题以分段函数为载体，定义了一个与函数值比较相关的集合 $D(x_0)$，三问层层递进：从具体求值，到利用奇函数性质证明集合包含关系，再到抽象证明函数为常函数。题目不依赖复杂计算，更侧重逻辑推理能力，区分度很高。</p>
-<p><strong>涉及的中学数学知识：</strong></p>
-<ul>
-<li>分段函数的定义与求值</li>
-<li>函数的奇偶性、单调性</li>
-<li>集合的包含关系与子集证明</li>
-<li>不等式求解（指数不等式、一次不等式）</li>
-</ul>
-<p><strong>关联的高等数学背景：</strong></p>
-<ul>
-<li><strong>集合值映射（Set-valued mapping）</strong>：$D(x_0)$ 将每个点 $x_0$ 映射为一个实数集合，本质上是函数的”上升方向集”，在凸分析和非光滑分析中有重要地位。</li>
-<li><strong>单调算子理论</strong>：第 (2) 题中单调递减函数的上升方向集恒为负半轴，这与单调算子的性质密切相关——单调算子是凸优化中梯度下降法收敛性分析的基础工具。</li>
-<li><strong>平移不变性与常函数</strong>：第 (3) 题的核心条件 $D(x) \equiv D(0)$ 要求函数在每一点的”上升方向”完全相同，这种平移不变性在测度论中对应 Haar 测度的唯一性，在泛函分析中则与平移不变泛函相关。</li>
-<li><strong>反证法与递推</strong>：第 (3) 题的证明思路——假设非常函数则构造严格递增列导致矛盾——与高等数学中证明确界存在性、Cauchy 收敛准则等定理的方法一脉相承。</li>
-</ul>]]>
+      <![CDATA[<p>2026 新高考 Ⅰ 卷数学压轴题（第 19 题）以分段函数为载体，定义了函数的”上升方向集” $D(x_0)$，三问从具体求值到抽象证明层层递进。题目考查分段函数求值、奇偶性与单调性、集合包含等中学知识，背后则关联凸分析中的集合值映射、单调算子理论等高等数学概念。第 (3) 题的核心条件 $D(x) \equiv D(0)$ 本质是平移不变性——积分是典型的平移不变泛函，函数平移不改变积分值；这一性质在信号处理（线性时不变系统 LTI）、偏微分方程和傅里叶分析中都有核心地位。</p>]]>
     </summary>
     <title>高考数学压轴题</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -86,7 +72,7 @@
 <h2 id="杨奇函：满分似乎只在技巧"><a href="#杨奇函：满分似乎只在技巧" class="headerlink" title="杨奇]]>
     </summary>
     <title>高考满分作文者的人生</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -106,7 +92,7 @@
       <![CDATA[<h1 id="人生是虚无的"><a href="#人生是虚无的" class="headerlink" title="人生是虚无的"></a>人生是虚无的</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"><]]>
     </summary>
     <title>人生是虚无的</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -127,7 +113,7 @@
 <p>之前和Gemini聊天，我意识到一个为人处世很重要的原则，那就是生活中没有对错。联想到我知道的身边认识的人的一些游走在甚至已经触犯法律的行为，我想对这句话补充一点，那就是法律有对错，生活没有对错。我们在生活中]]>
     </summary>
     <title>关于嫖娼一二事</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -147,7 +133,7 @@
       <![CDATA[<p>在聊配色之前，先搞清楚一个很多人从没想过的问题：你手机屏幕上的颜色，和画纸上的颜色，其实不是同一回事。屏幕是发光的——在完全黑暗的房间里，每个像素点是三盏小灯泡（红、绿、蓝），往你眼睛里灌光。开一盏红灯加一盏绿灯，叠出黄色；三盏全开，叠出白色。光越加越亮，加到头就是白，这叫]]>
     </summary>
     <title>配色方案</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -167,7 +153,7 @@
       <![CDATA[<h1 id="共享代码库引发的编译错误排查"><a href="#共享代码库引发的编译错误排查" class="headerlink" title="共享代码库引发的编译错误排查"></a>共享代码库引发的编译错误排查</h1><h2 id="一个故事"><a href="#一]]>
     </summary>
     <title>共享代码库引发的编译错误排查</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -188,7 +174,7 @@
 <p>]]>
     </summary>
     <title>回顾我的高中</title>
-    <updated>2026-06-10T03:10:39.857Z</updated>
+    <updated>2026-06-10T03:17:40.408Z</updated>
   </entry>
   <entry>
     <author>
@@ -208,7 +194,7 @@
       <![CDATA[<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>这个文档记录了来自大学同学对于陈皓的追思， 因为大学同学很多都不是从事IT技术类相关的工作，因此一些只言片语的记录都会汇集到我这里来进行汇总]]>
     </summary>
     <title>纪念左耳朵耗子</title>
-    <updated>2026-06-10T03:10:39.856Z</updated>
+    <updated>2026-06-10T03:17:40.407Z</updated>
   </entry>
   <entry>
     <author>
@@ -228,6 +214,6 @@
       <![CDATA[<h2 id="我学写作文的经历及如何写好作文"><a href="#我学写作文的经历及如何写好作文" class="headerlink" title="　我学写作文的经历及如何写好作文"></a>　我学写作文的经历及如何写好作文</h2><p>本来是给陈莲春老师以后的学生，校]]>
     </summary>
     <title>我学写作文的经历及如何写好作文</title>
-    <updated>2026-06-10T03:10:39.856Z</updated>
+    <updated>2026-06-10T03:17:40.407Z</updated>
   </entry>
 </feed>
