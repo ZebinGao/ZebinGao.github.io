@@ -91,14 +91,15 @@
                 <% if (site.data.music) { %>
                     <% site.data.music.forEach(function(item) { %>
                         <% if (item.url) { %>
-                            <a class="hobby-card" href="<%- item.url %>">
+                            <a class="hobby-card music-card" href="<%- item.url %>" data-title="<%- item.title %>" data-artist="<%- item.artist || '' %>">
                         <% } else { %>
-                            <div class="hobby-card">
+                            <div class="hobby-card music-card" data-title="<%- item.title %>" data-artist="<%- item.artist || '' %>">
                         <% } %>
+                            <button class="music-play-btn" data-title="<%- item.title %>" data-artist="<%- item.artist || '' %>" title="播放">&#9654;</button>
                             <div class="hobby-card-title"><%- item.title %></div>
                             <div class="hobby-card-meta">
                                 <% if (item.artist) { %><%- item.artist %><% } %>
-                                <% if (item.artist && item.date) { %> · <% } %>
+                                <% if (item.artist && item.date) { %> &middot; <% } %>
                                 <% if (item.date) { %><%- item.date.substring(0, 4) %><% } %>
                             </div>
                             <% if (item.note) { %>
@@ -115,6 +116,22 @@
         </div>
     </div>
 </article>
+
+<!-- 浮动音乐播放器 -->
+<div class="music-player" id="musicPlayer">
+    <div class="music-player-progress-wrap" id="playerProgressWrap">
+        <div class="music-player-progress-bar" id="playerProgressBar"></div>
+    </div>
+    <div class="music-player-body">
+        <button class="music-player-btn" id="playerPlayBtn" title="播放/暂停">&#9654;</button>
+        <div class="music-player-info">
+            <span class="music-player-title" id="playerTitle"></span>
+            <span class="music-player-artist" id="playerArtist"></span>
+        </div>
+        <span class="music-player-time" id="playerTime">0:00 / 0:00</span>
+        <button class="music-player-close" id="playerClose" title="关闭">&times;</button>
+    </div>
+</div>
 
 <script>
 (function() {
@@ -181,6 +198,198 @@
             currentStatus = tab.getAttribute('data-filter');
             filterByStatus(sections[currentTab]);
         });
+    });
+
+    // ===== 音乐播放器 =====
+    var base = 'https://raw.githubusercontent.com/ZebinGao/MyFavouriteMusic/main/%E9%9F%B3%E4%B9%90/';
+    var mf = {
+        '小夜曲': 'FranzSchubert-小夜曲.mp3',
+        '江苏省泰州中学校歌': '江苏省泰州中学合唱团-江苏省泰州中学校歌.mp3',
+        '梦中的婚礼': 'RichardClayderman-梦中的婚礼.mp3',
+        '吻别': '张学友-吻别.mp3',
+        '不管别人怎么说': '李丽珍-不管别人怎么说.mp3',
+        '一剪梅': '高胜美-一剪梅.mp3',
+        '喜欢你': 'Beyond-喜欢你.mp3',
+        '假行僧': '崔健-假行僧.mp3',
+        '把根留住': '童安格-把根留住.mp3',
+        '星星点灯': '郑智化-星星点灯.mp3',
+        '挪威的森林': '伍佰_挪威的森林.mp3',
+        '幽灵公主': '久石譲-幽灵公主.mp3',
+        '当 (Live)': '动力火车-当(Live).mp3',
+        'Amore': '坂本龍一-Amore.mp3',
+        'Rain': '坂本龍一-Rain.mp3',
+        'Solitude': '坂本龍一-Solitude.mp3',
+        '相思': '毛阿敏-相思.mp3',
+        '如果这都不算爱': '张学友-如果这都不算爱.mp3',
+        '一生有你': '水木年华-一生有你.mp3',
+        '忘忧草': '安蕾尔-忘忧草.mp3',
+        '蓝莲花': '许巍_蓝莲花.mp3',
+        'An Die Sterne': "NeniaC'Alladhan,SoporAeternus-AnDieSterne.mp3",
+        '离歌': '信乐团-离歌.mp3',
+        '春泥': '庾澄庆_春泥.mp3',
+        '潮鳴り': 'VISUALARTS／Key-潮鳴り.mp3',
+        '潮鳴り II': 'VISUALARTS／Key-潮鳴りII.mp3',
+        '丁香花': '唐磊-丁香花.mp3',
+        '曾经的你': '许巍-曾经的你.mp3',
+        '那一夜': '谢军-那一夜.mp3',
+        '怒放的生命': '汪峰_怒放的生命.mp3',
+        '隐形的翅膀': '张韶涵_隐形的翅膀.mp3',
+        'Keine wie du': 'LaithAl-Deen-Keinewiedu.mp3',
+        '万物生': '萨顶顶_万物生.mp3',
+        'An Deiner Seite': 'Unheilig-AnDeinerSeite.mp3',
+        'Liebe heisst Schmerz': 'Eisblume-LiebeheisstSchmerz.mp3',
+        'Five Hundred Miles': 'OrlaFallon-FiveHundredMiles.mp3',
+        '新婚别': '武玮-新婚别.mp3',
+        'Zwei kleine Wölfe': 'KuljuginE.V.-ZweikleineWölfe.mp3',
+        '自由行走的花': '萨顶顶_自由行走的花.mp3',
+        '夜空中最亮的星': '逃跑计划-夜空中最亮的星.mp3',
+        '夜的钢琴曲五': '邓壬鑫-夜的钢琴曲五.mp3',
+        '金属吉他版《忐忑》（Cover 龚琳娜）': '崔冠可-龚琳娜-金属吉他版《忐忑》（Cover-龚琳娜）.mp3',
+        '未闻花名 (口琴版)': 'V.A.-未闻花名(口琴版).mp3',
+        'Echt': 'Glasperlenspiel-Echt.mp3',
+        '南方姑娘': '赵雷-南方姑娘.mp3',
+        '画': '赵雷_画.mp3',
+        '煎熬 (Live)': '李佳薇-煎熬(Live).mp3',
+        'Ich kann Dich sehen': 'Eisblume-IchkannDichsehen.mp3',
+        '奢香夫人': '凤凰传奇-奢香夫人.mp3',
+        '最炫民族风 (Live)': '凤凰传奇-最炫民族风(Live).mp3',
+        '春天里 (Live)': '汪峰-春天里(Live).mp3',
+        '红色高跟鞋': '蔡健雅-红色高跟鞋.mp3',
+        '抛物线': '蔡健雅-抛物线.mp3',
+        '给自己的歌': '李宗盛_给自己的歌.mp3',
+        '小赖皮之歌 Schnappi': '鳄鱼宝贝-小赖皮之歌Schnappi.mp3',
+        'Eisblume': 'Eisblume-EinLiebeslied.mp3',
+        'Ewig': 'Eisblume-Ewig.mp3',
+        'Für immer': 'Eisblume-Fürimmer.mp3',
+        'Nie mehr': 'Cro-Niemehr.mp3',
+        'Du und Ich': 'MarkForster-DuundIch.mp3',
+        'Ich & Du': 'AnnaDepenbusch,MarkForster-Ich&Du.mp3',
+        '桜道': "Jusqu'àGrand-Père-桜道.mp3",
+        'Das Leben': 'JasonAnousheh-DasLeben.mp3',
+        'Sexxx Dreams': 'LadyGaga-SexxxDreams.mp3',
+        'Venus': 'LadyGaga-Venus.mp3',
+        '安河桥': '宋东野_安河桥.m4a',
+        '你不是真正的快乐 (Live)': 'G.E.M.邓紫棋-你不是真正的快乐(Live).mp3',
+        '三十岁是女人': '赵雷_三十岁是女人.mp3',
+        '我们的时光': '赵雷_我们的时光.mp3',
+        '平凡之路': '朴树-平凡之路.mp3',
+        '我的滑板鞋': '约瑟翰庞麦郎-我的滑板鞋.mp3',
+        '僕が死のうと思ったのは': '中島美嘉-僕が死のうと思ったのは.mp3',
+        '北方的女王 (demo)': '尧十三-北方的女王(demo).mp3',
+        'Photograph': 'photograph.mp3',
+        '悟空': '戴荃-悟空.mp3',
+        '斑马斑马': '房东的猫-斑马斑马.mp3',
+        '情非得已 (中英文版)': '汪定中-情非得已(中英文版).mp3',
+        'Erkläre mir die Liebe': 'PhilippPoisel-ErkläremirdieLiebe.mp3',
+        '童话镇': '暗杠-童话镇.mp3',
+        '性空山': '陈粒-性空山.mp3',
+        '理想三旬': '陈鸿宇-理想三旬.mp3',
+        'Despacito (Remix)': 'LuisFonsi,DaddyYankee,JustinBieber-Despacito(Remix).mp3',
+        'Shape of You': 'shapeOfYou.mp3',
+        '盗将行': '花粥,马雨阳-盗将行.mp3',
+        '凡人歌 (Live)': '纵贯线-凡人歌(Live).mp3',
+        '左手指月': '萨顶顶_左手指月.mp3',
+        '我的将军啊': '半阳-我的将军啊.mp3',
+        '起风了': '买辣椒也用券-起风了.mp3',
+        '大话西游': '深七-大话西游.mp3',
+        '大鱼（法语版）（翻自周深）': 'Yikoko,黄胖紫Seb-大鱼（法语版）（翻自周深）.mp3',
+        '锦瑟': '婷婷姐姐-锦瑟.mp3',
+        '学府路上的姑娘 demo': '孙振宇-学府路上的姑娘 demo.mp3',
+        '阿婆说': '暗杠-阿婆说.mp3',
+        '公子向北走': '李春花-公子向北走.mp3',
+        '那女孩对我说（女生正式版）': '戴羽彤-那女孩对我说（女生正式版）.mp3',
+        '《老家泰州》原创吉他弹唱 demo': '郑冰冰-《老家泰州》原创吉他弹唱demo.mp3',
+        '桜舞い': '世间满樱花-桜舞い.mp3',
+        '盛夏的果实（抖音烟嗓版）': '周旭-盛夏的果实（抖音烟嗓版）.mp3',
+        '破茧': '张韶涵_破茧.mp3',
+        '化身孤岛的鲸': '周深-化身孤岛的鲸.mp3',
+        '欧若拉 (Live)': '张韶涵-欧若拉(Live).mp3',
+        '阿刁': '张韶涵_阿刁.mp3',
+        '羞答答的玫瑰静悄悄地开': '杨胖雨-羞答答的玫瑰静悄悄地开.mp3',
+        '爱不留': '小丑女Quinn-爱不留.mp3',
+        '人间烟火': '程响-人间烟火.mp3',
+        '庄子《逍遥游》(上)': '雨言-庄子《逍遥游》(上).mp3',
+        '庄子《逍遥游》(下)': '雨言-庄子《逍遥游》(下).mp3',
+        '福州一钟': '雨言-福州一钟.mp3',
+        '烟花易冷 (Live)': '林志炫-烟花易冷(Live).mp3',
+        '勇气 (Live)': '梁静茹-勇气(Live).mp3'
+    };
+
+    var audio = new Audio();
+    var curTitle = '';
+    var playerEl = document.getElementById('musicPlayer');
+    var playBtns = document.querySelectorAll('.music-play-btn');
+
+    // Show play buttons only for songs with audio files
+    playBtns.forEach(function(b) {
+        if (mf[b.dataset.title]) b.classList.add('has-audio');
+    });
+
+    function fmt(s) {
+        var m = Math.floor(s / 60), sec = Math.floor(s % 60);
+        return m + ':' + (sec < 10 ? '0' : '') + sec;
+    }
+
+    function updateUI(playing) {
+        document.getElementById('playerPlayBtn').innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+        playBtns.forEach(function(b) {
+            if (b.dataset.title === curTitle) {
+                b.innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+                b.closest('.music-card').classList.toggle('playing', playing);
+            } else {
+                b.innerHTML = '&#9654;';
+            }
+        });
+    }
+
+    function playSong(title, artist) {
+        var file = mf[title];
+        if (!file) return;
+        if (curTitle === title && !audio.paused) {
+            audio.pause(); updateUI(false); return;
+        }
+        if (curTitle !== title) { audio.src = base + encodeURIComponent(file); curTitle = title; }
+        audio.play();
+        document.getElementById('playerTitle').textContent = title;
+        document.getElementById('playerArtist').textContent = artist;
+        playerEl.classList.add('active');
+        document.querySelectorAll('.music-card').forEach(function(c) { c.classList.remove('playing'); });
+        updateUI(true);
+    }
+
+    playBtns.forEach(function(btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); e.stopPropagation();
+            playSong(btn.dataset.title, btn.dataset.artist);
+        });
+    });
+
+    document.getElementById('playerPlayBtn').addEventListener('click', function() {
+        if (!curTitle) return;
+        if (audio.paused) { audio.play(); updateUI(true); }
+        else { audio.pause(); updateUI(false); }
+    });
+
+    document.getElementById('playerClose').addEventListener('click', function() {
+        audio.pause(); audio.src = ''; curTitle = '';
+        playerEl.classList.remove('active');
+        document.querySelectorAll('.music-card').forEach(function(c) { c.classList.remove('playing'); });
+        updateUI(false);
+    });
+
+    audio.addEventListener('timeupdate', function() {
+        if (!audio.duration) return;
+        var pct = (audio.currentTime / audio.duration) * 100;
+        document.getElementById('playerProgressBar').style.width = pct + '%';
+        document.getElementById('playerTime').textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+    });
+
+    audio.addEventListener('ended', function() { updateUI(false); });
+
+    document.getElementById('playerProgressWrap').addEventListener('click', function(e) {
+        if (!audio.duration) return;
+        var rect = this.getBoundingClientRect();
+        audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
     });
 })();
 </script>
