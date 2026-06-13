@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器方案 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/favicon.png" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">音乐播放器方案</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年06月28日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/hexo/" rel="tag">hexo</a>, <a class="tag-none-link" href="/tags/%E7%A1%AC%E7%BC%96%E7%A0%81/" rel="tag">硬编码</a>, <a class="tag-none-link" href="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/" rel="tag">音乐播放器</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <p>「兴趣爱好」页面的「音乐」Tab 采用了一套<strong>零第三方依赖、纯原生 HTML5 Audio</strong> 的自研播放器方案。本文梳理其数据流、渲染结构与播放逻辑，作为后续维护与重构的参考。</p>
+<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p>播放器由三层组成，职责清晰分离：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs scss">music<span class="hljs-selector-class">.yml</span> (数据)  ──►  hobbies<span class="hljs-selector-class">.ejs</span> (渲染卡片 + 硬编码映射)  ──►  原生 <span class="hljs-selector-tag">Audio</span> API (播放)<br>                                              │<br>                                              ▼<br>                                  GitHub Raw 仓库 (mp3 源)<br></code></pre></td></tr></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>层</th>
+<th>文件</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据层</td>
+<td><a href="source/_data/music.yml">source/_data/music.yml</a></td>
+<td>歌曲元数据（标题、歌手、日期、注释、跳转链接）</td>
+</tr>
+<tr>
+<td>渲染层</td>
+<td><a href="themes/Zebin-Theme/layout/hobbies.ejs">themes/Zebin-Theme/layout/hobbies.ejs</a></td>
+<td>渲染音乐卡片 + 内嵌播放器脚本</td>
+</tr>
+<tr>
+<td>音频源</td>
+<td><code>ZebinGao/MyFavouriteMusic</code> GitHub 仓库</td>
+<td>存放实际 mp3 文件</td>
+</tr>
+<tr>
+<td>样式</td>
+<td><a href="themes/Zebin-Theme/source/css/style.css">themes/Zebin-Theme/source/css/style.css</a></td>
+<td>卡片播放按钮、浮动播放器、进度条</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="数据层：music-yml"><a href="#数据层：music-yml" class="headerlink" title="数据层：music.yml"></a>数据层：music.yml</h2><p>每首歌是一条结构化记录，<strong>不含音频文件名</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">title:</span> <span class="hljs-string">&quot;吻别&quot;</span><br>  <span class="hljs-attr">artist:</span> <span class="hljs-string">&quot;张学友&quot;</span><br>  <span class="hljs-attr">date:</span> <span class="hljs-string">&quot;1993-03-05&quot;</span><br>  <span class="hljs-attr">note:</span> <span class="hljs-string">&quot;我和你吻别在无人的街，让风痴笑我不能拒绝。&quot;</span><br>  <span class="hljs-attr">url:</span> <span class="hljs-string">&quot;/wiki/music/#吻别&quot;</span>   <span class="hljs-comment"># 卡片点击跳转到 wiki 详情页</span><br></code></pre></td></tr></table></figure>
+<p>卡片本身是可点击的 <code>&lt;a&gt;</code>（带 <code>url</code>）或 <code>&lt;div&gt;</code>（无 <code>url</code>），整张卡片承载跳转逻辑，<strong>播放按钮是叠在卡片上的独立元素</strong>。</p>
+<h2 id="渲染层：音乐卡片"><a href="#渲染层：音乐卡片" class="headerlink" title="渲染层：音乐卡片"></a>渲染层：音乐卡片</h2><p><a href="themes/Zebin-Theme/layout/hobbies.ejs#L89-L116">hobbies.ejs:89-116</a> 遍历 <code>site.data.music</code>，每张卡片渲染出标题、歌手/年份、注释，并附一个播放按钮：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hobby-card music-card&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;...&quot;</span> <span class="hljs-attr">data-title</span>=<span class="hljs-string">&quot;吻别&quot;</span> <span class="hljs-attr">data-artist</span>=<span class="hljs-string">&quot;张学友&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;music-play-btn&quot;</span> <span class="hljs-attr">data-title</span>=<span class="hljs-string">&quot;吻别&quot;</span> <span class="hljs-attr">data-artist</span>=<span class="hljs-string">&quot;张学友&quot;</span>&gt;</span>▶<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hobby-card-title&quot;</span>&gt;</span>吻别<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;hobby-card-meta&quot;</span>&gt;</span>张学友 · 1993<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<blockquote>
+<p>关键：按钮通过 <code>data-title</code> 携带歌名，作为后续查找音频文件的索引键。</p>
+</blockquote>
+<h2 id="核心设计：硬编码映射表-mf"><a href="#核心设计：硬编码映射表-mf" class="headerlink" title="核心设计：硬编码映射表 mf"></a>核心设计：硬编码映射表 <code>mf</code></h2><p>这是整套方案最关键、也最值得记录的特点——<strong>「歌名 → mp3 文件名」的映射被硬编码在模板的 <code>&lt;script&gt;</code> 里</strong>，而非来自数据文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> base = <span class="hljs-string">&#x27;https://raw.githubusercontent.com/ZebinGao/MyFavouriteMusic/main/%E9%9F%B3%E4%B9%90/&#x27;</span>;<br><span class="hljs-keyword">var</span> mf = &#123;<br>    <span class="hljs-string">&#x27;小夜曲&#x27;</span>: <span class="hljs-string">&#x27;FranzSchubert-小夜曲.mp3&#x27;</span>,<br>    <span class="hljs-string">&#x27;吻别&#x27;</span>: <span class="hljs-string">&#x27;张学友-吻别.mp3&#x27;</span>,<br>    <span class="hljs-string">&#x27;蓝莲花&#x27;</span>: <span class="hljs-string">&#x27;许巍_蓝莲花.mp3&#x27;</span>,<br>    <span class="hljs-comment">// ... 共 100+ 首</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+<p>完整映射见 <a href="themes/Zebin-Theme/layout/hobbies.ejs#L204-L316">hobbies.ejs:204-316</a>。</p>
+<p><strong>渲染时按映射是否存在来决定是否显示播放按钮</strong>——只有能播的歌才会露出 ▶：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">playBtns.<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span>(<span class="hljs-params">b</span>) &#123;<br>    <span class="hljs-keyword">if</span> (mf[b.<span class="hljs-property">dataset</span>.<span class="hljs-property">title</span>]) b.<span class="hljs-property">classList</span>.<span class="hljs-title function_">add</span>(<span class="hljs-string">&#x27;has-audio&#x27;</span>);  <span class="hljs-comment">// CSS 仅对 .has-audio 显示</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+<h2 id="播放逻辑"><a href="#播放逻辑" class="headerlink" title="播放逻辑"></a>播放逻辑</h2><h3 id="1-单例-Audio-元素"><a href="#1-单例-Audio-元素" class="headerlink" title="1. 单例 Audio 元素"></a>1. 单例 Audio 元素</h3><p>全局只创建一个 <code>new Audio()</code>，所有歌曲复用它（<a href="themes/Zebin-Theme/layout/hobbies.ejs#L318">hobbies.ejs:318</a>）。切换歌曲时只改 <code>src</code>，不新建对象。</p>
+<h3 id="2-点击播放"><a href="#2-点击播放" class="headerlink" title="2. 点击播放"></a>2. 点击播放</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">function</span> <span class="hljs-title function_">playSong</span>(<span class="hljs-params">title, artist</span>) &#123;<br>    <span class="hljs-keyword">var</span> file = mf[title];<br>    <span class="hljs-keyword">if</span> (!file) <span class="hljs-keyword">return</span>;<br>    <span class="hljs-comment">// 再次点击同一首歌 → 暂停</span><br>    <span class="hljs-keyword">if</span> (curTitle === title &amp;&amp; !audio.<span class="hljs-property">paused</span>) &#123; audio.<span class="hljs-title function_">pause</span>(); <span class="hljs-title function_">updateUI</span>(<span class="hljs-literal">false</span>); <span class="hljs-keyword">return</span>; &#125;<br>    <span class="hljs-comment">// 换歌 → 拼接 URL（encodeURIComponent 处理中文/特殊字符文件名）</span><br>    <span class="hljs-keyword">if</span> (curTitle !== title) &#123; audio.<span class="hljs-property">src</span> = base + <span class="hljs-built_in">encodeURIComponent</span>(file); curTitle = title; &#125;<br>    audio.<span class="hljs-title function_">play</span>();<br>    <span class="hljs-comment">// 弹出底部浮动播放器，更新标题/歌手，高亮当前卡片</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="3-浮动播放器"><a href="#3-浮动播放器" class="headerlink" title="3. 浮动播放器"></a>3. 浮动播放器</h3><p><a href="themes/Zebin-Theme/layout/hobbies.ejs#L120-L134">hobbies.ejs:120-134</a> 是一个固定在底部的播放条，首次播放后通过 <code>.active</code> 类 <code>display:block</code> 滑入（<code>slideUp</code> 动画）。包含：</p>
+<ul>
+<li><strong>播放/暂停按钮</strong>：图标在 <code>▶</code> / <code>❚❚</code> 间切换</li>
+<li><strong>标题 + 歌手</strong>：单行省略</li>
+<li><strong>时间显示</strong>：<code>当前 / 总时长</code>，<code>timeupdate</code> 事件实时更新</li>
+<li><strong>进度条</strong>：可点击拖拽 seek（按点击位置占比换算 <code>currentTime</code>）</li>
+<li><strong>关闭按钮</strong>：暂停、清空 <code>src</code>、收起播放器、移除所有卡片高亮</li>
+</ul>
+<h3 id="4-状态同步-updateUI"><a href="#4-状态同步-updateUI" class="headerlink" title="4. 状态同步 updateUI"></a>4. 状态同步 <code>updateUI</code></h3><p>播放/暂停时同时更新<strong>两处</strong> UI：浮动播放器的主按钮，以及对应卡片的播放按钮和高亮态（<code>.music-card.playing</code> 加 accent 描边）。</p>
+<h2 id="样式要点"><a href="#样式要点" class="headerlink" title="样式要点"></a>样式要点</h2><p>位于 <a href="themes/Zebin-Theme/source/css/style.css#L644-L824">style.css:644-824</a>：</p>
+<ul>
+<li><strong>卡片播放按钮</strong> <code>.music-play-btn</code>：默认 <code>display:none</code>，仅 <code>.has-audio</code> 显示；hover 卡片时也强制显示。</li>
+<li><strong>浮动播放器</strong> <code>.music-player</code>：<code>position:fixed; bottom:0</code>，<code>.active</code> 控制显隐，<code>slideUp</code> 进场。</li>
+<li><strong>进度条</strong> <code>.music-player-progress-wrap</code>：默认 3px，hover 撑高到 6px，bar 用 <code>--accent</code> 色。</li>
+<li><strong>深色模式</strong>：<code>[data-theme=&quot;dark&quot;]</code> 单独覆盖播放器背景与阴影。</li>
+<li><strong>响应式</strong>：≤768px 隐藏时间显示、缩小按钮与内边距。</li>
+</ul>
+<h2 id="方案评价"><a href="#方案评价" class="headerlink" title="方案评价"></a>方案评价</h2><p><strong>优点</strong></p>
+<ul>
+<li>零运行时依赖，不引入 APlayer / MetingJS，加载快、维护简单。</li>
+<li>音频托管在独立 GitHub 仓库，不占用博客仓库体积，CDN 直链。</li>
+<li>卡片（跳转）与按钮（播放）职责分离，互不干扰（按钮 <code>stopPropagation</code>）。</li>
+<li>单例 Audio + 复用，资源开销低。</li>
+</ul>
+<p><strong>缺点 / 待改进</strong></p>
+<ul>
+<li><strong>硬编码映射表是最大债务</strong>：新增/重命名歌曲要同时改 <code>music.yml</code> 和模板里的 <code>mf</code>，两处易脱节。理想的改进是把文件名也写进 <code>music.yml</code>（如增加 <code>audio</code> 字段），渲染时直接 <code>data-audio=&quot;&lt;%- item.audio %&gt;&quot;</code>，彻底消除映射表。</li>
+<li>文件名规范不统一（<code>_</code> 与 <code>-</code> 混用、空格有无不一），<code>encodeURIComponent</code> 虽能兜底，但增加了心智负担。</li>
+<li>无播放列表 / 上一首下一首 / 音量控制；<code>ended</code> 仅复位 UI，不自动连播。</li>
+<li>raw.githubusercontent.com 在国内访问不稳定，可考虑 jsDelivr 镜像或自建对象存储。</li>
+</ul>
+<h2 id="重构方向（备忘）"><a href="#重构方向（备忘）" class="headerlink" title="重构方向（备忘）"></a>重构方向（备忘）</h2><p>若后续重构，最小改动路径：</p>
+<ol>
+<li><code>music.yml</code> 每条增加 <code>audio:</code> 字段（无则不写）。</li>
+<li>模板里渲染 <code>data-audio=&quot;&lt;%- item.audio %&gt;&quot;</code>。</li>
+<li>删除 <code>mf</code> 映射表，<code>playSong</code> 改为直接读按钮的 <code>data-audio</code>。</li>
+</ol>
+<p>即可把「硬编码」彻底改为「数据驱动」，与本站其他模块（movies / books）保持一致。</p>
+
+        
+    </div>
+</article>
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%82%EF%BC%9Amusic-yml"><span class="toc-text">数据层：music.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B2%E6%9F%93%E5%B1%82%EF%BC%9A%E9%9F%B3%E4%B9%90%E5%8D%A1%E7%89%87"><span class="toc-text">渲染层：音乐卡片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E8%AE%BE%E8%AE%A1%EF%BC%9A%E7%A1%AC%E7%BC%96%E7%A0%81%E6%98%A0%E5%B0%84%E8%A1%A8-mf"><span class="toc-text">核心设计：硬编码映射表 mf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%92%AD%E6%94%BE%E9%80%BB%E8%BE%91"><span class="toc-text">播放逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%8D%95%E4%BE%8B-Audio-%E5%85%83%E7%B4%A0"><span class="toc-text">1. 单例 Audio 元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%82%B9%E5%87%BB%E6%92%AD%E6%94%BE"><span class="toc-text">2. 点击播放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%B5%AE%E5%8A%A8%E6%92%AD%E6%94%BE%E5%99%A8"><span class="toc-text">3. 浮动播放器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%8A%B6%E6%80%81%E5%90%8C%E6%AD%A5-updateUI"><span class="toc-text">4. 状态同步 updateUI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E5%BC%8F%E8%A6%81%E7%82%B9"><span class="toc-text">样式要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%A1%88%E8%AF%84%E4%BB%B7"><span class="toc-text">方案评价</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%9E%84%E6%96%B9%E5%90%91%EF%BC%88%E5%A4%87%E5%BF%98%EF%BC%89"><span class="toc-text">重构方向（备忘）</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 17.33px;">AI</a> <a href="/tags/C/" style="font-size: 16px;">C#</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/vpn/" style="font-size: 12px;">vpn</a> <a href="/tags/self-reflection/" style="font-size: 20px;">个人反思</a> <a href="/tags/personal-growth/" style="font-size: 12px;">个人成长</a> <a href="/tags/china-issues/" style="font-size: 18.67px;">中国问题</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
