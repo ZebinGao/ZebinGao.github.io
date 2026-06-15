@@ -10,7 +10,7 @@ tags: [程序员, 遗孀, 转载]
 IP属地：广东
 我先生是个32岁的小部门经理，猝死于2025年11月29日，此号仅用于缅怀我先生。所有谩骂请冲我来，黑子也不必删帖，可@我，我开个直播间咱们实名上去聊，我可先亮身份证。
 
-![alt text](image.png)
+![alt text](/img/posts/content/image.webp)
 
 丈夫的遗物被公司丢掉了
 我老公是个程序员，在家猝死了，当我拿到他的手机的时候还停留在公司页面。刚出事在救护车上我就联系了他的领导，后面也三令五申说了很多遍保管好我老公的东西，我后续会去取，但公司不让我过去收拾。他出事第二周公司给他办了离职，私自处理了我老公的遗物。一开始给我寄了一箱他在公司的私人物品，还有一部分没有给到我，该打包的也没打包好有的东西被压坏了，我看到很生气，觉得非常不尊重人，他虽然去世了对于公司而言确实没有利用价值了，但不代表可以随意践踏！还有一部分也没给到我，我跟他领导沟通希望找到没寄给我的那部份遗物，给了一周多的时间告诉我找不到了要不给我买新的，我缺的是东西吗？知道什么叫遗物吗？丢一件少一件，在公司眼里是垃圾在家属这里不是！于是我去到了公司，我只能报警合理合法要回我老公的遗物，被他领导带到了一层无人经过的小会议室，叫来了风控中心的人敷衍我们，不停推脱要我们等了几个小时就是没答复 ，jc也被磨的没耐心先走了让我们协商。风控的说“丢了就是丢了，你想怎么样咯”态度极差，然后我说我不想被关在这里漫无目的地等待，他不让我离开，我只能自己走楼梯上去我老公生前的工位。公司hr跟风控过来抓我，风控开始用手机拍我说是为了赶我走，我很生气没有经过我同意就拍我，我暴怒要往外走hr抓着我，我当时很生气就大喊我老公领导的名字，对面部门的人听声音探出头来，但很快就被他们领导关上门。风控报警，我妹也报了警，jc来了拉偏架，一直想让我去局里聊，我不肯然后jc劝我，我后面妥协了，协商后表示下午三点给我答复，下午三点法务告诉我找不到了最多给我写个道歉信…目前为止道歉信、丢掉的东西造价赔偿或者遗物统统没有给到我！
@@ -112,52 +112,52 @@ LBJ
 3889
 66
 
-![alt text](image-1.png)
+![alt text](/img/posts/content/image-1.webp)
 
-![alt text](image-2.png)
+![alt text](/img/posts/content/image-2.webp)
 
-![alt text](image-3.png)
+![alt text](/img/posts/content/image-3.webp)
 
-![alt text](image-4.png)
+![alt text](/img/posts/content/image-4.webp)
 
-![alt text](image-5.png)
+![alt text](/img/posts/content/image-5.webp)
 
-![alt text](image-6.png)
+![alt text](/img/posts/content/image-6.webp)
 
-![alt text](image-7.png)
+![alt text](/img/posts/content/image-7.webp)
 
-![alt text](image-8.png)
+![alt text](/img/posts/content/image-8.webp)
 
-![alt text](image-9.png)
+![alt text](/img/posts/content/image-9.webp)
 
-![alt text](image-10.png)
+![alt text](/img/posts/content/image-10.webp)
 
-![alt text](image-11.png)
+![alt text](/img/posts/content/image-11.webp)
 
-![alt text](image-12.png)
+![alt text](/img/posts/content/image-12.webp)
 
-![alt text](image-13.png)
+![alt text](/img/posts/content/image-13.webp)
 
-![alt text](image-14.png)
+![alt text](/img/posts/content/image-14.webp)
 
-![alt text](image-15.png)
+![alt text](/img/posts/content/image-15.webp)
 
-![alt text](image-16.png)
+![alt text](/img/posts/content/image-16.webp)
 
-![alt text](image-17.png)
+![alt text](/img/posts/content/image-17.webp)
 
-![alt text](image-18.png)
+![alt text](/img/posts/content/image-18.webp)
 
-![alt text](image-19.png)
+![alt text](/img/posts/content/image-19.webp)
 
-![alt text](image-20.png)
+![alt text](/img/posts/content/image-20.webp)
 
-![alt text](image-21.png)
+![alt text](/img/posts/content/image-21.webp)
 
-![alt text](image-22.png)
+![alt text](/img/posts/content/image-22.webp)
 
-![alt text](image-23.png)
+![alt text](/img/posts/content/image-23.webp)
 
-![alt text](image-24.png)
+![alt text](/img/posts/content/image-24.webp)
 
-![alt text](image-25.png)
+![alt text](/img/posts/content/image-25.webp)
