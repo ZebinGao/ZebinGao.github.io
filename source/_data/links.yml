@@ -6,7 +6,7 @@
 
 - name: "Zichuan Ma"
   url: "https://ichon.me/"
-  avatar: "/img/friends/zichuan.png"
+  avatar: "/img/friends/zichuan.webp"
   description: "Software engineer at Microsoft. Born in 1990s, lives in Suzhou, China."
   category: "北邮的朋友"
 
@@ -42,7 +42,7 @@
 
 - name: "林汇平"
   url: "https://blog.lhp-pku.top/"
-  avatar: "/img/friends/linhuiping.png"
+  avatar: "/img/friends/linhuiping.webp"
   description: "女高音，如今在清华大学合唱队；我喜欢古典主义与浪漫主义的音乐（莫扎特及之后、肖斯塔科维奇及之前）。西方现代主义及之后的文学作品（波德莱尔之后）"
   category: "清华科班出身"
 
@@ -84,7 +84,7 @@
 
 - name: "HenryHu"
   url: "https://blog.henryhu.net/"
-  avatar: "/img/friends/henry.png"
+  avatar: "/img/friends/henry.webp"
   description: "傻逼PhD转职傻逼码农……"
   category: "清华科班出身"
 
@@ -126,7 +126,7 @@
 
 - name: "水渍"
   url: "https://multisim.me/"
-  avatar: "/img/friends/shuizi.png"
+  avatar: "/img/friends/shuizi.webp"
   description: "帝都第一男子技工学校农民工专业攻学学士"
   category: "清华科班出身"
 
@@ -204,7 +204,7 @@
 
 - name: "优秀个人独立博客导航"
   url: "http://www.jetli.com.cn/"
-  avatar: "/img/friends/jetli.png"
+  avatar: "/img/friends/jetli.webp"
   description: "博客志 / 只收藏有价值的优秀博客 / 你关注的人，决定你看到的世界"
   category: "韩国"
 
@@ -224,14 +224,14 @@
 
 - name: '丁克的90后男生'
   url: 'https://blog.solazy.me/'
-  avatar: "/img/friends/solazy.png"
+  avatar: "/img/friends/solazy.webp"
   description: "不止于品尝，更着迷于其背后的技法与原理，以及所承载的文化与历史。"
   category: "中国人"
   subcategory: "杭州"
 
 - name: '魏武挥'
   url: 'http://weiwuhui.com/'
-  avatar: "/img/friends/weiwuhui.png"
+  avatar: "/img/friends/weiwuhui.webp"
   description: "我大学里基本上做的事情是谈恋爱、炒股票、贩卖一些水果和螃蟹。正在我感到困顿的时候，远在香港的老父建议我去香港读个硕士。"
   category: "中国人"
   subcategory: "上海"
@@ -259,14 +259,14 @@
 
 - name: "莫比乌斯"
   url: "https://onojyun.com/"
-  avatar: "/img/friends/onojyun.png"
+  avatar: "/img/friends/onojyun.webp"
   description: "我的文字不是为了顺从你的喜好，而是让你意识到我们是有血有肉的人。"
   category: "中国人"
   subcategory: "上海"
 
 - name: '昊哥'
   url: 'https://lenciel.com/'
-  avatar: "/img/friends/hao.png"
+  avatar: "/img/friends/hao.webp"
   description: "人生，是你死之前的一个贝叶斯过程，你的情绪和欲望，你的占有和失去只是副产物。目前在 FITURE ，做 COO。"
   category: "中国人"
   subcategory: "上海"
@@ -406,14 +406,14 @@
 
 - name: '扯远了'
   url: 'https://heshizi.com/'
-  avatar: "/img/friends/shihezi.png"
+  avatar: "/img/friends/shihezi.webp"
   description: "河石子，八零后，有时是一名执业药师，有时也是一名医药代表，大多数时间是一名卖身不卖艺的文艺工作者。"
   category: "中国人"
   subcategory: "重庆"
 
 - name: '渣浪'
   url: 'https://bwskyer.com/'
-  avatar: "/img/friends/zhalang.png"
+  avatar: "/img/friends/zhalang.webp"
   description: "做这个网站初衷是为了记录下自己生活的点滴, 打小就喜欢用文字写流水账, 虽然写得不好但总能回头看到以前的自己, 博客换了3个, 现在是永久地址无误."
   category: "中国人"
   subcategory: "重庆"
@@ -448,7 +448,7 @@
 
 - name: '王宜楷工作室'
   url: 'http://wangyikai.com/'
-  avatar: "/img/friends/wangyikai.jpg"
+  avatar: "/img/friends/wangyikai.webp"
   description: "负责属地网络信息监管与舆情处置、官方双微运营，组织开展网络舆论阵地建设、网络主题宣传、网络评论、网上统战等。"
   category: "中国人"
   subcategory: "四川"
@@ -483,7 +483,7 @@
 
 - name: "尺宅杂记"
   url: "http://www.qncd.com/"
-  avatar: "/img/friends/qncd.png"
+  avatar: "/img/friends/qncd.webp"
   description: "没有什么特别的头衔，也没被归为某一类别，除了不劳而获的姓名、性别和年龄，还真是一片空白。我所知的，是我无限的无知。"
   category: "中国人"
   subcategory: "贵州"
@@ -504,7 +504,7 @@
 
 - name: "三脚猫程序员+薪水小偷"
   url: "https://zheshiwo.de/about-me/"
-  avatar: "/img/friends/zheshiwo.png"
+  avatar: "/img/friends/zheshiwo.webp"
   description: "穴居生物。业余伙夫。超业余园丁。三脚猫程序员。薪水小偷。生活乏味到不行却还优哉游哉，不知在哉哪样的可怜大叔。"
   category: "在德国的中国人"
 
@@ -534,7 +534,7 @@
 
 - name: '拥有飞机驾照的会写代码的女经济师'
   url: 'https://www.liyunchen.com/'
-  avatar: "/img/friends/liyunChen.jpeg"
+  avatar: "/img/friends/liyunChen.webp"
   description: "Blogger since 2006 and Private Pilot since 2019,Social Network Analysis, Mechanism Design."
   category: "在美国的中国人"
 
@@ -558,19 +558,19 @@
 
 - name: "睡前小语"
   url: "https://yumaiguihuatongzaijiu.blogspot.com/"
-  avatar: "/img/friends/phd-chemist.png"
+  avatar: "/img/friends/phd-chemist.webp"
   description: "大学老师的孩子, PHD chemist working in biotech, 波士顿旅居人"
   category: "在美国的中国人"
 
 - name: '科普作家卢昌海'
   url: 'https://www.changhai.org/index.php'
-  avatar: "/img/friends/luchanghai.png"
+  avatar: "/img/friends/luchanghai.webp"
   description: "关于童年的许多记忆都已模糊了——正因为如此， 也更让人留恋。 那些点点滴滴的回忆在别人眼里也许很乏味， 对我自己却备感亲切， 算是敝帚自珍吧。"
   category: "在美国的中国人"
 
 - name: "雁渡寒潭"
   url: "https://hisherry.com/"
-  avatar: "/img/friends/hisherry.png"
+  avatar: "/img/friends/hisherry.webp"
   description: "我生长于江南小镇，目前住加拿大渥太华。我的学历普通，上学的时候也没怎么用心，可能大部分时间用来谈恋爱或者仰望心仪的男生了。"
   category: "在加拿大的中国人"
 
