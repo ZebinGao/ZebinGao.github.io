@@ -174,14 +174,6 @@ deploy:
   repo: git@github.com:ZebinGao/ZebinGao.github.io.git
   branch: main
   
-#blog back 
-backup:
-  type: git 
-  theme: material-x-1.2.1
-  message: this is my blog backup 
-  repository: 
-    github: git@github.com:ZebinGao/ZebinGao.github.io.git,
-    
 #确保全局配置存在，给插件用
 search:
   path: search.xml

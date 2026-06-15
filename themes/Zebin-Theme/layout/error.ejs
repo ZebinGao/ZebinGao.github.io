@@ -1,0 +1,57 @@
+<section class="error-page">
+    <div class="error-code">404</div>
+    <h1 class="error-title">页面走丢了</h1>
+    <p class="error-desc">你要找的页面不存在，或者已经被移动。试试搜索，或者从下面回到正轨。</p>
+
+    <div class="error-search">
+        <input type="text" id="error-search-input" placeholder="搜索文章…" autocomplete="off">
+        <div class="error-search-results" id="error-search-results"></div>
+    </div>
+
+    <div class="error-actions">
+        <a class="error-btn" href="<%- url_for('/') %>">返回首页</a>
+        <a class="error-btn error-btn-ghost" href="<%- url_for(config.archive_dir) %>">浏览归档</a>
+    </div>
+</section>
+
+<script>
+// 404 页独立搜索：复用 /search.xml，使用专属 id，避免与侧边栏 search.js 的 #search-input 冲突
+(function () {
+    var input = document.getElementById('error-search-input');
+    var box = document.getElementById('error-search-results');
+    if (!input || !box) return;
+
+    var data = null;
+    function load(cb) {
+        if (data) { cb(); return; }
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', '<%- url_for("/search.xml") %>', true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var xml = new DOMParser().parseFromString(xhr.responseText, 'text/xml');
+                data = xml.querySelectorAll('entry');
+                cb();
+            }
+        };
+        xhr.send();
+    }
+
+    input.addEventListener('input', function () {
+        var q = this.value.trim().toLowerCase();
+        if (!q) { box.innerHTML = ''; return; }
+        load(function () {
+            var html = '', n = 0;
+            data.forEach(function (entry) {
+                var title = entry.querySelector('title').textContent;
+                var content = entry.querySelector('content').textContent.toLowerCase();
+                if (title.toLowerCase().indexOf(q) > -1 || content.indexOf(q) > -1) {
+                    var url = entry.querySelector('url').textContent;
+                    html += '<a class="error-search-item" href="' + url + '">' + title + '</a>';
+                    if (++n >= 8) return;
+                }
+            });
+            box.innerHTML = html || '<div class="error-search-empty">未找到相关文章</div>';
+        });
+    });
+})();
+</script>

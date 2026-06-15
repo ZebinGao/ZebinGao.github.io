@@ -24,3 +24,23 @@
         <% } %>
     </div>
 </article>
+
+<%# 上一篇/下一篇导航。注意 Hexo 默认 -date 排序：page.prev = 较新文章，page.next = 较旧文章 %>
+<% if (page.prev || page.next) { %>
+<nav class="post-nav">
+    <% if (page.next) { %>
+    <a class="post-nav-item post-nav-prev" href="<%- url_for(page.next.path) %>">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title"><%- page.next.title %></span>
+    </a>
+    <% } else { %>
+    <span class="post-nav-item"></span>
+    <% } %>
+    <% if (page.prev) { %>
+    <a class="post-nav-item post-nav-next" href="<%- url_for(page.prev.path) %>">
+        <span class="post-nav-direction">下一篇 &rarr;</span>
+        <span class="post-nav-title"><%- page.prev.title %></span>
+    </a>
+    <% } %>
+</nav>
+<% } %>
