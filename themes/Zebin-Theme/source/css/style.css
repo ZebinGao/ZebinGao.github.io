@@ -1059,6 +1059,7 @@ a.movie-item:hover {
 ========================================================= */
 /* 整体代码外框 */
 .content.markdown figure.highlight {
+    position: relative; /* 给“复制”按钮做定位基准 */
     background: #282c34; /* Atom One Dark 的经典背景色 */
     border-radius: 8px;  /* 圆角 */
     margin: 25px 0;
@@ -1802,4 +1803,103 @@ a.post-nav-item:hover .post-nav-title {
     background: rgba(var(--accent-rgb), 0.08);
     color: var(--accent);
     opacity: 1;
+}
+
+/* =========================================================
+   文章页增强：图片点击放大、代码复制、回到顶部
+   ========================================================= */
+
+/* —— 图片 lightbox —— */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease;
+    cursor: zoom-out;
+}
+.lightbox-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+.lightbox-img {
+    max-width: 95vw;
+    max-height: 92vh;
+    border-radius: 6px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transform: scale(0.96);
+    transition: transform 0.25s ease;
+}
+.lightbox-overlay.show .lightbox-img {
+    transform: scale(1);
+}
+
+/* —— 代码块“复制”按钮（代码区始终深色背景，故用浅色）—— */
+.content.markdown figure.highlight .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    padding: 3px 10px;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: #abb2bf;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+    z-index: 2;
+}
+.content.markdown figure.highlight:hover .copy-btn {
+    opacity: 1;
+}
+.content.markdown figure.highlight .copy-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* —— 回到顶部按钮 —— */
+.back-to-top {
+    position: fixed;
+    right: 28px;
+    bottom: 28px;
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    z-index: 9000;
+}
+.back-to-top.show {
+    opacity: 0.9;
+    visibility: visible;
+    transform: translateY(0);
+}
+.back-to-top:hover {
+    opacity: 1;
+}
+@media (max-width: 600px) {
+    .back-to-top {
+        right: 18px;
+        bottom: 18px;
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
 }
