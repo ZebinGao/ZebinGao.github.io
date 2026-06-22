@@ -136,4 +136,9 @@ type: "page"
   <div class="wiki-article-desc">高智商精英团伙利用化学麻醉手段系统性侵害华人女性，数字时代性别暴力的标志性跨国案件</div>
 </a>
 
+<a class="wiki-article-card" href="/wiki/草台班子/高广辉.html">
+  <div class="wiki-article-title">遗孀：悼念高广辉</div>
+  <div class="wiki-article-desc">此文仅用于缅怀我先生。所有谩骂请冲我来，黑子也不必删帖。</div>
+</a>
+
 </div>
