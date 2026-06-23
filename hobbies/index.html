@@ -110,6 +110,7 @@
             <button class="category-tab active" data-filter="movies" data-i18n="movies">电影</button>
             <button class="category-tab" data-filter="books" data-i18n="books">书籍</button>
             <button class="category-tab" data-filter="music" data-i18n="music">音乐</button>
+            <button class="category-tab" data-filter="exhibitions" data-i18n="exhibitions">展览</button>
         </div>
 
         <div class="link-subcategory-tabs hobbies-status-tabs" data-parent="movies" style="display:flex;">
@@ -3373,6 +3374,47 @@
                 
             </div>
         </div>
+
+        <!-- 展览区域 -->
+        <div class="hobbies-section" id="section-exhibitions" style="display:none;">
+            <div class="hobbies-grid">
+                
+                    
+                        
+                            <a class="hobby-card" href="/wiki/exhibitions/#人机迷离">
+                        
+                            <div class="hobby-card-title">人机迷离——心/身/电/音/社会/采样</div>
+                            <div class="hobby-card-meta">
+                                上海当代艺术博物馆 PSA
+                                 · 
+                                2026.04.25 – 06.28
+                            </div>
+                            
+                                <div class="hobby-card-note">Techno 不只是一种音乐，更是一种在「失语」中生成的反叛实践。</div>
+                            
+                        
+                            </a>
+                        
+                    
+                        
+                            <a class="hobby-card" href="/wiki/exhibitions/#光影演奏会">
+                        
+                            <div class="hobby-card-title">平形：光影·作品演奏会</div>
+                            <div class="hobby-card-meta">
+                                上海当代艺术博物馆 PSA
+                                 · 
+                                2026.05.01 – 06.28
+                            </div>
+                            
+                                <div class="hobby-card-note">将流动影像的不可触性，转译为物与空间中的具体存在。</div>
+                            
+                        
+                            </a>
+                        
+                    
+                
+            </div>
+        </div>
     </div>
 </article>
 
@@ -3399,7 +3441,8 @@
     var sections = {
         movies: document.getElementById('section-movies'),
         books: document.getElementById('section-books'),
-        music: document.getElementById('section-music')
+        music: document.getElementById('section-music'),
+        exhibitions: document.getElementById('section-exhibitions')
     };
     var currentTab = 'movies';
     var currentStatus = 'all';
