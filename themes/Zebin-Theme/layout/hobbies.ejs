@@ -10,6 +10,7 @@
             <button class="category-tab active" data-filter="movies" data-i18n="movies">电影</button>
             <button class="category-tab" data-filter="books" data-i18n="books">书籍</button>
             <button class="category-tab" data-filter="music" data-i18n="music">音乐</button>
+            <button class="category-tab" data-filter="exhibitions" data-i18n="exhibitions">展览</button>
         </div>
 
         <div class="link-subcategory-tabs hobbies-status-tabs" data-parent="movies" style="display:flex;">
@@ -114,6 +115,35 @@
                 <% } %>
             </div>
         </div>
+
+        <!-- 展览区域 -->
+        <div class="hobbies-section" id="section-exhibitions" style="display:none;">
+            <div class="hobbies-grid">
+                <% if (site.data.exhibitions) { %>
+                    <% site.data.exhibitions.forEach(function(item) { %>
+                        <% if (item.url) { %>
+                            <a class="hobby-card" href="<%- item.url %>">
+                        <% } else { %>
+                            <div class="hobby-card">
+                        <% } %>
+                            <div class="hobby-card-title"><%- item.title %></div>
+                            <div class="hobby-card-meta">
+                                <% if (item.venue) { %><%- item.venue %><% } %>
+                                <% if (item.venue && item.period) { %> · <% } %>
+                                <% if (item.period) { %><%- item.period %><% } %>
+                            </div>
+                            <% if (item.note) { %>
+                                <div class="hobby-card-note"><%- item.note %></div>
+                            <% } %>
+                        <% if (item.url) { %>
+                            </a>
+                        <% } else { %>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
     </div>
 </article>
 
@@ -140,7 +170,8 @@
     var sections = {
         movies: document.getElementById('section-movies'),
         books: document.getElementById('section-books'),
-        music: document.getElementById('section-music')
+        music: document.getElementById('section-music'),
+        exhibitions: document.getElementById('section-exhibitions')
     };
     var currentTab = 'movies';
     var currentStatus = 'all';
