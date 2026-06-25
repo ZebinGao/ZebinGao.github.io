@@ -41,4 +41,9 @@ type: "page"
   <div class="wiki-article-desc">废弃天台上架构师与产品经理就着《被遗忘的时光》上演无间道对峙，“给我个机会”“那就是要我死”，却被老丈人一脚踹门、拎着红塑料盆喊去洗崩漏的床单瞬间破功</div>
 </a>
 
+<a class="wiki-article-card" href="/wiki/笑话集/爽文为什么这么爽.html">
+  <div class="wiki-article-title">爽文为什么这么爽</div>
+  <div class="wiki-article-desc">拆解爽文的两剂麻药：粗暴划分黑白、消除现实“认知疲劳”，降维打击、绕过“努力的无效性”，在万事皆可掌控、遗憾皆可弥补的幻梦里短暂麻痹路径依赖与天花板</div>
+</a>
+
 </div>
