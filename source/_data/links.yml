@@ -527,9 +527,15 @@
   category: "在日本的中国人"
 
 - name: '张列驰'
-  url: 'https://www.liechi.org//'
+  url: 'https://www.liechi.org/'
   avatar: "https://github.com/liechi.png?size=100"
   description: "四川泸州,现就读于日本基础生物研究所,PhD第五年(真希望能早日在这个句子里面用上完成时)。喜欢看书，做饭和看别人运动。 至于别的，以后想到了再加上吧。"
+  category: "在日本的中国人"
+
+- name: 'Jason TIAN'
+  url: 'https://jsntn.com/'
+  avatar: "https://github.com/jsntn.png?size=100"
+  description: "2008 - 2011  Teacher，2011 - 2025  Communications Engineer。骇客帮成员，安卓果酱成员。"
   category: "在日本的中国人"
 
 - name: '拥有飞机驾照的会写代码的女经济师'
