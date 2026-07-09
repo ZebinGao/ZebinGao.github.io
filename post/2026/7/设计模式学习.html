@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计模式学习 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">设计模式学习</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年07月09日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/C/" rel="tag">C#</a>, <a class="tag-none-link" href="/tags/%E5%B9%B6%E5%8F%91%E4%B8%8E%E8%81%8C%E8%B4%A3%E5%88%86%E7%A6%BB/" rel="tag">并发与职责分离</a>, <a class="tag-none-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>这个例子展示了数据（Model）、显示（View）和调度控制（Controller）是如何彻底分开的。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-comment">// 1. Model (后厨)：只负责存储和管理核心数据，完全不知道界面长什么样</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UserModel</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> UserName &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br><br><span class="hljs-comment">// 2. View (摆盘)：只负责把数据打印到屏幕上，没有任何复杂的业务逻辑</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UserView</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">PrintUserDetails</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>)</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;[UI界面] 欢迎您，尊贵的客户：<span class="hljs-subst">&#123;name&#125;</span>&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 3. Controller (服务员)：负责接收指令，并把 Model 和 View 连起来</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UserController</span><br>&#123;<br>    <span class="hljs-keyword">private</span> UserModel _model;<br>    <span class="hljs-keyword">private</span> UserView _view;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">UserController</span>(<span class="hljs-params">UserModel model, UserView view</span>)</span><br>    &#123;<br>        _model = model;<br>        _view = view;<br>    &#125;<br><br>    <span class="hljs-comment">// 接收外部输入，更新模型</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">UpdateName</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> newName</span>)</span><br>    &#123;<br>        _model.UserName = newName;<br>    &#125;<br><br>    <span class="hljs-comment">// 叫视图去刷新显示</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">RefreshScreen</span>()</span><br>    &#123;<br>        _view.PrintUserDetails(_model.UserName);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// === 测试运行 ===</span><br><span class="hljs-comment">// var controller = new UserController(new UserModel(), new UserView());</span><br><span class="hljs-comment">// controller.UpdateName(&quot;张三&quot;);</span><br><span class="hljs-comment">// controller.RefreshScreen();</span><br></code></pre></td></tr></table></figure>
+<h2 id="DAO-数据访问对象"><a href="#DAO-数据访问对象" class="headerlink" title="DAO (数据访问对象)"></a>DAO (数据访问对象)</h2><p>这个例子展示了业务层如何通过一个“接口（采购经理）”与数据库打交道，从而彻底屏蔽掉底层的 SQL 细节</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">User</span> &#123; <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125; &#125;<br><br><span class="hljs-comment">// 1. DAO 接口 (定义采购标准)：业务层只认这个接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IUserDao</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Save</span>(<span class="hljs-params">User user</span>)</span>;<br>&#125;<br><br><span class="hljs-comment">// 2. DAO 具体实现 (采购经理)：真正去和数据库打交道的地方</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SqlServerUserDao</span> : <span class="hljs-title">IUserDao</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Save</span>(<span class="hljs-params">User user</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// 只有这里才会出现真正的底层数据库操作代码</span><br>        <span class="hljs-built_in">string</span> sql = <span class="hljs-string">$&quot;INSERT INTO Users (Name) VALUES (&#x27;<span class="hljs-subst">&#123;user.Name&#125;</span>&#x27;)&quot;</span>;<br>        Console.WriteLine(<span class="hljs-string">$&quot;[DAO层] 执行底层命令: <span class="hljs-subst">&#123;sql&#125;</span>&quot;</span>);<br>        Console.WriteLine(<span class="hljs-string">$&quot;[DAO层] 成功将 <span class="hljs-subst">&#123;user.Name&#125;</span> 保存到 SQL Server。&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 3. 业务逻辑层 (后厨)：完全看不到 SQL 语句</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UserService</span><br>&#123;<br>    <span class="hljs-keyword">private</span> IUserDao _dao; <span class="hljs-comment">// 依赖注入 DAO</span><br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">UserService</span>(<span class="hljs-params">IUserDao dao</span>)</span><br>    &#123;<br>        _dao = dao;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">RegisterUser</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> name</span>)</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;[业务层] 正在校验 <span class="hljs-subst">&#123;name&#125;</span> 的注册信息...&quot;</span>);<br>        <span class="hljs-keyword">var</span> newUser = <span class="hljs-keyword">new</span> User &#123; Name = name &#125;;<br>        <br>        <span class="hljs-comment">// 直接让 DAO 去存，业务层根本不管是用 MySQL 还是 SQL Server</span><br>        _dao.Save(newUser); <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="API-Gateway-API-网关"><a href="#API-Gateway-API-网关" class="headerlink" title="API Gateway (API 网关)"></a>API Gateway (API 网关)</h2><p>这是一个简化的网关模型，展示了如何用一个统一的入口接收请求，先做安全校验，再“路由转发”给后台的具体微服务。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-comment">// 后台微服务 A 和 B</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">OrderService</span> &#123; <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Handle</span>()</span> =&gt; Console.WriteLine(<span class="hljs-string">&quot;--&gt; [订单服务] 正在处理订单...&quot;</span>); &#125;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PaymentService</span> &#123; <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Handle</span>()</span> =&gt; Console.WriteLine(<span class="hljs-string">&quot;--&gt; [支付服务] 正在处理扣款...&quot;</span>); &#125;<br><br><span class="hljs-comment">// 网关 (前台总机)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ApiGateway</span><br>&#123;<br>    <span class="hljs-keyword">private</span> OrderService _orderSvc = <span class="hljs-keyword">new</span> OrderService();<br>    <span class="hljs-keyword">private</span> PaymentService _paymentSvc = <span class="hljs-keyword">new</span> PaymentService();<br><br>    <span class="hljs-comment">// 外部用户永远只调用这一个方法</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">RouteRequest</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> url, <span class="hljs-built_in">string</span> token</span>)</span><br>    &#123;<br>        Console.WriteLine(<span class="hljs-string">$&quot;\n[网关] 收到外部请求: <span class="hljs-subst">&#123;url&#125;</span>&quot;</span>);<br>        <br>        <span class="hljs-comment">// 1. 统一鉴权 (拦截非法请求)</span><br>        <span class="hljs-keyword">if</span> (token != <span class="hljs-string">&quot;ValidToken_123&quot;</span>)<br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">&quot;[网关] 警告：身份验证失败，拒绝访问！&quot;</span>);<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        Console.WriteLine(<span class="hljs-string">&quot;[网关] 鉴权通过，开始路由转发...&quot;</span>);<br><br>        <span class="hljs-comment">// 2. 路由分发</span><br>        <span class="hljs-keyword">if</span> (url.StartsWith(<span class="hljs-string">&quot;/api/order&quot;</span>))<br>        &#123;<br>            _orderSvc.Handle();<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (url.StartsWith(<span class="hljs-string">&quot;/api/payment&quot;</span>))<br>        &#123;<br>            _paymentSvc.Handle();<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">&quot;[网关] 404: 找不到对应的微服务。&quot;</span>);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="Circuit-Breaker-断路器"><a href="#Circuit-Breaker-断路器" class="headerlink" title="Circuit Breaker (断路器)"></a>Circuit Breaker (断路器)</h2><p>这是一个手写的极简断路器。在 .NET 中，我们通常直接使用大名鼎鼎的第三方库 Polly，但底层的核心状态机原理和这段代码是一样的。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SimpleCircuitBreaker</span><br>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _failureThreshold = <span class="hljs-number">3</span>; <span class="hljs-comment">// 容忍连续失败的次数</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _failureCount = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">bool</span> _isOpen = <span class="hljs-literal">false</span>;      <span class="hljs-comment">// 是否跳闸 (Open状态表示电路断开，阻断请求)</span><br><br>    <span class="hljs-comment">// 把需要保护的代码(Action)传进来执行</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params">Action remoteCall</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (_isOpen)<br>        &#123;<br>            <span class="hljs-comment">// 如果已经跳闸，直接报错拦截，不再让底层线程去傻等超时 (Fail Fast)</span><br>            Console.WriteLine(<span class="hljs-string">&quot;❌ [断路器] 已经跳闸！保护性拒绝请求，防止系统雪崩。&quot;</span>);<br>            <span class="hljs-keyword">return</span>; <br>        &#125;<br><br>        <span class="hljs-keyword">try</span><br>        &#123;<br>            remoteCall(); <span class="hljs-comment">// 尝试调用不稳定的远程微服务</span><br>            <br>            <span class="hljs-comment">// 如果成功了，重置失败计数</span><br>            _failureCount = <span class="hljs-number">0</span>; <br>            Console.WriteLine(<span class="hljs-string">&quot;✅ [断路器] 远程调用成功。&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">catch</span> (Exception ex)<br>        &#123;<br>            _failureCount++;<br>            Console.WriteLine(<span class="hljs-string">$&quot;⚠️ [断路器] 调用失败 (<span class="hljs-subst">&#123;ex.Message&#125;</span>)。当前连续失败次数: <span class="hljs-subst">&#123;_failureCount&#125;</span>&quot;</span>);<br><br>            <span class="hljs-keyword">if</span> (_failureCount &gt;= _failureThreshold)<br>            &#123;<br>                _isOpen = <span class="hljs-literal">true</span>; <span class="hljs-comment">// 超过阈值，立刻跳闸！</span><br>                Console.WriteLine(<span class="hljs-string">&quot;💥 [断路器] 失败次数过多，正式跳闸！&quot;</span>);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// === 测试运行 ===</span><br><span class="hljs-comment">// var breaker = new SimpleCircuitBreaker();</span><br><span class="hljs-comment">// 模拟连续三次网络超时，你会发现第四次调用时，甚至都不会触发真实的 Exception，直接被断路器秒拒。</span><br></code></pre></td></tr></table></figure>
+<h2 id="MVVM-Model-View-ViewModel"><a href="#MVVM-Model-View-ViewModel" class="headerlink" title="MVVM (Model-View-ViewModel)"></a>MVVM (Model-View-ViewModel)</h2><p>核心思想： View（界面）和 ViewModel（逻辑）通过“数据绑定（Data Binding）”自动同步，互相不写死对方的代码。</p>
+<p>在 C# 中，MVVM 的灵魂是 INotifyPropertyChanged 接口。当数据变了，它会大喊一声“我变了！”，界面听到后就会自动更新。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs C#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.ComponentModel;<br><span class="hljs-keyword">using</span> System.Runtime.CompilerServices;<br><br><span class="hljs-comment">// 1. Model (纯数据)：只关心数据本身</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">User</span><br>&#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Name &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>&#125;<br><br><span class="hljs-comment">// 2. ViewModel (逻辑大脑)：包装 Model，提供给 View 绑定，并实现通知接口</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UserViewModel</span> : <span class="hljs-title">INotifyPropertyChanged</span><br>&#123;<br>    <span class="hljs-keyword">private</span> User _user = <span class="hljs-keyword">new</span> User();<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> PropertyChangedEventHandler PropertyChanged;<br><br>    <span class="hljs-comment">// 当这个属性被修改时，会自动触发通知</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> UserName<br>    &#123;<br>        <span class="hljs-keyword">get</span> =&gt; _user.Name;<br>        <span class="hljs-keyword">set</span><br>        &#123;<br>            <span class="hljs-keyword">if</span> (_user.Name != <span class="hljs-keyword">value</span>)<br>            &#123;<br>                _user.Name = <span class="hljs-keyword">value</span>;<br>                <span class="hljs-comment">// 通知界面：UserName 这个属性变啦，赶紧刷新！</span><br>                PropertyChanged?.Invoke(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> PropertyChangedEventArgs(<span class="hljs-keyword">nameof</span>(UserName)));<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 3. View (界面)：假装这是一个 WPF 的文本框</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">UserView</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">UserView</span>(<span class="hljs-params">UserViewModel viewModel</span>)</span><br>    &#123;<br>        <span class="hljs-comment">// 界面“绑定” ViewModel 的事件</span><br>        viewModel.PropertyChanged += (sender, e) =&gt;<br>        &#123;<br>            <span class="hljs-keyword">if</span> (e.PropertyName == <span class="hljs-string">&quot;UserName&quot;</span>)<br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">$&quot;[UI界面] 检测到数据变化，屏幕已自动刷新为：<span class="hljs-subst">&#123;viewModel.UserName&#125;</span>&quot;</span>);<br>            &#125;<br>        &#125;;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// === 测试 ===</span><br><span class="hljs-comment">// var vm = new UserViewModel &#123; UserName = &quot;张三&quot; &#125;; // 初始状态</span><br><span class="hljs-comment">// var view = new UserView(vm);                      // 界面绑定</span><br><span class="hljs-comment">// vm.UserName = &quot;李四&quot;;                             // 只要改逻辑层数据，UI界面就会自动打印刷新</span><br></code></pre></td></tr></table></figure>
+<h2 id="生产者-消费者模式-Producer-Consumer"><a href="#生产者-消费者模式-Producer-Consumer" class="headerlink" title="生产者-消费者模式 (Producer-Consumer)"></a>生产者-消费者模式 (Producer-Consumer)</h2><p>核心思想： 解决速度不匹配。制造数据的（生产者）和处理数据的（消费者）通过一个“阻塞队列”解耦。这就是我们之前重点讨论过的机制。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Collections.Concurrent;<br><span class="hljs-keyword">using</span> System.Threading;<br><span class="hljs-keyword">using</span> System.Threading.Tasks;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ProducerConsumerExample</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Run</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 核心：C# 官方提供的线程安全、自带阻塞功能的队列</span><br>        <span class="hljs-keyword">var</span> queue = <span class="hljs-keyword">new</span> BlockingCollection&lt;<span class="hljs-built_in">string</span>&gt;(boundedCapacity: <span class="hljs-number">10</span>);<br><br>        <span class="hljs-comment">// 1. 消费者线程 (一直在后台等吃的)</span><br>        Task.Run(() =&gt;<br>        &#123;<br>            <span class="hljs-keyword">try</span><br>            &#123;<br>                <span class="hljs-comment">// Take 会自动阻塞，没数据就睡觉，有数据就醒来拿</span><br>                <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)<br>                &#123;<br>                    <span class="hljs-built_in">string</span> item = queue.Take();<br>                    Console.WriteLine(<span class="hljs-string">$&quot;[消费者] 消费了: <span class="hljs-subst">&#123;item&#125;</span>&quot;</span>);<br>                    Thread.Sleep(<span class="hljs-number">500</span>); <span class="hljs-comment">// 假装处理得很慢</span><br>                &#125;<br>            &#125;<br>            <span class="hljs-keyword">catch</span> (InvalidOperationException) <br>            &#123;<br>                Console.WriteLine(<span class="hljs-string">&quot;[消费者] 队列已关闭，下班！&quot;</span>);<br>            &#125;<br>        &#125;);<br><br>        <span class="hljs-comment">// 2. 生产者线程 (拼命做吃的)</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">5</span>; i++)<br>        &#123;<br>            <span class="hljs-built_in">string</span> item = <span class="hljs-string">$&quot;包子 <span class="hljs-subst">&#123;i&#125;</span> 号&quot;</span>;<br>            queue.Add(item);<br>            Console.WriteLine(<span class="hljs-string">$&quot;[生产者] 生产了: <span class="hljs-subst">&#123;item&#125;</span>&quot;</span>);<br>        &#125;<br><br>        <span class="hljs-comment">// 生产完毕，给队列贴封条</span><br>        queue.CompleteAdding(); <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="读写锁-Read-Write-Lock"><a href="#读写锁-Read-Write-Lock" class="headerlink" title="读写锁 (Read-Write Lock)"></a>读写锁 (Read-Write Lock)</h2><p>核心思想： 针对“读多写少”的场景进行性能优化。允许多个线程同时读，但只要有人在写，其他所有读和写都必须排队。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Threading;<br><span class="hljs-keyword">using</span> System.Threading.Tasks;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ReadWriteLockExample</span><br>&#123;<br>    <span class="hljs-comment">// 官方推荐的读写锁对象</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> ReaderWriterLockSlim _rwLock = <span class="hljs-keyword">new</span> ReaderWriterLockSlim();<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _sharedData = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Run</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 开启 3 个读线程：它们可以瞬间“同时”进去读取，互不干扰</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++)<br>        &#123;<br>            Task.Run(() =&gt; ReadData());<br>        &#125;<br><br>        <span class="hljs-comment">// 开启 1 个写线程：它一进来，必须等前面的读完，并且它写的时候，别人都不准读</span><br>        Task.Run(() =&gt; WriteData());<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ReadData</span>()</span><br>    &#123;<br>        _rwLock.EnterReadLock(); <span class="hljs-comment">// 获取【读锁】</span><br>        <span class="hljs-keyword">try</span><br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">$&quot;[读线程 <span class="hljs-subst">&#123;Thread.CurrentThread.ManagedThreadId&#125;</span>] 正在读取数据: <span class="hljs-subst">&#123;_sharedData&#125;</span>&quot;</span>);<br>            Thread.Sleep(<span class="hljs-number">1000</span>); <span class="hljs-comment">// 假装读得很慢</span><br>        &#125;<br>        <span class="hljs-keyword">finally</span> &#123; _rwLock.ExitReadLock(); &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">WriteData</span>()</span><br>    &#123;<br>        _rwLock.EnterWriteLock(); <span class="hljs-comment">// 获取【写锁】 (排他锁)</span><br>        <span class="hljs-keyword">try</span><br>        &#123;<br>            _sharedData = <span class="hljs-number">100</span>;<br>            Console.WriteLine(<span class="hljs-string">$&quot;🚨 [写线程 <span class="hljs-subst">&#123;Thread.CurrentThread.ManagedThreadId&#125;</span>] 修改了数据为: <span class="hljs-subst">&#123;_sharedData&#125;</span>&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">finally</span> &#123; _rwLock.ExitWriteLock(); &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="线程池-Thread-Pool"><a href="#线程池-Thread-Pool" class="headerlink" title="线程池 (Thread Pool)"></a>线程池 (Thread Pool)</h2><p>预先建好一批线程随时待命。任务来了就拿一个去用，用完还给池子，避免了频繁“创建/销毁线程”的巨大系统开销。</p>
+<p>现代 C# 最常使用的 Task.Run 底层其实就是偷偷交给了系统级的 ThreadPool 来跑的。这里我展示两种写法：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Threading;<br><span class="hljs-keyword">using</span> System.Threading.Tasks;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ThreadPoolExample</span><br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Run</span>()</span><br>    &#123;<br>        <span class="hljs-comment">// 写法 1：最老牌、最底层的原生线程池调用</span><br>        ThreadPool.QueueUserWorkItem(state =&gt; <br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">$&quot;[底层线程池] 正在执行任务。使用的是线程池线程吗？<span class="hljs-subst">&#123;Thread.CurrentThread.IsThreadPoolThread&#125;</span>&quot;</span>);<br>        &#125;);<br><br>        <span class="hljs-comment">// 写法 2：现代 C# 最标准的写法 (基于 TPL 任务并行库)</span><br>        <span class="hljs-comment">// Task.Run 的底层，99% 的情况下也是自动去 ThreadPool 里抓一个线程来用</span><br>        Task.Run(() =&gt; <br>        &#123;<br>            Console.WriteLine(<span class="hljs-string">$&quot;[Task 任务] 正在执行任务。使用的是线程池线程吗？<span class="hljs-subst">&#123;Thread.CurrentThread.IsThreadPoolThread&#125;</span>&quot;</span>);<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="观察者模式-Observer"><a href="#观察者模式-Observer" class="headerlink" title="观察者模式 (Observer)"></a>观察者模式 (Observer)</h2><p>A 对象发生变化时，自动通知所有关注了 A 的 B/C/D 对象。正如我们前面探讨的，C# 的 event 关键字就是宇宙最正宗的观察者模式语法糖。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-comment">// 1. 目标 (Subject)：负责产生事件</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Heater</span> <br>&#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-built_in">int</span> _temperature;<br>    <br>    <span class="hljs-comment">// 声明一个标准的事件（底层就是一个多播委托/观察者列表）</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> EventHandler&lt;<span class="hljs-built_in">int</span>&gt; TemperatureChanged; <br><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">BoilWater</span>()</span><br>    &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">98</span>; i &lt;= <span class="hljs-number">100</span>; i++)<br>        &#123;<br>            _temperature = i;<br>            Console.WriteLine(<span class="hljs-string">$&quot;[热水器] 当前温度：<span class="hljs-subst">&#123;i&#125;</span>度&quot;</span>);<br>            <br>            <span class="hljs-comment">// 温度一旦改变，亲自主动去通知所有注册了的观察者</span><br>            TemperatureChanged?.Invoke(<span class="hljs-keyword">this</span>, _temperature); <br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 2. 观察者 A (Observer)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Alarm</span> <br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">MakeAlert</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, <span class="hljs-built_in">int</span> temperature</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (temperature &gt;= <span class="hljs-number">100</span>) <br>            Console.WriteLine(<span class="hljs-string">&quot;🚨 [报警器] 嘀嘀嘀！水开了！&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 3. 观察者 B (Observer)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Display</span> <br>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ShowMsg</span>(<span class="hljs-params"><span class="hljs-built_in">object</span> sender, <span class="hljs-built_in">int</span> temperature</span>)</span><br>    &#123;<br>        <span class="hljs-keyword">if</span> (temperature &gt;= <span class="hljs-number">100</span>) <br>            Console.WriteLine(<span class="hljs-string">&quot;📺 [显示屏] 水已烧开，请注意安全。&quot;</span>);<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// === 测试 ===</span><br><span class="hljs-comment">// var heater = new Heater();</span><br><span class="hljs-comment">// var alarm = new Alarm();</span><br><span class="hljs-comment">// var display = new Display();</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// 观察者通过 += 向目标注册自己（物理耦合绑定）</span><br><span class="hljs-comment">// heater.TemperatureChanged += alarm.MakeAlert;</span><br><span class="hljs-comment">// heater.TemperatureChanged += display.ShowMsg;</span><br><span class="hljs-comment">//</span><br><span class="hljs-comment">// heater.BoilWater(); // 只要一烧开，警报器和显示屏会自动响应</span><br></code></pre></td></tr></table></figure>
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/7/%E7%A6%81%E4%B9%A6%E8%83%BD%E6%89%8B%E7%BA%AA%E6%99%93%E5%B2%9A.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">禁书能手纪晓岚</span>
+    </a>
+    
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVC"><span class="toc-text">MVC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAO-%E6%95%B0%E6%8D%AE%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1"><span class="toc-text">DAO (数据访问对象)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API-Gateway-API-%E7%BD%91%E5%85%B3"><span class="toc-text">API Gateway (API 网关)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Circuit-Breaker-%E6%96%AD%E8%B7%AF%E5%99%A8"><span class="toc-text">Circuit Breaker (断路器)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM-Model-View-ViewModel"><span class="toc-text">MVVM (Model-View-ViewModel)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%BC%8F-Producer-Consumer"><span class="toc-text">生产者-消费者模式 (Producer-Consumer)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E9%94%81-Read-Write-Lock"><span class="toc-text">读写锁 (Read-Write Lock)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0-Thread-Pool"><span class="toc-text">线程池 (Thread Pool)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F-Observer"><span class="toc-text">观察者模式 (Observer)</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 18px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/WPF/" style="font-size: 16px;">WPF</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
