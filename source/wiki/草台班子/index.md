@@ -141,4 +141,29 @@ type: "page"
   <div class="wiki-article-desc">此文仅用于缅怀我先生。所有谩骂请冲我来，黑子也不必删帖。</div>
 </a>
 
+<a class="wiki-article-card" href="/wiki/草台班子/张中生.html">
+  <div class="wiki-article-title">张中生受贿案：从死刑到死缓的"吕梁教父"</div>
+  <div class="wiki-article-desc">深耕山西吕梁数十年的"吕梁教父"，受贿超10.4亿，一审判死刑立即执行，二审因全额退赃、检举立功改判死缓、终身监禁不得假释</div>
+</a>
+
+<a class="wiki-article-card" href="/wiki/草台班子/赖小民.html">
+  <div class="wiki-article-title">赖小民案：现金超市、百名情妇与副部级金融高官的注射死刑</div>
+  <div class="wiki-article-desc">中国华融原董事长，受贿17.88亿，私藏近三吨"现金超市"，十八大后首位被核准执行死刑的副部级金融高官，立功亦未免死</div>
+</a>
+
+<a class="wiki-article-card" href="/wiki/草台班子/胡长清.html">
+  <div class="wiki-article-title">胡长清堕落史：改革开放后首位因经济犯罪被处决的省部级高官</div>
+  <div class="wiki-article-desc">江西省原副省长，"假文凭+书法家+神秘失踪"三标签，借题字"雅贿"受贿544万，2000年被执行枪决，打破"刑不上大夫"的破冰第一案</div>
+</a>
+
+<a class="wiki-article-card" href="/wiki/草台班子/成克杰.html">
+  <div class="wiki-article-title">成克杰案：新中国成立以来因经济犯罪被处决的最高级别官员</div>
+  <div class="wiki-article-desc">全国人大常委会原副委员长（副国级），与情妇李平"前店后厂"合谋受贿4109万，2000年被执行注射死刑，与胡长清同年伏法</div>
+</a>
+
+<a class="wiki-article-card" href="/wiki/草台班子/刘青山张子善.html">
+  <div class="wiki-article-title">刘青山、张子善案：新中国反腐第一大案（开国反腐第一案）</div>
+  <div class="wiki-article-desc">建国后第一批因贪污被处死的高级干部，均为久经考验的革命功臣，1951年案发、1952年同日枪决，立下"功臣贪腐一样严惩"的标杆</div>
+</a>
+
 </div>
