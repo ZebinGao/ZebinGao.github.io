@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包传值 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">闭包传值</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年07月11日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/C/" rel="tag">C#</a>, <a class="tag-none-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a>, <a class="tag-none-link" href="/tags/%E9%97%AD%E5%8C%85/" rel="tag">闭包</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <p>name 这个变量明明只是 Subscribe 方法的一个临时参数，当 Subscribe 方法执行完毕后，按理说 name 就应该在内存里被销毁了。但是！当传感器在未来的某个时刻触发报警时，那个 Lambda 表达式居然还能准确地喊出 name 的名字！</p>
+<p>当你写下这段代码时，C# 编译器在底层悄悄为你做了一件极其复杂的事：</p>
+<p>它发现你的 Lambda 表达式里用到了外面的局部变量 name。</p>
+<p>编译器会在内存里偷偷新建一个隐藏的类。</p>
+<p>它把 name 放进了这个隐藏类的“背包”里。</p>
+<p>哪怕 Subscribe 方法早就执行完了，这个“背包”依然被 Lambda 表达式死死抓在手里，直到程序结束。</p>
+<p>所以，你利用了“环境捕获（闭包）”，完美地绕过了 EventHandler 的参数限制，把自定义的数据（name）带进了执行逻辑里。这在实际开发中极其常用！</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><span class="hljs-keyword">using</span> System.Data.SqlClient;<br><br><span class="hljs-keyword">namespace</span> <span class="hljs-title">ConsoleApp1</span><br>&#123;<br>	<span class="hljs-comment">// 请在此处完成 Sensor 类</span><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Sensor</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> _currentTemperature;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> CurrentTemperature <br>		&#123; <br>			<span class="hljs-keyword">get</span>=&gt;_currentTemperature; <br>			<span class="hljs-keyword">set</span> <br>			&#123; <br>				_currentTemperature = <span class="hljs-keyword">value</span>;<br>				TemperatureChanged?.Invoke(<span class="hljs-keyword">this</span>, _currentTemperature);<br>			&#125; <br>		&#125;<br>		<span class="hljs-comment">// ... 定义事件，并在温度改变时通知所有订阅者</span><br>		<span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> EventHandler&lt;<span class="hljs-built_in">int</span>&gt; TemperatureChanged;<br>	&#125;<br><br>	<span class="hljs-comment">// 请在此处完成 Alarm 类</span><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Alarm</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> Threshold &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; &#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Alarm</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> threshold</span>)</span> &#123; Threshold = threshold; &#125;<br>		<span class="hljs-comment">// ... 订阅事件，并在内部判断温度是否超过 Threshold</span><br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Subscribe</span>(<span class="hljs-params">Sensor sensor,<span class="hljs-built_in">string</span> name</span>)</span><br>		&#123;<br>			sensor.TemperatureChanged += (send, newTemperature) =&gt;<br>			&#123;<br>				<span class="hljs-keyword">if</span> (newTemperature &gt; Threshold)<br>				&#123;<br>					Console.WriteLine(<span class="hljs-string">$&quot;Alarm! <span class="hljs-subst">&#123;name&#125;</span> Temperature <span class="hljs-subst">&#123;newTemperature&#125;</span> exceeds threshold <span class="hljs-subst">&#123;Threshold&#125;</span>.&quot;</span>);<br>				&#125;<br>			&#125;;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span><br>		&#123;<br>			<span class="hljs-keyword">var</span> sensor = <span class="hljs-keyword">new</span> Sensor();<br><br>			<span class="hljs-keyword">var</span> livingRoomAlarm = <span class="hljs-keyword">new</span> Alarm(<span class="hljs-number">30</span>); <span class="hljs-comment">// 30度以上报警</span><br>			<span class="hljs-keyword">var</span> kitchenAlarm = <span class="hljs-keyword">new</span> Alarm(<span class="hljs-number">50</span>);    <span class="hljs-comment">// 50度以上报警</span><br><br>			<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> 把报警器订阅到传感器上</span><br>			livingRoomAlarm.Subscribe(sensor, <span class="hljs-string">&quot;livingRoom&quot;</span>);<br>			kitchenAlarm.Subscribe(sensor, <span class="hljs-string">&quot;kitchen&quot;</span>);<br><br>			sensor.CurrentTemperature = <span class="hljs-number">35</span>; <span class="hljs-comment">// 此时客厅应该响，厨房不响</span><br>			sensor.CurrentTemperature = <span class="hljs-number">60</span>; <span class="hljs-comment">// 此时两个都应该响</span><br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>可以取消订阅的闭包写法，待验证。<br><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-comment">// 1. 用一个显式的委托变量，把 Lambda 抓在手里！</span><br>    EventHandler&lt;CalculationEventArgs&gt; rule = (sender, e) =&gt;<br>    &#123;<br>        <span class="hljs-keyword">if</span> (e.A &lt; <span class="hljs-number">0</span> || e.B &lt; <span class="hljs-number">0</span>)<br>        &#123;<br>            e.IsCancelled = <span class="hljs-literal">true</span>;<br>            e.CancelReason = <span class="hljs-string">&quot;不允许使用负数进行计算！&quot;</span>;<br>        &#125;<br>    &#125;;<br><br>    <span class="hljs-comment">// 2. 拿变量去订阅</span><br>    engine.OnBeforeCalculate += rule;<br><br>    <span class="hljs-comment">// 3. 拿同一个变量去解绑（内存地址完全一致，解绑成功！）</span><br>    engine.OnBeforeCalculate -= rule;<br></code></pre></td></tr></table></figure></p>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/7/%E5%A7%94%E6%89%98%E6%B7%B1%E5%85%A5.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">委托深入</span>
+    </a>
+    
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 18px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/WPF/" style="font-size: 16px;">WPF</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
