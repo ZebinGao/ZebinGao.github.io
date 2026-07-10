@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>委托深入 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">委托深入</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年07月10日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/C/" rel="tag">C#</a>, <a class="tag-none-link" href="/tags/%E4%BA%8B%E4%BB%B6/" rel="tag">事件</a>, <a class="tag-none-link" href="/tags/%E5%A7%94%E6%89%98/" rel="tag">委托</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="再看委托"><a href="#再看委托" class="headerlink" title="再看委托"></a>再看委托</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-keyword">namespace</span> <span class="hljs-title">ConsoleApp1</span><br>&#123;<br>	<span class="hljs-function"><span class="hljs-built_in">delegate</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Calculator</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>;<br><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">MathOperation</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a + b;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Subtract</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a - b;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Zhao</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Zhao</span>(<span class="hljs-params">Calculator a</span>)</span><br>		&#123;<br>			operation = a;<br>		&#125;<br>		<span class="hljs-keyword">public</span> Calculator operation;<br>	&#125;<br>	<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>	&#123;<br><br>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span><br>		&#123;<br>			MathOperation math = <span class="hljs-keyword">new</span> MathOperation();<br>			Zhao zhao = <span class="hljs-keyword">new</span> Zhao(math.Add);<br>			<span class="hljs-comment">//zhao.operation = new Calculator(math.Add);</span><br>			<span class="hljs-built_in">int</span> result1 = zhao.operation(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>);<br>			Console.WriteLine(<span class="hljs-string">&quot;Addition: &quot;</span> + result1);<br>			zhao.operation = math.Subtract;<br>			<span class="hljs-built_in">int</span> result2 = zhao.operation(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>);<br>			Console.WriteLine(<span class="hljs-string">&quot;Subtraction: &quot;</span> + result2);<br>			Console.ReadLine();<br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="委托和Func"><a href="#委托和Func" class="headerlink" title="委托和Func"></a>委托和Func</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span> <span class="hljs-title">ConsoleApp1</span><br>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Calculator</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>;<br>	<span class="hljs-keyword">class</span> <span class="hljs-title">MathOperation</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a + b;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Subtract</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a - b;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Zhao</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> Calculator operation;<br>		<span class="hljs-keyword">public</span> Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; operationFunc;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Zhao</span>(<span class="hljs-params">Calculator calculator</span>)</span><br>		&#123;<br>			operation = calculator;<br>			<span class="hljs-comment">//operationFunc = calculator.Invoke;</span><br>			<span class="hljs-comment">//operationFunc = new Func&lt;int, int, int&gt;(calculator);</span><br>			operationFunc = (a,b)=&gt; calculator(a,b);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>	&#123;<br><br>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span><br>		&#123;<br>			<span class="hljs-keyword">var</span> math = <span class="hljs-keyword">new</span> MathOperation();<br>			<span class="hljs-keyword">var</span> xiaozhao = <span class="hljs-keyword">new</span> Zhao(math.Add);<br>			Console.WriteLine(<span class="hljs-string">$&quot;10 + 5 = <span class="hljs-subst">&#123;xiaozhao.operationFunc(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)&#125;</span>&quot;</span>);<br>			xiaozhao.operation = math.Subtract;<br>			Console.WriteLine(<span class="hljs-string">$&quot;10 - 5 = <span class="hljs-subst">&#123;xiaozhao.operationFunc(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)&#125;</span>&quot;</span>);<br><br>			Console.ReadLine();<br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="委托和Action"><a href="#委托和Action" class="headerlink" title="委托和Action"></a>委托和Action</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span> <span class="hljs-title">ConsoleApp1</span><br>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Calculator</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>;<br>	<span class="hljs-keyword">class</span> <span class="hljs-title">MathOperation</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			Console.WriteLine(<span class="hljs-string">$&quot;10 + 5 = <span class="hljs-subst">&#123;a+b&#125;</span>&quot;</span>);<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Subtract</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			Console.WriteLine(<span class="hljs-string">$&quot;10 - 5 = <span class="hljs-subst">&#123;a - b&#125;</span>&quot;</span>);<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Zhao</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> Calculator operation;<br>		<span class="hljs-keyword">public</span> Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; operationFunc;<br>		<span class="hljs-keyword">public</span> Action&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; operationAction;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Zhao</span>(<span class="hljs-params">Calculator calculator</span>)</span><br>		&#123;<br>			operation = calculator;<br>			<span class="hljs-comment">//operationAction = calculator.Invoke;</span><br>			operationAction = <span class="hljs-keyword">new</span> Action&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt;(calculator);<br>			<span class="hljs-comment">//operationAction = (a, b) =&gt; calculator(a, b);</span><br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>	&#123;<br><br>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span><br>		&#123;<br>			<span class="hljs-keyword">var</span> math = <span class="hljs-keyword">new</span> MathOperation();<br>			<span class="hljs-keyword">var</span> xiaozhao = <span class="hljs-keyword">new</span> Zhao(math.Add);<br>			xiaozhao.operationAction(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>);<br>			<span class="hljs-comment">//Console.WriteLine($&quot;10 + 5 = &#123;xiaozhao.operationFunc(10, 5)&#125;&quot;);</span><br>			xiaozhao.operationAction += math.Subtract;<br>			<span class="hljs-comment">//Console.WriteLine($&quot;10 - 5 = &#123;xiaozhao.operationFunc(10, 5)&#125;&quot;);</span><br>			xiaozhao.operationAction(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>);<br><br>			Console.ReadLine();<br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="委托和事件"><a href="#委托和事件" class="headerlink" title="委托和事件"></a>委托和事件</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">namespace</span> <span class="hljs-title">ConsoleApp1</span><br>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">delegate</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Calculator</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span>;<br>	<span class="hljs-keyword">class</span> <span class="hljs-title">MathOperation</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a + b;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Subtract</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a - b;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Zhao</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> Calculator operation;<br>		<span class="hljs-keyword">public</span> Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; operationFunc;<br>		<span class="hljs-keyword">public</span> Action&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; operationAction;<br>		<span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> Calculator operationEvent;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Zhao</span>(<span class="hljs-params">Calculator calculator</span>)</span><br>		&#123;<br>			operationEvent = calculator;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">OnoperationEvent</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> operationEvent(a, b);<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>	&#123;<br><br>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span><br>		&#123;<br>			<span class="hljs-keyword">var</span> math = <span class="hljs-keyword">new</span> MathOperation();<br>			<span class="hljs-keyword">var</span> xiaozhao = <span class="hljs-keyword">new</span> Zhao(math.Add);<br>			Console.WriteLine(<span class="hljs-string">$&quot;10 + 5 = <span class="hljs-subst">&#123;xiaozhao.OnoperationEvent(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)&#125;</span>&quot;</span>);<br>			xiaozhao.operationEvent -= math.Add;<br>			xiaozhao.operationEvent += math.Subtract;<br>			Console.WriteLine(<span class="hljs-string">$&quot;10 - 5 = <span class="hljs-subst">&#123;xiaozhao.OnoperationEvent(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>)&#125;</span>&quot;</span>);<br><br>			Console.ReadLine();<br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<h2 id="集大成者"><a href="#集大成者" class="headerlink" title="集大成者"></a>集大成者</h2><p>先让大家提条件（订阅拦截），外部传入具体的操作（加法/减法），最后引擎统一检查条件，通过了才真正执行操作。</p>
+<p>这在软件工程中是一个极其经典的架构模式，叫做 拦截器模式（Interceptor Pattern） 或者 事件预处理模式（Pre-Event Pattern）。像 WPF 里的 PreviewMouseDown 事件，或者 ASP.NET 里的中间件（Middleware），底层用的全是你说的这种思想！</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs c#"><span class="hljs-keyword">using</span> System;<br><br><span class="hljs-keyword">namespace</span> <span class="hljs-title">ConsoleApp1</span><br>&#123;<br>	<span class="hljs-keyword">class</span> <span class="hljs-title">MathOperation</span><br>	&#123;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Add</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a + b;<br>		&#125;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> <span class="hljs-title">Subtract</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> a - b;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CalculationEventArgs</span> : <span class="hljs-title">EventArgs</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> A &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">int</span> B &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>		<span class="hljs-keyword">public</span> Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; Operation &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> IsCancelled &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;=<span class="hljs-literal">false</span>;<br>		<span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> CancelReason &#123; <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; &#125;=<span class="hljs-built_in">string</span>.Empty;<br>	&#125;<br><br>	<span class="hljs-keyword">class</span> <span class="hljs-title">Zhao</span><br>	&#123;<br>		<span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> EventHandler&lt;CalculationEventArgs&gt; OnBeforeCalculate;<br>		<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> a, <span class="hljs-built_in">int</span> b, Func&lt;<span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>, <span class="hljs-built_in">int</span>&gt; operation</span>)</span><br>		&#123;<br>			<span class="hljs-keyword">var</span> <span class="hljs-keyword">args</span> = <span class="hljs-keyword">new</span> CalculationEventArgs &#123; A = a, B = b, Operation = operation &#125;;<br>			OnBeforeCalculate?.Invoke(<span class="hljs-keyword">this</span>, <span class="hljs-keyword">args</span>);<br>			<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">args</span>.IsCancelled)<br>			&#123;<br>				<span class="hljs-built_in">int</span> result = <span class="hljs-keyword">args</span>.Operation(<span class="hljs-keyword">args</span>.A, <span class="hljs-keyword">args</span>.B);<br>				Console.WriteLine(<span class="hljs-string">$&quot;Result: <span class="hljs-subst">&#123;result&#125;</span> 成功&quot;</span>);<br>			&#125;<br>			<span class="hljs-keyword">else</span><br>			&#123;<br>				Console.WriteLine(<span class="hljs-string">$&quot;失败 Operation cancelled: <span class="hljs-subst">&#123;<span class="hljs-keyword">args</span>.CancelReason&#125;</span>&quot;</span>);<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">internal</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br>	&#123;<br><br>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] <span class="hljs-keyword">args</span></span>)</span><br>		&#123;<br>			<span class="hljs-keyword">var</span> math = <span class="hljs-keyword">new</span> MathOperation();<br>			<span class="hljs-keyword">var</span> xiaozhao = <span class="hljs-keyword">new</span> Zhao();<br>			EventHandler&lt;CalculationEventArgs&gt; rule1 = (sender,e) =&gt;<br>			&#123;<br>				<span class="hljs-keyword">if</span> (e.A &lt; <span class="hljs-number">0</span> || e.B &lt; <span class="hljs-number">0</span>)<br>				&#123;<br>					e.IsCancelled = <span class="hljs-literal">true</span>;<br>					e.CancelReason = <span class="hljs-string">&quot;参数不能为负数&quot;</span>;<br>				&#125;<br>			&#125;;<br>			EventHandler&lt;CalculationEventArgs&gt; rule2 = (sender, e) =&gt;<br>			&#123;<br>				<span class="hljs-keyword">if</span> (e.Operation == math.Subtract &amp;&amp; e.A &lt; e.B)<br>				&#123;<br>					e.IsCancelled = <span class="hljs-literal">true</span>;<br>					e.CancelReason = <span class="hljs-string">&quot;减法运算中，参数A不能小于参数B&quot;</span>;<br>				&#125;<br>			&#125;;<br>			xiaozhao.OnBeforeCalculate += rule1;<br>			xiaozhao.OnBeforeCalculate += rule2;<br>			Console.WriteLine(<span class="hljs-string">&quot;测试1&quot;</span>);<br>			xiaozhao.Execute(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>, math.Add);<br>			Console.WriteLine(<span class="hljs-string">&quot;测试2&quot;</span>);<br>			xiaozhao.Execute(<span class="hljs-number">-5</span>, <span class="hljs-number">3</span>, math.Add);<br>			Console.WriteLine(<span class="hljs-string">&quot;测试3&quot;</span>);<br>			xiaozhao.Execute(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>, math.Subtract);<br><br>			Console.ReadLine();<br>		&#125;<br>	&#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/7/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">设计模式学习</span>
+    </a>
+    
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%8D%E7%9C%8B%E5%A7%94%E6%89%98"><span class="toc-text">再看委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E5%92%8CFunc"><span class="toc-text">委托和Func</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E5%92%8CAction"><span class="toc-text">委托和Action</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%94%E6%89%98%E5%92%8C%E4%BA%8B%E4%BB%B6"><span class="toc-text">委托和事件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%A4%A7%E6%88%90%E8%80%85"><span class="toc-text">集大成者</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 18px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/WPF/" style="font-size: 16px;">WPF</a> <a href="/tags/git/" style="font-size: 12px;">git</a> <a href="/tags/hexo/" style="font-size: 14px;">hexo</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
