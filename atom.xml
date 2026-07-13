@@ -10,7 +10,27 @@
   <rights>All rights reserved 2026, Nathan Gao</rights>
   <subtitle>心之所向，素履以往</subtitle>
   <title>与买桂花同载酒</title>
-  <updated>2026-07-10T10:00:33.368Z</updated>
+  <updated>2026-07-13T03:26:21.867Z</updated>
+  <entry>
+    <author>
+      <name>Nathan Gao</name>
+    </author>
+    <category term="生活随笔" scheme="https://www.zebin-yue.top/categories/life-notes/"/>
+    <category term="哲学" scheme="https://www.zebin-yue.top/tags/philosophy/"/>
+    <category term="婚姻" scheme="https://www.zebin-yue.top/tags/marriage/"/>
+    <category term="生活" scheme="https://www.zebin-yue.top/tags/%E7%94%9F%E6%B4%BB/"/>
+    <content>
+      <![CDATA[<p>在婚姻与家庭的高压环境中，当我们面对长辈的越界微操、伴侣的情绪失控甚至是语言暴力时，很容易本能地向传统哲学寻求庇护。老子讲“见素抱朴，少私寡欲”，也讲“天地不仁，以万物为刍狗”。将这种宏大而冰冷的天道视角引入家庭关系，本质上是为自己编写了一套极其精简且防御力顶级的底层代码。面对不公平的指责和情绪宣泄，选择“递上左脸”或是彻底的冷眼旁观，就像是在系统外层套了一个极其粗暴的容错机制：拦截一切异常，不作响应。这确实能防止我们在极度疲惫时彻底崩溃，但代价是情感的物理隔离。我们把自己变成了一块石头，表面上斩断了多余的欲望与执念，切断了痛觉神经，但由于内心依然存在对家庭的责任感，那些恶言恶语依然会转化为“内伤”，慢慢耗尽生命的热情与系统的生机。</p><p>要破解这种“杀敌八百，自损一千”的困局，我们需要从老子的“物理隔离”，升级到庄子的“系统改良”。很多人误以为道家是彻底灭绝人欲的，但这其实是对庄子最大的误解。庄子在《德充符》中借着与惠子的辩论，提出了他革命性的“无情”观：“吾所谓无情者，言人之不以好恶内伤其身，常因自然而不益生也。”</p><p>这里的“无情”，绝不是冷血无情或剥夺感受，而是不让外界的好与坏、别人的顺与逆，对自己造成内心的伤害。它教导我们，不要因为外部环境的混乱而惩罚自己。</p><p>将庄子的智慧落地到具体的泥沼中，核心在于完成从“石头”到“镜子”的心态转换。庄子推崇“用心若镜，物来则应，过去不留”。在家庭协作中，当伴侣因为育儿焦虑而口不择言，或是长辈强行夺取话语权时，我们要像一面镜子那样去应对。镜子能够清晰地照出对方的失控、焦虑和越界，这叫“有情”的理解；但镜子绝不会把这些影像刻在自己身上，绝不把对方抛出的诸如“不像个父亲”、“恶心”之类的虚假帽子戴到自己头上，去产生自我怀疑和痛苦，这就是“无情”的防御。真正的修行与冷眼，不是拔掉网线逃避互动，也不是毫无底线地当一个承受侮辱的殉道者，而是坚决撤回那个“允许别人伤害我”的系统权限。在日常的家庭运转里，我们保持“菩萨低眉”的柔性与包容，理解生病孩子的脆弱与大人的疲惫；但当面临恶意的攻击和人格践踏时，必须要有“金刚怒目”的雷霆手段作为底层防火墙，果断拦截并明确拒绝越界访问。不去争夺不必要的控制权，不陷入自证清白的陷阱，只顺应客观事实的流转。用这种“用心若镜”的状态去处理复杂的现实，既能保全自身的能量不被无谓消耗，也能在兵荒马乱的生活中，真正守住内心的清明与自由。</p>]]>
+    </content>
+    <id>https://www.zebin-yue.top/post/2026/7/%E5%A9%9A%E5%A7%BB%E6%82%9F%E9%81%93.html</id>
+    <link href="https://www.zebin-yue.top/post/2026/7/%E5%A9%9A%E5%A7%BB%E6%82%9F%E9%81%93.html"/>
+    <published>2026-07-12T13:30:00.000Z</published>
+    <summary>
+      <![CDATA[<p>在婚姻与家庭的高压环境中，当我们面对长辈的越界微操、伴侣的情绪失控甚至是语言暴力时，很容易本能地向传统哲学寻求庇护。老子讲“见素抱朴，少私寡欲”，也讲“天地不仁，以万物为刍狗”。将这种宏大而冰冷的天道视角引入家庭关系，本质上是为自己编写了一套极其精简且防御力顶级的底层代码。]]>
+    </summary>
+    <title>婚姻悟道</title>
+    <updated>2026-07-13T03:26:21.867Z</updated>
+  </entry>
   <entry>
     <author>
       <name>Nathan Gao</name>
@@ -30,7 +50,7 @@
 <p>当]]>
     </summary>
     <title>闭包传值</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
+    <updated>2026-07-13T03:26:21.867Z</updated>
   </entry>
   <entry>
     <author>
@@ -50,7 +70,7 @@
       <![CDATA[<h2 id="再看委托"><a href="#再看委托" class="headerlink" title="再看委托"></a>再看委托</h2><figure class="highlight c#"><table><tr><td class="gutter"><pre><]]>
     </summary>
     <title>委托深入</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
+    <updated>2026-07-13T03:26:21.866Z</updated>
   </entry>
   <entry>
     <author>
@@ -71,7 +91,7 @@
 <figure cl]]>
     </summary>
     <title>设计模式学习</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
+    <updated>2026-07-13T03:26:21.867Z</updated>
   </entry>
   <entry>
     <author>
@@ -93,7 +113,7 @@
 <p>实际主持编书的总纂官纪晓岚、陆锡熊和孙士毅，以纪晓岚任职时间最久，故其弟子刘权之]]>
     </summary>
     <title>禁书能手纪晓岚</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
+    <updated>2026-07-13T03:26:21.867Z</updated>
   </entry>
   <entry>
     <author>
@@ -114,7 +134,7 @@
 <p>乾隆皇帝以“征集天下遗书”为诱饵，布下了一张天罗地网。在这张网里，无论是献书的平民、江南的世家，还是高居庙堂的总编纂官，统统成了皇权刀]]>
     </summary>
     <title>苟活的纪晓岚</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
+    <updated>2026-07-13T03:26:21.867Z</updated>
   </entry>
   <entry>
     <author>
@@ -135,7 +155,7 @@
 <p>在1994年的一次美国之旅中，马云“触网”，并立即意识到互联网可能有潜在的巨大的价值。1995年，]]>
     </summary>
     <title>马云</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
+    <updated>2026-07-13T03:26:21.867Z</updated>
   </entry>
   <entry>
     <author>
@@ -155,7 +175,7 @@
       <![CDATA[<h1 id="Android-滑动翻页失效排查记录"><a href="#Android-滑动翻页失效排查记录" class="headerlink" title="Android 滑动翻页失效排查记录"></a>Android 滑动翻页失效排查记录</h1><blockquo]]>
     </summary>
     <title>Android 滑动翻页失效</title>
-    <updated>2026-07-10T10:00:33.366Z</updated>
+    <updated>2026-07-13T03:26:21.864Z</updated>
   </entry>
   <entry>
     <author>
@@ -175,7 +195,7 @@
       <![CDATA[<p>故事的起因是我们在使用自研的上位机工具发送获取属性请求时，明明在命令行里带上了具体的控制任务ID，满心以为机台会乖乖返回这一个对象的数据，结果它却一股脑地把内存里所有的控制任务全吐了出来。为了弄清到底是谁的责任，我们直接深入到了底层的字节码去抓包对证。抓包结果清清楚楚地显示]]>
     </summary>
     <title>SECS/GEM S14F1 单对象查询异常</title>
-    <updated>2026-07-10T10:00:33.367Z</updated>
+    <updated>2026-07-13T03:26:21.865Z</updated>
   </entry>
   <entry>
     <author>
@@ -196,24 +216,6 @@
 <p>上午去了武康大楼对面的宋庆龄故居。武康大楼如今是热闹的，楼下总聚着一群人，举着手机，对着那楼角啧啧地拍。我们绕开，进了故居的铁门。门一关，外面的声]]>
     </summary>
     <title>陪老婆的一个周日</title>
-    <updated>2026-07-10T10:00:33.368Z</updated>
-  </entry>
-  <entry>
-    <author>
-      <name>Nathan Gao</name>
-    </author>
-    <category term="生活随笔" scheme="https://www.zebin-yue.top/categories/life-notes/"/>
-    <category term="生活" scheme="https://www.zebin-yue.top/tags/%E7%94%9F%E6%B4%BB/"/>
-    <category term="人生" scheme="https://www.zebin-yue.top/tags/%E4%BA%BA%E7%94%9F/"/>
-    <category term="责任" scheme="https://www.zebin-yue.top/tags/%E8%B4%A3%E4%BB%BB/"/>
-    <content>
-      <![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"     data-hbe-format="4"     data-wpm="密码错误，请重试。"     data-whm="密码错误，请重试。"     data-salt="e28094d2f8f99095cde2c1bdb523831dc7780b338f94e02e49fd61f8cb5dcb6f"     data-nonce="657494ea3300820c1eb9b11b"     data-kdf-iterations="600000"     data-auto-save="false">  <script id="hbeData" type="hbeData">    e721e7c53803c31bccc41be64fea707d309ce3f6292140faf7abd0c352e40eaa9bd5aa17fccf61bbc550c2c0700d3aa9581035435ab4df669caba81614ad22168ff189e574387d7ad4be67b8136b207a12f021feb8f745ca73d1c83624b095a430103057d5f0b07efc15012cdfa0b00ce83d5407ad33b3401007a9103a47762ac46d24cc84d80863b4f8bd1c6ea307285c8c4a7f4cd3dbf441e872cec3bbd82f47b9250ec05d92dc096b9d6c78ac6bead5fa243bceabecee114ac301368443e47f6d013c22d3c77c44fee20ccdf3033809681145730b22e1047a1808972d1ee2b9e7a7911f759a5ff25f8c196fcde6c9602368fcd5c8e491e521ebf0fe74c4f9585b42ff7baa79cb44e6160d97ca6a4f997bed244860069a423c30b93eb6f3aa79fada888399cccb2553743a9a482353ac418b06f177ddce17e084176288685ce73d8f298587c80891044c97956d06eb298571b90b3b97b0076b71e014e0c46df0590f15659f2406f4cf0609150e3b3d233bdee6ad012e1d8656809e03dccd59b9583d4182a474120c2f283ed3b5829d4329ff759fbaa6d0aec7ed2881e5461d606213b4628a77cca36099e05b1845e271276d5da090318edd2c91876a997c9d63c20b13a6e7c4027e0556a3c042de6ecf9575672a23b16bbdf58b7d7159d00a71127a2c24f1cd339242e23152950f5ce773057dd2375cbf7e008138adf10ad20b554df5ed4d12f906add3c42f0b365c59bd4ee0563932bc1d6a408463078bc17d2fb07dda1163e5eebd67f93623aed90f6293359920d29961e206055401298455b9f49c2dfc24d315752e485399fb8fbf9c47dff378daafa3d49f620d897d66f9040fff2bfe61e0c79cfe86d034d42a8d11c85c1232a5ecd3d9d361b997becce43d84b798586cfdf7bbc9f3c0e7a80eeed73b5dfb0b134a02f9d345b25881ea5aac1e63113778aa2750a7455d2e948c22bca4a3b44bbd57c10befb944ed4195e85807843df65c2c1e2ebb52771576263fe51d56c56d75b1b32c50fc76bed492321cbcf8481b004339fb11e7869fed5389ffb84db442a02192953b2dbd532bf6874c75938a249f9bd46fbfb855fb47a38bfa857a7a365ca9af759e6b220e10e4a712b40a2efb0ebed31c56ab674dda6b277b963629bf41d4e597635302996faea65ebaaa1d7993a03f9ff651753074670255aed7122d6a2b873d86ea301735550485325edfc7eed25a0acdc8c0631824738d1b9c2e3515d6fd7c1279d4c415e7ae8405429830b3254b0ca1e250b49beeccf838afe52d73d801addae2b725683511028531253b62f836360f3e811bf29ddd23f9fab7e05a0b91c8af28257a4f22ccee68a6978a100152719c940efeb09f5828cb7511204c7a3598525dd8ddf5f907895fe9c22211b9cd06bb68b2bcb983a73b270d2f3787dbd7acdb8ecb24968cb3ce7a1fec61d932b93cc5424e7eabbecfbce6d429a5db6ec4f06710902ea573fb9f052f14fca71ba8d010c7e249c90225d00c949cce398c755c20d75c1d566ddf507d0413ae689497056de4aa40185890f0881fee065fff1088991bc7fd756e50717fe735ee97155805c32b5a96bc998445115d04e25ad27e0bdd68f3c28508912dcd45603f270a5466c50d2aa90896a0da2c49c3fe42daf81a5f2244fd1234cd870e7aec3dd95aa1919d1e3da41afabbae4e4218aa1d557ad2fe3f3a3a645deb671e10b96e229ab00847539b41ad6e6bcca2f4c327c99f70cc11f12f924b7e27f197c8b034293f7cae858d81c41ff46759890be2e4dbd639cf7b132fcaa42b2c52f9a678ed3d72511dca00860947e0fc288813f4e8874454b054676c94c7b1b25a0dd889567b7c06448d879aaa5b2c6826603d038c4f1c2b5ad6123a8ea004985ee703dda2b5cdd13109f3c009e83868b26565548319af3fafa19383799fe81506fce6e6b76c302b197132f3cf095594bd0e7bb3bc40f17d51cc6bba0a066cafe3bf572cc32998238580e48180dc9eff79cc5728fc37bf7b3bf6bf6bd8f9a2c4bdacb20158d9276daf4908041b5905cab3cbb96044b393a5ccdf1480e510028b37cce38fd9749361c49e5b100805a6035f52c19ef973d6f65eff7616c59f79e4681134836c594b25a3003b401e431fc58567a230e2d7b16247ffa76247616cc8eaa443e08b27ef7f3a592eec4f166daf55f74bcb062d058d5dbc69ec8db9061ea8827ad1b0bf0ba86bf269bb181dd73c4deb779e9b011876dd52bee4a05869ebd0c57b54f4ac0947786898b60206651ef33160d2c30bdab1c138bdb16195500de7178d4b008725b2f7db7aa9740a5f69f8f42dd882966643da780c5f5c28f0517ff2abf9ee0efaabc2b310ec789626238dd970463460a18661d6e0600295d62f6a2be25e151b1e0da81ca969593dc6724fdf8caf490e33169280de9185d67d9b58f7eb7e0c554411addc00f3920515450db2f0d8e157b9f929c024456c068fe92e0a12a1b2214030c0dcfbe135edbf0f70f56e5c8904e554135a3f8ca599f61283f5f343daa68bc5cdbe5856d40eef107f884575394da9c64d457778c83773b05275263f30e2529c7695e175c6648a18f8bc791c57d3b9137271decc3cdfe0ead7ed9a27903399f427e9a0ab3d40d7210c4c83be1573dbd27f2c4397314f0b8f59fe8f3a866d447235976049efcce34b79c0c5ccb6963e294d455787d48f3306809531762f78bab6d89ed971b6d96999e0f83fe28da88391936ae20799aa3f0f8f0466c9f27a8481cf2626268ca0d3f0b03a83447104e4e77df7438fe36e6e6f97d3f0702f60f132f2b1ea288608900e55263a5b54d93f915e6ba1a3816873fab5d659042e28b0790ceef62b1b129bfb5d5af06e41d0f273c08ab45f9216feae7d16354e4ad64e87fe592efd50d000f8874335a04925e5fe51ac7bd77f3edfc0b8f0fb6868beef8dabb5721c0ba1ab6c442f6c56c14a3a3a548e0a8e8a8b29ae8a7719a5f3c80465710e90e2e3c9e63707dc7c2e8b02a3ba5e203d9ebc19317f232afee66f4c5ac005bd556e8bdab24ac7d3e583cbfedef7e2a9a862a504e0507ceee44f385fddb0ff92e17e03eeccb98d34cd92370f4e413a8c3b05352665979540b73493e7338d341e6e037c7e28aea7905d8434b657de01a7bfb71635c9c4449fa81196c3a9a70af7ece683c6ac0ed508c4e081f098c7045fa4e64b21c69beb96f6ed440f869f8883761f29dde477eaef5717feb8e50fba31b98ea92d102ee8e24237597b3f85e82cab69da9f388845e180c0e6188156533dd8fa0594ef50ea54d6b0c0ea7686d06c09e3fcfafd6ddd9395b8ec5c5928b805faece79d5598bfff7e4f231335153f3805949a93c90ff676f9fb70f6b02905197d369b3adfdb5ca7d4da9fb1840401eb1065c1a0d93119c91a29d79f067b2217004eae717ee78fa3f25e6200abf9a6a32fca157362b44c63e653d9831bdddcd1b51b0b32ae3e691f0683f95584794aa02325ec46fcaed1d16d30ea719cab686dd8a7080579bffb8655714ad947e78ff8ff4f7e765eb4afac35274f2dc8318bcc68e4649ee475117029106385cfd801be30db095d8a84e5241aaa6a3f3df891dcff29234759f465475986ccd3a3a86e80750fb305f4553eedc0b78044f3e9e6bb73b6559f2e24199cc3e5efdfb2222b04987c10c66b0a417e1b73bf5848c48ec87fda01075378d6033fae6dfba5de39e7113fb8a1901bb0012123fc8a9058637676ccad2d9d51f19ffbe85bb9233bf55110a132d3c4e78572aeb5e87708e497e414e739bc42e9818f9fbc0fa45154ba631633b099c032e2391e00c6b52fe9c2d8d19d5a7eb4e5543c8c732ed57198f63f69cb63f11def3a78c460266b4f0fa4c3d617e1a2126ca67613bac114b46316ebb591c53282432fec1dbe14c67f9022d76c6787ca63fbfdfb2c6b75c47b8e512e035bbf9816e3d6cc9424a64245fd755efd17169ee80dd2742e5a4b5a70f3775ef3886bcc6ae7b9a1cac0f95bfe059640b3d4f80662dfdbcb6b965f4764d13c7d9292e6ff97  </script>  <div class="hbe hbe-content">    <form id="hbeForm" class="hbe hbe-form" onsubmit="return false">      <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">本文已加密，请输入密码查看。</span>      </label>    </div>      <button class="hbe hbe-button" type="submit">Decrypt</button>      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>    </form>  </div></div><script data-pjax src="/lib/hbe.9a88ff0505.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]>
-    </content>
-    <id>https://www.zebin-yue.top/post/2026/6/%E8%A2%AB%E7%94%9F%E6%B4%BB%E5%9B%B0%E4%BD%8F%E7%9A%84%E6%88%91.html</id>
-    <link href="https://www.zebin-yue.top/post/2026/6/%E8%A2%AB%E7%94%9F%E6%B4%BB%E5%9B%B0%E4%BD%8F%E7%9A%84%E6%88%91.html"/>
-    <published>2026-06-28T13:30:00.000Z</published>
-    <summary>Here's something encrypted, password is required to continue reading.</summary>
-    <title>被生活困住的我</title>
-    <updated>2026-07-10T10:00:33.367Z</updated>
+    <updated>2026-07-13T03:26:21.865Z</updated>
   </entry>
 </feed>
