@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前馈神经网络 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">前馈神经网络</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年02月05日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="前馈神经网络-FFN"><a href="#前馈神经网络-FFN" class="headerlink" title="前馈神经网络 (FFN)"></a>前馈神经网络 (FFN)</h1><p>我们继续使用 <strong>“Thinking”</strong> 的例子。<br>FFN 的核心公式是：</p>
+<script type="math/tex; mode=display">\text{FFN}(x) = \text{ReLU}(xW_1 + b_1)W_2 + b_2</script><h2 id="场景设定与准备"><a href="#场景设定与准备" class="headerlink" title="场景设定与准备"></a>场景设定与准备</h2><p>为了方便口算，我们将上一章 Attention 算出的结果 $[13.6, 23.6]$ 简化取整。</p>
+<ul>
+<li><strong>输入向量 ($x$)</strong>：<code>[10, 20]</code><ul>
+<li>这是 Attention 层的输出，维度 $d_{model} = 2$。</li>
+</ul>
+</li>
+<li><strong>目标</strong>：<ol>
+<li>先<strong>升维</strong>（把 2 维变成 4 维），把特征拆解开。</li>
+<li>通过 <strong>ReLU</strong> 过滤负数。</li>
+<li>再<strong>降维</strong>（把 4 维变回 2 维），整合结果。</li>
+</ol>
+</li>
+</ul>
+<p>我们需要预设两组权重矩阵（在真实模型中，这些是训练出来的）：</p>
+<ul>
+<li><strong>第一层参数 ($W_1, b_1$) - 负责升维</strong>：<ul>
+<li>$W_1$ ($2 \times 4$ 矩阵)</li>
+<li>$b_1$ ($1 \times 4$ 向量)</li>
+</ul>
+</li>
+<li><strong>第二层参数 ($W_2, b_2$) - 负责降维</strong>：<ul>
+<li>$W_2$ ($4 \times 2$ 矩阵)</li>
+<li>$b_2$ ($1 \times 2$ 向量)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-第一步：线性变换与升维-xW-1-b-1"><a href="#1-第一步：线性变换与升维-xW-1-b-1" class="headerlink" title="1. 第一步：线性变换与升维 ($xW_1 + b_1$)"></a>1. 第一步：线性变换与升维 ($xW_1 + b_1$)</h2><p>FFN 的第一层通常很宽（Wide）。我们假设 $W_1$ 和 $b_1$ 如下：</p>
+<script type="math/tex; mode=display">
+W_1 = \begin{bmatrix}
+1 & -1 & 2 & 0 \\
+0 & 2 & -1 & 1
+\end{bmatrix}, \quad
+b_1 = [0, \quad 0, \quad -5, \quad 0]</script><p><strong>计算过程：</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Z &= x \cdot W_1 + b_1 \\
+&= [10, 20] \cdot \begin{bmatrix} 1 & -1 & 2 & 0 \\ 0 & 2 & -1 & 1 \end{bmatrix} + [0, 0, -5, 0] \\
+\end{aligned}</script><p><strong>逐维度口算：</strong></p>
+<ul>
+<li><strong>第1维</strong>：$10\times1 + 20\times0 + 0 = \mathbf{10}$</li>
+<li><strong>第2维</strong>：$10\times(-1) + 20\times2 + 0 = -10 + 40 = \mathbf{30}$</li>
+<li><strong>第3维</strong>：$10\times2 + 20\times(-1) + (-5) = 20 - 20 - 5 = \mathbf{-5}$  <strong>(注意这个负数!)</strong></li>
+<li><strong>第4维</strong>：$10\times0 + 20\times1 + 0 = \mathbf{20}$</li>
+</ul>
+<p><strong>中间结果 ($Z$)：</strong></p>
+<script type="math/tex; mode=display">[10, \quad 30, \quad -5, \quad 20]</script><blockquote>
+<p><strong>💡 意义</strong>：原本 2 个维度的信息，被拆解到了 4 个维度空间里，就像把一束白光用三棱镜分解成七色光。</p>
+</blockquote>
+<hr>
+<h2 id="2-第二步：非线性激活-ReLU"><a href="#2-第二步：非线性激活-ReLU" class="headerlink" title="2. 第二步：非线性激活 (ReLU)"></a>2. 第二步：非线性激活 (ReLU)</h2><p>公式：$\text{ReLU}(z) = \max(0, z)$<br>这一步非常简单粗暴：<strong>所有负数直接归零，正数保持不变。</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+H &= \text{ReLU}([10, \quad 30, \quad \mathbf{-5}, \quad 20]) \\
+&= [10, \quad 30, \quad \mathbf{0}, \quad 20]
+\end{aligned}</script><blockquote>
+<p><strong>💡 意义</strong>：</p>
+<ul>
+<li>注意那个 <strong>-5 变成了 0</strong>。</li>
+<li>这就是<strong>“筛选”</strong>。模型认为第 3 个维度的特征（可能是某种噪音或无关信息）对当前任务没有帮助，所以直接“关掉”了神经元。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="3-第三步：线性变换与降维-HW-2-b-2"><a href="#3-第三步：线性变换与降维-HW-2-b-2" class="headerlink" title="3. 第三步：线性变换与降维 ($HW_2 + b_2$)"></a>3. 第三步：线性变换与降维 ($HW_2 + b_2$)</h2><p>现在我们要把这个 4 维向量压回 2 维，方便传给下一层。<br>假设 $W_2$ 和 $b_2$ 如下：</p>
+<script type="math/tex; mode=display">
+W_2 = \begin{bmatrix}
+1 & 0 \\
+1 & 1 \\
+0 & 0 \\
+2 & 1
+\end{bmatrix}, \quad
+b_2 = [1, \quad 1]</script><p><strong>计算过程：</strong></p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\text{Output} &= H \cdot W_2 + b_2 \\
+&= [10, 30, 0, 20] \cdot \begin{bmatrix} 1 & 0 \\ 1 & 1 \\ 0 & 0 \\ 2 & 1 \end{bmatrix} + [1, 1]
+\end{aligned}</script><p><strong>逐维度口算：</strong></p>
+<ul>
+<li><p><strong>第1维</strong>：<br>  $(10\times1) + (30\times1) + (0\times0) + (20\times2) + 1$<br>  $= 10 + 30 + 0 + 40 + 1 = \mathbf{81}$</p>
+</li>
+<li><p><strong>第2维</strong>：<br>  $(10\times0) + (30\times1) + (0\times0) + (20\times1) + 1$<br>  $= 0 + 30 + 0 + 20 + 1 = \mathbf{51}$</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-最终结果对比"><a href="#4-最终结果对比" class="headerlink" title="4. 最终结果对比"></a>4. 最终结果对比</h2><script type="math/tex; mode=display">
+\text{FFN Output} = [\mathbf{81}, \mathbf{51}]</script><p>让我们回顾一下全过程的变化：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">阶段</th>
+<th style="text-align:left">向量值</th>
+<th style="text-align:left">维度</th>
+<th style="text-align:left">状态描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>FFN 输入</strong></td>
+<td style="text-align:left"><code>[10, 20]</code></td>
+<td style="text-align:left">2维</td>
+<td style="text-align:left">刚开完会（Attention），收集了信息，但比较杂。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>中间层 (ReLU前)</strong></td>
+<td style="text-align:left"><code>[10, 30, -5, 20]</code></td>
+<td style="text-align:left"><strong>4维</strong></td>
+<td style="text-align:left">大脑风暴，把想法发散开，产生了很多念头。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>激活后 (ReLU后)</strong></td>
+<td style="text-align:left"><code>[10, 30, 0, 20]</code></td>
+<td style="text-align:left"><strong>4维</strong></td>
+<td style="text-align:left">否定了不靠谱的念头（-5 被归零）。</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>FFN 输出</strong></td>
+<td style="text-align:left"><code>[81, 51]</code></td>
+<td style="text-align:left">2维</td>
+<td style="text-align:left">总结陈词，形成经过深思熟虑的新观点。</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        
+    </div>
+</article>
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>

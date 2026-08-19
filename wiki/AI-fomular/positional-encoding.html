@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positional Encoding 解析 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Positional Encoding 解析</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年02月05日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="实例解析：位置编码叠加公式"><a href="#实例解析：位置编码叠加公式" class="headerlink" title="实例解析：位置编码叠加公式"></a>实例解析：位置编码叠加公式</h1><p>本例展示 Transformer 如何利用公式 <script type="math/tex">X_{final} = X_{embedding} + PE_{(pos)}</script> 将位置信息注入到词向量中。</p>
+<h2 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h2><ul>
+<li><strong>输入句子</strong>：<code>Thinking Machines</code></li>
+<li><strong>目标对象</strong>：第一个单词 <strong>“Thinking”</strong>。</li>
+<li><strong>位置 (pos)</strong>：<code>0</code>（计算机从 0 开始计数）。</li>
+<li><strong>模型维度 ($d_{model}$)</strong>：<code>4</code>（为了便于观察，假设维度只有 4 维）。</li>
+</ul>
+<hr>
+<h2 id="1-拆解：-X-embedding-语义部分"><a href="#1-拆解：-X-embedding-语义部分" class="headerlink" title="1. 拆解：$X_{embedding}$ (语义部分)"></a>1. 拆解：$X_{embedding}$ (语义部分)</h2><p>首先，模型在 Embedding 层查表，获取 “Thinking” 的原始语义向量。这个向量只代表单词的意思，不知道它在句子的哪个位置。</p>
+<ul>
+<li>Embedding 层: 这是 Transformer 的第一层参数，通常记作 $W_E$。你可以把它想象成一个巨大的矩阵。行数表示每个词，列数是模型的维度，一开始可能就是随机生成的。</li>
+</ul>
+<p>假设查表结果为：</p>
+<script type="math/tex; mode=display">X_{\text{Thinking}} = [0.5, \quad 1.5, \quad -0.5, \quad 0.2]</script><blockquote>
+<p><strong>含义</strong>：这些数值代表了 “Thinking” 的特征（比如动词属性、抽象程度等）。</p>
+</blockquote>
+<h2 id="2-拆解：-PE-pos-位置部分"><a href="#2-拆解：-PE-pos-位置部分" class="headerlink" title="2. 拆解：$PE_{(pos)}$ (位置部分)"></a>2. 拆解：$PE_{(pos)}$ (位置部分)</h2><p>接下来，根据位置编码公式（基于 sin/cos），计算 <strong>位置 0</strong> 的编码向量。<br>根据公式，偶数维度用 $\sin$，奇数维度用 $\cos$。对于 $pos=0$：</p>
+<ul>
+<li>$\sin(0) = 0$</li>
+<li>$\cos(0) = 1$</li>
+</ul>
+<p>所以，位置 0 的 $PE$ 向量是固定的：</p>
+<script type="math/tex; mode=display">PE_{(0)} = [0.0, \quad 1.0, \quad 0.0, \quad 1.0]</script><blockquote>
+<p><strong>含义</strong>：这个向量是“第1个座位”的专属身份证，与具体的词无关。任何放在开头的词，都会加上这个向量。</p>
+</blockquote>
+<h2 id="3-执行：相加-X-PE"><a href="#3-执行：相加-X-PE" class="headerlink" title="3. 执行：相加 ($X + PE$)"></a>3. 执行：相加 ($X + PE$)</h2><p>现在执行核心公式，将两者<strong>元素对应相加</strong>：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+X_{final} &= X_{\text{Thinking}} + PE_{(0)} \\
+&= [0.5, \quad 1.5, \quad -0.5, \quad 0.2] \quad (\text{语义}) \\
+&+ [0.0, \quad 1.0, \quad 0.0, \quad 1.0] \quad (\text{位置}) \\
+&= [\mathbf{0.5}, \quad \mathbf{2.5}, \quad \mathbf{-0.5}, \quad \mathbf{1.2}]
+\end{aligned}</script><hr>
+<h2 id="4-深度解读：为什么这样有效？"><a href="#4-深度解读：为什么这样有效？" class="headerlink" title="4. 深度解读：为什么这样有效？"></a>4. 深度解读：为什么这样有效？</h2><p>看着最终结果 $[\mathbf{0.5}, \mathbf{2.5}, \mathbf{-0.5}, \mathbf{1.2}]$，你可能会疑惑：原来的语义不是被破坏了吗？（比如 $1.5$ 变成了 $2.5$）。</p>
+<p>我们可以用<strong>“波形叠加”</strong>来理解：</p>
+<ol>
+<li><p><strong>数据的分离</strong>：</p>
+<ul>
+<li>Transformer 的高维空间非常大（通常 512 维）。</li>
+<li>神经网络非常聪明，它能学会识别：<strong>“在这个向量里，某些特定的波动模式代表位置，而底层的数值代表含义。”</strong></li>
+</ul>
+</li>
+<li><p><strong>对比 “Machines” (Pos 1)</strong>：<br> 如果我们要处理第二个词 <strong>“Machines”</strong>（假设它的语义向量也是 $[0.5, 1.5, \dots]$ 用于对比）：</p>
+<ul>
+<li>它会加上 $PE_{(1)}$（比如 $[0.84, 0.54, \dots]$）。</li>
+<li>结果就会完全不同。</li>
+</ul>
+</li>
+<li><p><strong>总结</strong>：</p>
+<ul>
+<li><strong>输入前</strong>：”Thinking” 只是字典里的一个词，没有时空概念。</li>
+<li><strong>输出后 ($X_{final}$)</strong>：”Thinking” 变成了一个 <strong>“坐在排头位置的 Thinking”</strong>。</li>
+<li>Attention 机制之后在计算时，就能利用这个微小的数值差异，区分出哪个是主语（通常在前），哪个是宾语（通常在后）。</li>
+</ul>
+</li>
+</ol>
+
+        
+    </div>
+</article>
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>

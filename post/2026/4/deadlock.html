@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>机台死锁问题排查总结 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">机台死锁问题排查总结</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年04月10日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/C/" rel="tag">C#</a>, <a class="tag-none-link" href="/tags/performance/" rel="tag">性能优化</a>, <a class="tag-none-link" href="/tags/debugging/" rel="tag">调试排障</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="机台死锁问题排查总结"><a href="#机台死锁问题排查总结" class="headerlink" title="机台死锁问题排查总结"></a>机台死锁问题排查总结</h1><p>设备跑货时设备突然停机，报了死锁报警。现场情况是：只跑一个工艺步骤进 PMA 没问题，但加上第二个步骤要进 PMB 或 PMC 就会卡死。排查后发现是 Bug#474 的代码改动引起的。</p>
+<h2 id="什么是死锁"><a href="#什么是死锁" class="headerlink" title="什么是死锁"></a>什么是死锁</h2><p>调度器就像一个调度员，负责把 wafer 按顺序送到各个腔去加工。调度员有个自我检查机制：如果发现有活要干，但连续 60 秒一个新任务都派不出去，就判定为”死锁”，说明哪里卡住了，需要报警让人来处理。</p>
+<h2 id="Bug-474-改了什么"><a href="#Bug-474-改了什么" class="headerlink" title="Bug#474 改了什么"></a>Bug#474 改了什么</h2><p>这次改动的目的是优化调度员的判断流程。调度员在送 wafer 进腔之前，会先看看哪些腔当前能接第一道工序的 wafer，然后拿着这份”可用腔名单”，去检查这个 Job 的每一道工序——每一步需要的腔在名单里能找到吗？都找得到，Job 就可以跑；哪一步找不到，就先 hold 住。</p>
+<h2 id="问题在哪"><a href="#问题在哪" class="headerlink" title="问题在哪"></a>问题在哪</h2><p>这份”可用腔名单”本身就只包含了<strong>第一道工序能用哪些腔</strong>，但它却被拿去检查了 Job 的<strong>所有工序</strong>。比如 Job 的第一道工序只指定 PMA，那名单上就只有 PMA，PMB 和 PMC 再空闲也不会出现在名单上。当调度员拿这份名单去检查第二道工序”需要 PMB”时，自然找不到，于是判定 Job 不能跑，hold 住——实际上 PMB 完全可以用，只是名单上根本没有它。</p>
+<p>打个比方：你去餐厅吃饭，服务员只看了你们第一个人的口味（只要素菜），就判定你们整桌人都只吃素菜，拒绝给你们下单。后面的人明明要吃肉菜，服务员也不管——因为他的”菜单”是根据第一个人的需求生成的。</p>
+<p>具体到这次问题：Job 要先在 PMA 加工 step3，再去 PMB 加工 step4。调度员看的是第一道工序 step3 只能用 PMA，于是名单上只有 PMA。检查 step3——PMA 在名单里，没问题；检查 step4（需要 PMB）——名单上没有 PMB，判定 Job 不能跑，hold 住。一片 wafer 都没取就卡死了。</p>
+<p>只跑一个步骤时不会出问题，因为只有一道工序要检查，名单刚好够用。</p>
+<h2 id="怎么修的"><a href="#怎么修的" class="headerlink" title="怎么修的"></a>怎么修的</h2><p>修复很简单：这份名单只用来检查<strong>第一道工序</strong>，后面的工序要让调度员去看<strong>所有腔</strong>，而不是只盯着这份只有第一道工序信息的名单。这样 step4 检查 PMB 时就能正确找到，不会误把 Job hold 住。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这次问题的核心是<strong>拿了一个只包含部分信息的列表，当成了完整信息来用</strong>。<code>EstimateJustInTimeWaferLoading</code> 的职责是评估”第一片 wafer 当前能进哪些腔”，它天然只关注第一道工序对应的腔。但 <code>HoldNewJob</code> 需要的是”Job 的每一步都有腔可用”这个全局判断，两者需求不同，不能直接把前者的结果塞给后者用。</p>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/4/%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%8A%A5%E5%91%8A.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">工业设备软件底层 IO 断线与动作卡死排查全纪实</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/post/2026/4/%E9%80%A0%E8%BD%AE%E5%AD%90.html">
+        <span class="post-nav-direction">下一篇 &rarr;</span>
+        <span class="post-nav-title">个人博客主题造轮子全纪实：从底层架构到前端性能调优</span>
+    </a>
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%BA%E5%8F%B0%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5%E6%80%BB%E7%BB%93"><span class="toc-text">机台死锁问题排查总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81"><span class="toc-text">什么是死锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bug-474-%E6%94%B9%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">Bug#474 改了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98%E5%9C%A8%E5%93%AA"><span class="toc-text">问题在哪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E4%B9%88%E4%BF%AE%E7%9A%84"><span class="toc-text">怎么修的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>

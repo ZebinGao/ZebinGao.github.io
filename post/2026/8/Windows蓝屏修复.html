@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 蓝屏 0xc0000185 引导修复实录：从底层排查到重装系统 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Windows 蓝屏 0xc0000185 引导修复实录：从底层排查到重装系统</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年08月18日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4/">系统维护</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/UEFI%E5%BC%95%E5%AF%BC/" rel="tag">UEFI引导</a>, <a class="tag-none-link" href="/tags/Windows/" rel="tag">Windows</a>, <a class="tag-none-link" href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" rel="tag">故障排查</a>, <a class="tag-none-link" href="/tags/%E8%93%9D%E5%B1%8F%E4%BF%AE%E5%A4%8D/" rel="tag">蓝屏修复</a>, <a class="tag-none-link" href="/tags/%E9%87%8D%E8%A3%85%E7%B3%BB%E7%BB%9F/" rel="tag">重装系统</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近遇到了一起棘手的 Windows 蓝屏无法开机故障。起初以为只是简单的引导文件丢失，但在一步步深入排查后，才发现是底层文件系统甚至硬盘硬件出现了严重故障。本文记录了整个命令行排查与修复的过程，希望能为遇到类似问题的朋友提供排查思路。对于错误 0xc0000185，首先要确认主板是否还能识别到硬盘，以及硬盘是否损坏。</p>
+<h2 id="故障现象"><a href="#故障现象" class="headerlink" title="故障现象"></a>故障现象</h2><ul>
+<li><strong>报错代码</strong>：<code>0xc0000185</code>（微软官方定义为 I/O 设备错误 / 缺少必须的设备）。</li>
+<li><strong>表现</strong>：开机蓝屏，提示需要使用恢复工具修复电脑，无法进入系统。</li>
+<li><strong>硬件环境</strong>：戴尔台式机，双硬盘（500GB 致态 SSD 作为系统盘，1TB 机械硬盘作为数据盘），UEFI 引导。</li>
+</ul>
+<hr>
+<h2 id="阶段零：制作启动U盘"><a href="#阶段零：制作启动U盘" class="headerlink" title="阶段零：制作启动U盘"></a>阶段零：制作启动U盘</h2><p>在浏览器中搜索“下载 Windows 10”（或者 Windows 11，取决于你原来的系统）。认准微软官方网站进入页面，找到并点击蓝色的 “立即下载工具” 按钮，下载一个很小的程序。双击运行刚才下载好的工具（文件名通常叫 MediaCreationTool.exe）。等待几秒钟的“正在进行准备工作”画面后，点击右下角的 “接受”。在“你想执行什么操作？”界面，千万不要选第一项升级这台电脑，必须选择第二项：<br>“为另一台电脑创建安装介质（U 盘、DVD 或 ISO 文件）”，然后点击“下一步”。</p>
+<p>备用方案：用 Rufus 自带的下载功能</p>
+<ul>
+<li><p>打开设置： 在你截图的左下角，找到第三个图标（也就是 i 信息图标右侧那个带有三个小滑块的“设置”图标），点击它。</p>
+</li>
+<li><p>开启更新： 在弹出的设置窗口里，找到 “检查更新” (Check for updates) 这一项。将它从“禁用 (Disabled)”或“否”，改为 “每日 (Daily)”。</p>
+</li>
+<li><p>保存并重启软件： 点击“关闭”保存设置。然后完全关掉 Rufus，再重新双击打开它。</p>
+</li>
+</ul>
+<p>找到软件界面中部的“选择”按钮。在这个按钮的右侧，有一个非常小的向下箭头 ▼。强烈建议勾选“使用浏览器下载”！等浏览器把文件彻底下载 100% 完成后，你再回到 Rufus 界面，点击“选择”按钮，把刚才下载好的文件选进去。最后，记得把“分区类型”改成 GPT，点击“开始”，就可以顺利制作了！</p>
+<h2 id="阶段一：常规引导修复（失败）"><a href="#阶段一：常规引导修复（失败）" class="headerlink" title="阶段一：常规引导修复（失败）"></a>阶段一：常规引导修复（失败）</h2><p>首先怀疑是 BCD 引导菜单损坏。使用 Rufus 制作了 Windows 10 U 盘启动盘，开机通过 <code>F12</code> 引导进入 WinRE（恢复环境）的命令提示符。千万不要点击中间的“现在安装”，而是点击左下角的 “修复计算机 (Repair your computer)”。屏幕会变蓝，依次点击：疑难解答 (Troubleshoot) -&gt; 高级选项 (Advanced options) -&gt; 命令提示符 (Command Prompt)。</p>
+<ul>
+<li>如果回车后弹出一个红框提示 “Secure Boot Violation（安全违规）”，这就是咱们之前提到的微软黑名单拦截。<br>解决方法：按 Ctrl+Alt+Delete 重启，开机狂按 F2 进入 BIOS，在左侧菜单找到 Secure Boot，将其设置为 Disabled (禁用)。点击底部的 Apply/Save，重启后再按 F12 选 U 盘就能顺利进入了。</li>
+</ul>
+<p>执行常规的 <code>bootrec</code> 修复，每输入完一行，按一次回车键执行。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs cmd">bootrec /fixmbr      //预期输出：“操作成功完成。”<br>bootrec /fixboot     //UEFI 系统下，这条命令有时会提示“拒绝访问”，这是正常现象<br>bootrec /scanos      //显示“找到的 Windows 安装总数: <span class="hljs-number">1</span>”（只要不是 <span class="hljs-number">0</span> 就说明系统文件完好）。<br>bootrec /rebuildbcd  //系统会问你“是否要将其添加到引导列表？(Yes/No/All)”。此时在键盘上输入大写字母 Y 并按回车。系统会提示“操作成功完成”。<br></code></pre></td></tr></table></figure>
+<p>结果：执行 <code>/scanos</code> 时，系统提示“找到的 Windows 安装总数: 0”。说明原系统的引导记录已经完全混乱，或者系统盘未被正常挂载。</p>
+<hr>
+<h2 id="阶段二：使用-bcdboot-与-diskpart-强修引导（失败）"><a href="#阶段二：使用-bcdboot-与-diskpart-强修引导（失败）" class="headerlink" title="阶段二：使用 bcdboot 与 diskpart 强修引导（失败）"></a>阶段二：使用 bcdboot 与 diskpart 强修引导（失败）</h2><p>既然 <code>bootrec</code> 找不到系统，我决定使用更底层的 <code>bcdboot</code> 直接指定系统路径进行引导重建。</p>
+<h3 id="1-定位系统盘符"><a href="#1-定位系统盘符" class="headerlink" title="1. 定位系统盘符"></a>1. 定位系统盘符</h3><p>在 WinRE 环境下盘符会重排。通过 <code>dir</code> 命令排查，输入 dir 并按回车，屏幕上会列出一堆文件和文件夹。请仔细寻找有没有 Windows、Users、Program Files 这几个文件夹。。确认 1TB 机械硬盘变成了 <code>C:</code> 盘，而装有 Windows 的致态 SSD 变成了 <code>D:</code> 盘。</p>
+<h3 id="2-尝试直接写入"><a href="#2-尝试直接写入" class="headerlink" title="2. 尝试直接写入"></a>2. 尝试直接写入</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">bcdboot d:\windows /l zh-cn   //只要屏幕提示 “已成功创建启动文件”（Boot files successfully created），就说明引导文件已经被完美重建，修复彻底成功了！<br></code></pre></td></tr></table></figure>
+<p>结果：报错“尝试复制启动文件失败”。</p>
+<h3 id="3-挂载-EFI-分区强写"><a href="#3-挂载-EFI-分区强写" class="headerlink" title="3. 挂载 EFI 分区强写"></a>3. 挂载 EFI 分区强写</h3><p>在 UEFI 架构下，报错通常是因为 EFI 隐藏分区未分配盘符。利用 <code>diskpart</code> 调出 EFI 分区并分配临时盘符 <code>V:</code>。你要找的那个分区必须同时满足以下两个条件：文件系统（Fs）列：显示为 FAT32。（绝对不能是 NTFS，EFI 分区必须是 FAT32）。大小（Size）列：通常在 100 MB 到 300 MB 之间（极少数情况会是 500 MB）。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs cmd">diskpart<br>list volume<br>select volume <span class="hljs-number">3</span>  <br>assign letter=v<br><span class="hljs-keyword">exit</span><br></code></pre></td></tr></table></figure>
+<p><em>(注：需选中 100MB 左右的 FAT32 EFI分区)</em></p>
+<p>接着使用强写命令：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">bcdboot d:\windows /s v: /f UEFI /l zh-cn<br></code></pre></td></tr></table></figure><br>结果：依然报错“尝试复制启动文件失败”。</p>
+<p>对 <code>V:</code> 盘进行了 <code>format v: /q /fs:fat32</code> 格式化清空，重新写入引导文件<code>bcdboot d:\windows /s v: /f UEFI /l zh-cn</code>,该报错依旧顽固。</p>
+<hr>
+<h2 id="阶段三：揪出幕后真凶（底层文件系统崩塌）"><a href="#阶段三：揪出幕后真凶（底层文件系统崩塌）" class="headerlink" title="阶段三：揪出幕后真凶（底层文件系统崩塌）"></a>阶段三：揪出幕后真凶（底层文件系统崩塌）</h2><p>既然目的盘（EFI 分区）已经干净，复制依然失败，说明源头（D 盘的 Windows 系统文件）无法被读取。</p>
+<p>切换当前盘符（退出 D 盘）,输入<code>x:</code>，对系统盘发起强制体检：<br><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">chkdsk</span> d: /f /x<br></code></pre></td></tr></table></figure><br>结果：命令行开始疯狂刷屏提示 “文件记录段无法读取 (File record segment is unreadable)”。随后进入阶段 2，开始大量提示“正在删除文件”和“正在删除索引项”。<code>bcdboot d:\windows /s v: /f UEFI</code>半天毫无反应，最后显示尝试复制启动文件失败。</p>
+<p>结论：这块致态 500GB 固态硬盘出现了大量物理坏块，或者底层的主文件表（MFT）已经彻底崩塌。系统核心文件成了“死链”被 <code>chkdsk</code> 强行删除，原本的系统已经彻底死亡，毫无修复可能。</p>
+<hr>
+<h2 id="阶段四：终局与重装"><a href="#阶段四：终局与重装" class="headerlink" title="阶段四：终局与重装"></a>阶段四：终局与重装</h2><p>在确认原系统无法挽救后，放弃了修复引导的念头。因为日常数据已经备份，跳过了数据抢救环节，直接执行全新安装。</p>
+<ul>
+<li><p>在第一个蓝色的“Windows 设置”界面（选择语言和输入法），直接点击右下角的 “下一步”。然后在下一个界面，点击正中间的 “现在安装 (Install now)”。</p>
+</li>
+<li><p>如果系统提示“激活 Windows”并要求输入产品密钥，请直接点击底部的 “我没有产品密钥 (I don’t have a product key)”。你的戴尔主板内置了正版数字授权，装完联网后会自动激活。随后勾选“我接受许可条款”，点击“下一步”。</p>
+</li>
+<li><p>进入 Windows 安装界面的“自定义：仅安装 Windows (高级)”，找到属于致态 500GB 固态硬盘的 5 个旧分区，<strong>全部依次点击“删除”</strong>。将其合并为一个约 465GB 的“未分配的空间”后，直接点击下一步进行傻瓜式安装。</p>
+</li>
+</ul>
+<p>系统最终顺利安装完成并成功进入桌面。如果在此重装步骤中卡死或报错，则可 100% 确认固态硬盘存在严重物理坏块，需要走售后换新。</p>
+<hr>
+<h2 id="💡-排查过程中的高阶技巧总结"><a href="#💡-排查过程中的高阶技巧总结" class="headerlink" title="💡 排查过程中的高阶技巧总结"></a>💡 排查过程中的高阶技巧总结</h2><ol>
+<li><p><strong>Rufus 启动盘为何有两个 UEFI 选项？</strong><br>使用 Rufus 制作的启动盘，在主板引导菜单中常会显示两个该 U 盘的选项（如 <code>DataTraveler 3.0</code> 和 <code>DataTraveler 3.0 2</code>）。这是因为 Windows 镜像存在大于 4GB 的单文件，Rufus 巧妙地将 U 盘切分为了一个 NTFS 主分区（存数据）和一个小巧的 FAT32 隐藏分区（纯引导 UEFI）。选择第一个即可，失败则选第二个。</p>
+</li>
+<li><p><strong>命令行下的“记事本抢救数据法”</strong><br>当系统彻底崩溃但需要抢救桌面或文档资料时，可以在黑框中输入 <code>notepad</code> 打开记事本。点击“文件 - 打开”，将文件类型选为“所有文件 (<em>.</em>)”，即可利用这个窗口作为简易版的“资源管理器”，跨硬盘复制粘贴抢救数据（复制过程无进度条，需耐心等待鼠标转圈结束）。</p>
+</li>
+<li><p><strong>修复工具与 ISO 镜像版本无关</strong><br>Win10 与 Win11 的底层 WinRE 环境和核心修复指令（如 <code>bcdboot</code>, <code>chkdsk</code>）是向下兼容的。修复失败通常是硬盘物理或逻辑故障，而非启动盘的版本不匹配。</p>
+</li>
+</ol>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/8/%E7%88%B6%E6%AF%8D%E7%9A%84%E7%BE%8E%E5%9B%BD%E4%B9%8B%E6%97%85.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">父母美国之旅</span>
+    </a>
+    
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E7%8E%B0%E8%B1%A1"><span class="toc-text">故障现象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E9%9B%B6%EF%BC%9A%E5%88%B6%E4%BD%9C%E5%90%AF%E5%8A%A8U%E7%9B%98"><span class="toc-text">阶段零：制作启动U盘</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%80%EF%BC%9A%E5%B8%B8%E8%A7%84%E5%BC%95%E5%AF%BC%E4%BF%AE%E5%A4%8D%EF%BC%88%E5%A4%B1%E8%B4%A5%EF%BC%89"><span class="toc-text">阶段一：常规引导修复（失败）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8-bcdboot-%E4%B8%8E-diskpart-%E5%BC%BA%E4%BF%AE%E5%BC%95%E5%AF%BC%EF%BC%88%E5%A4%B1%E8%B4%A5%EF%BC%89"><span class="toc-text">阶段二：使用 bcdboot 与 diskpart 强修引导（失败）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AE%9A%E4%BD%8D%E7%B3%BB%E7%BB%9F%E7%9B%98%E7%AC%A6"><span class="toc-text">1. 定位系统盘符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B0%9D%E8%AF%95%E7%9B%B4%E6%8E%A5%E5%86%99%E5%85%A5"><span class="toc-text">2. 尝试直接写入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8C%82%E8%BD%BD-EFI-%E5%88%86%E5%8C%BA%E5%BC%BA%E5%86%99"><span class="toc-text">3. 挂载 EFI 分区强写</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E4%B8%89%EF%BC%9A%E6%8F%AA%E5%87%BA%E5%B9%95%E5%90%8E%E7%9C%9F%E5%87%B6%EF%BC%88%E5%BA%95%E5%B1%82%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%B4%A9%E5%A1%8C%EF%BC%89"><span class="toc-text">阶段三：揪出幕后真凶（底层文件系统崩塌）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B6%E6%AE%B5%E5%9B%9B%EF%BC%9A%E7%BB%88%E5%B1%80%E4%B8%8E%E9%87%8D%E8%A3%85"><span class="toc-text">阶段四：终局与重装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%92%A1-%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E9%AB%98%E9%98%B6%E6%8A%80%E5%B7%A7%E6%80%BB%E7%BB%93"><span class="toc-text">💡 排查过程中的高阶技巧总结</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>

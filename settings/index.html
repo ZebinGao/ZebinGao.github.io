@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <div class="settings-page">
+    <h1 class="post-title" data-i18n="settings">设置</h1>
+
+    <!-- 字体切换 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_font">字体</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_font_desc">选择正文字体风格</span>
+            <select class="settings-font-select" id="settings-font">
+                <option value="default" data-i18n="settings_font_default">无衬线体</option>
+                <option value="kai">楷体</option>
+                <option value="huninn">jf open 粉圆</option>
+                <option value="longchang">龙藏体</option>
+                <option value="mashanzheng">马善政体</option>
+                <option value="klee">Klee One</option>
+                <option value="lxgw">霞鹜文楷</option>
+                <option value="notoserif">思源宋体</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- 字体大小 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_fontsize">字体大小</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_fontsize_desc">调整正文字体大小</span>
+            <select class="settings-font-select" id="settings-fontsize">
+                <option value="14" data-i18n="settings_fontsize_small">小</option>
+                <option value="16" data-i18n="settings_fontsize_default">默认</option>
+                <option value="18" data-i18n="settings_fontsize_medium">中</option>
+                <option value="20" data-i18n="settings_fontsize_large">大</option>
+                <option value="22" data-i18n="settings_fontsize_xlarge">特大</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- 主题切换 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_tone">色调</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_tone_desc">选择整体色彩风格</span>
+            <select class="settings-font-select" id="settings-tone">
+                <option value="rose" data-i18n="settings_tone_rose">玫红</option>
+                <option value="blue" data-i18n="settings_tone_blue">蓝调</option>
+                <option value="purple" data-i18n="settings_tone_purple">紫韵</option>
+                <option value="orange" data-i18n="settings_tone_orange">暖橙</option>
+                <option value="teal" data-i18n="settings_tone_teal">青碧</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- 明暗切换 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_theme">外观主题</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_theme_desc">选择明暗主题模式</span>
+            <div class="settings-theme-buttons">
+                <button class="settings-theme-btn" id="settings-theme-light" title="Light">
+                    <span class="theme-icon">☀️</span>
+                    <span data-i18n="settings_light">明亮</span>
+                </button>
+                <button class="settings-theme-btn" id="settings-theme-dark" title="Dark">
+                    <span class="theme-icon">🌙</span>
+                    <span data-i18n="settings_dark">暗黑</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 语言切换 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_language">语言</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_language_desc">选择界面显示语言</span>
+            <div class="settings-lang-buttons">
+                <button class="settings-lang-btn lang-btn" data-lang="zh" title="中文">中文</button>
+                <button class="settings-lang-btn lang-btn" data-lang="en" title="English">English</button>
+                <button class="settings-lang-btn lang-btn" data-lang="de" title="Deutsch">Deutsch</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSS 订阅 -->
+    <section class="settings-section">
+        <h2 data-i18n="settings_rss">RSS 订阅</h2>
+        <div class="settings-option">
+            <span data-i18n="settings_rss_desc">通过 RSS 阅读器订阅博客更新</span>
+            <a href="/atom.xml" class="settings-rss-link" target="_blank">
+                📡 <span data-i18n="settings_rss_subscribe">订阅 RSS</span>
+            </a>
+        </div>
+    </section>
+</div>
+
+<script>
+(function() {
+    // === 字体切换 ===
+    var fontMap = {
+        'default': '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif',
+        'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+        'huninn': '"Huninn", sans-serif',
+        'longchang': '"Long Cang", cursive',
+        'mashanzheng': '"Ma Shan Zheng", cursive',
+        'klee': '"Klee One", serif',
+        'lxgw': '"LXGW WenKai", serif',
+        'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+    };
+
+    var fontSelect = document.getElementById('settings-font');
+    var savedFont = localStorage.getItem('font') || 'default';
+    fontSelect.value = savedFont;
+
+    // 页面加载时应用已保存的字体
+    if (savedFont !== 'default' && fontMap[savedFont]) {
+        document.documentElement.style.setProperty('--font-main', fontMap[savedFont]);
+    }
+
+    fontSelect.addEventListener('change', function() {
+        var font = fontSelect.value;
+        localStorage.setItem('font', font);
+        if (font !== 'default' && fontMap[font]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[font]);
+        } else {
+            document.documentElement.style.removeProperty('--font-main');
+        }
+    });
+
+    // === 字体大小 ===
+    var fontsizeSelect = document.getElementById('settings-fontsize');
+    var savedFontsize = localStorage.getItem('fontsize') || '16';
+    fontsizeSelect.value = savedFontsize;
+
+    if (savedFontsize !== '16') {
+        document.documentElement.style.setProperty('--font-size', savedFontsize + 'px');
+    }
+
+    fontsizeSelect.addEventListener('change', function() {
+        var size = fontsizeSelect.value;
+        localStorage.setItem('fontsize', size);
+        if (size !== '16') {
+            document.documentElement.style.setProperty('--font-size', size + 'px');
+        } else {
+            document.documentElement.style.removeProperty('--font-size');
+        }
+    });
+
+    // === 主题切换 ===
+    var htmlElement = document.documentElement;
+
+    // === 色调切换 ===
+    var tonePresets = {
+        'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+        'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+        'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+        'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+        'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+    };
+
+    function applyTone(tone) {
+        var preset = tonePresets[tone];
+        if (!preset) return;
+        var isDark = htmlElement.getAttribute('data-theme') === 'dark';
+        document.documentElement.style.setProperty('--accent', isDark ? preset.accentDark : preset.accent);
+        document.documentElement.style.setProperty('--accent-rgb', isDark ? preset.rgbDark : preset.rgb);
+    }
+
+    var toneSelect = document.getElementById('settings-tone');
+    var savedTone = localStorage.getItem('tone') || 'rose';
+    toneSelect.value = savedTone;
+    if (savedTone !== 'rose') applyTone(savedTone);
+
+    toneSelect.addEventListener('change', function() {
+        var tone = toneSelect.value;
+        localStorage.setItem('tone', tone);
+        applyTone(tone);
+    });
+    var currentTheme = localStorage.getItem('theme');
+
+    function updateThemeButtons(theme) {
+        var lightBtn = document.getElementById('settings-theme-light');
+        var darkBtn = document.getElementById('settings-theme-dark');
+        if (theme === 'dark') {
+            lightBtn.classList.remove('active');
+            darkBtn.classList.add('active');
+        } else {
+            lightBtn.classList.add('active');
+            darkBtn.classList.remove('active');
+        }
+    }
+
+    // 初始化按钮状态
+    updateThemeButtons(currentTheme);
+
+    document.getElementById('settings-theme-light').addEventListener('click', function() {
+        htmlElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        updateThemeButtons('light');
+        var themeIcon = document.getElementById('theme-icon');
+        if (themeIcon) themeIcon.innerText = '🌙';
+        // 重新应用色调（亮色版）
+        var currentTone = localStorage.getItem('tone') || 'rose';
+        applyTone(currentTone);
+    });
+
+    document.getElementById('settings-theme-dark').addEventListener('click', function() {
+        htmlElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        updateThemeButtons('dark');
+        var themeIcon = document.getElementById('theme-icon');
+        if (themeIcon) themeIcon.innerText = '☀️';
+        // 重新应用色调（暗色版）
+        var currentTone = localStorage.getItem('tone') || 'rose';
+        applyTone(currentTone);
+    });
+})();
+</script>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>

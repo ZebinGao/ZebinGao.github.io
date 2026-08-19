@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高斯积分 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">高斯积分</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年02月05日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="数学推导：高斯积分与正态分布归一化系数"><a href="#数学推导：高斯积分与正态分布归一化系数" class="headerlink" title="数学推导：高斯积分与正态分布归一化系数"></a>数学推导：高斯积分与正态分布归一化系数</h1><p>我们要解决的核心问题是计算著名的 <strong>高斯积分 (Gaussian Integral)</strong>：</p>
+<script type="math/tex; mode=display">
+I = \int_{-\infty}^{+\infty} e^{-x^2} dx</script><p>这是一个经典的数学难题，因为函数 $e^{-x^2}$ 的原函数不是初等函数（即无法通过常规积分法则直接写出）。</p>
+<p>解决方法是使用 <strong>泊松积分技巧 (Poisson Integral)</strong>：通过“升维打击”，将一重积分转化为二重极坐标积分来求解。</p>
+<hr>
+<h2 id="1-构造平方-The-Square-Trick"><a href="#1-构造平方-The-Square-Trick" class="headerlink" title="1. 构造平方 (The Square Trick)"></a>1. 构造平方 (The Square Trick)</h2><p>既然无法直接计算 $I$，我们尝试计算 $I^2$。<br>引入一个独立的变量 $y$，其积分值与 $x$ 相同：</p>
+<script type="math/tex; mode=display">
+I^2 = \left( \int_{-\infty}^{+\infty} e^{-x^2} dx \right) \left( \int_{-\infty}^{+\infty} e^{-y^2} dy \right)</script><p>利用线性性质，将其合并为二重积分：</p>
+<script type="math/tex; mode=display">
+I^2 = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} e^{-(x^2 + y^2)} dx dy</script><blockquote>
+<p><strong>数学意义</strong>：<br>此时，问题从计算“平面曲线下的面积”（1D），变成了计算“旋转曲面下的体积”（2D）。</p>
+</blockquote>
+<hr>
+<h2 id="2-极坐标变换-Polar-Coordinates-Transformation"><a href="#2-极坐标变换-Polar-Coordinates-Transformation" class="headerlink" title="2. 极坐标变换 (Polar Coordinates Transformation)"></a>2. 极坐标变换 (Polar Coordinates Transformation)</h2><p>这是解题的关键一步。我们将笛卡尔坐标系 $(x, y)$ 变换为极坐标系 $(r, \theta)$。</p>
+<p><strong>变换关系：</strong></p>
+<ul>
+<li>$x = r \cos \theta$</li>
+<li>$y = r \sin \theta$</li>
+<li>$x^2 + y^2 = r^2$</li>
+<li><strong>面积微元 (Jacobian)</strong>：$dx dy \rightarrow r dr d\theta$  (注意：这里多了一个 $r$)</li>
+</ul>
+<p><strong>积分区域：</strong></p>
+<ul>
+<li>全平面对应为：半径 $r \in [0, +\infty)$，角度 $\theta \in [0, 2\pi]$。</li>
+</ul>
+<p><strong>代入积分式：</strong></p>
+<script type="math/tex; mode=display">
+I^2 = \int_{0}^{2\pi} \int_{0}^{+\infty} e^{-r^2} \cdot r dr d\theta</script><p>由于被积函数中 $r$ 和 $\theta$ 是分离的，我们可以将二重积分拆解为两个单重积分的乘积：</p>
+<script type="math/tex; mode=display">
+I^2 = \left( \int_{0}^{2\pi} d\theta \right) \left( \int_{0}^{+\infty} e^{-r^2} r dr \right)</script><hr>
+<h2 id="3-分步计算"><a href="#3-分步计算" class="headerlink" title="3. 分步计算"></a>3. 分步计算</h2><h3 id="第一部分：角度积分"><a href="#第一部分：角度积分" class="headerlink" title="第一部分：角度积分"></a>第一部分：角度积分</h3><p>这是常数积分，计算非常简单：</p>
+<script type="math/tex; mode=display">
+\int_{0}^{2\pi} d\theta = [\theta]_{0}^{2\pi} = 2\pi</script><h3 id="第二部分：半径积分"><a href="#第二部分：半径积分" class="headerlink" title="第二部分：半径积分"></a>第二部分：半径积分</h3><p>计算 $J = \int_{0}^{+\infty} e^{-r^2} r dr$。<br>使用 <strong>换元法 (u-substitution)</strong>：</p>
+<ul>
+<li>令 $u = r^2$，则 $du = 2r dr$，即 $r dr = \frac{1}{2} du$。</li>
+<li>当 $r=0$ 时，$u=0$；当 $r \to \infty$ 时，$u \to \infty$。</li>
+</ul>
+<p>代入计算：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+J &= \int_{0}^{+\infty} e^{-u} \cdot \frac{1}{2} du \\
+&= \frac{1}{2} \left[ -e^{-u} \right]_{0}^{+\infty} \\
+&= \frac{1}{2} (0 - (-1)) \\
+&= \frac{1}{2}
+\end{aligned}</script><hr>
+<h2 id="4-汇总结果"><a href="#4-汇总结果" class="headerlink" title="4. 汇总结果"></a>4. 汇总结果</h2><p>回到 $I^2$ 的算式：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+I^2 &= (\text{角度部分}) \times (\text{半径部分}) \\
+&= 2\pi \times \frac{1}{2} \\
+&= \pi
+\end{aligned}</script><p>因为被积函数 $e^{-x^2}$ 始终大于 0，积分结果必为正数，开方取正根：</p>
+<script type="math/tex; mode=display">
+I = \int_{-\infty}^{+\infty} e^{-x^2} dx = \sqrt{\pi}</script><hr>
+<h2 id="5-关联：为什么正态分布是-sqrt-2-pi-？"><a href="#5-关联：为什么正态分布是-sqrt-2-pi-？" class="headerlink" title="5. 关联：为什么正态分布是 $\sqrt{2\pi}$？"></a>5. 关联：为什么正态分布是 $\sqrt{2\pi}$？</h2><p>标准正态分布的概率密度公式中，指数项通常带有系数 $-\frac{1}{2}$：</p>
+<script type="math/tex; mode=display">
+\text{Target} = \int_{-\infty}^{+\infty} e^{-\frac{1}{2}x^2} dx</script><p>我们需要利用刚才推导出的结论 $I = \sqrt{\pi}$ 来计算这个变体。</p>
+<p><strong>换元计算：</strong><br>令 $t = \frac{x}{\sqrt{2}}$，则 $x = \sqrt{2}t$，且 $dx = \sqrt{2} dt$。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\int_{-\infty}^{+\infty} e^{-\left(\frac{x}{\sqrt{2}}\right)^2} dx &= \int_{-\infty}^{+\infty} e^{-t^2} \cdot \sqrt{2} dt \\
+&= \sqrt{2} \underbrace{\int_{-\infty}^{+\infty} e^{-t^2} dt}_{I=\sqrt{\pi}} \\
+&= \sqrt{2} \cdot \sqrt{\pi} \\
+&= \sqrt{2\pi}
+\end{aligned}</script><h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>正是因为全积分 $\int_{-\infty}^{+\infty} e^{-\frac{1}{2}x^2} dx = \sqrt{2\pi}$，为了满足概率论公理（即<strong>总概率必须等于 1</strong>），概率密度函数的前面必须除以这个结果作为<strong>归一化系数</strong>。</p>
+<p>这就是正态分布公式中 $\frac{1}{\sqrt{2\pi}}$ 的由来：</p>
+<script type="math/tex; mode=display">
+f(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{1}{2}x^2}</script>
+        
+    </div>
+</article>
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>

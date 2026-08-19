@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attention 解析 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">attention 解析</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年02月05日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="缩放点积注意力"><a href="#缩放点积注意力" class="headerlink" title="缩放点积注意力"></a>缩放点积注意力</h1><script type="math/tex; mode=display">\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V</script><ul>
+<li>$Q$ (Query): 你的查询意图。比如你手里拿着一张写着“哈利波特”的纸条。</li>
+<li>$K$ (Key): 图书的索引/标签。图书馆里每本书脊上贴的标签，比如“科幻”、“魔法”、“传记”。</li>
+<li>$V$ (Value): 书的内容本身。书里具体的文字信息。</li>
+</ul>
+<p>这是一个极简的数值例子，模拟 Transformer 内部在处理两个单词时，是如何通过 <strong>“缩放点积注意力” (Scaled Dot-Product Attention)</strong> 计算出结果的。</p>
+<h2 id="场景设定"><a href="#场景设定" class="headerlink" title="场景设定"></a>场景设定</h2><ul>
+<li><strong>输入单词</strong>：<code>Thinking</code> 和 <code>Machines</code></li>
+<li><strong>目标</strong>：计算第一个单词 <strong>“Thinking”</strong> 的注意力输出（即：它在结合了上下文 “Machines” 后，变成了什么样的新向量）。</li>
+<li><strong>参数假设</strong>：为了方便计算，假设嵌入维度 $d_k = 2$。</li>
+</ul>
+<hr>
+<h2 id="0-准备数据-Q-K-V"><a href="#0-准备数据-Q-K-V" class="headerlink" title="0. 准备数据 ($Q, K, V$)"></a>0. 准备数据 ($Q, K, V$)</h2><p>在真实模型中，$Q, K, V$ 是通过输入向量乘以权重矩阵 $W^Q, W^K, W^V$ 得到的。这里我们直接给出结果向量：</p>
+<ul>
+<li><strong>Query ($Q$)</strong>: 代表 “Thinking” 去查询别人的意图。<ul>
+<li>$q_1 = [1, 2]$</li>
+</ul>
+</li>
+<li><strong>Keys ($K$)</strong>: 代表 “Thinking” 和 “Machines” 供别人查询的标签。<ul>
+<li>$k_1$ (Thinking) $= [1, 2]$</li>
+<li>$k_2$ (Machines) $= [0, 1]$</li>
+</ul>
+</li>
+<li><strong>Values ($V$)</strong>: 代表这两个词实际包含的信息内容。<ul>
+<li>$v_1$ (Thinking) $= [10, 20]$</li>
+<li>$v_2$ (Machines) $= [30, 40]$</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="1-第一步：点积-QK-T-——-计算相似度"><a href="#1-第一步：点积-QK-T-——-计算相似度" class="headerlink" title="1. 第一步：点积 ($QK^T$) —— 计算相似度"></a>1. 第一步：点积 ($QK^T$) —— 计算相似度</h2><p>拿着 $q_1$ 去和所有的 $k$ 进行点积，看看 “Thinking” 和这句话里的每个词有多相关。</p>
+<ul>
+<li><p><strong>与自己点积</strong> ($q_1 \cdot k_1$):</p>
+<script type="math/tex; mode=display">1 \times 1 + 2 \times 2 = 1 + 4 = \mathbf{5}</script></li>
+<li><p><strong>与 “Machines” 点积</strong> ($q_1 \cdot k_2$):</p>
+<script type="math/tex; mode=display">1 \times 0 + 2 \times 1 = 0 + 2 = \mathbf{2}</script></li>
+</ul>
+<p><strong>当前结果向量：</strong> $[5, 2]$</p>
+<blockquote>
+<p><strong>💡 解读</strong>：分数越高，代表相关性越高。Thinking 关注自己 5 分，关注 Machines 2 分。</p>
+</blockquote>
+<hr>
+<h2 id="2-第二步：缩放-Scaling"><a href="#2-第二步：缩放-Scaling" class="headerlink" title="2. 第二步：缩放 (Scaling)"></a>2. 第二步：缩放 (Scaling)</h2><p>公式要求除以 $\sqrt{d_k}$。因为我们设定 $d_k=4$ (为简化演示，此处假设根号后为2)，所以 $\sqrt{d_k}=2$。</p>
+<script type="math/tex; mode=display">
+[5, 2] \div 2 = [\mathbf{2.5}, \mathbf{1.0}]</script><p><strong>当前结果向量：</strong> $[2.5, 1.0]$</p>
+<blockquote>
+<p><strong>💡 解读</strong>：这一步是为了防止数值过大，导致下一步 Softmax 梯度消失。</p>
+</blockquote>
+<hr>
+<h2 id="3-第三步：Softmax-——-归一化为概率"><a href="#3-第三步：Softmax-——-归一化为概率" class="headerlink" title="3. 第三步：Softmax —— 归一化为概率"></a>3. 第三步：Softmax —— 归一化为概率</h2><p>我们需要把分数变成百分比（权重），让它们的和为 1。公式如下：</p>
+<script type="math/tex; mode=display">
+\text{softmax}(x_i) = \frac{e^{x_i}}{\sum e^{x_j}}</script><p><strong>计算过程：</strong></p>
+<ol>
+<li>$e^{2.5} \approx 12.18$</li>
+<li>$e^{1.0} \approx 2.71$</li>
+<li>总和 $= 12.18 + 2.71 = 14.89$</li>
+</ol>
+<p><strong>计算权重：</strong></p>
+<ul>
+<li>$w_1$ (对自己): $12.18 / 14.89 \approx \mathbf{0.82}$</li>
+<li>$w_2$ (对 Machines): $2.71 / 14.89 \approx \mathbf{0.18}$</li>
+</ul>
+<p><strong>当前注意力权重：</strong> $[0.82, 0.18]$</p>
+<blockquote>
+<p><strong>💡 解读</strong>：这意味着在理解 “Thinking” 这个词时，模型决定保留 <strong>82%</strong> 的“本意”，并混入 <strong>18%</strong> 的 “Machines” 的含义。</p>
+</blockquote>
+<hr>
+<h2 id="4-第四步：加权求和-dots-times-V"><a href="#4-第四步：加权求和-dots-times-V" class="headerlink" title="4. 第四步：加权求和 ($\dots \times V$)"></a>4. 第四步：加权求和 ($\dots \times V$)</h2><p>最后，用计算出的权重，去混合 $V$ (实际内容)。</p>
+<script type="math/tex; mode=display">
+\text{Output} = 0.82 \times v_1 + 0.18 \times v_2</script><p>代入数据 ($v_1=[10, 20], v_2=[30, 40]$)：</p>
+<ul>
+<li><strong>第一维</strong>：$0.82 \times 10 + 0.18 \times 30 = 8.2 + 5.4 = \mathbf{13.6}$</li>
+<li><strong>第二维</strong>：$0.82 \times 20 + 0.18 \times 40 = 16.4 + 7.2 = \mathbf{23.6}$</li>
+</ul>
+<h3 id="✅-最终结果"><a href="#✅-最终结果" class="headerlink" title="✅ 最终结果"></a>✅ 最终结果</h3><script type="math/tex; mode=display">
+\text{Attention Output} = [\mathbf{13.6}, \mathbf{23.6}]</script><hr>
+<h2 id="总结：这个结果意味着什么？"><a href="#总结：这个结果意味着什么？" class="headerlink" title="总结：这个结果意味着什么？"></a>总结：这个结果意味着什么？</h2><ol>
+<li><strong>原始的 Thinking ($v_1$)</strong> 是 $[10, 20]$。</li>
+<li><strong>处理后的 Thinking</strong> 是 $[13.6, 23.6]$。</li>
+</ol>
+<p>你可以看到，新的向量不再仅仅是 “Thinking” 自己了。它向 “Machines” ($[30, 40]$) 的方向偏移了一点点。</p>
+<p>这就是 Attention 的本质：<strong>它让 “Thinking” 这个词，吸收了 “Machines” 的一部分语义，变成了一个包含了上下文信息的“混合体”。</strong></p>
+<blockquote>
+<p><strong>🎨 调色盘比喻</strong></p>
+<ul>
+<li>本来 $V_1$ 是<strong>纯红色</strong>，$V_2$ 是<strong>纯蓝色</strong>。</li>
+<li>Attention 告诉我们：取 <strong>82% 的红</strong>，加 <strong>18% 的蓝</strong>。</li>
+<li>最后输出的颜色：<strong>带一点点紫色调的红色</strong>。</li>
+</ul>
+</blockquote>
+
+        
+    </div>
+</article>
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 17.33px;">C#</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/MAUI/" style="font-size: 12px;">MAUI</a> <a href="/tags/SEMI/" style="font-size: 12px;">SEMI</a> <a href="/tags/UEFI%E5%BC%95%E5%AF%BC/" style="font-size: 12px;">UEFI引导</a> <a href="/tags/WPF/" style="font-size: 14.67px;">WPF</a> <a href="/tags/Windows/" style="font-size: 12px;">Windows</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
