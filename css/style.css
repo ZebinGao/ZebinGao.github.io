@@ -50,6 +50,8 @@ body {
     padding: 40px 30px;
     box-shadow: 0 4px 12px var(--shadow-color), 0 0 30px rgba(var(--accent-rgb), 0.06);
     min-height: 80vh;
+    min-width: 0; /* grid 的 1fr 轨道默认 minmax(auto,1fr)，会被超宽内容（长代码行）撑破页面；
+                     置 0 后轨道尊重视口宽度，超宽代码交给 figure.highlight 内部滚动 */
 }
 
 /* --- 4. 移动端适配 (响应式) --- */
