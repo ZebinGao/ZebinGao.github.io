@@ -1,0 +1,8 @@
+# robots.txt —— 给搜索引擎爬虫的"访客须知"
+# 爬虫进站第一个读这个文件。User-agent: * 表示对所有爬虫生效。
+
+User-agent: *
+Allow: /
+
+# 主动告诉爬虫站点地图在哪，帮助全量收录
+Sitemap: https://www.zebin-yue.top/sitemap.xml
