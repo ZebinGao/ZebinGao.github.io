@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客横向溢出排查实录 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">博客横向溢出排查实录</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年08月20日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/CSS/" rel="tag">CSS</a>, <a class="tag-none-link" href="/tags/Grid/" rel="tag">Grid</a>, <a class="tag-none-link" href="/tags/KaTeX/" rel="tag">KaTeX</a>, <a class="tag-none-link" href="/tags/%E5%B8%83%E5%B1%80/" rel="tag">布局</a>, <a class="tag-none-link" href="/tags/debugging/" rel="tag">调试排障</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博客最近连收两起「事故报告」：Windows 蓝屏修复、父母的美国之旅两篇文章，点进去阅读时<strong>整个页面被横向撑开</strong>，要左右拖动才能看全；而同一主题、同一布局的其他文章（有无相生、双仓库迁移实录）纹丝不动。</p>
+<p>同一套模板，有的文章撑爆、有的安然无恙——这种「按内容变化」的 bug 最值得查：布局是常量，内容是变量，差异必然藏在内容与布局的交互里。排查下来发现是<strong>两起完全独立的事故</strong>，恰好串起了 CSS 定宽体系的一整条知识链。</p>
+<h2 id="预备知识：页面是怎么从-markdown-变出来的"><a href="#预备知识：页面是怎么从-markdown-变出来的" class="headerlink" title="预备知识：页面是怎么从 markdown 变出来的"></a>预备知识：页面是怎么从 markdown 变出来的</h2><p>讲事故之前，先把涉及的几块地基码平——从你写下 markdown 到浏览器渲染出页面，中间是一条流水线。</p>
+<p><strong>HTML 元素先贴标记，CSS 才能认领。</strong> HTML 元素靠 <code>class</code> / <code>id</code> 属性携带标签：<code>&lt;main class=&quot;content-mid&quot;&gt;</code> 就是给这个元素贴上 <code>content-mid</code> 标签。标签本身不产生任何效果，它只是挂钩。而 CSS 规则的前半段——选择器，如 <code>.content-mid &#123; min-width: 0 &#125;</code>——就是拿这个标签去全文档匹配：「找贴了 <code>content-mid</code> 标签的元素，套上这些样式」。两侧靠<strong>同一个字符串</strong>对接，一个字符都不能差，改了一侧忘了另一侧，样式静默失效——这是前端最常见的「改了没反应」bug。几个语法要点：<code>.类名</code> 选类、<code>#id名</code> 选唯一元素、<code>A B</code>（空格）选 A 内部任意层级的 B、<code>.content.markdown</code>（连写）选<strong>同时</strong>带两个类的元素——所以主题里那条 <code>.content.markdown figure.highlight</code> 的意思是「正文区里那些代码块」，前半串是围墙，防止误伤侧栏和其他页面的元素。</p>
+<p><strong>每个元素是一个四层套盒。</strong> 从里到外：content（内容区）→ padding（内边距，内容与边界的软垫）→ border（边框）→ margin（外边距，与邻居的空地）。宽度算账时这些层都要参与：视口 477px − 外框容器左右 padding 20 − 卡片左右 padding 30 = 正文实际可用 427px——后文的账全部这样逐层做减法。</p>
+<p><strong>页面骨架由 EJS 模板拼装。</strong> 模板 = HTML 骨架 + 三种注入语法：<code>&lt;% %&gt;</code> 写控制逻辑（if/for，不输出可见内容），<code>&lt;%= %&gt;</code> 把数据<strong>转义后</strong>印成纯文本（防注入，适合不可信内容），<code>&lt;%- %&gt;</code> 把数据<strong>原样</strong>当 HTML 塞进去（文章正文是渲染好的可信 HTML，必须用它）；<code>&lt;%- partial(&#39;_partial/head&#39;) %&gt;</code> 则引入抽离出去的组件（页头、侧栏），像拼图一样组合。我的博客里这条流水线的完整走向：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gradle">Windows蓝屏修复.md（我写的）<br>  → hexo 渲染成 HTML 片段（&lt;h2&gt;<span class="hljs-regexp">/&lt;p&gt;/</span>&lt;figure <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;highlight&quot;</span>&gt;，<br>     代码块的标记由渲染器自动贴上，不劳我手）<br>  → 塞进 post.ejs 的 &lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;content markdown&quot;</span>&gt;（文章页结构模板）<br>  → 产物作为 body 变量，注入 layout.ejs 的 &lt;main <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;content-mid&quot;</span>&gt;（全站外壳）<br>  → 输出 <span class="hljs-keyword">public</span><span class="hljs-regexp">/post/</span><span class="hljs-number">2026</span><span class="hljs-regexp">/8/</span>Windows蓝屏修复.html<br></code></pre></td></tr></table></figure>
+<p><strong>模板里的数据由 Hexo 注入，分五个来源。</strong> 模板只管排版，数据另有供应商——Hexo 构建时扫描 <code>source/_posts</code> 建起内存数据库，再把几个对象喂给每张模板：<code>page.*</code> 是<strong>当前页</strong>（文章页 = front-matter 字段 + 渲染产物；归档页 = 分页器对象，<code>page.posts</code> 是本页要展示的那 30 篇）；<code>site.*</code> 是<strong>全站数据快照</strong>——<code>site.posts</code> 是所有文章的集合、<code>site.categories</code> 是全部分类，分类页那句 <code>&lt;% site.categories.forEach(...) %&gt;</code> 遍历的就是它，归档页、标签云本质上都是对 <code>site.*</code> 的查询；<code>theme.*</code> 是主题目录的 <code>_config.yml</code>（主题作者留的旋钮）；<code>config.*</code> 是站点根目录的 <code>_config.yml</code>（permalink、插件等）；<code>body</code> 只在外壳模板里存在，即内层模板的渲染产物。一句话：<strong>模板是排版程序，这五个对象是它全部的输入。</strong></p>
+<h2 id="排查：先测量，再谈原理"><a href="#排查：先测量，再谈原理" class="headerlink" title="排查：先测量，再谈原理"></a>排查：先测量，再谈原理</h2><p>猜测是廉价的。第一步是让浏览器亲口报出数据：用无头 Edge 加载页面，注入一段探针脚本，把 <code>document.documentElement.scrollWidth</code>（页面实际需要的宽度）和 <code>clientWidth</code>（视口宽度）写进 <code>&lt;title&gt;</code> 再读回来，顺带找出右边缘越界的元素链：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> hits = [];<br><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&#x27;body *&#x27;</span>).<span class="hljs-title function_">forEach</span>(<span class="hljs-keyword">function</span> (<span class="hljs-params">el</span>) &#123;<br>  <span class="hljs-keyword">var</span> r = el.<span class="hljs-title function_">getBoundingClientRect</span>();<br>  <span class="hljs-keyword">if</span> (r.<span class="hljs-property">right</span> &gt; vw &amp;&amp; !<span class="hljs-title function_">clipped</span>(el)) hits.<span class="hljs-title function_">push</span>(<span class="hljs-comment">/* 元素及祖先链 */</span>);<br>&#125;);<br><span class="hljs-variable language_">document</span>.<span class="hljs-property">title</span> = <span class="hljs-string">&#x27;docSW=&#x27;</span> + <span class="hljs-variable language_">document</span>.<span class="hljs-property">documentElement</span>.<span class="hljs-property">scrollWidth</span> + <span class="hljs-string">&#x27; || &#x27;</span> + hits.<span class="hljs-title function_">join</span>(<span class="hljs-string">&#x27; || &#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">msedge --headless=new --dump-dom --window-size=414,900 &lt;页面URL&gt;<br></code></pre></td></tr></table></figure>
+<p>中途还踩了个<strong>假线索</strong>值得记录：最初用 <code>file://</code> 协议直接打开本地构建产物，测出来的 CSS 计算值全是错的——页面里 <code>/css/style.css</code> 这种根相对路径在 <code>file://</code> 下解析到<strong>盘符根目录</strong>，整份站点样式根本没加载，我测的是一份裸奔的无样式页面。凡是依赖相对路径资源的测量，必须起本地 HTTP 服务器（<code>python -m http.server -d public</code>）再测。这个教训值一次返工。</p>
+<p>换 HTTP 重测，拿到干净的数据（视口宽 477px 时）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>文章</th>
+<th>页面实际宽度</th>
+<th>元凶元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>有无相生（对照组）</td>
+<td>477 ✓</td>
+<td>—</td>
+</tr>
+<tr>
+<td>博客双仓库迁移实录</td>
+<td>761</td>
+<td>代码块表格</td>
+</tr>
+<tr>
+<td>父母的美国之旅</td>
+<td>1047</td>
+<td><code>span.katex</code></td>
+</tr>
+<tr>
+<td>Windows 蓝屏修复</td>
+<td>1188</td>
+<td>代码块表格</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对照组干净、实验组溢出，测量可靠。且两位「元凶」一个在代码块、一个在正文段落——两条独立线索。</p>
+<h2 id="元凶：两起独立事故"><a href="#元凶：两起独立事故" class="headerlink" title="元凶：两起独立事故"></a>元凶：两起独立事故</h2><p><strong>A. 代码行撑开了 grid 轨道。</strong> Windows 篇有个代码块，单行等效 148 个半角字符宽（<code>bcdboot</code> 命令带中文注释），实测渲染约 1092px。主题明明给代码块配了 <code>overflow-x: auto</code>（超宽时块内滚动），为什么没拦住？因为溢出发生在更外层——布局是三栏 grid，中栏 <code>1fr</code>，而 grid item 默认带着一条「内容保底」条款（下文详述），最宽代码行的需求被逐层上报，直接把中栏轨道撑到 1112px+，轨道超出了视口。代码块的滚动规则根本没轮到出场。</p>
+<p><strong>B. 两个 <code>$</code> 被 KaTeX 配对成公式。</strong> 父母篇是纯散文，没有代码没有图片，却也溢出到 1047px——元凶是一个 <code>span.katex</code>。回查正文：一段话里同时出现了「<code>$5000</code>」和「<code>$800</code>」，而主题的 KaTeX 初始化显式开了单美元定界符：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-title function_">renderMathInElement</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">body</span>, &#123;<br>  <span class="hljs-attr">delimiters</span>: [&#123;<span class="hljs-attr">left</span>: <span class="hljs-string">&#x27;$$&#x27;</span>, <span class="hljs-attr">right</span>: <span class="hljs-string">&#x27;$$&#x27;</span>, <span class="hljs-attr">display</span>: <span class="hljs-literal">true</span>&#125;,<br>               &#123;<span class="hljs-attr">left</span>: <span class="hljs-string">&#x27;$&#x27;</span>,  <span class="hljs-attr">right</span>: <span class="hljs-string">&#x27;$&#x27;</span>,  <span class="hljs-attr">display</span>: <span class="hljs-literal">false</span>&#125;]<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>于是<strong>两个 <code>$</code> 之间的五百多个汉字被渲染成了一个行内数学公式</strong>。公式是不可分割的整体（<code>white-space: nowrap</code>），一段近千像素宽的「中文公式」横在段落里，页面应声撑爆。</p>
+<p>顺带做了个全站扫描：数学笔记里的 <script type="math/tex">` 是故意的公式（合法）；C# 笔记里的 `</script> 都在代码块内（auto-render 默认忽略 <code>code</code> 标签，安全）；<strong>散文里中招的仅此一段</strong>。</p>
+<h2 id="原理：CSS-是怎么决定宽度的"><a href="#原理：CSS-是怎么决定宽度的" class="headerlink" title="原理：CSS 是怎么决定宽度的"></a>原理：CSS 是怎么决定宽度的</h2><p>要理解事故 A，得先知道 CSS 定宽的本质：每个盒子的宽度由三个候选者定价——<strong>作者</strong>（显式 <code>width</code>）、<strong>容器</strong>（可用空间，外定）、<strong>内容</strong>（自我测量，内定）。各布局模式只是合成规则不同。</p>
+<p><strong>内定靠两个基本测量。</strong> 浏览器对盒子做内禀测量时算两个数：<code>max-content</code>（完全不断行时的铺开宽度）和 <code>min-content</code>（不溢出前提下的最窄宽度）。关键在 <code>min-content</code> 由<strong>断行点</strong>决定：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>断行点在哪</th>
+<th>min-content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>中文段落</td>
+<td>每两个字之间</td>
+<td>≈ 一个字宽</td>
+</tr>
+<tr>
+<td>英文段落</td>
+<td>空格处</td>
+<td>≈ 最长单词</td>
+</tr>
+<tr>
+<td><code>white-space: pre</code> 的代码行</td>
+<td>不存在</td>
+<td>整行宽度</td>
+</tr>
+<tr>
+<td>KaTeX 公式（nowrap）</td>
+<td>不存在</td>
+<td>整个公式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这就是「文字能换行、代码不换行」的全部原因：普通文本是 <code>white-space: normal</code>，断行点密集；代码块是 <code>pre</code>，换行和缩进是语法的一部分，浏览器无权替它折行——<strong>一行 1092px 的代码，在断行算法眼里就是一个巨型单词</strong>。KaTeX 公式同理。</p>
+<p><strong>grid 的轨道定价分两阶段。</strong> <code>grid-template-columns: 200px 1fr 220px</code> 里的 <code>1fr</code> 是 <code>minmax(auto, 1fr)</code> 的语法糖：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">阶段一（保底）：轨道基础尺寸 = <span class="hljs-keyword">item</span> 上报的 <span class="hljs-built_in">min</span>-content<br>阶段二（分余量）：视口若有剩余，按 fr 比例分配<br>轨道最终宽 = <span class="hljs-built_in">max</span>(保底, 份额)<br></code></pre></td></tr></table></figure>
+<p>窗宽 477px 时，阶段二给中栏的份额是 457px（477 − 外框左右 padding 20；再扣卡片自身 padding 30，代码块容器实得 427px）——但阶段一的保底是 1092px 起步，<code>max(1092, 457) = 1092</code>。轨道超出视口，页面横向溢出。桌面宽屏时中栏有 800px+，多数代码的 min-content 够不到保底线，走的是阶段二分支，所以看起来一直正常——直到一篇代码行特别长的文章遇上一个窄窗口。</p>
+<p><strong>为什么 <code>overflow-x: auto</code> 沉默？</strong> 滚动条出现的条件是「内容宽 &gt; 容器宽」这个比较成立。而容器多宽由轨道谈判决定——保底条款已经把容器撑到和内容一样宽，<code>1092 &gt; 1092</code> 永远为假，滚动条自然一次都不出。<code>overflow</code> 参与的是布局完成后的比较，管不了上游的宽度谈判。规范确实给 scroll 容器开了「免保底」的口子，但那条规则只在 <strong>scroll 容器自己是 grid item</strong> 时生效；这里的 item 是外层普通块，<code>figure.highlight</code> 藏在四层之下，min-content 经由「pre → table（表格的布局协议本身就建立在 min-content 不可侵犯上）→ … → item」逐层上卷，畅通无阻。</p>
+<h2 id="修复与验证"><a href="#修复与验证" class="headerlink" title="修复与验证"></a>修复与验证</h2><p><strong>事故 A 的修复是一行 CSS</strong>——收回 item 的内容否决权：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.content-mid</span> &#123;<br>    <span class="hljs-attribute">min-width</span>: <span class="hljs-number">0</span>; <span class="hljs-comment">/* grid 的 1fr 轨道默认 minmax(auto,1fr)，会被超宽内容撑破页面 */</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<p>效果：轨道不再有 1092px 保底，按视口收敛到 457px；代码块容器 427px、内容 1092px，比较终于成立，<code>overflow-x: auto</code> 上线，滚动发生在代码块内部。等价写法还有两扇门：轨道层写 <code>minmax(0, 1fr)</code>（最「官方」），或给 item 设 <code>overflow ≠ visible</code>（副作用大，不取）。注意它<strong>不是</strong>「不上报」也不是「定死宽度」——测量照做、轨道依然随窗口流动，只是宽度裁判权从内容移交给了视口，装不下的部分由滚动条记账。</p>
+<p><strong>事故 B 的修复在内容侧</strong>：三处 <script type="math/tex">` 改成全角 `＄`。为什么不用 markdown 转义 `\</script>？因为 kramed 渲染时会把 <code>\$</code> 还原成 <code>$</code> 再输出到 HTML，auto-render 看到的仍是裸美元符号，防不住。全角字符从根本上不是定界符。</p>
+<p><strong>验证</strong>：修复后重测，四篇文章 × 四种视口宽度（414/768/1000/1350px）全部 <code>scrollWidth = clientWidth</code>，横向溢出清零；代码块在窄视口下出现块内滚动条，正文钉在原地不动。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>三点可迁移的经验。</p>
+<p>一是<strong>测量优先于推断</strong>。这次从「感觉是代码块太宽」到拿到 <code>1188 vs 477</code> 的实测数字和越界元素链，之后所有原理分析都有锚点——和之前迁移博客时「<code>ls-remote</code> 轮询、deployments API 查状态」是同一个信条：每个环节可观测，就不需要靠胆量。</p>
+<p>二是<strong>不可断行内容是一切横向溢出的公因数</strong>。代码行、公式、不含空格的长 URL，在断行算法眼里都是「巨型单词」，min-content 巨大。以后遇到任何横向撑开，先找页面上最长的那个「单词」。</p>
+<p>三是 <strong><code>min-width: 0</code> 是 flex/grid 世界的经典咒语</strong>。凡是弹性轨道/弹性项目里装着 <code>pre</code>、长链接、公式的布局，这行都是标配补丁——它背后的整个故事，是 CSS 默认相信内容、<code>overflow</code> 只负责事后收拾、而「容器说了算」必须由作者显式声明的定价体系。</p>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/8/%E5%8D%9A%E5%AE%A2%E5%8F%8C%E4%BB%93%E5%BA%93%E8%BF%81%E7%A7%BB.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">博客双仓库迁移实录</span>
+    </a>
+    
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%EF%BC%9A%E9%A1%B5%E9%9D%A2%E6%98%AF%E6%80%8E%E4%B9%88%E4%BB%8E-markdown-%E5%8F%98%E5%87%BA%E6%9D%A5%E7%9A%84"><span class="toc-text">预备知识：页面是怎么从 markdown 变出来的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E6%9F%A5%EF%BC%9A%E5%85%88%E6%B5%8B%E9%87%8F%EF%BC%8C%E5%86%8D%E8%B0%88%E5%8E%9F%E7%90%86"><span class="toc-text">排查：先测量，再谈原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%83%E5%87%B6%EF%BC%9A%E4%B8%A4%E8%B5%B7%E7%8B%AC%E7%AB%8B%E4%BA%8B%E6%95%85"><span class="toc-text">元凶：两起独立事故</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9ACSS-%E6%98%AF%E6%80%8E%E4%B9%88%E5%86%B3%E5%AE%9A%E5%AE%BD%E5%BA%A6%E7%9A%84"><span class="toc-text">原理：CSS 是怎么决定宽度的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E5%A4%8D%E4%B8%8E%E9%AA%8C%E8%AF%81"><span class="toc-text">修复与验证</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-text">写在最后</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 16px;">C#</a> <a href="/tags/CI-CD/" style="font-size: 12px;">CI/CD</a> <a href="/tags/CSS/" style="font-size: 12px;">CSS</a> <a href="/tags/Deploy-Key/" style="font-size: 12px;">Deploy Key</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/GitHub-Actions/" style="font-size: 12px;">GitHub Actions</a> <a href="/tags/GitHub-Pages/" style="font-size: 12px;">GitHub Pages</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
