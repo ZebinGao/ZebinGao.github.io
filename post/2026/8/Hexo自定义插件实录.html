@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hexo 自定义插件实录：给博客加一个统计命令 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <h2 class="author-name">Nathan Gao</h2>
+        <p class="author-bio">人生天地间，忽如远行客。</p>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/archives">
+                <span></span>
+                归档
+            </a>
+        
+            <a href="/categories">
+                <span></span>
+                分类
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/hobbies">
+                <span></span>
+                兴趣爱好
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/map">
+                <span></span>
+                足迹
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/smallgame/trick">
+                <span></span>
+                谢益辉的恶作剧
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Hexo 自定义插件实录：给博客加一个统计命令</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年08月21日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/Hexo/" rel="tag">Hexo</a>, <a class="tag-none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a>, <a class="tag-none-link" href="/tags/%E5%8D%9A%E5%AE%A2%E5%BB%BA%E8%AE%BE/" rel="tag">博客建设</a>, <a class="tag-none-link" href="/tags/%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/" rel="tag">插件开发</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>上周整理博客仓库时发现一个问题：<code>scripts/</code> 目录里躺着三个图片迁移脚本——那是当初做 WebP 图片迁移时写的一次性工具。问题在于，Hexo 会<strong>自动加载并执行 scripts/ 目录下的每个 .js 文件，且每次执行任何 hexo 命令都会跑一遍</strong>。也就是说，每次 <code>hexo g</code>，三个迁移脚本都会白白扫描全部文章 dry-run 一轮。</p>
+<p>把它们挪到 <code>tools/</code>（改成手动 <code>node tools/xxx.js</code> 执行）之后，<code>scripts/</code> 空了。空着也是空着，正好写个真的插件——顺便把 Hexo 的插件机制摸清楚。这篇文章记录整个过程：插件能干什么、怎么写、每一行在做什么。</p>
+<h2 id="先搞清楚：scripts-是个什么目录"><a href="#先搞清楚：scripts-是个什么目录" class="headerlink" title="先搞清楚：scripts/ 是个什么目录"></a>先搞清楚：scripts/ 是个什么目录</h2><p>Hexo 有个”魔法目录”：项目根下的 <code>scripts/</code>，里面的每个 .js 文件都会在执行<strong>任何</strong> hexo 命令时被自动 require，不需要在 package.json 里登记。文件里有一个全局变量 <code>hexo</code>，就是 Hexo 实例本身——类比浏览器页面里的 <code>window</code>。</p>
+<p>关键认知是：<strong>npm 插件和 scripts/ 文件用的是同一套 API</strong>。你 package.json 里那些 <code>hexo-generator-searchdb</code>、<code>hexo-blog-encrypt</code>，和 scripts/ 里的自写脚本，调的都是 <code>hexo.extend.filter.register(...)</code> 这类接口，区别只是加载来源不同。写本地插件，本质上就是”把 npm 插件搬到自己手里写”。</p>
+<p>所以两个目录的分工现在是：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>目录</th>
+<th>加载方式</th>
+<th>放什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scripts/</td>
+<td>每次命令自动执行</td>
+<td>常驻插件（每次构建都该跑的逻辑）</td>
+</tr>
+<tr>
+<td>tools/</td>
+<td>手动执行</td>
+<td>一次性工具（迁移脚本等）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="插件能干什么：三类最常用的扩展点"><a href="#插件能干什么：三类最常用的扩展点" class="headerlink" title="插件能干什么：三类最常用的扩展点"></a>插件能干什么：三类最常用的扩展点</h2><p>Hexo 的扩展点都挂在 <code>hexo.extend</code> 下面，最常用的三个：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>扩展点</th>
+<th>作用</th>
+<th>类比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filter 过滤器</td>
+<td>挂进渲染流水线，加工每篇文章</td>
+<td>给每篇文章订阅 Loaded 事件</td>
+</tr>
+<tr>
+<td>generator 生成器</td>
+<td>凭空造一个新页面路由</td>
+<td>构建时往输出目录塞个自己算出来的文件</td>
+</tr>
+<tr>
+<td>console 命令</td>
+<td>给 CLI 加一条新命令</td>
+<td>自定义命令绑定</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>此外还有 renderer（教 Hexo 认识新文件格式）、helper（主题模板里用的自定义函数）、injector（往所有页面注入脚本，统计代码就这么加）等等。你现在用的搜索、RSS、站点地图、文章加密，全部是这些 API 搭出来的。</p>
+<h2 id="目标：一个站点统计插件"><a href="#目标：一个站点统计插件" class="headerlink" title="目标：一个站点统计插件"></a>目标：一个站点统计插件</h2><p>想做个能回答”我这博客到底写了多少字”的东西。产出两个入口：</p>
+<ol>
+<li><code>npx hexo stats</code> —— 终端直接打印统计</li>
+<li><code>npx hexo generate</code> 时产出 <code>stats.json</code> —— 部署后可以公网访问</li>
+</ol>
+<p>先看效果，<code>npx hexo stats</code>：</p>
+<figure class="highlight tap"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs tap">━━ 站点统计 · 与买桂花同载酒 ━━<br>文章<span class="hljs-number"> 151 </span>篇（含加密<span class="hljs-number"> 13 </span>篇）<br>总字数 353,787 字，通读约 14.7 小时<br><br>按年：<br> <span class="hljs-number"> 2026 </span> ************************<span class="hljs-number"> 92 </span>篇 · 226,556 字<br> <span class="hljs-number"> 2025 </span> ****<span class="hljs-number"> 16 </span>篇 · 33,041 字<br> <span class="hljs-number"> 2024 </span> *<span class="hljs-number"> 1 </span>篇 · 2,109 字<br> <span class="hljs-number"> 2023 </span> **<span class="hljs-number"> 6 </span>篇 · 11,858 字<br> <span class="hljs-number"> 2022 </span> **<span class="hljs-number"> 9 </span>篇 · 38,677 字<br>  ...<br> <span class="hljs-number"> 2010 </span> *<span class="hljs-number"> 1 </span>篇 · 2,478 字<br> <span class="hljs-number"> 2009 </span> *<span class="hljs-number"> 1 </span>篇 · 1,306 字<br><br>最长三篇：<br>  1. 《置身钉内》22,110 字（约<span class="hljs-number"> 55 </span>分钟）<br>  2. 《暴力破解的文章-2》17,283 字（约<span class="hljs-number"> 43 </span>分钟）<br>  3. 《一个程序员的奋斗史》9,446 字（约<span class="hljs-number"> 24 </span>分钟）<br></code></pre></td></tr></table></figure>
+<p>算完才知道：17 年、151 篇、35 万字——通读自己的博客要 14.7 个小时，还挺有成就感的。</p>
+<p>构建时则会在 public/ 下多出 <code>stats.json</code>，部署后访问 <code>https://你的域名/stats.json</code> 就能拿到机器可读的版本，以后想做个数据面板可以直接消费它。</p>
+<h2 id="代码逐段讲解"><a href="#代码逐段讲解" class="headerlink" title="代码逐段讲解"></a>代码逐段讲解</h2><p>完整代码放在文末附录，这里按模块拆。</p>
+<h3 id="工具函数：中英混排字数统计"><a href="#工具函数：中英混排字数统计" class="headerlink" title="工具函数：中英混排字数统计"></a>工具函数：中英混排字数统计</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">countWords</span>(<span class="hljs-params">text</span>) &#123;<br>  <span class="hljs-keyword">const</span> plain = <span class="hljs-title class_">String</span>(text)<br>    .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/```[\s\S]*?```/g</span>, <span class="hljs-string">&#x27; &#x27;</span>) <span class="hljs-comment">// 代码块不计入正文</span><br>    .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="hljs-string">&#x27; &#x27;</span>); <span class="hljs-comment">// 去 HTML 标签</span><br>  <span class="hljs-keyword">const</span> cjk = (plain.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/[一-龥]/g</span>) || []).<span class="hljs-property">length</span>;<br>  <span class="hljs-keyword">const</span> en = (plain.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[一-龥]/g</span>, <span class="hljs-string">&#x27; &#x27;</span>).<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/[A-Za-z0-9]+/g</span>) || []).<span class="hljs-property">length</span>;<br>  <span class="hljs-keyword">return</span> cjk + en;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>几个点：</p>
+<ul>
+<li><code>/.../</code> 是 JS 的正则字面量，C# 要 <code>new Regex(&quot;...&quot;)</code>，JS 两个斜杠包起来就是对象。结尾的 <code>g</code> 表示替换<strong>所有</strong>匹配——忘了加 <code>g</code> 只换第一处，这是 C# 转 JS 的头号陷阱。</li>
+<li><code>[\s\S]*?</code> 匹配代码块：<code>\s</code> 空白、<code>\S</code> 非空白，并集等于”任意字符包括换行”（正则的 <code>.</code> 默认不跨行）；<code>?</code> 懒惰匹配，遇到第一个闭合就停，防止两段代码块连成一片。</li>
+<li><code>[一-龥]</code> 是中文区间：<code>一</code> 是 U+4E00，<code>龥</code> 是 U+9FA5，覆盖常用汉字。先数中文的”字”，再把中文抹掉数英文的”词”，两者相加——比直接 <code>.length</code> 更接近真实阅读量。</li>
+<li><code>match(...)</code> 匹配不到返回的是 <code>null</code> 而不是空数组，<code>|| []</code> 就是防御这个（等价 C# 的 <code>?? new List&lt;&gt;()</code>）。</li>
+</ul>
+<h3 id="①-过滤器：给每篇文章挂上字数"><a href="#①-过滤器：给每篇文章挂上字数" class="headerlink" title="① 过滤器：给每篇文章挂上字数"></a>① 过滤器：给每篇文章挂上字数</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">filter</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;before_post_render&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>  <span class="hljs-keyword">const</span> words = <span class="hljs-title function_">countWords</span>(data.<span class="hljs-property">raw</span> || data.<span class="hljs-property">content</span> || <span class="hljs-string">&#x27;&#x27;</span>);<br>  data.<span class="hljs-property">stats</span> = &#123; words, <span class="hljs-attr">minutes</span>: <span class="hljs-title function_">readingMinutes</span>(words) &#125;;<br>  <span class="hljs-keyword">return</span> data; <span class="hljs-comment">// 过滤器必须 return 数据，丢了返回值文章就丢了</span><br>&#125;);<br></code></pre></td></tr></table></figure>
+<p><code>register(时机, 处理函数)</code> 相当于 <code>button.Click += handler</code>，事件源是 Hexo 流水线，每篇文章触发一次。参数 <code>data</code> 就是当前文章对象，front-matter 里的字段都在上面。JS 对象随时可加属性，不用预定义类——这里直接给文章动态挂了个 <code>stats</code> 字段。</p>
+<p>两个坑值得记：</p>
+<ol>
+<li><strong>必须 <code>return data</code></strong>。过滤器是传送带，不把数据递回去，下游拿到的就是 undefined，这篇文章直接丢了。</li>
+<li><strong>时机选 <code>before_post_render</code> 而不是 <code>after_post_render</code></strong>。我的博客用了 hexo-blog-encrypt 加密 13 篇文章，它挂在 after 阶段——等它跑完，文章内容已经是密文，字数统计会变成乱码计数。选在加密之前统计，加密文章也能算出真实字数。过滤器是有先后顺序的，时机选对就没冲突。</li>
+</ol>
+<h3 id="②-生成器：产出-stats-json"><a href="#②-生成器：产出-stats-json" class="headerlink" title="② 生成器：产出 stats.json"></a>② 生成器：产出 stats.json</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js">hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">generator</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;stats&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">locals</span>) &#123;<br>  <span class="hljs-keyword">const</span> stats = <span class="hljs-title function_">aggregate</span>(locals.<span class="hljs-property">posts</span>.<span class="hljs-title function_">toArray</span>());<br>  <span class="hljs-keyword">const</span> payload = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(<br>    &#123; <span class="hljs-attr">site</span>: hexo.<span class="hljs-property">config</span>.<span class="hljs-property">title</span>, <span class="hljs-attr">url</span>: hexo.<span class="hljs-property">config</span>.<span class="hljs-property">url</span>, <span class="hljs-attr">generatedAt</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>() &#125;,<br>    stats<br>  );<br>  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;stats.json&#x27;</span>, <span class="hljs-attr">data</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(payload, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>) &#125;;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>生成器拿到 <code>locals</code>——Hexo 递过来的全站数据快照，<code>locals.posts</code>、<code>locals.categories</code> 都在里面。你现在用的搜索、RSS、站点地图插件，干活的入口都是这个函数。</p>
+<p>返回值就是产出物：<code>path</code> 是相对 public/ 的文件路径（也是访问 URL），<code>data</code> 是文件内容。<strong>不写 layout 字段就是裸文件直出</strong>（json/xml/txt 都这么造）；写了就会套主题模板渲染成网页。<code>JSON.stringify(x, null, 2)</code> 里的 2 是缩进两格美化输出。</p>
+<p><code>hexo.config</code> 就是 <code>_config.yml</code> 解析后的对象，YAML 键直接变属性。</p>
+<h3 id="③-命令：npx-hexo-stats"><a href="#③-命令：npx-hexo-stats" class="headerlink" title="③ 命令：npx hexo stats"></a>③ 命令：npx hexo stats</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">console</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;stats&#x27;</span>, <span class="hljs-string">&#x27;打印全站文章统计&#x27;</span>, &#123;&#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> h = <span class="hljs-variable language_">this</span>; <span class="hljs-comment">// 回调里的 this 就是 hexo 实例</span><br>  <span class="hljs-keyword">return</span> h.<span class="hljs-title function_">load</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> s = <span class="hljs-title function_">aggregate</span>(h.<span class="hljs-property">locals</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;posts&#x27;</span>).<span class="hljs-title function_">toArray</span>());<br>    <span class="hljs-comment">// ...打印表格...</span><br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>四个参数：命令名、描述、命令行选项（空对象占位）、执行函数。</p>
+<p><code>h.load()</code> 让 Hexo 扫描 source/ 装载数据库，返回 Promise——JS 的异步任务对象，相当于 C# 的 Task，<code>.then(...)</code> 相当于 <code>ContinueWith</code>。必须返回这个 Promise，Hexo 靠它知道命令什么时候执行完、该不该退出进程。</p>
+<p><code>this</code> 是 JS 和 C# 差异最大的地方：C# 的 this 由类定义决定，<strong>JS 的 this 由调用方式决定</strong>（谁调用指向谁）。框架回调你的函数时把 hexo 实例设成了 this，但为了稳妥，进回调先 <code>const h = this</code> 存进局部变量——一眼看清来源，也不怕作用域里 this 变义。</p>
+<h2 id="验证命令真的注册上了"><a href="#验证命令真的注册上了" class="headerlink" title="验证命令真的注册上了"></a>验证命令真的注册上了</h2><p>写完插件跑 <code>npx hexo --help</code>，能看到 <code>stats</code> 和 13 个内置命令并排出现：</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs verilog">Commands:<br>  clean      Remove generated files <span class="hljs-keyword">and</span> cache.<br>  <span class="hljs-keyword">generate</span>   Generate <span class="hljs-keyword">static</span> files.<br>  <span class="hljs-keyword">new</span>        Create a <span class="hljs-keyword">new</span> post.<br>  server     Start the server.<br>  ...<br>  stats      打印全站文章统计<br></code></pre></td></tr></table></figure>
+<p>这揭示了一个有意思的事实：<strong>Hexo 本身只是个命令分发器</strong>。你敲 <code>hexo stats</code>，它启动 → 加载所有插件 → 拿命令名去注册表里查 → 查到就调用注册的函数，查不到就打印 Usage 报错。那些内置命令并不是什么特殊通道，同样是 Hexo 核心代码启动时用一模一样的 <code>register()</code> 注册进去的。这也解释了为什么 scripts/ 里的文件”每次命令都会执行”——分发器必须在启动阶段把所有注册工作跑完，才知道你输入的名字该分发给谁。</p>
+<p>删掉这个文件，<code>npx hexo stats</code> 就会报 Usage 错误——命令跟着插件一起消失，零配置残留。</p>
+<h2 id="C-程序员速查表"><a href="#C-程序员速查表" class="headerlink" title="C# 程序员速查表"></a>C# 程序员速查表</h2><p>这次写下来攒的对照，给同样背景的人：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>C#</th>
+<th>JavaScript</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regex.Replace(s, @”..”, “”)</td>
+<td>s.replace(/../g, ‘’)（记得 g）</td>
+</tr>
+<tr>
+<td>a ?? b</td>
+<td>a \</td>
+<td>\</td>
+<td>b</td>
+</tr>
+<tr>
+<td>list.Select(x =&gt; …)</td>
+<td>arr.map(x =&gt; …)</td>
+</tr>
+<tr>
+<td>list.Where(…)</td>
+<td>arr.filter(…)</td>
+</tr>
+<tr>
+<td>list.Aggregate(0, …)</td>
+<td>arr.reduce(…)</td>
+</tr>
+<tr>
+<td>OrderBy（不改原序列）</td>
+<td>slice().sort()（必须先复制）</td>
+</tr>
+<tr>
+<td>$”…{x}…”</td>
+<td><code>...$&#123;x&#125;...</code></td>
+</tr>
+<tr>
+<td>Task + ContinueWith</td>
+<td>Promise + .then(…)</td>
+</tr>
+<tr>
+<td>this 永远指当前类</td>
+<td>this 看调用方式，进回调先存 const h = this</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>特别标注 <code>slice().sort()</code>：JS 的 <code>sort()</code> 是<strong>原地修改</strong>（同 C# 的 List.Sort），而 LINQ 的 OrderBy 返回新序列。从 LINQ 过来的人不先 <code>.slice()</code> 复制，会把原数组顺序也改掉。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>一些收尾细节：</p>
+<ul>
+<li>这个插件每次构建都会跑（包括 GitHub Actions 的 CI），但 151 篇文章数一遍字数是毫秒级的，开销可忽略。</li>
+<li><code>stats.json</code> 会发布到公网，只含统计数字不含正文，介意的话删文件即可。</li>
+<li>卸载 = 删掉整个 scripts/site-stats.js，无任何残留。</li>
+</ul>
+<p>回头看，Hexo 的插件体系就是一套”控制反转”：你不调用框架，而是把函数登记到框架的各个时机上，框架在合适的时刻来调用你。和 WPF 里写事件处理器、写 Attached Behavior 是同一种思路——想通这一点，再打开 searchdb、encrypt 这些插件的源码，基本都能看懂了。</p>
+<h2 id="附录：完整代码"><a href="#附录：完整代码" class="headerlink" title="附录：完整代码"></a>附录：完整代码</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">/* scripts/site-stats.js —— 本地插件：站点统计 */</span><br><span class="hljs-meta">&#x27;use strict&#x27;</span>;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">countWords</span>(<span class="hljs-params">text</span>) &#123;<br>  <span class="hljs-keyword">const</span> plain = <span class="hljs-title class_">String</span>(text)<br>    .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/```[\s\S]*?```/g</span>, <span class="hljs-string">&#x27; &#x27;</span>)<br>    .<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/&lt;[^&gt;]+&gt;/g</span>, <span class="hljs-string">&#x27; &#x27;</span>);<br>  <span class="hljs-keyword">const</span> cjk = (plain.<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/[一-龥]/g</span>) || []).<span class="hljs-property">length</span>;<br>  <span class="hljs-keyword">const</span> en = (plain.<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/[一-龥]/g</span>, <span class="hljs-string">&#x27; &#x27;</span>).<span class="hljs-title function_">match</span>(<span class="hljs-regexp">/[A-Za-z0-9]+/g</span>) || []).<span class="hljs-property">length</span>;<br>  <span class="hljs-keyword">return</span> cjk + en;<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">readingMinutes</span>(<span class="hljs-params">words</span>) &#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(<span class="hljs-number">1</span>, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(words / <span class="hljs-number">400</span>));<br>&#125;<br><br><span class="hljs-comment">/* ① 过滤器：文章渲染前，把字数挂到文章对象上 */</span><br>hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">filter</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;before_post_render&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) &#123;<br>  <span class="hljs-keyword">const</span> words = <span class="hljs-title function_">countWords</span>(data.<span class="hljs-property">raw</span> || data.<span class="hljs-property">content</span> || <span class="hljs-string">&#x27;&#x27;</span>);<br>  data.<span class="hljs-property">stats</span> = &#123; words, <span class="hljs-attr">minutes</span>: <span class="hljs-title function_">readingMinutes</span>(words) &#125;;<br>  <span class="hljs-keyword">return</span> data;<br>&#125;);<br><br><span class="hljs-comment">/* 公共聚合逻辑：一份代码，同时喂给 ② 和 ③ */</span><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">aggregate</span>(<span class="hljs-params">posts</span>) &#123;<br>  <span class="hljs-keyword">const</span> items = posts.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">p</span> =&gt;</span> (&#123;<br>    <span class="hljs-attr">title</span>: p.<span class="hljs-property">title</span>,<br>    <span class="hljs-attr">year</span>: p.<span class="hljs-property">date</span> ? p.<span class="hljs-property">date</span>.<span class="hljs-title function_">year</span>() : <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">words</span>: (p.<span class="hljs-property">stats</span> &amp;&amp; p.<span class="hljs-property">stats</span>.<span class="hljs-property">words</span>) || <span class="hljs-title function_">countWords</span>(p.<span class="hljs-property">raw</span> || <span class="hljs-string">&#x27;&#x27;</span>),<br>    <span class="hljs-attr">encrypted</span>: <span class="hljs-title class_">Boolean</span>(p.<span class="hljs-property">password</span>),<br>    <span class="hljs-attr">category</span>: (p.<span class="hljs-property">categories</span>.<span class="hljs-title function_">toArray</span>()[<span class="hljs-number">0</span>] || &#123;&#125;).<span class="hljs-property">name</span> || <span class="hljs-string">&#x27;未分类&#x27;</span><br>  &#125;));<br><br>  <span class="hljs-keyword">const</span> totalWords = items.<span class="hljs-title function_">reduce</span>(<span class="hljs-function">(<span class="hljs-params">s, x</span>) =&gt;</span> s + x.<span class="hljs-property">words</span>, <span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">const</span> yearMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();<br>  <span class="hljs-keyword">const</span> catMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Map</span>();<br>  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> it <span class="hljs-keyword">of</span> items) &#123;<br>    <span class="hljs-keyword">const</span> y = yearMap.<span class="hljs-title function_">get</span>(it.<span class="hljs-property">year</span>) || &#123; <span class="hljs-attr">year</span>: it.<span class="hljs-property">year</span>, <span class="hljs-attr">posts</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">words</span>: <span class="hljs-number">0</span> &#125;;<br>    y.<span class="hljs-property">posts</span>++; y.<span class="hljs-property">words</span> += it.<span class="hljs-property">words</span>; yearMap.<span class="hljs-title function_">set</span>(it.<span class="hljs-property">year</span>, y);<br>    <span class="hljs-keyword">const</span> c = catMap.<span class="hljs-title function_">get</span>(it.<span class="hljs-property">category</span>) || &#123; <span class="hljs-attr">name</span>: it.<span class="hljs-property">category</span>, <span class="hljs-attr">posts</span>: <span class="hljs-number">0</span>, <span class="hljs-attr">words</span>: <span class="hljs-number">0</span> &#125;;<br>    c.<span class="hljs-property">posts</span>++; c.<span class="hljs-property">words</span> += it.<span class="hljs-property">words</span>; catMap.<span class="hljs-title function_">set</span>(it.<span class="hljs-property">category</span>, c);<br>  &#125;<br><br>  <span class="hljs-keyword">return</span> &#123;<br>    <span class="hljs-attr">posts</span>: items.<span class="hljs-property">length</span>,<br>    <span class="hljs-attr">encrypted</span>: items.<span class="hljs-title function_">filter</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> x.<span class="hljs-property">encrypted</span>).<span class="hljs-property">length</span>,<br>    totalWords,<br>    <span class="hljs-attr">readingTimeMinutes</span>: <span class="hljs-title function_">readingMinutes</span>(totalWords),<br>    <span class="hljs-attr">byYear</span>: [...yearMap.<span class="hljs-title function_">values</span>()].<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.<span class="hljs-property">year</span> - a.<span class="hljs-property">year</span>),<br>    <span class="hljs-attr">byCategory</span>: [...catMap.<span class="hljs-title function_">values</span>()].<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.<span class="hljs-property">posts</span> - a.<span class="hljs-property">posts</span>),<br>    <span class="hljs-attr">longest</span>: items.<span class="hljs-title function_">slice</span>().<span class="hljs-title function_">sort</span>(<span class="hljs-function">(<span class="hljs-params">a, b</span>) =&gt;</span> b.<span class="hljs-property">words</span> - a.<span class="hljs-property">words</span>).<span class="hljs-title function_">slice</span>(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)<br>      .<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">x</span> =&gt;</span> (&#123; <span class="hljs-attr">title</span>: x.<span class="hljs-property">title</span>, <span class="hljs-attr">words</span>: x.<span class="hljs-property">words</span>, <span class="hljs-attr">minutes</span>: <span class="hljs-title function_">readingMinutes</span>(x.<span class="hljs-property">words</span>) &#125;))<br>  &#125;;<br>&#125;<br><br><span class="hljs-comment">/* ② 生成器：产出 /stats.json */</span><br>hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">generator</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;stats&#x27;</span>, <span class="hljs-keyword">function</span> (<span class="hljs-params">locals</span>) &#123;<br>  <span class="hljs-keyword">const</span> stats = <span class="hljs-title function_">aggregate</span>(locals.<span class="hljs-property">posts</span>.<span class="hljs-title function_">toArray</span>());<br>  <span class="hljs-keyword">const</span> payload = <span class="hljs-title class_">Object</span>.<span class="hljs-title function_">assign</span>(<br>    &#123; <span class="hljs-attr">site</span>: hexo.<span class="hljs-property">config</span>.<span class="hljs-property">title</span>, <span class="hljs-attr">url</span>: hexo.<span class="hljs-property">config</span>.<span class="hljs-property">url</span>, <span class="hljs-attr">generatedAt</span>: <span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>().<span class="hljs-title function_">toISOString</span>() &#125;,<br>    stats<br>  );<br>  <span class="hljs-keyword">return</span> &#123; <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;stats.json&#x27;</span>, <span class="hljs-attr">data</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>(payload, <span class="hljs-literal">null</span>, <span class="hljs-number">2</span>) &#125;;<br>&#125;);<br><br><span class="hljs-comment">/* ③ 控制台命令：npx hexo stats */</span><br>hexo.<span class="hljs-property">extend</span>.<span class="hljs-property">console</span>.<span class="hljs-title function_">register</span>(<span class="hljs-string">&#x27;stats&#x27;</span>, <span class="hljs-string">&#x27;打印全站文章统计&#x27;</span>, &#123;&#125;, <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> h = <span class="hljs-variable language_">this</span>;<br>  <span class="hljs-keyword">return</span> h.<span class="hljs-title function_">load</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-keyword">const</span> s = <span class="hljs-title function_">aggregate</span>(h.<span class="hljs-property">locals</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;posts&#x27;</span>).<span class="hljs-title function_">toArray</span>());<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;\n━━ 站点统计 · &#x27;</span> + h.<span class="hljs-property">config</span>.<span class="hljs-property">title</span> + <span class="hljs-string">&#x27; ━━&#x27;</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`文章 <span class="hljs-subst">$&#123;s.posts&#125;</span> 篇（含加密 <span class="hljs-subst">$&#123;s.encrypted&#125;</span> 篇）`</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`总字数 <span class="hljs-subst">$&#123;s.totalWords.toLocaleString()&#125;</span> 字，通读约 <span class="hljs-subst">$&#123;(s.readingTimeMinutes / <span class="hljs-number">60</span>).toFixed(<span class="hljs-number">1</span>)&#125;</span> 小时`</span>);<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;\n按年：&#x27;</span>);<br>    <span class="hljs-keyword">const</span> max = <span class="hljs-title class_">Math</span>.<span class="hljs-property">max</span>.<span class="hljs-title function_">apply</span>(<span class="hljs-literal">null</span>, s.<span class="hljs-property">byYear</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function"><span class="hljs-params">y</span> =&gt;</span> y.<span class="hljs-property">posts</span>));<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> y <span class="hljs-keyword">of</span> s.<span class="hljs-property">byYear</span>) &#123;<br>      <span class="hljs-keyword">const</span> bar = <span class="hljs-string">&#x27;*&#x27;</span>.<span class="hljs-title function_">repeat</span>(<span class="hljs-title class_">Math</span>.<span class="hljs-title function_">max</span>(<span class="hljs-number">1</span>, <span class="hljs-title class_">Math</span>.<span class="hljs-title function_">round</span>(y.<span class="hljs-property">posts</span> / max * <span class="hljs-number">24</span>)));<br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`  <span class="hljs-subst">$&#123;y.year&#125;</span>  <span class="hljs-subst">$&#123;bar&#125;</span> <span class="hljs-subst">$&#123;y.posts&#125;</span> 篇 · <span class="hljs-subst">$&#123;y.words.toLocaleString()&#125;</span> 字`</span>);<br>    &#125;<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;\n最长三篇：&#x27;</span>);<br>    s.<span class="hljs-property">longest</span>.<span class="hljs-title function_">forEach</span>(<span class="hljs-function">(<span class="hljs-params">x, i</span>) =&gt;</span><br>      <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">`  <span class="hljs-subst">$&#123;i + <span class="hljs-number">1</span>&#125;</span>. 《<span class="hljs-subst">$&#123;x.title&#125;</span>》<span class="hljs-subst">$&#123;x.words.toLocaleString()&#125;</span> 字（约 <span class="hljs-subst">$&#123;x.minutes&#125;</span> 分钟）`</span>));<br>    <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;&#x27;</span>);<br>  &#125;);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/2026/8/%E6%A8%AA%E5%90%91%E6%BA%A2%E5%87%BA%E6%8E%92%E6%9F%A5%E5%AE%9E%E5%BD%95.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">博客横向溢出排查实录</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/post/2026/8/%E6%AC%A7%E6%B4%B2%E6%96%9C%E7%BA%BF%E6%94%BB%E7%95%A5.html">
+        <span class="post-nav-direction">下一篇 &rarr;</span>
+        <span class="post-nav-title">从伦敦到雅典：欧洲斜线攻略</span>
+    </a>
+    
+</nav>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E6%90%9E%E6%B8%85%E6%A5%9A%EF%BC%9Ascripts-%E6%98%AF%E4%B8%AA%E4%BB%80%E4%B9%88%E7%9B%AE%E5%BD%95"><span class="toc-text">先搞清楚：scripts&#x2F; 是个什么目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E8%83%BD%E5%B9%B2%E4%BB%80%E4%B9%88%EF%BC%9A%E4%B8%89%E7%B1%BB%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E6%89%A9%E5%B1%95%E7%82%B9"><span class="toc-text">插件能干什么：三类最常用的扩展点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%AB%99%E7%82%B9%E7%BB%9F%E8%AE%A1%E6%8F%92%E4%BB%B6"><span class="toc-text">目标：一个站点统计插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E9%80%90%E6%AE%B5%E8%AE%B2%E8%A7%A3"><span class="toc-text">代码逐段讲解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0%EF%BC%9A%E4%B8%AD%E8%8B%B1%E6%B7%B7%E6%8E%92%E5%AD%97%E6%95%B0%E7%BB%9F%E8%AE%A1"><span class="toc-text">工具函数：中英混排字数统计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A0-%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%9A%E7%BB%99%E6%AF%8F%E7%AF%87%E6%96%87%E7%AB%A0%E6%8C%82%E4%B8%8A%E5%AD%97%E6%95%B0"><span class="toc-text">① 过滤器：给每篇文章挂上字数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A1-%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A%E4%BA%A7%E5%87%BA-stats-json"><span class="toc-text">② 生成器：产出 stats.json</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%91%A2-%E5%91%BD%E4%BB%A4%EF%BC%9Anpx-hexo-stats"><span class="toc-text">③ 命令：npx hexo stats</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%91%BD%E4%BB%A4%E7%9C%9F%E7%9A%84%E6%B3%A8%E5%86%8C%E4%B8%8A%E4%BA%86"><span class="toc-text">验证命令真的注册上了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E7%A8%8B%E5%BA%8F%E5%91%98%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-text">C# 程序员速查表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E8%AE%B0"><span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9A%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">附录：完整代码</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/360/" style="font-size: 12px;">360</a> <a href="/tags/AI/" style="font-size: 20px;">AI</a> <a href="/tags/Android/" style="font-size: 12px;">Android</a> <a href="/tags/C/" style="font-size: 16px;">C#</a> <a href="/tags/CI-CD/" style="font-size: 12px;">CI/CD</a> <a href="/tags/CSS/" style="font-size: 12px;">CSS</a> <a href="/tags/Deploy-Key/" style="font-size: 12px;">Deploy Key</a> <a href="/tags/E39/" style="font-size: 12px;">E39</a> <a href="/tags/GitHub-Actions/" style="font-size: 12px;">GitHub Actions</a> <a href="/tags/GitHub-Pages/" style="font-size: 12px;">GitHub Pages</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+</body>
+</html>
