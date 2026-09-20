@@ -1953,3 +1953,47 @@ a.post-nav-item:hover .post-nav-title {
     color: var(--accent);
     border-bottom-color: var(--accent);
 }
+
+/* --- Gitalk 评论样式与暗色适配 --- */
+.comments-section {
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-color);
+}
+.comments-section h2 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: var(--text-strong);
+}
+
+/* 暗色模式：Gitalk 默认按亮色设计，把主要面板压进深色系 */
+[data-theme="dark"] .gt-container .gt-header-textarea,
+[data-theme="dark"] .gt-container .gt-header-preview,
+[data-theme="dark"] .gt-container .gt-comment-content {
+    background: var(--bg-body);
+    color: var(--text-main);
+}
+[data-theme="dark"] .gt-container .gt-header-preview {
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .gt-container .gt-btn {
+    background-color: var(--bg-button);
+    border-color: var(--bg-button);
+}
+[data-theme="dark"] .gt-container .gt-btn:hover {
+    background-color: var(--bg-button-hover);
+    border-color: var(--bg-button-hover);
+}
+[data-theme="dark"] .gt-container .gt-meta,
+[data-theme="dark"] .gt-container .gt-comment-username,
+[data-theme="dark"] .gt-container .gt-comment-text {
+    color: var(--text-main);
+}
+[data-theme="dark"] .gt-container a {
+    color: var(--accent);
+}
+/* 评论者名字等灰字 */
+[data-theme="dark"] .gt-container .gt-comment-date,
+[data-theme="dark"] .gt-container .gt-popup .gt-action {
+    color: var(--text-muted);
+}

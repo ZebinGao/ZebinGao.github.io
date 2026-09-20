@@ -12,6 +12,7 @@
 
     
     
+    
     <link rel="icon" type="image/png" href="/img/favicon.png">
     
     
@@ -442,6 +443,34 @@
 </article>
 
 
+
+
+
+
+<section class="comments-section">
+    <h2 data-i18n="comments">评论</h2>
+    <div id="gitalk-container"></div>
+    
+<script src="/js/gitalk.min.js"></script>
+
+    <script>
+    (function () {
+        var legacy = {"/post/2025/从奴隶到奴才.html":"/post/从奴隶到奴才.html","/post/2026/1/吴谢宇和柳智宇.html":"/post/吴谢宇和柳智宇.html","/post/2026/1/网络审查与抗封锁技术的演进史.html":"/post/网络审查与抗封锁技术的演进史.html"};
+        var path = decodeURI(window.location.pathname);
+        var gitalk = new Gitalk({
+            clientID: 'Ov23liUMUoQLKTPswJDK',
+            clientSecret: 'c46b751f5cbe796f506b01288d1c07f0446a45ef',
+            repo: 'blog-comments',
+            owner: 'ZebinGao',
+            admin: ["ZebinGao"],
+            id: legacy[path] || path, // 文章挪过目录时用老 id 匹配老 issue
+            distractionFreeMode: false,
+            proxy: 'https://cors.isomorphic-git.org/https://github.com/login/oauth/access_token'
+        });
+        gitalk.render('gitalk-container');
+    })();
+    </script>
+</section>
 
         </main>
         <aside class="sidebar-right">
