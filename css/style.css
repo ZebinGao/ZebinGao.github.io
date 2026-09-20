@@ -1934,3 +1934,22 @@ a.post-nav-item:hover .post-nav-title {
         font-size: 18px;
     }
 }
+
+/* --- 页脚样式（运行天数 · 总浏览量 · Powered by） --- */
+.site-footer {
+    max-width: 1350px;   /* 与 .main-container 同宽对齐 */
+    margin: 0 auto 30px;
+    padding: 0 20px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.site-footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--text-muted);
+}
+.site-footer a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
