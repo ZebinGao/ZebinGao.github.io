@@ -1,16 +1,16 @@
 {
   "site": "与买桂花同载酒",
   "url": "https://www.zebin-yue.top",
-  "generatedAt": "2026-09-23T02:59:24.626Z",
-  "posts": 192,
+  "generatedAt": "2026-09-24T02:26:29.912Z",
+  "posts": 193,
   "encrypted": 21,
-  "totalWords": 430280,
-  "readingTimeMinutes": 1076,
+  "totalWords": 431608,
+  "readingTimeMinutes": 1079,
   "byYear": [
     {
       "year": 2026,
-      "posts": 114,
-      "words": 271514
+      "posts": 115,
+      "words": 272842
     },
     {
       "year": 2025,
@@ -86,8 +86,8 @@
   "byCategory": [
     {
       "name": "生活随笔",
-      "posts": 66,
-      "words": 102627
+      "posts": 67,
+      "words": 103955
     },
     {
       "name": "社会观察",
