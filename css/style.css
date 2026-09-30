@@ -2000,72 +2000,108 @@ a.post-nav-item:hover .post-nav-title {
 
 /* =========================================================
    「此刻」动态时间线（数据由 tools/fetch-moments.mjs 生成）
+   布局仿 shitao5.org/moments：三列网格 —— 左列时刻右对齐、
+   中列竖向轴线 + 空心圆节点、右列标题加粗正文。无卡片无阴影，
+   日期组之间只用一条极细的发丝线分隔。
    ========================================================= */
 .moments-feed {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
-/* 日期分组标题：沿用归档页月份标题的 accent 左边线风格 */
+/* 日期分组标题：小号灰字，不加装饰 */
 .moment-day__title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-main);
-    margin: 30px 0 8px 0;
-    padding-left: 10px;
-    border-left: 3px solid var(--accent);
-}
-.moments-feed .moment-day:first-child .moment-day__title {
-    margin-top: 5px;
-}
-.moment-day__weekday {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: normal;
     color: var(--text-muted);
-    margin-left: 6px;
+    margin: 0 0 6px 0;
+}
+.moment-day__weekday {
+    margin-left: 4px;
 }
 
-/* 单条动态：左侧时刻 + 右侧内容 */
+/* 日期组之间：留白 + 发丝线（第一组不画） */
+.moment-day + .moment-day {
+    margin-top: 34px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* 单条动态：时刻 | 轴线节点 | 内容 三列网格 */
 .moment-entry {
-    display: flex;
-    gap: 16px;
-    padding: 12px 4px;
-    border-bottom: 1px dashed var(--border-color);
-    border-radius: 8px;
-}
-.moment-day .moment-entry:last-child {
-    border-bottom: none;
-}
-/* 从锚点跳进来时（#20260930-1845）高亮这一条 */
-.moment-entry:target {
-    background: rgba(var(--accent-rgb), 0.07);
+    display: grid;
+    grid-template-columns: 44px 18px 1fr;
+    column-gap: 12px;
+    padding: 13px 0;
 }
 .moment-entry__time {
-    flex-shrink: 0;
-    min-width: 44px;
     text-align: right;
     padding-top: 3px;
     font-family: 'Consolas', 'Courier New', monospace;
-    font-size: 0.82rem;
+    font-size: 0.8rem;
 }
 .moment-entry__time a {
     color: var(--text-muted);
     text-decoration: none;
-    border-bottom: 1px dotted transparent;
-    transition: all 0.2s;
+    transition: color 0.2s;
 }
 .moment-entry__time a:hover {
     color: var(--accent);
-    border-bottom-color: var(--accent);
 }
+
+/* 中列：贯穿的竖线（::before）+ 每条一个空心圆节点（::after） */
+.moment-entry__node {
+    position: relative;
+}
+.moment-entry__node::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--border-color);
+}
+.moment-entry__node::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid #c8cad0;
+}
+/* 组内首条：线从节点起；末条：线到节点止，不越界 */
+.moment-day .moment-entry:first-of-type .moment-entry__node::before {
+    top: 11px;
+}
+.moment-day .moment-entry:last-of-type .moment-entry__node::before {
+    bottom: auto;
+    height: 11px;
+}
+/* 暗色模式：节点圈边框提亮 */
+[data-theme="dark"] .moment-entry__node::after {
+    border-color: #4b5563;
+}
+
+/* 从锚点跳进来时（#20260930-1209）高亮这一条 */
+.moment-entry:target {
+    background: rgba(var(--accent-rgb), 0.07);
+    border-radius: 8px;
+}
+
+/* 右列内容：标题加粗黑、正文常规 */
 .moment-entry__content {
-    flex: 1;
     min-width: 0; /* 允许长链接在内部折行，不撑破中间栏 */
 }
 .moment-entry__title {
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--text-strong);
-    margin-bottom: 4px;
+    margin: 0 0 4px 0;
 }
 .moment-entry__body {
     font-size: 0.95rem;
@@ -2124,11 +2160,15 @@ a.post-nav-item:hover .post-nav-title {
 
 @media (max-width: 600px) {
     .moment-entry {
-        gap: 10px;
-        padding: 10px 0;
+        grid-template-columns: 40px 16px 1fr;
+        column-gap: 10px;
+        padding: 11px 0;
     }
     .moment-entry__time {
-        min-width: 38px;
-        font-size: 0.78rem;
+        font-size: 0.76rem;
+    }
+    .moment-day + .moment-day {
+        margin-top: 26px;
+        padding-top: 18px;
     }
 }
