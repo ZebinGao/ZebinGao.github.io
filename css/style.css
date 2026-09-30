@@ -2172,3 +2172,91 @@ a.post-nav-item:hover .post-nav-title {
         padding-top: 18px;
     }
 }
+
+/* =========================================================
+   「总结」页面（source/summary/<年>.md，layout: summary / summary-index）
+   仿 shitao5.org/summary：年页顶部全年周目录（锚点跳转），
+   周标题之间发丝线分隔，与「此刻」页同一套极简风格。
+   ========================================================= */
+
+/* 年页顶部：周目录小链接网格（toc() 助手产出 ol.toc > a.toc-link） */
+.summary-toc .toc {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px 16px;
+    list-style: none;
+    margin: 0 0 30px 0;
+    padding: 0 0 16px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+.summary-toc .toc-item {
+    margin: 0;
+}
+.summary-toc .toc-link {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+.summary-toc .toc-link:hover {
+    color: var(--accent);
+}
+
+/* 周标题：小节风格，周与周之间发丝线（第一个周标题不画线） */
+.summary-page .content.markdown h2 {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text-strong);
+    line-height: 1.6;
+    margin: 2.2em 0 0.8em 0;
+    padding-top: 1.6em;
+    border-top: 1px solid var(--border-color);
+}
+.summary-page .content.markdown h2:first-of-type {
+    margin-top: 1.2em;
+    padding-top: 0;
+    border-top: none;
+}
+/* 从目录锚点跳进来时高亮该周标题 */
+.summary-page .content.markdown h2:target {
+    color: var(--accent);
+}
+
+/* 总览页：年份行（大年份 + 周数灰字，行间发丝线） */
+.summary-years {
+    margin-top: 20px;
+}
+.summary-year-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 16px 4px;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+}
+.summary-year-row:first-child {
+    border-top: 1px solid var(--border-color);
+}
+.summary-year-num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: "Noto Serif SC", serif;
+    color: var(--text-main);
+    transition: color 0.2s;
+}
+.summary-year-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.summary-year-row:hover .summary-year-num {
+    color: var(--accent);
+}
+
+/* 年页底部导航沿用 .post-nav 卡片，压一点上边距 */
+.summary-year-nav {
+    margin-top: 40px;
+}
