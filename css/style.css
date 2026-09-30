@@ -1997,3 +1997,138 @@ a.post-nav-item:hover .post-nav-title {
 [data-theme="dark"] .gt-container .gt-popup .gt-action {
     color: var(--text-muted);
 }
+
+/* =========================================================
+   「此刻」动态时间线（数据由 tools/fetch-moments.mjs 生成）
+   ========================================================= */
+.moments-feed {
+    margin-top: 15px;
+}
+
+/* 日期分组标题：沿用归档页月份标题的 accent 左边线风格 */
+.moment-day__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin: 30px 0 8px 0;
+    padding-left: 10px;
+    border-left: 3px solid var(--accent);
+}
+.moments-feed .moment-day:first-child .moment-day__title {
+    margin-top: 5px;
+}
+.moment-day__weekday {
+    font-size: 0.85rem;
+    font-weight: normal;
+    color: var(--text-muted);
+    margin-left: 6px;
+}
+
+/* 单条动态：左侧时刻 + 右侧内容 */
+.moment-entry {
+    display: flex;
+    gap: 16px;
+    padding: 12px 4px;
+    border-bottom: 1px dashed var(--border-color);
+    border-radius: 8px;
+}
+.moment-day .moment-entry:last-child {
+    border-bottom: none;
+}
+/* 从锚点跳进来时（#20260930-1845）高亮这一条 */
+.moment-entry:target {
+    background: rgba(var(--accent-rgb), 0.07);
+}
+.moment-entry__time {
+    flex-shrink: 0;
+    min-width: 44px;
+    text-align: right;
+    padding-top: 3px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.82rem;
+}
+.moment-entry__time a {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    transition: all 0.2s;
+}
+.moment-entry__time a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+.moment-entry__content {
+    flex: 1;
+    min-width: 0; /* 允许长链接在内部折行，不撑破中间栏 */
+}
+.moment-entry__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-strong);
+    margin-bottom: 4px;
+}
+.moment-entry__body {
+    font-size: 0.95rem;
+    color: var(--text-main);
+    line-height: 1.7;
+}
+.moment-entry__body p {
+    margin: 0 0 8px 0;
+}
+.moment-entry__body p:last-child {
+    margin-bottom: 0;
+}
+.moment-entry__body a {
+    color: var(--accent);
+}
+.moment-entry__body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 6px 0;
+}
+/* 动态里的行内代码与代码块（文章页有 highlight 美化，这里手动对齐风格） */
+.moment-entry__body code {
+    background: #f4f5f6;
+    color: var(--accent);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    word-break: break-all;
+}
+[data-theme="dark"] .moment-entry__body code {
+    background: var(--bg-button);
+}
+.moment-entry__body pre {
+    background: #282c34;
+    color: #abb2bf;
+    padding: 12px 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 8px 0;
+    line-height: 1.5;
+}
+.moment-entry__body pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+/* 空状态 */
+.moments-empty {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 50px 0;
+}
+
+@media (max-width: 600px) {
+    .moment-entry {
+        gap: 10px;
+        padding: 10px 0;
+    }
+    .moment-entry__time {
+        min-width: 38px;
+        font-size: 0.78rem;
+    }
+}
