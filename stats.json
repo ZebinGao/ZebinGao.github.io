@@ -1,16 +1,16 @@
 {
   "site": "与买桂花同载酒",
   "url": "https://www.zebin-yue.top",
-  "generatedAt": "2026-10-08T04:44:51.372Z",
-  "posts": 197,
+  "generatedAt": "2026-10-08T05:20:23.405Z",
+  "posts": 198,
   "encrypted": 23,
-  "totalWords": 440471,
+  "totalWords": 440460,
   "readingTimeMinutes": 1101,
   "byYear": [
     {
       "year": 2026,
-      "posts": 119,
-      "words": 281705
+      "posts": 120,
+      "words": 281694
     },
     {
       "year": 2025,
@@ -91,8 +91,8 @@
     },
     {
       "name": "社会观察",
-      "posts": 47,
-      "words": 135345
+      "posts": 38,
+      "words": 81298
     },
     {
       "name": "情感与心理",
@@ -100,19 +100,19 @@
       "words": 43749
     },
     {
-      "name": "技术笔记",
-      "posts": 22,
-      "words": 31996
+      "name": "转载",
+      "posts": 24,
+      "words": 126914
     },
     {
-      "name": "转载",
-      "posts": 17,
-      "words": 77238
+      "name": "技术笔记",
+      "posts": 23,
+      "words": 34146
     },
     {
       "name": "读书与思考",
-      "posts": 11,
-      "words": 24572
+      "posts": 14,
+      "words": 32374
     },
     {
       "name": "旅行",
@@ -120,20 +120,15 @@
       "words": 9161
     },
     {
-      "name": "系统维护",
+      "name": "未分类",
       "posts": 1,
-      "words": 2150
-    },
-    {
-      "name": "生活笔记",
-      "posts": 1,
-      "words": 3442
+      "words": 0
     }
   ],
   "longest": [
     {
       "title": "置身钉内",
-      "words": 22110,
+      "words": 22108,
       "minutes": 55
     },
     {

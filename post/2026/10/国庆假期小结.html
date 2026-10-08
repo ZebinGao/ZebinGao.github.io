@@ -12,6 +12,10 @@
 
     
     
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    
+    
     
     <link rel="icon" type="image/png" href="/img/favicon.png">
     
@@ -109,49 +113,62 @@
     </nav>
 </aside>
         <main class="content-mid">
-            <div class="archive-container">
-    
-        <h2 class="archive-year">社会观察</h2>
-        <div class="archive-list">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title"></h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年10月08日</span>
             
-                <div class="archive-item">
-                    <time>2022-08-04</time>
-                    <a href="/post/2022/8-04-%E7%A6%BB%E8%81%8C%E7%9A%84%E5%90%8C%E4%BA%8B%E4%BB%AC.html">离职的同事们</a>
-                </div>
-            
-                <div class="archive-item">
-                    <time>2022-05-16</time>
-                    <a href="/post/2022/5-16-%E9%9A%8F%E6%84%9F.html">随感</a>
-                </div>
-            
-                <div class="archive-item">
-                    <time>2022-05-14</time>
-                    <a href="/post/2022/5-14-%E4%BD%86%E5%BC%80%E9%A3%8E%E6%B0%94%E4%B8%8D%E4%B8%BA%E5%B8%88.html">但开风气不为先</a>
-                </div>
-            
-                <div class="archive-item">
-                    <time>2021-01-15</time>
-                    <a href="/post/2021/1-15-%E5%A4%84%E5%A5%B3%E6%83%85%E7%BB%93%E7%9A%84%E6%8B%BE%E8%B5%B7%EF%BC%8C%E6%94%BE%E4%B8%8B%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%86%8D%E6%8B%BE%E8%B5%B7.html">处女情结</a>
-                </div>
-            
-                <div class="archive-item">
-                    <time>2020-08-21</time>
-                    <a href="/post/2020/8-21-%E6%89%BE%E5%B0%8F%E5%A7%90%E5%A7%8B%E6%9C%AB.html">找小姐始末</a>
-                </div>
-            
-                <div class="archive-item">
-                    <time>2020-03-07</time>
-                    <a href="/post/2020/3-07-%E5%87%BA%E4%B8%96%E7%9A%84%E4%BD%9B%E6%95%99.html">出世的佛教</a>
-                </div>
-            
-                <div class="archive-item">
-                    <time>2016-11-03</time>
-                    <a href="/post/2016/2-12-%E4%BA%92%E8%81%94%E7%BD%91%E5%8D%81%E5%B9%B4-2011%E5%B9%B4%E8%B5%B0%E5%90%91%E5%B0%81%E9%97%AD.html">互联网十年</a>
-                </div>
             
         </div>
+    </header>
+
+    <div class="content markdown">
+        
+            
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
     
-</div>
+    <a class="post-nav-item post-nav-prev" href="/post/2026/10/%E5%88%87%E5%89%B2%E5%A4%A7%E6%B3%95%E5%A5%BD(%E4%B8%89).html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">切割大法好(三)</span>
+    </a>
+    
+    
+</nav>
+
+
+
+
+<section class="comments-section">
+    <h2 data-i18n="comments">评论</h2>
+    <div id="gitalk-container"></div>
+    
+<script src="/js/gitalk.min.js"></script>
+
+    <script>
+    (function () {
+        var legacy = {"/post/2025/从奴隶到奴才.html":"/post/从奴隶到奴才.html","/post/2026/1/吴谢宇和柳智宇.html":"/post/吴谢宇和柳智宇.html","/post/2026/1/网络审查与抗封锁技术的演进史.html":"/post/网络审查与抗封锁技术的演进史.html"};
+        var path = decodeURI(window.location.pathname);
+        var gitalk = new Gitalk({
+            clientID: 'Ov23liUMUoQLKTPswJDK',
+            clientSecret: 'c46b751f5cbe796f506b01288d1c07f0446a45ef',
+            repo: 'blog-comments',
+            owner: 'ZebinGao',
+            admin: ["ZebinGao"],
+            id: legacy[path] || path, // 文章挪过目录时用老 id 匹配老 issue
+            distractionFreeMode: false,
+            proxy: 'https://cors.isomorphic-git.org/https://github.com/login/oauth/access_token'
+        });
+        gitalk.render('gitalk-container');
+    })();
+    </script>
+</section>
 
         </main>
         <aside class="sidebar-right">
@@ -164,6 +181,13 @@
         </div>
     </div>
 
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                
+            </div>
+        </div>
     
 
     <div class="widget tags-widget">
