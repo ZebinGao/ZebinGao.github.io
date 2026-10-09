@@ -1076,6 +1076,38 @@ a.movie-item:hover {
 }
 
 /* =========================================================
+   文章正文段落间距
+========================================================= */
+/* 全局重置 * { margin: 0 } 把 <p> 的默认外边距也一并清零了。
+   Markdown 里空一行（无论空几行）只是把文字分进两个 <p> 标签，
+   段与段之间的空隙完全要靠这里的 margin 撑出来，否则肉眼看上去
+   段落就是紧贴着的 */
+.content.markdown p {
+    margin: 0 0 1.2em 0;
+}
+.content.markdown p:last-child {
+    margin-bottom: 0;
+}
+/* 标题、列表、引用同样被全局重置清零了间距，一并补上常规节奏 */
+.content.markdown h2, .content.markdown h3, .content.markdown h4 {
+    margin: 1.8em 0 0.8em 0;
+    line-height: 1.4;
+}
+.content.markdown > h2:first-child, .content.markdown > h3:first-child, .content.markdown > h4:first-child {
+    margin-top: 0;
+}
+.content.markdown ul, .content.markdown ol {
+    margin: 0 0 1.2em 0;
+    padding-left: 2em;
+}
+.content.markdown blockquote {
+    margin: 1.2em 0;
+    padding: 0.4em 1em;
+    border-left: 3px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+/* =========================================================
    文章内图片
 ========================================================= */
 /* 正文图片不得超过正文栏宽度（栏宽约 770px，微信导出图多为 1080px，会横向溢出）；
