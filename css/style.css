@@ -2034,7 +2034,7 @@ a.post-nav-item:hover .post-nav-title {
    「此刻」动态时间线（数据由 tools/fetch-moments.mjs 生成）
    布局仿 shitao5.org/moments：三列网格 —— 左列时刻右对齐、
    中列竖向轴线 + 空心圆节点、右列标题加粗正文。无卡片无阴影，
-   日期组之间只用一条极细的发丝线分隔。
+   同月各天之间只留白，跨月才画一条极细的发丝线分隔。
    ========================================================= */
 .moments-feed {
     margin-top: 10px;
@@ -2045,16 +2045,19 @@ a.post-nav-item:hover .post-nav-title {
     font-size: 0.88rem;
     font-weight: normal;
     color: var(--text-muted);
-    margin: 0 0 6px 0;
+    margin: 0 0 4px 0;
 }
 .moment-day__weekday {
     margin-left: 4px;
 }
 
-/* 日期组之间：留白 + 发丝线（第一组不画） */
+/* 日期组之间：同月只留白；跨月才留白 + 发丝线（第一组不画） */
 .moment-day + .moment-day {
-    margin-top: 34px;
-    padding-top: 22px;
+    margin-top: 24px;
+}
+.moment-day + .moment-day.moment-day--new-month {
+    margin-top: 36px;
+    padding-top: 16px;
     border-top: 1px solid var(--border-color);
 }
 
@@ -2063,7 +2066,7 @@ a.post-nav-item:hover .post-nav-title {
     display: grid;
     grid-template-columns: 44px 18px 1fr;
     column-gap: 12px;
-    padding: 13px 0;
+    padding: 8px 0;
 }
 .moment-entry__time {
     text-align: right;
@@ -2084,13 +2087,14 @@ a.post-nav-item:hover .post-nav-title {
 .moment-entry__node {
     position: relative;
 }
+/* 上下各 -8px 延伸进条目的 padding 区，使相邻条目的线首尾相接（不断线） */
 .moment-entry__node::before {
     content: "";
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 0;
-    bottom: 0;
+    top: -8px;
+    bottom: -8px;
     width: 1px;
     background: var(--border-color);
 }
@@ -2112,6 +2116,11 @@ a.post-nav-item:hover .post-nav-title {
 }
 .moment-day .moment-entry:last-of-type .moment-entry__node::before {
     bottom: auto;
+    height: 19px; /* -8px 起，长 19px，止于节点旁 */
+}
+/* 当天只有一条（既是首条也是末条）：只留节点旁一小截 */
+.moment-day .moment-entry:first-of-type:last-of-type .moment-entry__node::before {
+    top: 11px;
     height: 11px;
 }
 /* 暗色模式：节点圈边框提亮 */
@@ -2194,14 +2203,16 @@ a.post-nav-item:hover .post-nav-title {
     .moment-entry {
         grid-template-columns: 40px 16px 1fr;
         column-gap: 10px;
-        padding: 11px 0;
     }
     .moment-entry__time {
         font-size: 0.76rem;
     }
     .moment-day + .moment-day {
-        margin-top: 26px;
-        padding-top: 18px;
+        margin-top: 20px;
+    }
+    .moment-day + .moment-day.moment-day--new-month {
+        margin-top: 30px;
+        padding-top: 12px;
     }
 }
 
