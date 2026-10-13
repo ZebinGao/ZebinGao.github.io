@@ -2032,47 +2032,46 @@ a.post-nav-item:hover .post-nav-title {
 
 /* =========================================================
    「此刻」动态时间线（数据由 tools/fetch-moments.mjs 生成）
-   布局仿 shitao5.org/moments：三列网格 —— 左列时刻右对齐、
-   中列竖向轴线 + 空心圆节点、右列标题加粗正文。无卡片无阴影，
-   同月各天之间只留白，跨月才画一条极细的发丝线分隔。
+   三列网格 —— 左列右对齐：日期（月-日 周几，只在每天首条显示）
+   叠在时刻上方；中列竖向轴线 + 空心圆节点；右列标题加粗正文。
+   无卡片无阴影；轴线一个月内连续，跨月才断开并画发丝线。
    ========================================================= */
 .moments-feed {
-    margin-top: 10px;
+    margin-top: 6px;
 }
 
-/* 日期分组标题：小号灰字，不加装饰 */
-.moment-day__title {
-    font-size: 0.88rem;
-    font-weight: normal;
-    color: var(--text-muted);
-    margin: 0 0 4px 0;
-}
 .moment-day__weekday {
     margin-left: 4px;
 }
 
-/* 日期组之间：同月只留白；跨月才留白 + 发丝线（第一组不画） */
-.moment-day + .moment-day {
-    margin-top: 24px;
-}
+/* 跨月才分隔：留白 + 发丝线（第一组不画）；
+ * 月内各天之间 margin 为 0，轴线才能跨天连成一线 */
 .moment-day + .moment-day.moment-day--new-month {
-    margin-top: 36px;
-    padding-top: 16px;
+    margin-top: 26px;
+    padding-top: 13px;
     border-top: 1px solid var(--border-color);
 }
 
-/* 单条动态：时刻 | 轴线节点 | 内容 三列网格 */
+/* 单条动态：日期/时刻 | 轴线节点 | 内容 三列网格 */
 .moment-entry {
     display: grid;
-    grid-template-columns: 44px 18px 1fr;
-    column-gap: 12px;
-    padding: 8px 0;
+    grid-template-columns: 56px 18px 1fr;
+    column-gap: 10px;
+    padding: 6px 0;
 }
 .moment-entry__time {
     text-align: right;
     padding-top: 3px;
     font-family: 'Consolas', 'Courier New', monospace;
     font-size: 0.8rem;
+}
+/* 每天首条：日期（月-日 周几）在时刻上方一行 */
+.moment-entry__date {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    margin-bottom: 1px;
 }
 .moment-entry__time a {
     color: var(--text-muted);
@@ -2087,14 +2086,14 @@ a.post-nav-item:hover .post-nav-title {
 .moment-entry__node {
     position: relative;
 }
-/* 上下各 -8px 延伸进条目的 padding 区，使相邻条目的线首尾相接（不断线） */
+/* 上下各 -6px 延伸进条目 padding 区，月内相邻条目（含跨天）首尾相接 */
 .moment-entry__node::before {
     content: "";
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: -8px;
-    bottom: -8px;
+    top: -6px;
+    bottom: -6px;
     width: 1px;
     background: var(--border-color);
 }
@@ -2110,16 +2109,16 @@ a.post-nav-item:hover .post-nav-title {
     background: var(--bg-card);
     border: 2px solid #c8cad0;
 }
-/* 组内首条：线从节点起；末条：线到节点止，不越界 */
-.moment-day .moment-entry:first-of-type .moment-entry__node::before {
+/* 月首：线从节点起；月末：线到节点止，不越界 */
+.moment-day--month-start .moment-entry:first-of-type .moment-entry__node::before {
     top: 11px;
 }
-.moment-day .moment-entry:last-of-type .moment-entry__node::before {
+.moment-day--month-end .moment-entry:last-of-type .moment-entry__node::before {
     bottom: auto;
-    height: 19px; /* -8px 起，长 19px，止于节点旁 */
+    height: 17px; /* -6px 起，长 17px，止于节点旁 */
 }
-/* 当天只有一条（既是首条也是末条）：只留节点旁一小截 */
-.moment-day .moment-entry:first-of-type:last-of-type .moment-entry__node::before {
+/* 整月只有一条（既是月首也是月末）：只留节点旁一小截 */
+.moment-day--month-start.moment-day--month-end .moment-entry:first-of-type:last-of-type .moment-entry__node::before {
     top: 11px;
     height: 11px;
 }
@@ -2147,10 +2146,10 @@ a.post-nav-item:hover .post-nav-title {
 .moment-entry__body {
     font-size: 0.95rem;
     color: var(--text-main);
-    line-height: 1.7;
+    line-height: 1.65;
 }
 .moment-entry__body p {
-    margin: 0 0 8px 0;
+    margin: 0 0 6px 0;
 }
 .moment-entry__body p:last-child {
     margin-bottom: 0;
@@ -2201,18 +2200,18 @@ a.post-nav-item:hover .post-nav-title {
 
 @media (max-width: 600px) {
     .moment-entry {
-        grid-template-columns: 40px 16px 1fr;
-        column-gap: 10px;
+        grid-template-columns: 50px 16px 1fr;
+        column-gap: 8px;
     }
     .moment-entry__time {
         font-size: 0.76rem;
     }
-    .moment-day + .moment-day {
-        margin-top: 20px;
+    .moment-entry__date {
+        font-size: 0.66rem;
     }
     .moment-day + .moment-day.moment-day--new-month {
-        margin-top: 30px;
-        padding-top: 12px;
+        margin-top: 22px;
+        padding-top: 11px;
     }
 }
 
