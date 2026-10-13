@@ -2032,8 +2032,8 @@ a.post-nav-item:hover .post-nav-title {
 
 /* =========================================================
    「此刻」动态时间线（数据由 tools/fetch-moments.mjs 生成）
-   三列网格 —— 左列右对齐：日期（月-日 周几，只在每天首条显示）
-   叠在时刻上方；中列竖向轴线 + 空心圆节点；右列标题加粗正文。
+   三列网格 —— 左列右对齐：日期（年-月-日 周几，只在每天首条
+   显示）叠在时刻上方；中列竖向轴线 + 空心圆节点；右列标题加粗正文。
    无卡片无阴影；轴线一个月内连续，跨月才断开并画发丝线。
    ========================================================= */
 .moments-feed {
@@ -2055,7 +2055,7 @@ a.post-nav-item:hover .post-nav-title {
 /* 单条动态：日期/时刻 | 轴线节点 | 内容 三列网格 */
 .moment-entry {
     display: grid;
-    grid-template-columns: 56px 18px 1fr;
+    grid-template-columns: 92px 18px 1fr;
     column-gap: 10px;
     padding: 6px 0;
 }
@@ -2065,7 +2065,7 @@ a.post-nav-item:hover .post-nav-title {
     font-family: 'Consolas', 'Courier New', monospace;
     font-size: 0.8rem;
 }
-/* 每天首条：日期（月-日 周几）在时刻上方一行 */
+/* 每天首条：完整日期（年-月-日 周几）在时刻上方一行 */
 .moment-entry__date {
     display: block;
     font-size: 0.7rem;
@@ -2137,21 +2137,26 @@ a.post-nav-item:hover .post-nav-title {
 .moment-entry__content {
     min-width: 0; /* 允许长链接在内部折行，不撑破中间栏 */
 }
-.moment-entry__title {
+/* 标题与圆点对齐：行高 1.5 使标题行盒与正文行盒等高，首行中心正对圆点。
+ * 选择器带 .content.markdown 前缀是为了压过文章排版重置
+ * .content.markdown h3 的 margin: 1.8em 0 0.8em（否则标题被推离圆点） */
+.content.markdown .moment-entry__title {
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-strong);
     margin: 0 0 4px 0;
+    line-height: 1.5;
 }
 .moment-entry__body {
     font-size: 0.95rem;
     color: var(--text-main);
     line-height: 1.65;
 }
-.moment-entry__body p {
+/* 同理带 .content.markdown 前缀，压过 .content.markdown p 的 1.2em 段距 */
+.content.markdown .moment-entry__body p {
     margin: 0 0 6px 0;
 }
-.moment-entry__body p:last-child {
+.content.markdown .moment-entry__body p:last-child {
     margin-bottom: 0;
 }
 .moment-entry__body a {
@@ -2200,7 +2205,7 @@ a.post-nav-item:hover .post-nav-title {
 
 @media (max-width: 600px) {
     .moment-entry {
-        grid-template-columns: 50px 16px 1fr;
+        grid-template-columns: 84px 16px 1fr;
         column-gap: 8px;
     }
     .moment-entry__time {
