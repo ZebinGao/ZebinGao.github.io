@@ -662,22 +662,6 @@ a.movie-item:hover {
     display: none;
 }
 
-/* 音乐卡片年代分组标题 */
-.hobbies-group-header {
-    grid-column: 1 / -1;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    padding-bottom: 4px;
-    border-bottom: 1px dashed var(--border-color);
-    margin-top: 6px;
-}
-
-.hobbies-group-header.hidden {
-    display: none;
-}
-
 /* 音乐卡片播放按钮 */
 .music-play-btn {
     display: none;
