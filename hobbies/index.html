@@ -122,6 +122,7 @@
             <button class="category-tab" data-filter="books" data-i18n="books">书籍</button>
             <button class="category-tab" data-filter="music" data-i18n="music">音乐</button>
             <button class="category-tab" data-filter="exhibitions" data-i18n="exhibitions">展览</button>
+            <button class="category-tab" data-filter="residences" data-i18n="residences">故居</button>
         </div>
 
         <div class="link-subcategory-tabs hobbies-status-tabs" data-parent="movies" style="display:flex;">
@@ -5261,6 +5262,43 @@
                 
             </div>
         </div>
+
+        <!-- 故居区域 -->
+        <div class="hobbies-section" id="section-residences" style="display:none;">
+            <div class="hobbies-grid">
+                
+                    
+                        
+                            <div class="hobby-card">
+                        
+                            <div class="hobby-card-title">宋庆龄故居</div>
+                            <div class="hobby-card-meta">
+                                上海 · 徐汇区淮海中路1843号
+                                 · 
+                                1948–1981
+                            </div>
+                            
+                        
+                            </div>
+                        
+                    
+                        
+                            <div class="hobby-card">
+                        
+                            <div class="hobby-card-title">美丽屋（Schloss Schönhausen）</div>
+                            <div class="hobby-card-meta">
+                                柏林 Pankow · Tschaikowskistraße 1
+                                 · 
+                                普鲁士王室夏宫
+                            </div>
+                            
+                        
+                            </div>
+                        
+                    
+                
+            </div>
+        </div>
     </div>
 </article>
 
@@ -5288,7 +5326,8 @@
         movies: document.getElementById('section-movies'),
         books: document.getElementById('section-books'),
         music: document.getElementById('section-music'),
-        exhibitions: document.getElementById('section-exhibitions')
+        exhibitions: document.getElementById('section-exhibitions'),
+        residences: document.getElementById('section-residences')
     };
     var currentTab = 'movies';
     var currentStatus = 'all';
