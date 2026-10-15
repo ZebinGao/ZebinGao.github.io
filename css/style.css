@@ -1399,6 +1399,17 @@ a, button, .read-more, .theme-toggle {
     margin-bottom: 8px;
     text-align: center;
 }
+.poem-header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+.poem-header-row .poem-header {
+    margin-bottom: 0;
+}
 .poem-meta {
     font-size: 0.9rem;
     color: var(--text-muted);
@@ -1504,8 +1515,10 @@ a, button, .read-more, .theme-toggle {
     text-align: center;
 }
 .poem-shuffle-btn {
-    font-size: 0.95rem;
-    margin-left: 4px;
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
 /* --- 地图页样式 --- */
