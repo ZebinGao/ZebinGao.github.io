@@ -1,61 +1,61 @@
 {
   "site": "与买桂花同载酒",
   "url": "https://www.zebin-yue.top",
-  "generatedAt": "2026-10-16T05:32:41.893Z",
-  "posts": 207,
+  "generatedAt": "2026-10-16T06:22:08.967Z",
+  "posts": 208,
   "encrypted": 24,
-  "totalWords": 455770,
+  "totalWords": 455421,
   "readingTimeMinutes": 1139,
   "byYear": [
     {
       "year": 2026,
-      "posts": 129,
-      "words": 297004
+      "posts": 130,
+      "words": 296852
     },
     {
       "year": 2025,
       "posts": 16,
-      "words": 33041
+      "words": 32990
     },
     {
       "year": 2024,
       "posts": 1,
-      "words": 2109
+      "words": 2107
     },
     {
       "year": 2023,
       "posts": 6,
-      "words": 11858
+      "words": 11854
     },
     {
       "year": 2022,
       "posts": 10,
-      "words": 40046
+      "words": 40036
     },
     {
       "year": 2021,
       "posts": 3,
-      "words": 6590
+      "words": 6584
     },
     {
       "year": 2020,
       "posts": 25,
-      "words": 39938
+      "words": 39846
     },
     {
       "year": 2019,
       "posts": 9,
-      "words": 12414
+      "words": 12390
     },
     {
       "year": 2018,
       "posts": 1,
-      "words": 1677
+      "words": 1675
     },
     {
       "year": 2017,
       "posts": 2,
-      "words": 1501
+      "words": 1495
     },
     {
       "year": 2016,
@@ -86,33 +86,33 @@
   "byCategory": [
     {
       "name": "生活随笔",
-      "posts": 79,
-      "words": 124570
+      "posts": 80,
+      "words": 124424
     },
     {
       "name": "社会观察",
       "posts": 38,
-      "words": 81298
+      "words": 81242
     },
     {
       "name": "情感与心理",
       "posts": 26,
-      "words": 46886
+      "words": 46805
     },
     {
       "name": "转载",
       "posts": 24,
-      "words": 126914
+      "words": 126875
     },
     {
       "name": "技术笔记",
       "posts": 24,
-      "words": 34567
+      "words": 34557
     },
     {
       "name": "读书与思考",
       "posts": 14,
-      "words": 32374
+      "words": 32357
     },
     {
       "name": "旅行",
@@ -128,12 +128,12 @@
     },
     {
       "title": "暴力破解的文章-2",
-      "words": 17283,
+      "words": 17279,
       "minutes": 43
     },
     {
       "title": "一个程序员的奋斗史",
-      "words": 9446,
+      "words": 9442,
       "minutes": 24
     }
   ]
