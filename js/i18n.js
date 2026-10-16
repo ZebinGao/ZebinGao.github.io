@@ -12,6 +12,10 @@
             hot_tags: 'Popular Tags',
             calendar: 'Calendar',
             weather: 'Weather',
+            clock: 'World Clock',
+            berlin: 'Berlin',
+            beijing: 'Beijing',
+            newyork: 'New York',
             movies: 'Movies',
             books: 'Books',
             music: 'Music',
@@ -102,6 +106,10 @@
             hot_tags: 'Beliebte Tags',
             calendar: 'Kalender',
             weather: 'Wetter',
+            clock: 'Weltzeit',
+            berlin: 'Berlin',
+            beijing: 'Peking',
+            newyork: 'New York',
             movies: 'Filme',
             books: 'Bücher',
             music: 'Musik',
@@ -192,6 +200,10 @@
             hot_tags: '热门标签',
             calendar: '日历',
             weather: '天气',
+            clock: '世界时钟',
+            berlin: '柏林',
+            beijing: '北京',
+            newyork: '纽约',
             movies: '电影',
             books: '书籍',
             music: '音乐',
@@ -362,6 +374,8 @@
         updateLangButtons(lang);
         // Rebuild calendar
         buildCalendarLang(lang, t);
+        // 世界时钟的月份/星期写法随语言切换
+        if (window.buildClockLang) window.buildClockLang(lang, t);
     }
 
     window.buildCalendarLang = function(lang, t) {

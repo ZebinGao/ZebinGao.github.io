@@ -1240,6 +1240,40 @@ a.movie-item:hover {
     color: var(--accent);
 }
 
+/* --- 世界时钟小工具：柏林 · 纽约 --- */
+.clock-box {
+    padding: 2px 0;
+}
+.clock-city-block + .clock-city-block {
+    margin-top: 10px;
+}
+.clock-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.clock-city {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.clock-time {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-main);
+    font-variant-numeric: tabular-nums; /* 秒数跳动时宽度不抖动 */
+    letter-spacing: 0.5px;
+}
+.clock-sub {
+    margin-top: 2px;
+    text-align: right;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+/* 城市日期与访客本地不同一天时，用主题色点出来 */
+.clock-sub.clock-diff {
+    color: var(--accent);
+}
+
 /* =========================================================
    文章正文段落间距
 ========================================================= */
