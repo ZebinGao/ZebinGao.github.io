@@ -1093,6 +1093,7 @@ a.movie-item:hover {
 .calendar-container {
     background: var(--bg-card);
     text-align: center;
+    position: relative; /* 悬停气泡的定位基准 */
 }
 .calendar-header {
     font-weight: bold;
@@ -1120,6 +1121,66 @@ a.movie-item:hover {
     background: var(--accent);
     color: var(--bg-card);
     font-weight: bold;
+}
+
+/* --- 日历悬停提示：农历 + 节气 --- */
+.calendar-grid span[data-day]:hover {
+    background: rgba(var(--accent-rgb), 0.15);
+}
+.calendar-grid span.today:hover {
+    background: var(--accent);
+}
+/* 有节气的日子右上角一个小圆点 */
+.calendar-grid span[data-term] {
+    position: relative;
+}
+.calendar-grid span[data-term]::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+.calendar-grid span.today[data-term]::after {
+    background: var(--bg-card);
+}
+.calendar-tooltip {
+    position: absolute;
+    z-index: 60;
+    pointer-events: none; /* 不挡鼠标，避免气泡自身引起闪烁 */
+    min-width: 110px;
+    padding: 7px 12px;
+    text-align: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+}
+.calendar-tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.calendar-tooltip .lunar-date {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--text-main);
+}
+.calendar-tooltip .lunar-year {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+.calendar-tooltip .lunar-term {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--accent);
+    margin-top: 3px;
 }
 
 /* =========================================================
