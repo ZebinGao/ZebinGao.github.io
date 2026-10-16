@@ -1329,6 +1329,41 @@ a.movie-item:hover {
     color: var(--accent);
 }
 
+/* --- 热点页：新浪滚动新闻 --- */
+.news-list {
+    padding: 4px 0;
+}
+.news-loading {
+    padding: 24px 0;
+    text-align: center;
+    color: var(--text-muted);
+}
+.news-item {
+    display: block;
+    padding: 10px 4px;
+    border-bottom: 1px dashed var(--border-color); /* 滚动列表的行分隔 */
+    text-decoration: none;
+}
+.news-title {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    overflow-wrap: break-word; /* 标题完整展示，自动折行 */
+}
+.news-item:hover .news-title {
+    color: var(--accent);
+}
+.news-foot {
+    margin-top: 12px;
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+.news-retry {
+    cursor: pointer;
+    color: var(--accent);
+}
+
 /* =========================================================
    文章正文段落间距
 ========================================================= */
