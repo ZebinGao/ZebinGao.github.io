@@ -1183,6 +1183,63 @@ a.movie-item:hover {
     margin-top: 3px;
 }
 
+/* --- 天气小工具：上海浦东曹路 --- */
+.weather-box {
+    padding: 2px 0;
+}
+.weather-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.weather-icon {
+    font-size: 1.9rem;
+    line-height: 1;
+}
+.weather-temp {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--text-main);
+}
+.weather-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.weather-meta {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin-top: 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+.weather-hl {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-main);
+}
+.weather-foot {
+    margin-top: 6px;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+.weather-loading {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 10px 0;
+}
+.weather-retry {
+    cursor: pointer;
+}
+.weather-retry:hover {
+    color: var(--accent);
+}
+
 /* =========================================================
    文章正文段落间距
 ========================================================= */

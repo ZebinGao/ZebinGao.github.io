@@ -11,6 +11,7 @@
             toc: 'Table of Contents',
             hot_tags: 'Popular Tags',
             calendar: 'Calendar',
+            weather: 'Weather',
             movies: 'Movies',
             books: 'Books',
             music: 'Music',
@@ -100,6 +101,7 @@
             toc: 'Inhaltsverzeichnis',
             hot_tags: 'Beliebte Tags',
             calendar: 'Kalender',
+            weather: 'Wetter',
             movies: 'Filme',
             books: 'Bücher',
             music: 'Musik',
@@ -189,6 +191,7 @@
             toc: '文章目录',
             hot_tags: '热门标签',
             calendar: '日历',
+            weather: '天气',
             movies: '电影',
             books: '书籍',
             music: '音乐',
@@ -372,11 +375,18 @@
         monthHeader.innerText = t.months[month] + ' ' + year;
         var firstDay = new Date(year, month, 1).getDay();
         var daysInMonth = new Date(year, month + 1, 0).getDate();
-        grid.innerHTML = '';
-        for (var i = 0; i < firstDay; i++) grid.innerHTML += '<span></span>';
+        var html = '';
+        for (var i = 0; i < firstDay; i++) html += '<span></span>';
         for (var d = 1; d <= daysInMonth; d++) {
-            grid.innerHTML += '<span' + (d === today ? ' class="today"' : '') + '>' + d + '</span>';
+            // 保留 data-day / data-term，切换语言后农历悬停提示才不会失效
+            var term = '';
+            if (window.Lunar) {
+                try { term = window.Lunar.fromDate(new Date(year, month, d)).getJieQi() || ''; } catch (e) {}
+            }
+            html += '<span data-day="' + d + '"' + (d === today ? ' class="today"' : '') +
+                (term ? ' data-term="' + term + '"' : '') + '>' + d + '</span>';
         }
+        grid.innerHTML = html;
         // Day headers
         var dayRow = document.querySelector('.calendar-days');
         if (dayRow) {
