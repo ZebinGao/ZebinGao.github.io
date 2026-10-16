@@ -1240,7 +1240,7 @@ a.movie-item:hover {
     color: var(--accent);
 }
 
-/* --- 世界时钟小工具：柏林 · 纽约 --- */
+/* --- 世界时钟小工具：柏林 · 北京 · 纽约 --- */
 .clock-box {
     padding: 2px 0;
 }
@@ -1271,6 +1271,61 @@ a.movie-item:hover {
 }
 /* 城市日期与访客本地不同一天时，用主题色点出来 */
 .clock-sub.clock-diff {
+    color: var(--accent);
+}
+
+/* --- 行情小工具：上证指数 · 宇树科技 · 智谱 --- */
+.stock-box {
+    padding: 2px 0;
+}
+.stock-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap; /* 涨跌幅挤不下时换到第二行，名称保持横排 */
+}
+.stock-row + .stock-row {
+    margin-top: 10px;
+}
+.stock-name {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap; /* 名称永远一行 */
+}
+.stock-price {
+    margin-left: auto;
+    min-width: 66px;
+    text-align: right;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    font-variant-numeric: tabular-nums; /* 数字跳动时列对齐 */
+    letter-spacing: 0.5px;
+}
+/* 侧栏内容区仅 ~180px 宽，涨跌幅独占第二行右对齐，名称才有空间横排 */
+.stock-chg {
+    flex-basis: 100%;
+    margin-top: 2px;
+    text-align: right;
+    font-size: 0.72rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
+}
+/* A股习惯：红涨绿跌（明暗两套底色下都可读） */
+.stock-chg.up {
+    color: #e5484d;
+}
+.stock-chg.down {
+    color: #30a46c;
+}
+.stock-foot {
+    margin-top: 10px;
+    text-align: right;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+.stock-retry {
+    cursor: pointer;
     color: var(--accent);
 }
 

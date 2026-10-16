@@ -310,6 +310,28 @@
             <div class="weather-loading">获取中…</div>
         </div>
     </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot"></div>
+        </div>
+    </div>
 </aside>
     </div>
     <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
@@ -381,6 +403,9 @@
 
     
 <script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
 
     
 <script src="/js/search.js"></script>
