@@ -236,7 +236,7 @@ body {
 
 /* --- 首页文章卡片样式 --- */
 .post-card {
-    background: var(--bg-card);
+    background: transparent; /* 透出中栏 content-mid 的整体渐变，不再是一块白底 */
     padding: 18px 0;
     border-bottom: 1px solid var(--border-color); /* 文章之间加一条浅色分割线 */
 }
