@@ -1,28 +1,42 @@
-// 移动端汉堡菜单
+// 移动端抽屉：左栏（导航）、右栏（小工具），同一时刻只开一个
 (function() {
     var hamburger = document.getElementById('mobile-hamburger');
+    var widgetsBtn = document.getElementById('mobile-widgets-btn');
     var overlay = document.getElementById('mobile-overlay');
-    var sidebar = document.querySelector('.sidebar-left');
-    var menuLinks = sidebar ? sidebar.querySelectorAll('.site-nav a') : [];
+    var left = document.querySelector('.sidebar-left');
+    var right = document.querySelector('.sidebar-right');
 
-    function openMenu() {
-        sidebar.classList.add('open');
-        overlay.classList.add('open');
-    }
-    function closeMenu() {
-        sidebar.classList.remove('open');
+    function closeAll() {
+        if (left) left.classList.remove('open');
+        if (right) right.classList.remove('open');
         overlay.classList.remove('open');
+        document.body.classList.remove('drawer-open');
+    }
+    function toggle(el) {
+        var wasOpen = el.classList.contains('open');
+        closeAll();
+        if (!wasOpen) {
+            el.classList.add('open');
+            overlay.classList.add('open');
+            document.body.classList.add('drawer-open');
+        }
     }
 
-    hamburger.addEventListener('click', function() {
-        if (sidebar.classList.contains('open')) { closeMenu(); }
-        else { openMenu(); }
+    hamburger.addEventListener('click', function() { toggle(left); });
+    if (widgetsBtn && right) {
+        widgetsBtn.addEventListener('click', function() { toggle(right); });
+    }
+
+    overlay.addEventListener('click', closeAll);
+
+    // 点击抽屉里的链接（导航 / 目录 / 标签云）后自动收起
+    document.querySelectorAll('.sidebar-left a, .sidebar-right a').forEach(function(link) {
+        link.addEventListener('click', closeAll);
     });
 
-    overlay.addEventListener('click', closeMenu);
-
-    menuLinks.forEach(function(link) {
-        link.addEventListener('click', closeMenu);
+    // 旋转屏幕 / 拉宽窗口回到桌面端布局时，收起抽屉并解除滚动锁定
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 900) closeAll();
     });
 })();
 
