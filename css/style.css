@@ -973,9 +973,35 @@ a.movie-item:hover {
     border-bottom: 1px solid var(--border-color);
     display: flex;
     align-items: center;
+    cursor: pointer; /* 点标题展开/收起部件（widgets.js） */
+    user-select: none;
 }
 .widget h3 i {
     margin-right: 8px;
+}
+/* 标题右侧的展开箭头：收起时转向右 */
+.widget h3::after {
+    content: '▾';
+    margin-left: auto;
+    font-size: 0.8em;
+    opacity: 0.55;
+    transition: transform 0.25s ease;
+}
+.widget.collapsed h3::after {
+    transform: rotate(-90deg);
+}
+/* 部件内容折叠容器：grid 0fr→1fr 撑开，高度平滑过渡 */
+.widget-body-wrap {
+    display: grid;
+    grid-template-rows: 1fr;
+    transition: grid-template-rows 0.25s ease;
+}
+.widget.collapsed .widget-body-wrap {
+    grid-template-rows: 0fr;
+}
+.widget-body {
+    overflow: hidden;
+    min-height: 0;
 }
 
 /* --- 搜索框样式 --- */
