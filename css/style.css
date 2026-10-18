@@ -1365,10 +1365,21 @@ a.movie-item:hover {
     color: var(--text-muted);
 }
 .news-item {
-    display: block;
     padding: 10px 4px;
     border-bottom: 1px dashed var(--border-color); /* 滚动列表的行分隔 */
-    text-decoration: none;
+}
+.news-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    background: none;
+    border: none;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
 }
 .news-title {
     font-size: 0.95rem;
@@ -1376,8 +1387,58 @@ a.movie-item:hover {
     color: var(--text-main);
     overflow-wrap: break-word; /* 标题完整展示，自动折行 */
 }
-.news-item:hover .news-title {
+.news-head:hover .news-title {
     color: var(--accent);
+}
+.news-arrow {
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    transition: transform 0.25s ease;
+}
+.news-item.open .news-arrow {
+    transform: rotate(180deg);
+}
+/* 摘要区：grid 0fr→1fr 撑开，高度平滑过渡 */
+.news-detail-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.25s ease;
+}
+.news-item.open .news-detail-wrap {
+    grid-template-rows: 1fr;
+}
+.news-detail {
+    overflow: hidden;
+    min-height: 0;
+}
+.news-intro {
+    margin: 8px 0 6px;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+.news-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 4px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+.news-src {
+    color: var(--accent);
+}
+.news-origin {
+    margin-left: auto; /* 「阅读原文」固定靠右 */
+    color: var(--accent);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.news-origin:hover {
+    text-decoration: underline;
 }
 .news-foot {
     margin-top: 12px;
