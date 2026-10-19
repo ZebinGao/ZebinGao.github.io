@@ -1,11 +1,11 @@
 {
   "site": "与买桂花同载酒",
   "url": "https://www.zebin-yue.top",
-  "generatedAt": "2026-10-19T06:19:46.542Z",
-  "posts": 209,
+  "generatedAt": "2026-10-19T06:41:22.274Z",
+  "posts": 210,
   "encrypted": 24,
-  "totalWords": 457228,
-  "readingTimeMinutes": 1143,
+  "totalWords": 472700,
+  "readingTimeMinutes": 1182,
   "byYear": [
     {
       "year": 2026,
@@ -24,8 +24,8 @@
     },
     {
       "year": 2023,
-      "posts": 6,
-      "words": 11854
+      "posts": 7,
+      "words": 27326
     },
     {
       "year": 2022,
@@ -101,8 +101,8 @@
     },
     {
       "name": "转载",
-      "posts": 24,
-      "words": 126875
+      "posts": 25,
+      "words": 142347
     },
     {
       "name": "技术笔记",
@@ -132,9 +132,9 @@
       "minutes": 43
     },
     {
-      "title": "一个程序员的奋斗史",
-      "words": 9442,
-      "minutes": 24
+      "title": "来自妻子的思念",
+      "words": 15472,
+      "minutes": 39
     }
   ]
 }
