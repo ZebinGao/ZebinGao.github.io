@@ -1422,9 +1422,31 @@ a.movie-item:hover {
 }
 .stock-foot {
     margin-top: 10px;
-    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* 左边更新时间，右边手动刷新按钮 */
     font-size: 0.7rem;
     color: var(--text-muted);
+}
+.stock-refresh {
+    border: none;
+    background: none;
+    padding: 1px 2px;
+    font-size: 0.85rem;
+    line-height: 1;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.stock-refresh:hover {
+    color: var(--accent);
+}
+.stock-refresh.spin { /* 抓取中转圈，顺带禁点 */
+    animation: stock-spin 0.9s linear infinite;
+    pointer-events: none;
+}
+@keyframes stock-spin {
+    to { transform: rotate(360deg); }
 }
 .stock-retry {
     cursor: pointer;

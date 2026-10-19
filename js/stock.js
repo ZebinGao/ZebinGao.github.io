@@ -1,6 +1,7 @@
 // 行情小工具：上证指数 · 宇树科技(688836) · 智谱(02513.HK)
 // 数据来自腾讯公开行情接口（免密钥，跨域开放，GBK 编码，需用 TextDecoder 解码），
-// 每小时更新一次，结果在 localStorage 缓存 1 小时，翻页不重复请求。
+// 每小时更新一次，结果在 localStorage 缓存 1 小时，翻页不重复请求；
+// 底部 ↻ 按钮无视缓存立刻拉新，成功即重写缓存、计时归零。
 // 弃用的东方财富 push2 接口会随机掐断连接（首版"获取失败"的元凶）
 (function() {
     var API_URL = 'https://qt.gtimg.cn/q=sh000001,sh688836,hk02513';
@@ -65,37 +66,61 @@
             var m = MKT[r.key.slice(0, 2)] || [''];
             r.chgEl.parentElement.title = f[1] + m[0] + ' · ' + price.toFixed(2) + (m[1] || '');
         });
-        // 底部时间取第一行行情自带的时间戳，而非本地时刻
+        // 底部时间取第一行行情自带的时间戳，而非本地时刻。
+        // 只写时间 span：foot 里还有刷新按钮，整栏 textContent 会把它抹掉
         var first = quotes[rows[0].key];
-        var foot = document.getElementById('stock-foot');
-        if (foot && first) {
+        var timeEl = document.getElementById('stock-time');
+        if (timeEl && first) {
             var t = quoteTime(first);
-            foot.textContent = t ? t + ' 更新' : '';
+            timeEl.textContent = t ? t + ' 更新' : '';
         }
     }
 
     function fail() {
-        var foot = document.getElementById('stock-foot');
-        if (foot) foot.innerHTML = '<span class="stock-retry">获取失败，点击重试</span>';
+        var timeEl = document.getElementById('stock-time');
+        if (timeEl) timeEl.innerHTML = '<span class="stock-retry">获取失败，点击重试</span>';
+    }
+
+    var loading = false;
+
+    function spin(on) {
+        var b = document.getElementById('stock-refresh');
+        if (b) b.classList.toggle('spin', on);
     }
 
     function fetchStocks() {
+        if (loading) return; // 防重入：手点、整点定时器、启动加载撞车也不叠请求
+        loading = true;
+        spin(true);
         fetch(API_URL)
             .then(function(r) { return r.arrayBuffer(); })
             .then(function(buf) {
                 var text = new TextDecoder('gbk').decode(buf);
+                loading = false;
+                spin(false);
                 if (text.indexOf('v_') < 0) { fail(); return; }
                 try {
                     localStorage.setItem(CACHE_KEY, JSON.stringify({ time: Date.now(), data: text }));
                 } catch (e) {}
                 render(text);
             })
-            .catch(fail);
+            .catch(function() {
+                loading = false;
+                spin(false);
+                fail();
+            });
     }
 
     // 失败状态下点一下即重试
     box.addEventListener('click', function() {
         if (box.querySelector('.stock-retry')) fetchStocks();
+    });
+
+    // 底部 ↻：无视缓存立刻拉新
+    var btn = document.getElementById('stock-refresh');
+    if (btn) btn.addEventListener('click', function(e) {
+        e.stopPropagation(); // 失败态下不再冒泡触发 box 的重试，一次就够
+        fetchStocks();
     });
 
     var cached = readCache();
