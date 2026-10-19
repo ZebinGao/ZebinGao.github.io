@@ -362,6 +362,39 @@ body {
 .avatar:hover {
     transform: scale(1.05); /* 悬浮时头像微微放大 */
 }
+
+/* 随机头像：picsum 随机图叠在字母头像上，点击换一张（js/avatar.js） */
+.avatar-wrap {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.avatar-wrap .avatar {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.avatar-wrap .avatar.ok {
+    opacity: 1; /* 图片加载成功才淡入，之前的 .avatar 过渡只管 transform */
+}
+.avatar-letter {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 4px solid var(--bg-card);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1), inset 0 0 0 1px var(--border-color);
+    font-size: 2.4rem;
+    color: var(--text-muted);
+}
 .author-name {
     margin-top: 15px;
     font-size: 1.3rem;

@@ -40,7 +40,10 @@
     <div class="main-container">
         <aside class="sidebar-left">
     <div class="avatar-box">
-        <img src="/img/windows_focus.webp" alt="Avatar" class="avatar">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
         <h2 class="author-name">Nathan Gao</h2>
         <div class="hitokoto-line" id="hitokoto-line">
             <div class="hitokoto-text" id="hitokoto-text"></div>
@@ -172,9 +175,9 @@
                 
                     <a class="tag-chip tag-c19" href="/tags/social-commentary/">社会评论 <span class="tag-count">(9)</span></a>
                 
-                    <a class="tag-chip tag-c0" href="/tags/%E4%B8%9C%E6%AC%A7/">东欧 <span class="tag-count">(8)</span></a>
+                    <a class="tag-chip tag-c0" href="/tags/internet-freedom/">网络自由 <span class="tag-count">(8)</span></a>
                 
-                    <a class="tag-chip tag-c1" href="/tags/internet-freedom/">网络自由 <span class="tag-count">(8)</span></a>
+                    <a class="tag-chip tag-c1" href="/tags/%E4%B8%9C%E6%AC%A7/">东欧 <span class="tag-count">(8)</span></a>
                 
                     <a class="tag-chip tag-c2" href="/tags/C/">C# <span class="tag-count">(8)</span></a>
                 
@@ -208,19 +211,19 @@
                 
                     <a class="tag-chip tag-c17" href="/tags/frontend/">前端开发 <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c18" href="/tags/%E6%80%BB%E7%BB%93/">总结 <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c18" href="/tags/communication/">沟通与表达 <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c19" href="/tags/WPF/">WPF <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c19" href="/tags/%E6%80%BB%E7%BB%93/">总结 <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c0" href="/tags/%E9%92%89%E9%92%89/">钉钉 <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c0" href="/tags/WPF/">WPF <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c1" href="/tags/%E7%BB%84%E7%BB%87/">组织 <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c1" href="/tags/%E9%92%89%E9%92%89/">钉钉 <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c2" href="/tags/%E4%BA%BA%E7%94%9F/">人生 <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c2" href="/tags/%E7%BB%84%E7%BB%87/">组织 <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c3" href="/tags/%E5%B8%A6%E5%A8%83/">带娃 <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c3" href="/tags/%E4%BA%BA%E7%94%9F/">人生 <span class="tag-count">(3)</span></a>
                 
-                    <a class="tag-chip tag-c4" href="/tags/communication/">沟通与表达 <span class="tag-count">(3)</span></a>
+                    <a class="tag-chip tag-c4" href="/tags/%E5%B8%A6%E5%A8%83/">带娃 <span class="tag-count">(3)</span></a>
                 
                     <a class="tag-chip tag-c5" href="/tags/%E5%86%B2%E7%AA%81/">冲突 <span class="tag-count">(2)</span></a>
                 
@@ -260,23 +263,23 @@
                 
                     <a class="tag-chip tag-c3" href="/tags/Hexo/">Hexo <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c4" href="/tags/%E4%BC%A6%E7%90%86/">伦理 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c4" href="/tags/%E8%87%AA%E7%94%B1/">自由 <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c5" href="/tags/%E8%87%AA%E7%94%B1/">自由 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c5" href="/tags/%E4%BC%A6%E7%90%86/">伦理 <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c6" href="/tags/%E6%94%BB%E7%95%A5/">攻略 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c6" href="/tags/%E5%B7%A5%E4%BD%9C/">工作 <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c7" href="/tags/%E6%AC%A7%E6%B4%B2/">欧洲 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c7" href="/tags/%E6%94%BB%E7%95%A5/">攻略 <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c8" href="/tags/%E5%B7%A5%E4%BD%9C/">工作 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c8" href="/tags/%E6%AC%A7%E6%B4%B2/">欧洲 <span class="tag-count">(2)</span></a>
                 
                     <a class="tag-chip tag-c9" href="/tags/%E5%9B%9E%E5%BF%86/">回忆 <span class="tag-count">(2)</span></a>
                 
                     <a class="tag-chip tag-c10" href="/tags/%E4%B8%8A%E6%B5%B7/">上海 <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c11" href="/tags/%E7%8B%AC%E5%A4%84/">独处 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c11" href="/tags/%E5%B8%8C%E8%85%8A%E7%A5%9E%E8%AF%9D/">希腊神话 <span class="tag-count">(2)</span></a>
                 
-                    <a class="tag-chip tag-c12" href="/tags/%E5%B8%8C%E8%85%8A%E7%A5%9E%E8%AF%9D/">希腊神话 <span class="tag-count">(2)</span></a>
+                    <a class="tag-chip tag-c12" href="/tags/%E7%8B%AC%E5%A4%84/">独处 <span class="tag-count">(2)</span></a>
                 
                     <a class="tag-chip tag-c13" href="/tags/%E5%8C%97%E6%AC%A7%E7%A5%9E%E8%AF%9D/">北欧神话 <span class="tag-count">(2)</span></a>
                 
@@ -404,11 +407,11 @@
                 
                     <a class="tag-chip tag-c15" href="/tags/%E6%83%85%E6%84%9F/">情感 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c16" href="/tags/%E9%81%93%E8%B7%AF/">道路 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c16" href="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">音乐播放器 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c17" href="/tags/%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8/">音乐播放器 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c17" href="/tags/%E7%A1%AC%E7%BC%96%E7%A0%81/">硬编码 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c18" href="/tags/%E7%A1%AC%E7%BC%96%E7%A0%81/">硬编码 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c18" href="/tags/%E9%81%93%E8%B7%AF/">道路 <span class="tag-count">(1)</span></a>
                 
                     <a class="tag-chip tag-c19" href="/tags/%E5%A7%94%E6%89%98/">委托 <span class="tag-count">(1)</span></a>
                 
@@ -456,15 +459,15 @@
                 
                     <a class="tag-chip tag-c1" href="/tags/AI%E5%AF%B9%E8%AF%9D/">AI对话 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c2" href="/tags/%E5%8E%86%E5%8F%B2/">历史 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c2" href="/tags/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/">俄乌战争 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c3" href="/tags/%E8%87%AA%E6%88%91%E6%84%9F%E5%8A%A8/">自我感动 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c3" href="/tags/%E6%88%98%E4%BA%89%E7%BD%AA/">战争罪 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c4" href="/tags/%E4%BF%84%E4%B9%8C%E6%88%98%E4%BA%89/">俄乌战争 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c4" href="/tags/%E5%9B%BD%E9%99%85%E6%94%BF%E6%B2%BB/">国际政治 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c5" href="/tags/%E6%88%98%E4%BA%89%E7%BD%AA/">战争罪 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c5" href="/tags/%E5%8E%86%E5%8F%B2/">历史 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c6" href="/tags/%E5%9B%BD%E9%99%85%E6%94%BF%E6%B2%BB/">国际政治 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c6" href="/tags/%E8%87%AA%E6%88%91%E6%84%9F%E5%8A%A8/">自我感动 <span class="tag-count">(1)</span></a>
                 
                     <a class="tag-chip tag-c7" href="/tags/%E6%80%9D%E8%80%83/">思考 <span class="tag-count">(1)</span></a>
                 
@@ -476,9 +479,9 @@
                 
                     <a class="tag-chip tag-c11" href="/tags/Deploy-Key/">Deploy Key <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c12" href="/tags/%E5%91%8A%E5%AF%86%E6%96%87%E5%8C%96/">告密文化 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c12" href="/tags/%E5%A4%AB%E5%A6%BB/">夫妻 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c13" href="/tags/%E5%A4%AB%E5%A6%BB/">夫妻 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c13" href="/tags/%E5%91%8A%E5%AF%86%E6%96%87%E5%8C%96/">告密文化 <span class="tag-count">(1)</span></a>
                 
                     <a class="tag-chip tag-c14" href="/tags/CSS/">CSS <span class="tag-count">(1)</span></a>
                 
@@ -502,17 +505,17 @@
                 
                     <a class="tag-chip tag-c4" href="/tags/%E5%AD%A6%E9%97%AE/">学问 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c5" href="/tags/%E7%A4%BE%E4%BC%9A/">社会 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c5" href="/tags/%E4%BA%8B%E5%AE%9E/">事实 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c6" href="/tags/%E8%BA%BA%E5%B9%B3/">躺平 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c6" href="/tags/%E6%84%8F%E4%B9%89/">意义 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c7" href="/tags/%E4%B8%8A%E5%AD%A6/">上学 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c7" href="/tags/%E4%BB%B7%E5%80%BC/">价值 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c8" href="/tags/%E4%BA%8B%E5%AE%9E/">事实 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c8" href="/tags/%E7%A4%BE%E4%BC%9A/">社会 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c9" href="/tags/%E6%84%8F%E4%B9%89/">意义 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c9" href="/tags/%E8%BA%BA%E5%B9%B3/">躺平 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c10" href="/tags/%E4%BB%B7%E5%80%BC/">价值 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c10" href="/tags/%E4%B8%8A%E5%AD%A6/">上学 <span class="tag-count">(1)</span></a>
                 
                     <a class="tag-chip tag-c11" href="/tags/%E6%84%9F%E6%83%85/">感情 <span class="tag-count">(1)</span></a>
                 
@@ -524,13 +527,13 @@
                 
                     <a class="tag-chip tag-c15" href="/tags/%E5%88%9B%E4%B8%96%E7%A5%9E%E8%AF%9D/">创世神话 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c16" href="/tags/%E7%9C%8B%E5%B1%95/">看展 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c16" href="/tags/%E7%94%B7%E6%80%A7%E8%A7%86%E8%A7%92/">男性视角 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c17" href="/tags/%E7%94%B7%E6%80%A7%E8%A7%86%E8%A7%92/">男性视角 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c17" href="/tags/%E6%82%BC%E6%96%87/">悼文 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c18" href="/tags/%E6%82%BC%E6%96%87/">悼文 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c18" href="/tags/%E6%AD%BB%E4%BA%A1/">死亡 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c19" href="/tags/%E6%AD%BB%E4%BA%A1/">死亡 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c19" href="/tags/%E7%9C%8B%E5%B1%95/">看展 <span class="tag-count">(1)</span></a>
                 
                     <a class="tag-chip tag-c0" href="/tags/%E6%B8%B8%E8%AE%B0/">游记 <span class="tag-count">(1)</span></a>
                 
@@ -538,9 +541,9 @@
                 
                     <a class="tag-chip tag-c2" href="/tags/%E6%96%97%E4%BA%89/">斗争 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c3" href="/tags/%E8%AF%9A%E5%AE%9E/">诚实 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c3" href="/tags/%E6%96%87%E5%8C%96%E6%AF%94%E8%BE%83/">文化比较 <span class="tag-count">(1)</span></a>
                 
-                    <a class="tag-chip tag-c4" href="/tags/%E6%96%87%E5%8C%96%E6%AF%94%E8%BE%83/">文化比较 <span class="tag-count">(1)</span></a>
+                    <a class="tag-chip tag-c4" href="/tags/%E8%AF%9A%E5%AE%9E/">诚实 <span class="tag-count">(1)</span></a>
                 
             
         </div>
@@ -713,6 +716,9 @@
 
     
 <script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
 
     
 <script src="/js/search.js"></script>
