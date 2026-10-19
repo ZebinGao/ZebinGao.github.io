@@ -1,9 +1,12 @@
 // 左栏一言：头像简介下面随机一句话，点击换一句
 // v1.hitokoto.cn 现在带 CORS 头，fetch 直取（老主题 diaspora 时代可没这待遇）。
 // 分类只取文学/诗词/哲学（c=d/i/k），限长 24 字——左栏就那么宽，句子长了折成四五行就毁了。
+// 句子缓存在 sessionStorage：同一趟浏览翻页不换句也不重复请求，
+// 重开浏览器/新标签页才拉新；点击仍然立刻换。
 // 失败不提示、不占位：签名行拿不到句子就整行隐藏，下次进页面再试。
 (function() {
     var API = 'https://v1.hitokoto.cn/?c=d&c=i&c=k&max_length=24';
+    var CACHE_KEY = 'hitokoto-sentence';
     var box = document.getElementById('hitokoto-line');
     if (!box) return;
     var textEl = document.getElementById('hitokoto-text');
@@ -24,6 +27,15 @@
         fromEl.textContent = src;
         fromEl.style.display = src ? 'block' : 'none';
         box.style.display = 'block'; // 拿到内容才露面（CSS 默认 display:none）
+    }
+
+    // 存原始字段（from 不预拆），下次会话直接可渲染
+    function remember(d) {
+        try {
+            sessionStorage.setItem(CACHE_KEY, JSON.stringify({
+                hitokoto: d.hitokoto, from: d.from || '', from_who: d.from_who || ''
+            }));
+        } catch (e) {}
     }
 
     function fetchOne(cb) {
@@ -51,8 +63,14 @@
         loading = false;
         box.style.opacity = '';
         show(d);
+        remember(d);
     }
 
     box.addEventListener('click', load);
-    load();
+
+    // 本次浏览已经有句子：直接用，不再请求
+    var cached = null;
+    try { cached = JSON.parse(sessionStorage.getItem(CACHE_KEY)); } catch (e) {}
+    if (cached && cached.hitokoto) show(cached);
+    else load();
 })();
