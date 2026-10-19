@@ -368,13 +368,7 @@ body {
     color: var(--text-strong);
     font-weight: bold;
 }
-.author-bio {
-    margin-top: 5px;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-/* 左栏一言：简介下随机一句，点击换一句（js/hitokoto.js） */
+/* 左栏一言：署名下随机一句，点击换一句（js/hitokoto.js） */
 .hitokoto-line {
     display: none; /* 拿到句子前不占位，失败就整行不出现 */
     margin-top: 12px;
@@ -394,7 +388,6 @@ body {
     margin-top: 4px;
     font-size: 0.72rem;
     color: var(--text-muted);
-    text-align: right;
     opacity: 0.8;
 }
 
