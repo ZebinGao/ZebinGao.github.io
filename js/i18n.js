@@ -86,6 +86,9 @@
             days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
             menu: {'首页':'Home','归档':'Archives','此刻':'Moments','总结':'Summary','分类':'Categories','标签':'Tags','友链':'Links','兴趣爱好':'Hobbies','关于':'About','足迹':'Footprints','Wiki':'Wiki','古诗词':'Poetry','热点':'Trending','2048小游戏':'2048','设置':'Settings'},
             cat: {
+                '兴趣爱好': 'Hobbies', '电影、书籍、音乐、展览与故居收藏': 'Movies, books, music, exhibitions & residences',
+                '足迹': 'Footprints', '走过的城市与足迹地图': 'Cities I\'ve visited, on the map',
+                '古诗词': 'Poetry', '收录的古诗词与读诗笔记': 'Collected classical poems with reading notes',
                 'AI 公式': 'AI Formulas', '深度学习中的数学公式推导与解析': 'Math formula derivations in deep learning',
                 '电影': 'Movies', '看过的电影与观影感想': 'Movies I\'ve watched and my thoughts',
                 '书籍': 'Books', '读过的书与读书笔记': 'Books I\'ve read and my notes',
@@ -184,6 +187,9 @@
             days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
             menu: {'首页':'Startseite','归档':'Archiv','此刻':'Momente','总结':'Zusammenfassung','分类':'Kategorien','标签':'Tags','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','足迹':'Fußspuren','Wiki':'Wiki','古诗词':'Gedichte','热点':'Schlagzeilen','2048小游戏':'2048','设置':'Einstellungen'},
             cat: {
+                '兴趣爱好': 'Hobbys', '电影、书籍、音乐、展览与故居收藏': 'Filme, Bücher, Musik, Ausstellungen & Residenzen',
+                '足迹': 'Fußspuren', '走过的城市与足迹地图': 'Besuchte Städte auf der Karte',
+                '古诗词': 'Gedichte', '收录的古诗词与读诗笔记': 'Gesammelte klassische Gedichte mit Lesenotizen',
                 'AI 公式': 'KI-Formeln', '深度学习中的数学公式推导与解析': 'Mathematische Formelableitungen im Deep Learning',
                 '电影': 'Filme', '看过的电影与观影感想': 'Filme die ich gesehen habe und meine Gedanken',
                 '书籍': 'Bücher', '读过的书与读书笔记': 'Gelesene Bücher und meine Notizen',
