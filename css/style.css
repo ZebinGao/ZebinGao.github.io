@@ -595,6 +595,20 @@ body {
     display: none;
 }
 
+/* 「索引」功能组切换条：归档/分类/标签/总结 四页页顶互跳（_partial/directory-tabs.ejs），
+   外观复用上面的 .category-tab 胶囊 */
+.directory-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 5px 0 20px;
+}
+
+.directory-tabs a.category-tab {
+    text-decoration: none;
+    text-align: center;
+}
+
 /* =========================================================
    兴趣爱好页面 — 电影时间线
 ========================================================= */
