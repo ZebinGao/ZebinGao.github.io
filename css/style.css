@@ -609,6 +609,21 @@ body {
     text-align: center;
 }
 
+/* 工具页：卡片复用 wiki-category-card，平台小标 + 标签筛选的隐藏态 */
+.tool-card.hidden {
+    display: none;
+}
+
+.tool-platform {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 1px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
 /* =========================================================
    兴趣爱好页面 — 电影时间线
 ========================================================= */

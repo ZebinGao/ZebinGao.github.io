@@ -84,9 +84,10 @@
             month_suffix: '',
             months: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
             days: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-            menu: {'首页':'Home','索引':'Index','归档':'Archives','此刻':'Moments','总结':'Summary','分类':'Categories','标签':'Tags','友链':'Links','兴趣爱好':'Hobbies','关于':'About','足迹':'Footprints','Wiki':'Wiki','古诗词':'Poetry','热点':'Trending','2048小游戏':'2048','设置':'Settings'},
+            menu: {'首页':'Home','索引':'Index','归档':'Archives','此刻':'Moments','总结':'Summary','分类':'Categories','标签':'Tags','友链':'Links','兴趣爱好':'Hobbies','关于':'About','足迹':'Footprints','Wiki':'Wiki','古诗词':'Poetry','热点':'Trending','工具':'Tools','2048小游戏':'2048','设置':'Settings'},
             cat: {
                 '归档': 'Archives', '分类': 'Categories', '标签': 'Tags', '总结': 'Summary',
+                '效率自动化': 'Automation', '电子阅读': 'E-reading', '系统工具': 'System Tools', '远程控制': 'Remote Access', '自动化测试': 'Test Automation',
                 '兴趣爱好': 'Hobbies', '电影、书籍、音乐、展览与故居收藏': 'Movies, books, music, exhibitions & residences',
                 '足迹': 'Footprints', '走过的城市与足迹地图': 'Cities I\'ve visited, on the map',
                 '古诗词': 'Poetry', '收录的古诗词与读诗笔记': 'Collected classical poems with reading notes',
@@ -186,9 +187,10 @@
             month_suffix: '',
             months: ['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'],
             days: ['So','Mo','Di','Mi','Do','Fr','Sa'],
-            menu: {'首页':'Startseite','索引':'Inhalt','归档':'Archiv','此刻':'Momente','总结':'Zusammenfassung','分类':'Kategorien','标签':'Tags','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','足迹':'Fußspuren','Wiki':'Wiki','古诗词':'Gedichte','热点':'Schlagzeilen','2048小游戏':'2048','设置':'Einstellungen'},
+            menu: {'首页':'Startseite','索引':'Inhalt','归档':'Archiv','此刻':'Momente','总结':'Zusammenfassung','分类':'Kategorien','标签':'Tags','友链':'Links','兴趣爱好':'Hobbys','关于':'Über mich','足迹':'Fußspuren','Wiki':'Wiki','古诗词':'Gedichte','热点':'Schlagzeilen','工具':'Werkzeuge','2048小游戏':'2048','设置':'Einstellungen'},
             cat: {
                 '归档': 'Archiv', '分类': 'Kategorien', '标签': 'Tags', '总结': 'Zusammenfassung',
+                '效率自动化': 'Automatisierung', '电子阅读': 'E-Books', '系统工具': 'Systemwerkzeuge', '远程控制': 'Fernzugriff', '自动化测试': 'Testautomatisierung',
                 '兴趣爱好': 'Hobbys', '电影、书籍、音乐、展览与故居收藏': 'Filme, Bücher, Musik, Ausstellungen & Residenzen',
                 '足迹': 'Fußspuren', '走过的城市与足迹地图': 'Besuchte Städte auf der Karte',
                 '古诗词': 'Gedichte', '收录的古诗词与读诗笔记': 'Gesammelte klassische Gedichte mit Lesenotizen',
