@@ -1994,11 +1994,11 @@ a, button, .read-more, .theme-toggle {
 .map-star-icon::after {
     content: "";
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #ef4444;
-    border: 2.5px solid #fff;
+    border: 1.5px solid #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 .map-visited-icon {
@@ -2008,11 +2008,11 @@ a, button, .read-more, .theme-toggle {
 .map-visited-icon::after {
     content: "";
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #3b82f6;
-    border: 2.5px solid #fff;
+    border: 1.5px solid #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
 .map-fav-icon {
@@ -2022,26 +2022,67 @@ a, button, .read-more, .theme-toggle {
 .map-fav-icon::after {
     content: "";
     display: block;
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     background: #f97316;
-    border: 2.5px solid #fff;
+    border: 1.5px solid #fff;
     box-shadow: 0 1px 4px rgba(0,0,0,0.3);
 }
-.map-want-icon {
-    background: none !important;
-    border: none !important;
+/* 地图左下角图例（map.js 动态插入）：圆点复用上面的标记类，只缩小一号，
+   配色走主题变量，暗色模式自动跟随 */
+.map-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    padding: 8px 12px;
+    background: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    font-size: 0.78rem;
 }
-.map-want-icon::after {
-    content: "";
-    display: block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: #06b6d4;
-    border: 2.5px solid #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+.map-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    line-height: 1;
+}
+.map-legend i {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    flex: none;
+}
+.map-legend i::after {
+    width: 8px;
+    height: 8px;
+    border-width: 1.5px;
+    box-shadow: none;
+}
+/* 地图地名标签：Leaflet 默认的白卡片+小箭头+关闭钮太占地方，
+   换成半透明小签（关闭靠点击切换，不需要 ×） */
+#map-container .leaflet-popup-content-wrapper {
+    background: rgba(17, 24, 39, 0.55);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: none;
+    backdrop-filter: blur(3px);
+}
+#map-container .leaflet-popup {
+    margin-bottom: 0;   /* 去掉 Leaflet 默认的 20px 下边距，让文字贴住圆点 */
+}
+#map-container .leaflet-popup-content {
+    margin: 3px 9px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+#map-container .leaflet-popup-tip-container {
+    display: none;
+}
+[data-theme="dark"] #map-container .leaflet-popup-content-wrapper {
+    background: rgba(0, 0, 0, 0.6);
 }
 /* 地图标记暗色模式 — 更亮的颜色 + 深色边框 + 发光阴影 */
 [data-theme="dark"] .map-star-icon::after {
@@ -2058,11 +2099,6 @@ a, button, .read-more, .theme-toggle {
     background: #fb923c;
     border-color: #374151;
     box-shadow: 0 0 6px rgba(251,146,60,0.5);
-}
-[data-theme="dark"] .map-want-icon::after {
-    background: #22d3ee;
-    border-color: #374151;
-    box-shadow: 0 0 6px rgba(34,211,238,0.5);
 }
 /* Leaflet 暗色模式 — 用 CSS filter 反转瓦片颜色，不换瓦片服务器 */
 [data-theme="dark"] .leaflet-tile-pane {

@@ -2,9 +2,11 @@
   var places = window.placeData;
   if (!places || !places.length) return;
 
+  // 默认视角：上海（国内点在高德瓦片上，这里固定视角、不 fitBounds 全部点，
+  // 否则会被欧洲的标记拉成欧亚大远景）
   var map = L.map("map-container", {
-    center: [30, 110],
-    zoom: 4,
+    center: [31.2304, 121.4737],
+    zoom: 10,
     zoomControl: true,
     scrollWheelZoom: true,
   });
@@ -23,60 +25,73 @@
     maxZoom: 18,
   });
 
-  arcgisLayer.addTo(map);
+  gaodeLayer.addTo(map);
 
   L.control.layers({
+    "高德地图": gaodeLayer,
     "ArcGIS": arcgisLayer,
-    "OpenStreetMap": osmLayer,
-    "高德地图": gaodeLayer
+    "OpenStreetMap": osmLayer
   }, null, { position: "topright" }).addTo(map);
+
+  // 左下角图例：圆点直接复用上面的标记类，颜色和暗色模式自动跟随
+  var legend = L.control({ position: "bottomleft" });
+  legend.onAdd = function () {
+    var div = L.DomUtil.create("div", "map-legend");
+    div.innerHTML =
+      '<span><i class="map-visited-icon"></i>去过</span>' +
+      '<span><i class="map-star-icon"></i>星标</span>' +
+      '<span><i class="map-fav-icon"></i>收藏</span>';
+    return div;
+  };
+  legend.addTo(map);
 
   var starIcon = L.divIcon({
     className: "map-star-icon",
     html: "",
-    iconSize: [18, 18],
-    iconAnchor: [9, 9],
+    iconSize: [12, 12],
+    iconAnchor: [6, 6],
     popupAnchor: [0, -12],
   });
 
   var visitedIcon = L.divIcon({
     className: "map-visited-icon",
     html: "",
-    iconSize: [18, 18],
-    iconAnchor: [9, 9],
+    iconSize: [12, 12],
+    iconAnchor: [6, 6],
     popupAnchor: [0, -12],
   });
 
   var heartIcon = L.divIcon({
     className: "map-fav-icon",
     html: "",
-    iconSize: [18, 18],
-    iconAnchor: [9, 9],
+    iconSize: [12, 12],
+    iconAnchor: [6, 6],
     popupAnchor: [0, -12],
   });
 
-  var wantIcon = L.divIcon({
-    className: "map-want-icon",
-    html: "",
-    iconSize: [18, 18],
-    iconAnchor: [9, 9],
-    popupAnchor: [0, -12],
-  });
+  // 交互：悬停即看细节，移开就收；点击 = 钉住气泡（可多开，互不挤掉），
+  // 钉住后移开鼠标也不关，再点一次同一个点才收。触屏没悬停，点击逻辑照常工作。
+  var pinned = new Set();
 
-  var markers = [];
   places.forEach(function (place) {
-    var icon = place.star ? starIcon : (place.want ? wantIcon : (place.fav ? heartIcon : visitedIcon));
+    var icon = place.star ? starIcon : (place.fav ? heartIcon : visitedIcon);
     var marker = L.marker([place.lat, place.lng], { icon: icon }).addTo(map);
     var popup = "<strong>" + place.name + "</strong>";
-    if (place.address) popup += "<br><span style='color:#888;font-size:0.9em'>" + place.address + "</span>";
-    if (place.date) popup += "<br><span style='color:#888'>" + place.date + "</span>";
-    if (place.note) popup += "<br>" + place.note;
-    marker.bindPopup(popup);
-    markers.push(marker);
-  });
 
-  if (markers.length > 0) {
-    var group = L.featureGroup(markers);
-    map.fitBounds(group.getBounds().pad(0.2));
-  }
+    marker.bindPopup(popup, { autoClose: false, closeOnClick: false, closeButton: false });
+
+    marker.on("mouseover", function () { marker.openPopup(); });
+    marker.on("mouseout", function () {
+      if (!pinned.has(marker)) marker.closePopup();
+    });
+    marker.on("click", function () {
+      if (pinned.has(marker)) {
+        pinned.delete(marker);
+        marker.closePopup();
+      } else {
+        pinned.add(marker);
+        marker.openPopup();
+      }
+    });
+  });
 })();
