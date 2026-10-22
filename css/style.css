@@ -2550,6 +2550,12 @@ a.post-nav-item:hover .post-nav-title {
     color: var(--text-strong);
 }
 
+/* 只读模式：登录换令牌的公共 CORS 代理已全灭（2026-10），发评论走 GitHub 仓库手动回帖，
+   这里藏掉写评论区（登录按钮在其中），读评论不受影响 */
+#gitalk-container .gt-header {
+    display: none;
+}
+
 /* 暗色模式：Gitalk 默认按亮色设计，把主要面板压进深色系 */
 [data-theme="dark"] .gt-container .gt-header-textarea,
 [data-theme="dark"] .gt-container .gt-header-preview,
