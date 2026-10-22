@@ -103,6 +103,7 @@
                 '青春的故事': 'Stories of Youth', '青春回忆长卷，以及中二病段子小剧场': 'A long scroll of youthful memories, plus chūnibyō skits',
                 '育儿笔记': 'Parenting Notes', '育儿理念与方法的要点笔记': 'Key notes on parenting ideas and methods',
                 '产业界资讯': 'Industry News', '最新的产业界动态与分析': 'Latest Industry Updates and Analysis',
+                '学习资料': 'Learning Materials', '产业动态、深度学习数学与育儿要点': 'Industry updates, deep-learning math, and parenting key notes',
                 '生活随笔': 'Life Notes', '情感与心理': 'Emotions & Psychology', '社会观察': 'Social Observations', '技术笔记': 'Tech Notes', '读书与思考': 'Reading & Reflection', '转载': 'Reposts',
                 '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
             }
@@ -206,6 +207,7 @@
                 '青春的故事': 'Geschichten der Jugend', '青春回忆长卷，以及中二病段子小剧场': 'Ein langes Panorama der Jugenderinnerungen, dazu Chūnibyō-Sketche',
                 '育儿笔记': 'Erziehungsnotizen', '育儿理念与方法的要点笔记': 'Wichtige Notizen zu Erziehungsideen und -methoden',
                 '产业界资讯': 'Branchennews', '最新的产业界动态与分析': 'Neueste Branchenupdates und Analysen',
+                '学习资料': 'Lernmaterialien', '产业动态、深度学习数学与育儿要点': 'Branchenupdates, Deep-Learning-Mathematik und Kernpunkte der Kindererziehung',
                 '生活随笔': 'Lebensnotizen', '情感与心理': 'Gefühle & Psychologie', '社会观察': 'Gesellschaftsbeobachtungen', '技术笔记': 'Techniknotizen', '读书与思考': 'Lesen & Nachdenken', '转载': 'Reposts',
                 '前端': 'Frontend', '后端': 'Backend', '综合': 'Allgemein', '独立博客': 'Persönliche Blogs', '技术服务': 'Tech-Dienste', '社区论坛': 'Community-Foren', '效率工具': 'Produktivitätstools'
             }
