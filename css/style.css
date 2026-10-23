@@ -1405,40 +1405,37 @@ a.movie-item:hover {
     color: var(--accent);
 }
 
-/* --- 行情小工具：上证指数 · 宇树科技 · 智谱 --- */
+/* --- 行情小工具：上证指数 · 宇树科技 · 智谱 · 上汽集团 · 药明康德 --- */
 .stock-box {
     padding: 2px 0;
+    line-height: 1.3; /* 紧凑行距，默认继承的 1.6 在五行股票下太高 */
 }
 .stock-row {
     display: flex;
     align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap; /* 涨跌幅挤不下时换到第二行，名称保持横排 */
+    white-space: nowrap; /* 名称+价格+涨跌挤一行，靠小字号压进 180px 侧栏 */
 }
 .stock-row + .stock-row {
-    margin-top: 10px;
+    margin-top: 5px;
 }
 .stock-name {
-    font-size: 0.85rem;
+    flex: 0 1 5em; /* 定宽 5 字：名字成列、价格起笔对齐；挤不下先截名字不动数字 */
+    font-size: 0.75rem;
     color: var(--text-muted);
-    white-space: nowrap; /* 名称永远一行 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* 名字超 5 字时省略号截断 */
 }
 .stock-price {
-    margin-left: auto;
-    min-width: 66px;
-    text-align: right;
-    font-size: 1rem;
+    margin-left: 6px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--text-main);
     font-variant-numeric: tabular-nums; /* 数字跳动时列对齐 */
-    letter-spacing: 0.5px;
 }
-/* 侧栏内容区仅 ~180px 宽，涨跌幅独占第二行右对齐，名称才有空间横排 */
 .stock-chg {
-    flex-basis: 100%;
-    margin-top: 2px;
-    text-align: right;
-    font-size: 0.72rem;
+    margin-left: 5px;
+    font-size: 0.6rem;
     font-variant-numeric: tabular-nums;
     color: var(--text-muted);
 }
@@ -1450,11 +1447,11 @@ a.movie-item:hover {
     color: #30a46c;
 }
 .stock-foot {
-    margin-top: 10px;
+    margin-top: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between; /* 左边更新时间，右边手动刷新按钮 */
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--text-muted);
 }
 .stock-refresh {
