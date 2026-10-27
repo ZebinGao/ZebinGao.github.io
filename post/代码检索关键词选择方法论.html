@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码检索关键词选择方法论 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+    
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/">
+                <span></span>
+                首页
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                索引
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/tools">
+                <span></span>
+                工具
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">代码检索关键词选择方法论</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年10月27日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/%E4%BB%A3%E7%A0%81%E6%A3%80%E7%B4%A2/" rel="tag">代码检索</a>, <a class="tag-none-link" href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" rel="tag">方法论</a>, <a class="tag-none-link" href="/tags/record/" rel="tag">记录</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <blockquote>
+<p>主题：陌生代码库里如何”搜得到”。本文从一次真实排查中提炼。<br>适用场景：拿到陌生代码库 / 第三方框架源码（本例约 1900 个 .cs 文件），要从中定位”某个行为的实现”——谁应答了这条消息？谁写了这个配置？这个开关在哪读的？<br>核心论点一句话：<strong>不要搜”我猜它叫什么名字”，要搜”它必然包含什么字符串”。</strong></p>
+</blockquote>
+<hr>
+<h2 id="1-问题的本质：标识符是自由的，字面量是逃不掉的"><a href="#1-问题的本质：标识符是自由的，字面量是逃不掉的" class="headerlink" title="1. 问题的本质：标识符是自由的，字面量是逃不掉的"></a>1. 问题的本质：标识符是自由的，字面量是逃不掉的</h2><p>你想找的代码”叫什么”，完全由作者决定。同一个”列出所有配方”的功能，可能叫 <code>ListRecipes</code>、<code>GetRecipeList</code>、<code>QueryProcessPrograms</code>、<code>FetchDirectory</code>……按名字猜着搜，命中率天然是抽奖。</p>
+<p>但代码要<strong>正确运行</strong>，就必须包含某些”逃不掉的字符串”：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>为什么逃不掉</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数据字面量</td>
+<td>文件在磁盘上叫 <code>.seq</code>，代码引用它就得写出 “.seq”；协议报文里叫 PPID，就得写出 “PPID”</td>
+</tr>
+<tr>
+<td>标准术语</td>
+<td>做标准合规的实现，作者写代码时也拿着标准手册，名词跟着标准走</td>
+</tr>
+<tr>
+<td>命名惯例</td>
+<td>社区约定俗成，偏离它的人极少</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>所以策略反转：<strong>标识符搜不中很正常，先搜不变量。</strong> 名字是作者的自由，字面量是代码的义务。</p>
+<hr>
+<h2 id="2-五个词汇来源（按优先级）"><a href="#2-五个词汇来源（按优先级）" class="headerlink" title="2. 五个词汇来源（按优先级）"></a>2. 五个词汇来源（按优先级）</h2><h3 id="2-1-数据字面量——外部契约"><a href="#2-1-数据字面量——外部契约" class="headerlink" title="2.1 数据字面量——外部契约"></a>2.1 数据字面量——外部契约</h3><p><strong>什么时候用</strong>：你要找的代码操作的是某种外部数据（文件、报文、配置、数据库），而你恰好知道（或能查到）这些数据长什么样。</p>
+<p><strong>词汇从哪来</strong>：不是凭空想，从<strong>手头材料</strong>里挖——项目文档、operation 手册、日志样例、配置文件、协议报文抓包。</p>
+<p><strong>本案例</strong>：四轮搜行为词（<code>S7F19</code>、<code>ProcessProgram</code>、<code>Recipes</code>……）全空后，改搜 <code>\.seq|Engineering</code>——这两个词不是灵感，是 operation.md §9 里早就记录的真机配方命名（<code>Engineering\007_Sequence.seq</code>）。全树唯一命中那一行，正是通往框架层的入口。</p>
+<blockquote>
+<p>为什么它最强：<strong>标识符可以被重构掉，数据字面量重构不掉。</strong> 作者可以明天把 <code>RecipeClient</code> 改名，但他不能把磁盘上的 <code>.seq</code> 改名。</p>
+</blockquote>
+<h3 id="2-2-行业标准词典——领域名词"><a href="#2-2-行业标准词典——领域名词" class="headerlink" title="2.2 行业标准词典——领域名词"></a>2.2 行业标准词典——领域名词</h3><p><strong>什么时候用</strong>：搜索对象是<strong>标准合规</strong>的框架/库（通信协议、行业规范、平台 API），而不是业务代码。</p>
+<p><strong>词汇从哪来</strong>：该领域的标准术语表。SEMI 的 E5 词典（PPID、CEID、SVID、ALID、MDLN）、HTTP 的状态码与头部名、金融的 ISO 8583 字段……</p>
+<p><strong>本案例</strong>：在 CCF 源码里搜 <code>PPID|ProcessProgram</code> 一击命中。原因：SECS/GEM 是 SEMI 标准族，S7 整族的标准名词就是 <em>Process Program</em>，配方 ID 的 SECS-II item 名就叫 PPID——作者照着标准写，读者就该照着标准搜。</p>
+<p><strong>关键细则——学名优先于编号</strong>：搜 <code>CurrentEPPD</code> 不搜 <code>S7F19</code>；搜 <code>E87/AutoOperator</code> 不搜 <code>&quot;107&quot;</code>。标准实现里几乎从不出现消息编号这种传输层记法，用的是消息学名（S7F19 = <em>Current Equipment Process Program Directory Request</em>）。</p>
+<h3 id="2-3-命名惯例——语言社区约定"><a href="#2-3-命名惯例——语言社区约定" class="headerlink" title="2.3 命名惯例——语言社区约定"></a>2.3 命名惯例——语言社区约定</h3><p><strong>什么时候用</strong>：已经锁定了范围（某个类、某个文件），要找的是”干某件事的方法”。</p>
+<p><strong>词汇从哪来</strong>：目标语言的命名惯例。.NET：<code>List*</code> / <code>Get*</code> / <code>Try*</code> / <code>Is*</code> / <code>Has*</code>；Java：<code>find*</code> / <code>is*</code>；前端：<code>use*</code> / <code>handle*</code>。</p>
+<p><strong>本案例</strong>：在 RecipeHandler.cs 内搜 <code>CurrentEPPD|GetRecipeList|ListRecipes</code>——第一个词来自标准学名（2.2），后两个来自 .NET 惯例的两种猜测（<code>List+名词</code> / <code>Get+名词+List</code>）。</p>
+<p><strong>技巧——一发多注</strong>：把多种命名假设用 <code>|</code> 塞进同一条正则，一次往返覆盖整个假设空间。正则的 <code>|</code> 不要钱，往返很贵。</p>
+<h3 id="2-4-已命中代码里”捡词”——最好的词典是上一轮的命中结果"><a href="#2-4-已命中代码里”捡词”——最好的词典是上一轮的命中结果" class="headerlink" title="2.4 已命中代码里”捡词”——最好的词典是上一轮的命中结果"></a>2.4 已命中代码里”捡词”——最好的词典是上一轮的命中结果</h3><p><strong>什么时候用</strong>：任何时候。命中一处之后，<strong>先别急着下结论，把那一行榨干</strong>。</p>
+<p><strong>本案例</strong>：命中 <code>RecipeHandlerTest.cs:251</code> 的 <code>RecipeHandler.ProcessProgram processProgram;</code> 后，从这一行读出三样东西：</p>
+<ol>
+<li>实现类叫 <code>RecipeHandler</code>（直接点名）；</li>
+<li>有嵌套类型 <code>ProcessProgram</code>（领域词汇印证）；</li>
+<li>它在 <code>FactoryAutomationUnitTests</code> 项目 → .NET 约定 → 实现在兄弟项目 <code>FactoryAutomation\FactoryAutomation\RecipeHandler.cs</code>。</li>
+</ol>
+<p>同理，命中 <code>StreamId.Recipes, MsgId.ProcessProgramData</code> 后捡到了整个枚举命名体系——它既解释了之前的失败（为什么搜 “S7F19” 落空），又给出了下一轮的词（<code>CurrentEPPD</code>）。</p>
+<blockquote>
+<p>每一行命中结果都是下一轮的词汇表。检索是迭代过程，不是一次命中游戏。</p>
+</blockquote>
+<h3 id="2-5-测试与调用方——类名的索引"><a href="#2-5-测试与调用方——类名的索引" class="headerlink" title="2.5 测试与调用方——类名的索引"></a>2.5 测试与调用方——类名的索引</h3><p><strong>什么时候用</strong>：知道功能、不知道类名，而项目带测试；或知道接口一端、要找另一端。</p>
+<p><strong>本案例</strong>：<code>RecipeHandlerTest</code> → <code>RecipeHandler</code>；单测项目名 → 兄弟实现项目路径。测试代码是人类为自己写的”类名索引”，且永远和被测者保持命名同步。</p>
+<hr>
+<h2 id="3-换词的时机：读懂负结果"><a href="#3-换词的时机：读懂负结果" class="headerlink" title="3. 换词的时机：读懂负结果"></a>3. 换词的时机：读懂负结果</h2><p>搜空（0 命中）不是”没有答案”，而是<strong>一条信息</strong>。三种解读：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>负结果</th>
+<th>真实含义</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>行为词全空</td>
+<td>这一层没有实现（或不用这套词汇）</td>
+<td>换层：产品代码 → 框架/依赖 → 反编译</td>
+</tr>
+<tr>
+<td>字面量/标准词空</td>
+<td>搜错了词，或范围错了</td>
+<td>检查词汇来源是否可靠、glob 是否限定对文件类型</td>
+</tr>
+<tr>
+<td>命中很多但全不相关</td>
+<td>词太泛（噪音），或找错了层</td>
+<td>加限定词、换更特异的词</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>每轮失败都在收窄假设空间</strong>——本案例的层次迁移：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs armasm">产品代码搜不到 <span class="hljs-built_in">S7</span> 处理   → 实现在框架层（CCF）<br><span class="hljs-symbol">CCF</span> 里搜 <span class="hljs-string">&quot;S7F19&quot;</span> 字面量搜不到     → 框架用枚举，不用编号<br>枚举名搜不到（ProcessProgramList）→ 用词不对，换标准学名 PPID<br></code></pre></td></tr></table></figure>
+<p><strong>最大的反模式：同层打转。</strong> <code>Recipes</code> 搜空了搜 <code>RecipeService</code>，再搜 <code>RecipePath</code>——三个词在同一层换皮，三连空也只证明了一件事的三个说法。连续两次空就该换层或换词汇来源，而不是换第三个同义词。</p>
+<hr>
+<h2 id="4-命中之后：相关性判断"><a href="#4-命中之后：相关性判断" class="headerlink" title="4. 命中之后：相关性判断"></a>4. 命中之后：相关性判断</h2><p>命中 ≠ 找到。命中列表要过一道”相关性过滤”：</p>
+<ul>
+<li><strong>本案例的干扰项</strong>：<code>PPID|ProcessProgram</code> 的前 20 条命中里，前 3 条落在 ToolSupervisor 的 <code>RemoteJobControlCommandHandler.cs</code>——PPID 在那儿只是远程命令的<strong>参数名</strong>，与配方目录无关。判断依据：读那一行，问”它在实现我要找的行为吗”，而不是”它包含我的词吗”。</li>
+<li><strong>信号强度也不同</strong>：一条同时包含类型名+方法调用+领域名词的命中（<code>RecipeClient.Service.GetRecipe(&quot;Engineering\\...&quot;)</code>）远强于一条只有字符串参数的命中。优先追强信号。</li>
+</ul>
+<hr>
+<h2 id="5-实战复盘：逐轮标注词汇来源"><a href="#5-实战复盘：逐轮标注词汇来源" class="headerlink" title="5. 实战复盘：逐轮标注词汇来源"></a>5. 实战复盘：逐轮标注词汇来源</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>轮</th>
+<th>检索模式</th>
+<th>范围</th>
+<th>结果</th>
+<th>词汇来源</th>
+<th>若空说明了什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>①</td>
+<td>`S7F19\</td>
+<td>ProcessProgramDirectory\</td>
+<td>ListProcessProgram`</td>
+<td>产品代码 006</td>
+<td>0</td>
+<td>消息编号+直译</td>
+<td>这层没有实现 → 该换层（但当时先同层又试了两轮，见③）</td>
+</tr>
+<tr>
+<td>②</td>
+<td><code>Recipes</code></td>
+<td>产品代码 006</td>
+<td>0</td>
+<td>领域词</td>
+<td>同上</td>
+</tr>
+<tr>
+<td>③</td>
+<td><code>ProcessProgram</code></td>
+<td>产品全树</td>
+<td>0</td>
+<td>标准词</td>
+<td><strong>该换层了</strong>：产品代码不管 S7</td>
+</tr>
+<tr>
+<td>④</td>
+<td>`.seq\</td>
+<td>Engineering`</td>
+<td>产品全树</td>
+<td><strong>1</strong> ★</td>
+<td><strong>数据字面量</strong>（operation.md）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>⑤</td>
+<td>`RecipeService\</td>
+<td>RecipeClient\</td>
+<td>…`</td>
+<td>产品全树</td>
+<td>1（同上处）</td>
+<td>命名惯例</td>
+<td>产品侧不配置配方路径 → 服务端默认</td>
+</tr>
+<tr>
+<td>⑥</td>
+<td><code>S7F19</code></td>
+<td>CCF 框架</td>
+<td>0</td>
+<td>消息编号（错误选择）</td>
+<td>框架不用编号字面量</td>
+</tr>
+<tr>
+<td>⑦</td>
+<td>`ProcessProgramList\</td>
+<td>GetProcessProgram\</td>
+<td>…`</td>
+<td>CCF 框架</td>
+<td>0</td>
+<td>惯例+标准词组合</td>
+<td>用词没踩中框架的构词法</td>
+</tr>
+<tr>
+<td>⑧</td>
+<td>`PPID\</td>
+<td>ProcessProgram`</td>
+<td>CCF 框架</td>
+<td><strong>20+</strong> ★</td>
+<td><strong>标准词典</strong>（SEMI E5）</td>
+<td>—</td>
+</tr>
+<tr>
+<td>⑨</td>
+<td>`CurrentEPPD\</td>
+<td>GetRecipeList\</td>
+<td>ListRecipes`</td>
+<td>单个类内</td>
+<td><strong>3 处</strong> ★</td>
+<td>学名+惯例，一发三注</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>★ = 命中。注意 ①②③ 在同层打了三轮才醒（负结果读慢了）——反面教材也在表里。</p>
+<hr>
+<h2 id="6-工具技巧清单"><a href="#6-工具技巧清单" class="headerlink" title="6. 工具技巧清单"></a>6. 工具技巧清单</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">|          一发多注：ListRecipes|GetRecipeList|QueryRecipes 一次覆盖三种命名假设<br>\.         转义句点：\<span class="hljs-string">.seq</span> 匹配 <span class="hljs-string">&quot;.seq&quot;</span>，未转义的 <span class="hljs-string">.seq</span> 会匹配 <span class="hljs-string">&quot;Xseq&quot;</span><br>-i         大小写不敏感：跨语言代码库大小写习惯不统一<br>glob       限定文件类型：*<span class="hljs-string">.cs</span> / *<span class="hljs-string">.config</span> / *<span class="hljs-string">.xml</span>——全文件类型搜会把文档命中淹没代码命中<br>排除       排除 bin/obj/生成代码/第三方，否则命中一半是缓存<br>范围分层   产品源码 → 依赖 DLL（有无源码？→ 反编译 dnSpy/ILSpy）→ 框架源码 → 系统层<br>失败预算   同层连续 2 次空 → 强制换层或换词汇来源，禁止第三个同义词<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-一页速查"><a href="#7-一页速查" class="headerlink" title="7. 一页速查"></a>7. 一页速查</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk">不知道类名/方法名？<br>  ├─ 它操作的数据有固定形态吗（文件名<span class="hljs-regexp">/报文字段/</span>配置键）？ → 搜【数据字面量】（最强）<br>  ├─ 这是标准合规的框架吗？                              → 搜【标准学名】（PPID 不搜 S7F19）<br>  ├─ 已锁定文件但缺方法名？                              → 搜【命名惯例】List*/Get*，| 一发多注<br>  ├─ 命中了一行？                                        → 榨干它：类名<span class="hljs-regexp">/命名空间/</span>枚举/测试约定<br>  └─ 有测试项目吗？                                      → XxxTest 是类名索引，指路同名兄弟项目<br><br>搜空了？<br>  ├─ 行为词空 → 换层（产品 → 框架 → 反编译）<br>  ├─ 同层两次空 → 禁止再试同义词，换词汇来源<br>  └─ 命中太多 → 词太泛，加限定词<br></code></pre></td></tr></table></figure>
+<hr>
+<p><em>写作背景：2026-10-27 排查 模拟器 S7F19 空列表问题时，九轮检索中三次关键换词（数据字面量 / SEMI 学名 / 命名惯例）各来自不同词汇来源，遂成此文。</em></p>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/%E6%B7%9E%E6%B2%AA%E4%BC%9A%E6%88%98.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">淞沪会战</span>
+    </a>
+    
+    
+</nav>
+
+
+
+
+<section class="comments-section">
+    <h2 data-i18n="comments">评论</h2>
+    <div id="gitalk-container"></div>
+    
+<script src="/js/gitalk.min.js"></script>
+
+    <script>
+    (function () {
+        var legacy = {"/post/九月过半.html":"/post/2026/9/九月过半.html","/post/年终总结-2025年的年终总结.html":"/post/年终总结/2025年的年终总结.html"};
+        var path = decodeURI(window.location.pathname);
+        var gitalk = new Gitalk({
+            clientID: 'Ov23liUMUoQLKTPswJDK',
+            clientSecret: 'c46b751f5cbe796f506b01288d1c07f0446a45ef',
+            repo: 'blog-comments',
+            owner: 'ZebinGao',
+            admin: ["ZebinGao"],
+            id: legacy[path] || path, // 文章挪过目录时用老 id 匹配老 issue
+            distractionFreeMode: false,
+            proxy: 'https://cors.isomorphic-git.org/https://github.com/login/oauth/access_token'
+        });
+        gitalk.render('gitalk-container');
+    })();
+    </script>
+</section>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E7%9A%84%E6%9C%AC%E8%B4%A8%EF%BC%9A%E6%A0%87%E8%AF%86%E7%AC%A6%E6%98%AF%E8%87%AA%E7%94%B1%E7%9A%84%EF%BC%8C%E5%AD%97%E9%9D%A2%E9%87%8F%E6%98%AF%E9%80%83%E4%B8%8D%E6%8E%89%E7%9A%84"><span class="toc-text">1. 问题的本质：标识符是自由的，字面量是逃不掉的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BA%94%E4%B8%AA%E8%AF%8D%E6%B1%87%E6%9D%A5%E6%BA%90%EF%BC%88%E6%8C%89%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%89"><span class="toc-text">2. 五个词汇来源（按优先级）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E6%95%B0%E6%8D%AE%E5%AD%97%E9%9D%A2%E9%87%8F%E2%80%94%E2%80%94%E5%A4%96%E9%83%A8%E5%A5%91%E7%BA%A6"><span class="toc-text">2.1 数据字面量——外部契约</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%A1%8C%E4%B8%9A%E6%A0%87%E5%87%86%E8%AF%8D%E5%85%B8%E2%80%94%E2%80%94%E9%A2%86%E5%9F%9F%E5%90%8D%E8%AF%8D"><span class="toc-text">2.2 行业标准词典——领域名词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%91%BD%E5%90%8D%E6%83%AF%E4%BE%8B%E2%80%94%E2%80%94%E8%AF%AD%E8%A8%80%E7%A4%BE%E5%8C%BA%E7%BA%A6%E5%AE%9A"><span class="toc-text">2.3 命名惯例——语言社区约定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%B7%B2%E5%91%BD%E4%B8%AD%E4%BB%A3%E7%A0%81%E9%87%8C%E2%80%9D%E6%8D%A1%E8%AF%8D%E2%80%9D%E2%80%94%E2%80%94%E6%9C%80%E5%A5%BD%E7%9A%84%E8%AF%8D%E5%85%B8%E6%98%AF%E4%B8%8A%E4%B8%80%E8%BD%AE%E7%9A%84%E5%91%BD%E4%B8%AD%E7%BB%93%E6%9E%9C"><span class="toc-text">2.4 已命中代码里”捡词”——最好的词典是上一轮的命中结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E6%B5%8B%E8%AF%95%E4%B8%8E%E8%B0%83%E7%94%A8%E6%96%B9%E2%80%94%E2%80%94%E7%B1%BB%E5%90%8D%E7%9A%84%E7%B4%A2%E5%BC%95"><span class="toc-text">2.5 测试与调用方——类名的索引</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%8D%A2%E8%AF%8D%E7%9A%84%E6%97%B6%E6%9C%BA%EF%BC%9A%E8%AF%BB%E6%87%82%E8%B4%9F%E7%BB%93%E6%9E%9C"><span class="toc-text">3. 换词的时机：读懂负结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%91%BD%E4%B8%AD%E4%B9%8B%E5%90%8E%EF%BC%9A%E7%9B%B8%E5%85%B3%E6%80%A7%E5%88%A4%E6%96%AD"><span class="toc-text">4. 命中之后：相关性判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9E%E6%88%98%E5%A4%8D%E7%9B%98%EF%BC%9A%E9%80%90%E8%BD%AE%E6%A0%87%E6%B3%A8%E8%AF%8D%E6%B1%87%E6%9D%A5%E6%BA%90"><span class="toc-text">5. 实战复盘：逐轮标注词汇来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%B7%A5%E5%85%B7%E6%8A%80%E5%B7%A7%E6%B8%85%E5%8D%95"><span class="toc-text">6. 工具技巧清单</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E4%B8%80%E9%A1%B5%E9%80%9F%E6%9F%A5"><span class="toc-text">7. 一页速查</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/record/" style="font-size: 20px;">记录</a> <a href="/tags/life/" style="font-size: 18.86px;">生活</a> <a href="/tags/%E4%B8%A4%E6%80%A7/" style="font-size: 17.71px;">两性</a> <a href="/tags/reflection/" style="font-size: 16.57px;">反思</a> <a href="/tags/self/" style="font-size: 15.43px;">自我</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 14.29px;">旅行</a> <a href="/tags/Germany/" style="font-size: 13.14px;">德国</a> <a href="/tags/critic/" style="font-size: 13.14px;">批判</a> <a href="/tags/repost/" style="font-size: 12px;">转载</a> <a href="/tags/marriage/" style="font-size: 12px;">婚姻</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+</body>
+</html>
