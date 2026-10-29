@@ -8,8 +8,12 @@
 //   pageid=13（体育滚动页 sports.sina.com.cn/roll/ 的真身）—— 573 中国足球、572 国际足球、
 //   571 NBA、609 中国篮球、575 综合体育；2503"全部"被彩票刷屏。逗号多 lid 两套 pageid 都
 //   不支持。体育 tab（5 子频道前端并拉合并）2026-10-29 做好当天撤下，lids 留此备查。
-// k= 关键词过滤也废了（传什么都原样返回）——新浪滚动没有的频道（如美食/文学）做不了
-// （新浪读书频道 2025 年起实质停更）。
+// k= 关键词过滤也废了（传什么都原样返回）——新浪滚动没有的频道做不了（如美食；
+// 新浪读书频道 2025 年起实质停更）。文学 2026-10-29 上线：国内文学媒体没有可
+// 直连的接口（所谓开放 RSS 全是幻觉），改由中国作家网构建期抓取生成静态 JSON
+// （tools/fetch-literature.mjs → source/news/literature.json），本页 fetch 同源文
+// 件，内容随每日构建更新——所以它不走 JSONP，页脚也不写"每 10 分钟刷新"。
+// 娱乐（lid 2513，条目近半走电影路径）同日应用户要求换成文学，lid 留此备查。
 // 每频道 10 分钟拉一次，localStorage 按频道缓存 10 分钟，上次停在哪个频道也记着。
 // 条目点开原地展开摘要（接口自带 intro/media_name，不用二次请求；keywords 恒为空，不取），
 // 末尾留「阅读原文」跳源站——全文抓回来渲染既过不了跨域也有版权问题。
@@ -17,7 +21,7 @@
     var CHANNELS = [
         { key: 'finance', label: '财经', page: 153, lids: [2509] },
         { key: 'society', label: '社会', page: 153, lids: [2669] },
-        { key: 'ent', label: '娱乐', page: 153, lids: [2513] },
+        { key: 'lit', label: '文学', json: 'literature.json' }, // 相对 /news/ 页面解析的静态文件
         { key: 'china', label: '国内', page: 153, lids: [2510] },
         { key: 'world', label: '国际', page: 153, lids: [2511] },
         { key: 'mil', label: '军事', page: 153, lids: [2514] },
@@ -26,7 +30,7 @@
     var API_BASE = 'https://feed.mix.sina.com.cn/api/roll/get?pageid=';
     var CB_PREFIX = 'sinaRollCb'; // 新浪要求 callback 名以字母开头（下划线开头会报 illegal character）；
                                   // 多路并发时回包可能乱序，每次请求用独立回调名，数据才不会串台
-    var CACHE_PREFIX = 'sina-roll-news-v4-'; // v4：缓存键从 lid 改为频道 key（体育是多 lid 合并流）
+    var CACHE_PREFIX = 'sina-roll-news-v5-'; // v5：娱乐→文学，键空间整体换血（旧缓存自然失效）
     var CHAN_KEY = 'sina-roll-news-chan'; // 上次停留的频道 key
     var CACHE_TTL = 10 * 60 * 1000;
     var SHOW_COUNT = 20;
@@ -102,7 +106,9 @@
         });
         var foot = document.createElement('div');
         foot.className = 'news-foot';
-        foot.textContent = hhmm(items[0].c) + ' 更新 · 每 10 分钟自动刷新';
+        foot.textContent = active.json
+            ? '中国作家网 · 每日构建时更新'
+            : hhmm(items[0].c) + ' 更新 · 每 10 分钟自动刷新';
         box.appendChild(foot);
     }
 
@@ -138,6 +144,28 @@
         return null;
     }
 
+    // 文学频道：JSON 由每日构建生成（构建期抓中国作家网），fetch 同源文件即可，
+    // 不用 JSONP。失败时若有旧缓存就继续展示，没有才报错——静态文件很少挂。
+    function fetchJson(chan) {
+        fetch(chan.json).then(function(res) {
+            if (!res.ok) throw new Error(res.status);
+            return res.json();
+        }).then(function(data) {
+            var items = ((data && data.items) || []).filter(function(it) { return it.t && it.u; });
+            if (!items.length) throw new Error('empty');
+            try {
+                localStorage.setItem(cacheKey(chan.key),
+                    JSON.stringify({ time: Date.now(), data: items.slice(0, SHOW_COUNT) }));
+            } catch (e) {}
+            if (chan === active) render(items);
+        }).catch(function() {
+            if (chan !== active) return;
+            var cached = readCache(chan.key);
+            if (cached && cached.data.length) render(cached.data);
+            else fail();
+        }).then(function() { loading[chan.key] = false; });
+    }
+
     // JSONP 没有请求级超时，自己掐表；回包时频道已被切走就只入缓存不渲染。
     // 多 lid 频道（体育）一次并拉几个 script，收齐或超时后统一合并、去重、按时间排序；
     // 个别子频道挂了不算失败，只要还有别的路活着就能出列表。
@@ -145,6 +173,7 @@
     function fetchNews(chan) {
         if (loading[chan.key]) return; // 同频道防重入（手抖双击 + 定时器撞车）
         loading[chan.key] = true;
+        if (chan.json) { fetchJson(chan); return; } // 文学：静态文件走 fetch，不吃 JSONP 那套
         var num = chan.lids.length > 1 ? 10 : 30;
         var pending = chan.lids.length, pool = [], done = false;
         var timer;
@@ -238,5 +267,6 @@
         if (cached && cached.data.length) render(cached.data); // 过期缓存先顶上，后台静默刷新
         fetchNews(active);
     }
-    setInterval(function() { fetchNews(active); }, CACHE_TTL); // 页面长开时每 10 分钟刷新当前频道
+    // 页面长开时每 10 分钟刷新当前频道；文学是静态文件（随每日构建更新），不参与轮询
+    setInterval(function() { if (!active.json) fetchNews(active); }, CACHE_TTL);
 })();
