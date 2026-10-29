@@ -1480,6 +1480,15 @@ a.movie-item:hover {
 }
 
 /* --- 热点页：新浪滚动新闻 --- */
+/* 频道切换条（财经/民生/娱乐…）：胶囊复用 .category-tab（同 .directory-tabs 的做法），频道表在 news.js */
+.news-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 2px 0 14px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 8px;
+}
 .news-list {
     padding: 4px 0;
 }
