@@ -1,31 +1,32 @@
 // 热点页：新浪滚动新闻（分钟级更新，按频道切换）
 // feed.mix.sina.com.cn 不发跨域头，但支持 callback= 参数的 JSONP，用 <script> 标签绕开跨域
 // （微博/知乎的接口直连会被掐，和当年东方财富一个毛病；聚合 API 如 vvhan 已停服）。
-// 频道号 lid 实测（2026-10 全量扫 2500-2999，共 15 个活号）：2509 已不是"全部"而是
-// 财经聚合（2516/2517/2518 与之重复）；2669 社会（民生条线约占一半）、2513 娱乐（条目
-// 近半走电影路径）、2510 国内、2511 国际、2515 科技、2512 体育、2514 军事。
-// 2519 起的旧频道号全部下线，
-// k= 关键词过滤也废了（传什么都原样返回），逗号多 lid 不支持——所以新浪滚动没有的
-// 频道（如美食）做不了，只能靠对应频道顶（美食没有，电影并进娱乐）。
-// 每频道每次取 30 条，过滤去重后展示 20 条，10 分钟拉一次，localStorage 按频道缓存
-// 10 分钟，上次停在哪个频道也记着。条目点开原地展开摘要（接口自带 intro/media_name，
-// 不用二次请求；keywords 该接口恒为空，不取），末尾留「阅读原文」跳源站——全文抓回来
-// 渲染既过不了跨域也有版权问题。
+// 频道分两套 pageid（2026-10 实测，153 全量扫 lid 2000-3500）：
+//   pageid=153 —— 2509 财经（已不是"全部"！2516/2517/2518 与之重复）、2669 社会（民生条线
+//   约占一半）、2513 娱乐（条目近半走电影路径）、2510 国内、2511 国际、2515 科技、2514 军事；
+//   2512 挂着 sports 域名但其实是彩票流（29/30 条走 /lottery/ 路径），别当体育用。
+//   pageid=13（体育滚动页 sports.sina.com.cn/roll/ 的真身）—— 573 中国足球、572 国际足球、
+//   571 NBA、609 中国篮球、575 综合体育；2503"全部"被彩票刷屏。逗号多 lid 两套 pageid 都
+//   不支持。体育 tab（5 子频道前端并拉合并）2026-10-29 做好当天撤下，lids 留此备查。
+// k= 关键词过滤也废了（传什么都原样返回）——新浪滚动没有的频道（如美食/文学）做不了
+// （新浪读书频道 2025 年起实质停更）。
+// 每频道 10 分钟拉一次，localStorage 按频道缓存 10 分钟，上次停在哪个频道也记着。
+// 条目点开原地展开摘要（接口自带 intro/media_name，不用二次请求；keywords 恒为空，不取），
+// 末尾留「阅读原文」跳源站——全文抓回来渲染既过不了跨域也有版权问题。
 (function() {
     var CHANNELS = [
-        { key: 'finance', label: '财经', lid: 2509 },
-        { key: 'society', label: '社会', lid: 2669 },
-        { key: 'ent', label: '娱乐', lid: 2513 },
-        { key: 'sports', label: '体育', lid: 2512 },
-        { key: 'china', label: '国内', lid: 2510 },
-        { key: 'world', label: '国际', lid: 2511 },
-        { key: 'mil', label: '军事', lid: 2514 },
-        { key: 'tech', label: '科技', lid: 2515 }
+        { key: 'finance', label: '财经', page: 153, lids: [2509] },
+        { key: 'society', label: '社会', page: 153, lids: [2669] },
+        { key: 'ent', label: '娱乐', page: 153, lids: [2513] },
+        { key: 'china', label: '国内', page: 153, lids: [2510] },
+        { key: 'world', label: '国际', page: 153, lids: [2511] },
+        { key: 'mil', label: '军事', page: 153, lids: [2514] },
+        { key: 'tech', label: '科技', page: 153, lids: [2515] }
     ];
-    var API_BASE = 'https://feed.mix.sina.com.cn/api/roll/get?pageid=153&lid=';
+    var API_BASE = 'https://feed.mix.sina.com.cn/api/roll/get?pageid=';
     var CB_PREFIX = 'sinaRollCb'; // 新浪要求 callback 名以字母开头（下划线开头会报 illegal character）；
-                                  // 多频道并发时回包可能乱序，每次请求用独立回调名，数据才不会串台
-    var CACHE_PREFIX = 'sina-roll-news-v3-'; // v3：多频道，按 lid 分键
+                                  // 多路并发时回包可能乱序，每次请求用独立回调名，数据才不会串台
+    var CACHE_PREFIX = 'sina-roll-news-v4-'; // v4：缓存键从 lid 改为频道 key（体育是多 lid 合并流）
     var CHAN_KEY = 'sina-roll-news-chan'; // 上次停留的频道 key
     var CACHE_TTL = 10 * 60 * 1000;
     var SHOW_COUNT = 20;
@@ -115,7 +116,7 @@
         list.forEach(function(d) {
             var t = (d.title || '').trim();
             if (!t || !d.url) return;
-            if (seen[t]) return; // 滚动源偶尔同题重发
+            if (seen[t]) return; // 滚动源偶尔同题重发；子频道之间也有互相转载
             seen[t] = 1;
             out.push({
                 t: t,
@@ -128,55 +129,63 @@
         return out;
     }
 
-    function cacheKey(lid) { return CACHE_PREFIX + lid; }
-    function readCache(lid) {
+    function cacheKey(key) { return CACHE_PREFIX + key; }
+    function readCache(key) {
         try {
-            var c = JSON.parse(localStorage.getItem(cacheKey(lid)));
+            var c = JSON.parse(localStorage.getItem(cacheKey(key)));
             if (c && c.data && c.time) return c;
         } catch (e) {}
         return null;
     }
 
-    // JSONP 没有请求级超时，自己掐表；回包时频道已被切走就只入缓存不渲染
+    // JSONP 没有请求级超时，自己掐表；回包时频道已被切走就只入缓存不渲染。
+    // 多 lid 频道（体育）一次并拉几个 script，收齐或超时后统一合并、去重、按时间排序；
+    // 个别子频道挂了不算失败，只要还有别的路活着就能出列表。
     var loading = {}, cbSeq = 0;
     function fetchNews(chan) {
-        if (loading[chan.lid]) return; // 同频道防重入（手抖双击 + 定时器撞车）
-        loading[chan.lid] = true;
-        var cb = CB_PREFIX + (++cbSeq);
-        var script = document.createElement('script');
-        var done = false;
-        function cleanup() {
-            done = true;
-            loading[chan.lid] = false;
-            clearTimeout(timer);
-            try { delete window[cb]; } catch (e) {}
-            if (script.parentNode) script.parentNode.removeChild(script);
-        }
-        var timer = setTimeout(function() {
-            cleanup();
-            if (chan === active) fail();
-        }, 12000);
-        window[cb] = function(data) {
+        if (loading[chan.key]) return; // 同频道防重入（手抖双击 + 定时器撞车）
+        loading[chan.key] = true;
+        var num = chan.lids.length > 1 ? 10 : 30;
+        var pending = chan.lids.length, pool = [], done = false;
+        var timer;
+        function finalize() {
             if (done) return;
-            cleanup();
-            var items = slim((data && data.result && data.result.data) || []);
+            done = true;
+            loading[chan.key] = false;
+            clearTimeout(timer);
+            var items = slim(pool).sort(function(a, b) { return b.c - a.c; });
             if (!items.length) {
                 if (chan === active) fail();
                 return;
             }
             try {
-                localStorage.setItem(cacheKey(chan.lid),
+                localStorage.setItem(cacheKey(chan.key),
                     JSON.stringify({ time: Date.now(), data: items.slice(0, SHOW_COUNT) }));
             } catch (e) {}
             if (chan === active) render(items);
-        };
-        script.onerror = function() {
-            if (done) return;
-            cleanup();
-            if (chan === active) fail();
-        };
-        script.src = API_BASE + chan.lid + '&k=&num=30&page=1&callback=' + cb + '&_=' + Date.now();
-        document.head.appendChild(script);
+        }
+        timer = setTimeout(finalize, 12000); // 有请求没回来也照样用已到货的合成
+        chan.lids.forEach(function(lid) {
+            var cb = CB_PREFIX + (++cbSeq);
+            var script = document.createElement('script');
+            var settled = false;
+            function settle() {
+                if (settled) return;
+                settled = true;
+                try { delete window[cb]; } catch (e) {}
+                if (script.parentNode) script.parentNode.removeChild(script);
+                if (--pending === 0) finalize();
+            }
+            window[cb] = function(data) {
+                if (settled) return;
+                pool = pool.concat((data && data.result && data.result.data) || []);
+                settle();
+            };
+            script.onerror = settle;
+            script.src = API_BASE + chan.page + '&lid=' + lid + '&k=&num=' + num +
+                '&page=1&callback=' + cb + '&_=' + Date.now();
+            document.head.appendChild(script);
+        });
     }
 
     // 频道切换条：胶囊样式复用 .category-tab（同 .directory-tabs 的做法）
@@ -206,7 +215,7 @@
         try { localStorage.setItem(CHAN_KEY, chan.key); } catch (e) {}
         var tabs = bar.children;
         for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle('active', CHANNELS[i] === chan);
-        var cached = readCache(chan.lid);
+        var cached = readCache(chan.key);
         if (cached && cached.data.length) {
             render(cached.data);
             if (Date.now() - cached.time >= CACHE_TTL) fetchNews(chan); // 过期缓存先顶上，后台静默刷新
@@ -221,7 +230,7 @@
         if (box.querySelector('.news-retry')) fetchNews(active);
     });
 
-    var cached = readCache(active.lid);
+    var cached = readCache(active.key);
     if (cached && Date.now() - cached.time < CACHE_TTL) {
         if (cached.data.length) render(cached.data); // 10 分钟内直接用缓存，不请求
         else fetchNews(active);
