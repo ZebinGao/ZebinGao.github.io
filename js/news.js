@@ -3,36 +3,44 @@
 // （微博/知乎的接口直连会被掐，和当年东方财富一个毛病；聚合 API 如 vvhan 已停服）。
 // 频道分两套 pageid（2026-10 实测，153 全量扫 lid 2000-3500）：
 //   pageid=153 —— 2509 财经（已不是"全部"！2516/2517/2518 与之重复）、2669 社会（民生条线
-//   约占一半）、2513 娱乐（条目近半走电影路径）、2510 国内、2511 国际、2515 科技、2514 军事；
+//   约占一半）、2510 国内、2511 国际、2515 科技、2513 娱乐（条目近半走电影路径）；
 //   2512 挂着 sports 域名但其实是彩票流（29/30 条走 /lottery/ 路径），别当体育用。
 //   pageid=13（体育滚动页 sports.sina.com.cn/roll/ 的真身）—— 573 中国足球、572 国际足球、
 //   571 NBA、609 中国篮球、575 综合体育；2503"全部"被彩票刷屏。逗号多 lid 两套 pageid 都
 //   不支持。体育 tab（5 子频道前端并拉合并）2026-10-29 做好当天撤下，lids 留此备查。
+//   军事（lid 2514）2026-11-02 应用户要求撤下，lid 留此备查。
 // k= 关键词过滤也废了（传什么都原样返回）——新浪滚动没有的频道做不了（如美食；
 // 新浪读书频道 2025 年起实质停更）。文学 2026-10-29 上线：国内文学媒体没有可
 // 直连的接口（所谓开放 RSS 全是幻觉），改由中国作家网构建期抓取生成静态 JSON
 // （tools/fetch-literature.mjs → source/news/literature.json），本页 fetch 同源文
 // 件，内容随每日构建更新——所以它不走 JSONP，页脚也不写"每 10 分钟刷新"。
 // 娱乐（lid 2513，条目近半走电影路径）同日应用户要求换成文学，lid 留此备查。
-// 每频道 10 分钟拉一次，localStorage 按频道缓存 10 分钟，上次停在哪个频道也记着。
+// 英文/德语 2026-11-02 上线：国际媒体的 RSS 本身就是无 key 的开放接口，构建期
+//   抓取合并成静态 JSON（tools/fetch-rss.mjs → english.json / german.json），机制
+//   同文学。英文四路 BBC/卫报/NPR/France 24（英美法），德语四路 DW/Tagesschau/
+//   SPIEGEL/FAZ（DW 是 RDF 格式，解析已兼容）；聚合 API（NewsAPI/GNews/NewsData）
+//   都要 key、静态站前端藏不住，这条无 key 的路也用不着它们。
+// 新浪频道 localStorage 缓存 24 小时（每天最多实拉一次）；文学/英文/德语是构建期
+// 产物，不进缓存，tab 打开现拉。上次停在哪个频道也记着。
 // 条目点开原地展开摘要（接口自带 intro/media_name，不用二次请求；keywords 恒为空，不取），
 // 末尾留「阅读原文」跳源站——全文抓回来渲染既过不了跨域也有版权问题。
 (function() {
     var CHANNELS = [
         { key: 'finance', label: '财经', page: 153, lids: [2509] },
         { key: 'society', label: '社会', page: 153, lids: [2669] },
-        { key: 'lit', label: '文学', json: 'literature.json' }, // 相对 /news/ 页面解析的静态文件
+        { key: 'lit', label: '文学', json: 'literature.json', src: '中国作家网' }, // 相对 /news/ 页面解析的静态文件
+        { key: 'eng', label: '英文', json: 'english.json', src: 'BBC · 卫报 · NPR · France 24' }, // 同上：构建期抓四家 RSS 合并
+        { key: 'de', label: '德语', json: 'german.json', src: 'DW · Tagesschau · SPIEGEL · FAZ' }, // 同上：德语四家，DW 是 RDF 格式
         { key: 'china', label: '国内', page: 153, lids: [2510] },
         { key: 'world', label: '国际', page: 153, lids: [2511] },
-        { key: 'mil', label: '军事', page: 153, lids: [2514] },
         { key: 'tech', label: '科技', page: 153, lids: [2515] }
     ];
     var API_BASE = 'https://feed.mix.sina.com.cn/api/roll/get?pageid=';
     var CB_PREFIX = 'sinaRollCb'; // 新浪要求 callback 名以字母开头（下划线开头会报 illegal character）；
                                   // 多路并发时回包可能乱序，每次请求用独立回调名，数据才不会串台
-    var CACHE_PREFIX = 'sina-roll-news-v5-'; // v5：娱乐→文学，键空间整体换血（旧缓存自然失效）
+    var CACHE_PREFIX = 'sina-roll-news-v7-'; // v7：缓存周期 10 分钟→24 小时，键空间整体换血（旧缓存自然失效）
     var CHAN_KEY = 'sina-roll-news-chan'; // 上次停留的频道 key
-    var CACHE_TTL = 10 * 60 * 1000;
+    var CACHE_TTL = 24 * 60 * 60 * 1000; // 一天拉一次足够：只作用于新浪 JSONP 频道；json 频道（文学/英文/德语）不走缓存，见 fetchJson
     var SHOW_COUNT = 20;
 
     var box = document.getElementById('news-box');
@@ -107,8 +115,8 @@
         var foot = document.createElement('div');
         foot.className = 'news-foot';
         foot.textContent = active.json
-            ? '中国作家网 · 每日构建时更新'
-            : hhmm(items[0].c) + ' 更新 · 每 10 分钟自动刷新';
+            ? active.src + ' · 每日构建时更新'
+            : hhmm(items[0].c) + ' 更新';
         box.appendChild(foot);
     }
 
@@ -144,8 +152,10 @@
         return null;
     }
 
-    // 文学频道：JSON 由每日构建生成（构建期抓中国作家网），fetch 同源文件即可，
-    // 不用 JSONP。失败时若有旧缓存就继续展示，没有才报错——静态文件很少挂。
+    // 静态 JSON 频道（文学/英文/德语）：JSON 由每日构建生成（构建期抓源站），
+    // tab 打开就 fetch 同源文件，不走 localStorage——文件一天一换，HTTP 缓存
+    // 足够；本地缓存反而会让构建更新后最长一天看不到新内容（2026-11-02 踩过：
+    // 配额修正上线，读者上午的缓存顶着不换）。失败显示重试，点了再拉。
     function fetchJson(chan) {
         fetch(chan.json).then(function(res) {
             if (!res.ok) throw new Error(res.status);
@@ -153,16 +163,9 @@
         }).then(function(data) {
             var items = ((data && data.items) || []).filter(function(it) { return it.t && it.u; });
             if (!items.length) throw new Error('empty');
-            try {
-                localStorage.setItem(cacheKey(chan.key),
-                    JSON.stringify({ time: Date.now(), data: items.slice(0, SHOW_COUNT) }));
-            } catch (e) {}
             if (chan === active) render(items);
         }).catch(function() {
-            if (chan !== active) return;
-            var cached = readCache(chan.key);
-            if (cached && cached.data.length) render(cached.data);
-            else fail();
+            if (chan === active) fail();
         }).then(function() { loading[chan.key] = false; });
     }
 
@@ -173,7 +176,7 @@
     function fetchNews(chan) {
         if (loading[chan.key]) return; // 同频道防重入（手抖双击 + 定时器撞车）
         loading[chan.key] = true;
-        if (chan.json) { fetchJson(chan); return; } // 文学：静态文件走 fetch，不吃 JSONP 那套
+        if (chan.json) { fetchJson(chan); return; } // json 频道（文学/英文）：静态文件走 fetch，不吃 JSONP 那套
         var num = chan.lids.length > 1 ? 10 : 30;
         var pending = chan.lids.length, pool = [], done = false;
         var timer;
@@ -244,6 +247,11 @@
         try { localStorage.setItem(CHAN_KEY, chan.key); } catch (e) {}
         var tabs = bar.children;
         for (var i = 0; i < tabs.length; i++) tabs[i].classList.toggle('active', CHANNELS[i] === chan);
+        if (chan.json) { // json 频道无缓存，切到就现拉；新浪频道走下面的缓存逻辑
+            box.innerHTML = '<div class="news-loading">获取中…</div>';
+            fetchNews(chan);
+            return;
+        }
         var cached = readCache(chan.key);
         if (cached && cached.data.length) {
             render(cached.data);
@@ -259,14 +267,19 @@
         if (box.querySelector('.news-retry')) fetchNews(active);
     });
 
-    var cached = readCache(active.key);
-    if (cached && Date.now() - cached.time < CACHE_TTL) {
-        if (cached.data.length) render(cached.data); // 10 分钟内直接用缓存，不请求
-        else fetchNews(active);
-    } else {
-        if (cached && cached.data.length) render(cached.data); // 过期缓存先顶上，后台静默刷新
+    if (active.json) { // json 频道（文学/英文/德语）无缓存，首屏现拉
+        box.innerHTML = '<div class="news-loading">获取中…</div>';
         fetchNews(active);
+    } else {
+        var cached = readCache(active.key);
+        if (cached && Date.now() - cached.time < CACHE_TTL) {
+            if (cached.data.length) render(cached.data); // 一天内直接用缓存，不请求
+            else fetchNews(active);
+        } else {
+            if (cached && cached.data.length) render(cached.data); // 过期缓存先顶上，后台静默刷新
+            fetchNews(active);
+        }
     }
-    // 页面长开时每 10 分钟刷新当前频道；文学是静态文件（随每日构建更新），不参与轮询
+    // 页面长开时一天也会重拉一次当前频道；json 频道（文学/英文/德语）是静态文件（随每日构建更新），不参与轮询
     setInterval(function() { if (!active.json) fetchNews(active); }, CACHE_TTL);
 })();
