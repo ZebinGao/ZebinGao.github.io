@@ -1584,6 +1584,151 @@ a.movie-item:hover {
     color: var(--accent);
 }
 
+/* --- 播客页：卡片墙 + 节目详情（期目列表复用上面 .news-item 那套） --- */
+.pod-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    padding: 8px 0 4px;
+}
+.pod-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 16px 14px;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.pod-card:hover {
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    border-color: var(--accent);
+}
+.pod-cover,
+.pod-show-cover {
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--border-color);
+    border-radius: 10px;
+}
+.pod-cover {
+    width: 54px;
+    height: 54px;
+}
+.pod-show-cover {
+    width: 88px;
+    height: 88px;
+    border-radius: 14px;
+}
+/* 封面加载失败的首字符色块兜底（JS 里 img onerror 时替换） */
+.pod-cover-letter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.pod-card-info {
+    min-width: 0; /* 卡片窄列里让省略号生效 */
+}
+.pod-card-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.pod-card-author {
+    font-size: 0.78rem;
+    color: var(--accent);
+    margin: 3px 0 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.pod-card-meta {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+/* 详情页的返回条：占满一行，底边线与下方节目头隔开 */
+.pod-back {
+    display: block;
+    width: 100%;
+    padding: 2px 0 12px;
+    margin-bottom: 4px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--accent);
+    cursor: pointer;
+    text-align: left;
+}
+.pod-show-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 6px 0 16px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 6px;
+}
+.pod-show-info {
+    min-width: 0;
+    flex: 1;
+}
+.pod-show-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    overflow-wrap: break-word;
+}
+.pod-show-author {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin: 3px 0 7px;
+}
+.pod-show-desc {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+.pod-show-link {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-decoration: none;
+}
+.pod-show-link:hover {
+    text-decoration: underline;
+}
+/* 期目标题行里的日期（标题和箭头之间，不抢标题的换行）；
+   .news-head 是 space-between 三件套，不给标题 flex:1 日期会被顶到行中间 */
+.pod-ep-head .news-title {
+    flex: 1;
+}
+.pod-ep-date {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+.pod-audio {
+    width: 100%;
+    height: 36px;
+    margin: 8px 0 4px;
+}
+
 /* =========================================================
    文章正文段落间距
 ========================================================= */

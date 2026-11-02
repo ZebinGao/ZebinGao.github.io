@@ -2,13 +2,15 @@
 // feed.mix.sina.com.cn 不发跨域头，但支持 callback= 参数的 JSONP，用 <script> 标签绕开跨域
 // （微博/知乎的接口直连会被掐，和当年东方财富一个毛病；聚合 API 如 vvhan 已停服）。
 // 频道分两套 pageid（2026-10 实测，153 全量扫 lid 2000-3500）：
-//   pageid=153 —— 2509 财经（已不是"全部"！2516/2517/2518 与之重复）、2669 社会（民生条线
-//   约占一半）、2510 国内、2511 国际、2515 科技、2513 娱乐（条目近半走电影路径）；
-//   2512 挂着 sports 域名但其实是彩票流（29/30 条走 /lottery/ 路径），别当体育用。
+//   pageid=153 —— 2509 财经（已不是"全部"！2516/2517/2518 与之重复）、2515 科技；2513 娱乐（条目近半走电影路径）不取；2512 挂着 sports 域名但其实是
+//   彩票流（29/30 条走 /lottery/ 路径），别当体育用。2669 社会 / 2510 国内 / 2511 国际
+//   2026-11-02 实测滚动流已死：接口还在吐下线前的陈年存档（分别停在 2024-06 / 2025-05 /
+//   2025-10），滚动页新挂的 2968/2970/2972/2974 只是死流镜像——当日撤下这三个 tab，
+//   lid 留此备查。
 //   pageid=13（体育滚动页 sports.sina.com.cn/roll/ 的真身）—— 573 中国足球、572 国际足球、
 //   571 NBA、609 中国篮球、575 综合体育；2503"全部"被彩票刷屏。逗号多 lid 两套 pageid 都
 //   不支持。体育 tab（5 子频道前端并拉合并）2026-10-29 做好当天撤下，lids 留此备查。
-//   军事（lid 2514）2026-11-02 应用户要求撤下，lid 留此备查。
+//   军事（lid 2514）先因兴趣撤下，后发现其流 2023-06 就停了——lid 留此备查。
 // k= 关键词过滤也废了（传什么都原样返回）——新浪滚动没有的频道做不了（如美食；
 // 新浪读书频道 2025 年起实质停更）。文学 2026-10-29 上线：国内文学媒体没有可
 // 直连的接口（所谓开放 RSS 全是幻觉），改由中国作家网构建期抓取生成静态 JSON
@@ -27,12 +29,9 @@
 (function() {
     var CHANNELS = [
         { key: 'finance', label: '财经', page: 153, lids: [2509] },
-        { key: 'society', label: '社会', page: 153, lids: [2669] },
         { key: 'lit', label: '文学', json: 'literature.json', src: '中国作家网' }, // 相对 /news/ 页面解析的静态文件
         { key: 'eng', label: '英文', json: 'english.json', src: 'BBC · 卫报 · NPR · France 24' }, // 同上：构建期抓四家 RSS 合并
         { key: 'de', label: '德语', json: 'german.json', src: 'DW · Tagesschau · SPIEGEL · FAZ' }, // 同上：德语四家，DW 是 RDF 格式
-        { key: 'china', label: '国内', page: 153, lids: [2510] },
-        { key: 'world', label: '国际', page: 153, lids: [2511] },
         { key: 'tech', label: '科技', page: 153, lids: [2515] }
     ];
     var API_BASE = 'https://feed.mix.sina.com.cn/api/roll/get?pageid=';
@@ -56,6 +55,19 @@
     } catch (e) {}
     function hhmm(ts) {
         return bjTime ? bjTime.format(new Date(ts * 1000)) : '';
+    }
+
+    // 页脚显示"HH:mm 更新"，两年前的旧条目也长得像"今早更新"——2026-11-02 的
+    // 社会/国内/国际死流就是这么藏了一两个月没人发现。首条超 24h 就带上日期，
+    // 源死没死一眼可见。
+    var bjDay = null;
+    try {
+        bjDay = new Intl.DateTimeFormat('zh-CN', {
+            timeZone: 'Asia/Shanghai', month: 'long', day: 'numeric'
+        });
+    } catch (e) {}
+    function dayhm(ts) {
+        return bjDay ? bjDay.format(new Date(ts * 1000)) + ' ' : '';
     }
 
     function render(items) {
@@ -114,9 +126,10 @@
         });
         var foot = document.createElement('div');
         foot.className = 'news-foot';
+        var stale = !active.json && Date.now() / 1000 - items[0].c > 86400;
         foot.textContent = active.json
             ? active.src + ' · 每日构建时更新'
-            : hhmm(items[0].c) + ' 更新';
+            : (stale ? dayhm(items[0].c) : '') + hhmm(items[0].c) + ' 更新';
         box.appendChild(foot);
     }
 
