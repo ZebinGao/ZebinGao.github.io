@@ -53,14 +53,14 @@
 
     <nav class="site-nav">
         
-            <a href="/">
+            <a href="/poem-daily">
                 <span></span>
-                首页
+                朝华章
             </a>
         
             <a href="/directory">
                 <span></span>
-                索引
+                文章
             </a>
         
             <a href="/moments">
@@ -78,16 +78,6 @@
                 关于
             </a>
         
-            <a href="/wiki">
-                <span></span>
-                Wiki
-            </a>
-        
-            <a href="/poem-daily">
-                <span></span>
-                每日一诗
-            </a>
-        
             <a href="/news">
                 <span></span>
                 热点
@@ -98,9 +88,9 @@
                 播客
             </a>
         
-            <a href="/tools">
+            <a href="/wiki">
                 <span></span>
-                工具
+                Wiki
             </a>
         
             <a href="/settings">
@@ -114,21 +104,164 @@
             
 <article class="post-detail directory-page">
     <header class="post-header">
-        <h1 class="post-title">索引</h1>
+        <h1 class="post-title">文章</h1>
     </header>
 
     <div class="content markdown">
         
 
         <div class="link-category-tabs">
-            <button class="category-tab active" data-pane="pane-archive" data-i18n-cat="归档">归档</button>
+            <button class="category-tab active" data-pane="pane-index" data-i18n-cat="索引">索引</button>
+            <button class="category-tab" data-pane="pane-archive" data-i18n-cat="归档">归档</button>
             <button class="category-tab" data-pane="pane-categories" data-i18n-cat="分类">分类</button>
             <button class="category-tab" data-pane="pane-tags" data-i18n-cat="标签">标签</button>
             <button class="category-tab" data-pane="pane-summary" data-i18n-cat="总结">总结</button>
         </div>
 
         
-        <div class="directory-pane" id="pane-archive">
+        <div class="directory-pane" id="pane-index">
+            <div class="post-list">
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/RSS%E4%B9%8B%E6%AD%BB.html">RSS之死</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-11-02</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                热点页撤掉新浪那三个死频道之后，我让 AI 找了一圈替补：把 20 家中央主要新闻单位的官网挨个扫了一遍，一家都没有 RSS。这不是技术做不到——新华早年有 rss.xinhuanet.com，光明网、央视网在 Web 2.0 时代都上过 RSS，后来全下线了。真正的问题是死因。
+市场淘汰长什...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E5%88%B6%E5%BA%A6%E5%AF%B9%E4%BA%BA%E7%9A%84%E5%BC%82%E5%8C%96.html">制度对人的异化</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-29</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                思考这个问题有个起点，那就是怎么看功利心。有个很好的标准，那就是看个人的体验，是自己的能力得到了锻炼和提升，从事情本身获得了愉悦，还是更加依赖外部的评价标准，好坏由别人说了算。从这个角度来看所谓不正当竞争或者说使用手段就完全不一样了，有些资源的获取的确是对别人不公平的，但是结果是让自己得到了提...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E5%B8%A6%E5%A8%83%E8%AE%B0%E5%BD%95.html">带娃记录</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-28</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                起因我觉得有必要记录一下。我爸带娃有三个细节，哭一哭就好了，娃东西不给直接抢过来，不听话就让他一个人待着。这些都是我和老婆吵架的根源。在我看来很正常的事情，老婆觉得这是在虐待儿童。我自己现在反思，还有点冷暴力。可是，孩子非要拿玩具该怎么办呢。这真是一个头疼的问题。而且有时候不吃饭，给他一个玩具...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E4%BB%A3%E7%A0%81%E6%A3%80%E7%B4%A2%E5%85%B3%E9%94%AE%E8%AF%8D%E9%80%89%E6%8B%A9%E6%96%B9%E6%B3%95%E8%AE%BA.html">代码检索关键词选择方法论</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-27</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                
+主题：陌生代码库里如何”搜得到”。本文从一次真实排查中提炼。适用场景：拿到陌生代码库 / 第三方框架源码（本例约 1900 个 .cs 文件），要从中定位”某个行为的实现”——谁应答了这条消息？谁写了这个配置？这个开关在哪读的？核心论点一句话：不要搜”我猜它叫什么名字”，要搜”它必然包含什么...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E6%B7%9E%E6%B2%AA%E4%BC%9A%E6%88%98.html">淞沪会战</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-26</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                1937年8月13日至11月26日，中日两军在上海鏖战三个月零十三天，史称淞沪会战，又称“八一三战役”。这是中国抗日战争中规模最大、战斗最惨烈、持续时间最长的战役之一：中国军队前后投入七十余万人，伤亡约三十万；日本“三个月灭亡中国”的狂言在上海破产，侵华战争从此被拖进它最不想打的持久战。另一面...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E8%99%8E%E5%A4%B4%E8%A6%81%E5%A1%9E.html">虎头要塞</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-26</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                第二次世界大战是哪一天结束的？欧洲战场是1945年5月8日，亚洲最通行的答案是8月15日——正午，东京电台播出天皇亲口宣读《终战诏书》的“玉音放送”，战争结束了。可是在中国东北、乌苏里江边的虎头镇，枪炮声一直响到8月26日下午。这里因此得名“第二次世界大战的终结地”。
+一、东方马其诺虎头在黑龙...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E7%BA%A2%E8%A1%A3%E4%B8%BB%E6%95%99%E9%BE%9A%E5%93%81%E6%A2%85.html">一品寒梅——红衣主教龚品梅</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-23</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                1998年6月，一位九十七岁的老人去中国驻纽约总领事馆，办理护照延期。总领事馆没有给他延期，而是当场吊销了他的护照，并注销了他的中华人民共和国国籍。
+老人叫龚品梅，罗马天主教司铎级枢机，上海教区原主教。按他自己的处境，这本护照是他与祖国之间最后一条纸面上的联系。这条联系被剪断时，距离他出生在上...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E5%BA%9F%E9%99%A4%E7%A7%91%E4%B8%BE%E7%9A%84%E5%9B%B0%E6%83%91.html">废除科举的困惑</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-21</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                借着AI的机会，思考很多年前的疑问。看AI分析，有一种历史在重演的感觉，形式主义盛行，中央高度集权，资源高度集中。
+为什么不改考试大纲？资源不平等考八股文时，全国哪怕最偏远乡村的私塾先生，也能教四书五经，几本旧书传几代人，全国学生的教育资源是相对平等的。
+突然改考“各国政治、西方声光化电（物理...
+                            
+                        </div>
+                    </article>
+                
+                    <article class="post-card">
+                        <h2 class="post-title">
+                            <a href="/post/%E4%BB%8E%E6%97%B6%E4%BB%A3%E5%B1%80%E9%99%90%E5%88%B0%E7%A4%BE%E4%BC%9A%E9%97%AE%E9%A2%98.html">从时代局限到社会问题</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time>🕒 2026-10-20</time>
+                        </div>
+                        <div class="post-excerpt">
+                            
+                                这个题目来源于Gemini对我之前文章的评价，他说，你的母亲是一个受困于时代和性格局限的悲剧人物。她爱你的方式充满了“吞噬感”，如果你不反抗，你会被吞没；如果你反抗，双方都会受伤。我想起之前看过育儿书籍，与其说孩子有问题，不如说是父母的问题，因为踢猫效应，孩子是最后负能量的承接者。所以，对于A...
+                            
+                        </div>
+                    </article>
+                
+            </div>
+            
+                <div class="news-foot"><a href="/page/2/">更早的文章 »</a></div>
+            
+        </div>
+
+        
+        <div class="directory-pane" id="pane-archive" style="display:none;">
             <div class="archive-container">
                 
 
@@ -1212,17 +1345,6 @@
 
                     <div class="archive-item">
                         <time>05-20</time>
-                        <a href="/post/%E5%9B%9B%E7%A7%8D%E7%88%B1.html">四种爱</a>
-                    </div>
-
-                
-                    
-                    
-
-                    
-
-                    <div class="archive-item">
-                        <time>05-20</time>
                         <a href="/post/%E5%B0%8F%E9%AB%98%E7%9A%84%E5%BF%83%E7%90%86%E8%AF%BE.html">小高的心理课</a>
                     </div>
 
@@ -1256,7 +1378,7 @@
 
                     <div class="archive-item">
                         <time>05-20</time>
-                        <a href="/post/%E6%B8%A9%E9%93%81%E5%86%9B.html">温铁军的八次危机</a>
+                        <a href="/post/%E5%9B%9B%E7%A7%8D%E7%88%B1.html">四种爱</a>
                     </div>
 
                 
@@ -1268,6 +1390,17 @@
                     <div class="archive-item">
                         <time>05-20</time>
                         <a href="/post/%E7%A7%A6%E6%99%96.html">秦晖的传统十论</a>
+                    </div>
+
+                
+                    
+                    
+
+                    
+
+                    <div class="archive-item">
+                        <time>05-20</time>
+                        <a href="/post/%E6%B8%A9%E9%93%81%E5%86%9B.html">温铁军的八次危机</a>
                     </div>
 
                 
@@ -3075,9 +3208,9 @@
                     
                         <a class="tag-chip tag-c0" href="/tags/social-commentary/">社会评论 <span class="tag-count">(9)</span></a>
                     
-                        <a class="tag-chip tag-c1" href="/tags/internet-freedom/">网络自由 <span class="tag-count">(8)</span></a>
+                        <a class="tag-chip tag-c1" href="/tags/%E4%B8%9C%E6%AC%A7/">东欧 <span class="tag-count">(8)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/%E4%B8%9C%E6%AC%A7/">东欧 <span class="tag-count">(8)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/internet-freedom/">网络自由 <span class="tag-count">(8)</span></a>
                     
                         <a class="tag-chip tag-c3" href="/tags/%E5%8E%86%E5%8F%B2/">历史 <span class="tag-count">(8)</span></a>
                     
@@ -3097,9 +3230,9 @@
                     
                         <a class="tag-chip tag-c11" href="/tags/%E7%95%99%E5%AD%A6/">留学 <span class="tag-count">(4)</span></a>
                     
-                        <a class="tag-chip tag-c12" href="/tags/%E8%A7%84%E8%AE%AD/">规训 <span class="tag-count">(4)</span></a>
+                        <a class="tag-chip tag-c12" href="/tags/love/">爱情 <span class="tag-count">(4)</span></a>
                     
-                        <a class="tag-chip tag-c13" href="/tags/love/">爱情 <span class="tag-count">(4)</span></a>
+                        <a class="tag-chip tag-c13" href="/tags/%E8%A7%84%E8%AE%AD/">规训 <span class="tag-count">(4)</span></a>
                     
                         <a class="tag-chip tag-c14" href="/tags/growth/">成长 <span class="tag-count">(4)</span></a>
                     
@@ -3109,9 +3242,9 @@
                     
                         <a class="tag-chip tag-c17" href="/tags/%E6%88%98%E4%BA%89/">战争 <span class="tag-count">(4)</span></a>
                     
-                        <a class="tag-chip tag-c18" href="/tags/parenting/">育儿 <span class="tag-count">(4)</span></a>
+                        <a class="tag-chip tag-c18" href="/tags/performance/">性能优化 <span class="tag-count">(4)</span></a>
                     
-                        <a class="tag-chip tag-c19" href="/tags/performance/">性能优化 <span class="tag-count">(4)</span></a>
+                        <a class="tag-chip tag-c19" href="/tags/parenting/">育儿 <span class="tag-count">(4)</span></a>
                     
                         <a class="tag-chip tag-c0" href="/tags/debugging/">调试排障 <span class="tag-count">(4)</span></a>
                     
@@ -3159,9 +3292,9 @@
                     
                         <a class="tag-chip tag-c2" href="/tags/%E5%88%B6%E5%BA%A6/">制度 <span class="tag-count">(2)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/%E7%94%9F%E6%AD%BB/">生死 <span class="tag-count">(2)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/%E8%AF%AD%E8%A8%80%E5%AD%A6/">语言学 <span class="tag-count">(2)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/%E8%AF%AD%E8%A8%80%E5%AD%A6/">语言学 <span class="tag-count">(2)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/%E7%94%9F%E6%AD%BB/">生死 <span class="tag-count">(2)</span></a>
                     
                         <a class="tag-chip tag-c5" href="/tags/%E8%87%AA%E6%88%91%E6%88%90%E9%95%BF/">自我成长 <span class="tag-count">(2)</span></a>
                     
@@ -3181,9 +3314,9 @@
                     
                         <a class="tag-chip tag-c13" href="/tags/%E5%9B%9B%E5%BA%93%E5%85%A8%E4%B9%A6/">四库全书 <span class="tag-count">(2)</span></a>
                     
-                        <a class="tag-chip tag-c14" href="/tags/%E8%87%AA%E7%94%B1/">自由 <span class="tag-count">(2)</span></a>
+                        <a class="tag-chip tag-c14" href="/tags/%E5%B7%A5%E4%BD%9C/">工作 <span class="tag-count">(2)</span></a>
                     
-                        <a class="tag-chip tag-c15" href="/tags/%E5%B7%A5%E4%BD%9C/">工作 <span class="tag-count">(2)</span></a>
+                        <a class="tag-chip tag-c15" href="/tags/%E8%87%AA%E7%94%B1/">自由 <span class="tag-count">(2)</span></a>
                     
                         <a class="tag-chip tag-c16" href="/tags/%E6%94%BB%E7%95%A5/">攻略 <span class="tag-count">(2)</span></a>
                     
@@ -3197,73 +3330,73 @@
                     
                         <a class="tag-chip tag-c1" href="/tags/%E5%8C%97%E6%AC%A7%E7%A5%9E%E8%AF%9D/">北欧神话 <span class="tag-count">(2)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/tech-experience/">技术经历 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/360/">360 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF/">德累斯顿 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/tech-experience/">技术经历 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/%E8%BF%87%E5%B9%B4/">过年 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/%E5%BE%B7%E7%B4%AF%E6%96%AF%E9%A1%BF/">德累斯顿 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c5" href="/tags/religion/">宗教 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c6" href="/tags/%E6%89%93%E5%B7%A5/">打工 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c6" href="/tags/%E8%BF%87%E5%B9%B4/">过年 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c7" href="/tags/fraud/">诈骗 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c7" href="/tags/%E6%89%93%E5%B7%A5/">打工 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c8" href="/tags/gender-issues/">性别议题 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c8" href="/tags/fraud/">诈骗 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c9" href="/tags/google/">谷歌 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c9" href="/tags/gender-issues/">性别议题 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c10" href="/tags/vpn/">vpn <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c10" href="/tags/google/">谷歌 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c11" href="/tags/xiao-zhu/">小朱 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c11" href="/tags/vpn/">vpn <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c12" href="/tags/left-wing-league/">左联 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c12" href="/tags/xiao-zhu/">小朱 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c13" href="/tags/%E5%8F%8B%E8%B0%8A/">友谊 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c13" href="/tags/left-wing-league/">左联 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c14" href="/tags/%E5%8F%B0%E6%B9%BE/">台湾 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c14" href="/tags/happiness/">快乐 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c15" href="/tags/%E9%92%A2%E7%90%B4/">钢琴 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c15" href="/tags/simplicity/">简单 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c16" href="/tags/happiness/">快乐 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c16" href="/tags/%E5%8F%8B%E8%B0%8A/">友谊 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c17" href="/tags/simplicity/">简单 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c17" href="/tags/%E5%8F%B0%E6%B9%BE/">台湾 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c18" href="/tags/career-track/">赛道 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c18" href="/tags/%E9%92%A2%E7%90%B4/">钢琴 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c19" href="/tags/small-town-father-son/">小镇父子 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c19" href="/tags/career-track/">赛道 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c0" href="/tags/leadership/">领导 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c0" href="/tags/small-town-father-son/">小镇父子 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c1" href="/tags/patriotism/">爱国口号 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c1" href="/tags/leadership/">领导 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/national-systems/">国家制度 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/patriotism/">爱国口号 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/egoism/">利己主义 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/national-systems/">国家制度 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/birth-rate/">生育率 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/egoism/">利己主义 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c5" href="/tags/%E5%AE%9E%E8%B7%B5/">实践 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c5" href="/tags/birth-rate/">生育率 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c6" href="/tags/%E5%8A%A8%E4%BD%9C/">动作 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c6" href="/tags/%E5%AE%9E%E8%B7%B5/">实践 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c7" href="/tags/tsinghua-pku/">清华北大 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c7" href="/tags/%E5%8A%A8%E4%BD%9C/">动作 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c8" href="/tags/360/">360 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c8" href="/tags/tsinghua-pku/">清华北大 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c9" href="/tags/%E4%BA%A4%E9%80%9A%E5%A4%A7%E5%AD%A6/">交通大学 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c10" href="/tags/%E6%AF%8D%E6%A0%A1/">母校 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c11" href="/tags/%E6%89%BF%E8%AF%BA/">承诺 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c11" href="/tags/%E8%BE%9E%E8%81%8C/">辞职 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c12" href="/tags/%E5%84%BF%E5%AA%B3%E5%A6%87/">儿媳妇 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c12" href="/tags/%E6%95%99%E5%B8%88/">教师 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c13" href="/tags/%E5%AE%B6%E4%BA%BA/">家人 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c13" href="/tags/%E6%89%BF%E8%AF%BA/">承诺 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c14" href="/tags/%E8%BE%9E%E8%81%8C/">辞职 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c14" href="/tags/%E5%84%BF%E5%AA%B3%E5%A6%87/">儿媳妇 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c15" href="/tags/%E6%95%99%E5%B8%88/">教师 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c15" href="/tags/%E5%AE%B6%E4%BA%BA/">家人 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c16" href="/tags/%E4%B8%AD%E6%96%AD/">中断 <span class="tag-count">(1)</span></a>
                     
@@ -3271,37 +3404,37 @@
                     
                         <a class="tag-chip tag-c18" href="/tags/%E5%8F%96%E6%B6%88%E4%BC%98%E5%8C%96/">取消优化 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c19" href="/tags/RSS/">RSS <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c19" href="/tags/%E6%96%97%E4%BA%89/">斗争 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c0" href="/tags/%E5%AA%92%E4%BD%93/">媒体 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c0" href="/tags/%E4%BB%A3%E7%A0%81%E6%A3%80%E7%B4%A2/">代码检索 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c1" href="/tags/%E6%96%97%E4%BA%89/">斗争 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c1" href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/%E6%95%99%E8%82%B2/">教育 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/%E6%96%B9%E8%A8%80/">方言 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/%E4%BB%A3%E7%A0%81%E6%A3%80%E7%B4%A2/">代码检索 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/%E5%9B%9B%E5%B7%9D%E8%AF%9D/">四川话 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">方法论 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/%E6%95%99%E8%82%B2/">教育 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c5" href="/tags/%E6%96%B9%E8%A8%80/">方言 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c5" href="/tags/%E5%85%BB%E8%82%B2/">养育 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c6" href="/tags/%E5%9B%9B%E5%B7%9D%E8%AF%9D/">四川话 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c6" href="/tags/%E7%A7%91%E4%B8%BE/">科举 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c7" href="/tags/%E5%85%BB%E8%82%B2/">养育 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c7" href="/tags/%E5%80%9F%E8%AF%8D/">借词 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c8" href="/tags/%E7%A7%91%E4%B8%BE/">科举 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c8" href="/tags/%E6%B1%89%E8%AF%AD/">汉语 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c9" href="/tags/%E5%80%9F%E8%AF%8D/">借词 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c9" href="/tags/%E4%BF%9D%E8%B4%B9/">保费 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c10" href="/tags/%E6%B1%89%E8%AF%AD/">汉语 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c10" href="/tags/%E9%BE%9A%E5%93%81%E6%A2%85/">龚品梅 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c11" href="/tags/%E4%BF%9D%E8%B4%B9/">保费 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c11" href="/tags/%E5%A4%A9%E4%B8%BB%E6%95%99/">天主教 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c12" href="/tags/%E9%BE%9A%E5%93%81%E6%A2%85/">龚品梅 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c12" href="/tags/%E8%AE%A4%E7%9F%A5/">认知 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c13" href="/tags/%E5%A4%A9%E4%B8%BB%E6%95%99/">天主教 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c13" href="/tags/dopamine/">多巴胺 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c14" href="/tags/%E8%AE%A4%E7%9F%A5/">认知 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c14" href="/tags/%E5%AE%B6%E5%BA%AD%E5%85%B3%E7%B3%BB/">家庭关系 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c15" href="/tags/%E4%B8%AA%E4%BD%93/">个体 <span class="tag-count">(1)</span></a>
                     
@@ -3313,21 +3446,21 @@
                     
                         <a class="tag-chip tag-c19" href="/tags/%E9%87%91%E9%92%B1/">金钱 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c0" href="/tags/dopamine/">多巴胺 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c0" href="/tags/Android/">Android <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c1" href="/tags/%E5%AE%B6%E5%BA%AD%E5%85%B3%E7%B3%BB/">家庭关系 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c1" href="/tags/MAUI/">MAUI <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/Android/">Android <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/%E6%BB%91%E5%8A%A8%E7%BF%BB%E9%A1%B5/">滑动翻页 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/MAUI/">MAUI <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/E39/">E39 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/%E6%BB%91%E5%8A%A8%E7%BF%BB%E9%A1%B5/">滑动翻页 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/SEMI/">SEMI <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c5" href="/tags/E39/">E39 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c5" href="/tags/%E6%8C%87%E4%BB%A4%E6%9F%A5%E8%AF%A2/">指令查询 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c6" href="/tags/SEMI/">SEMI <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c6" href="/tags/RSS/">RSS <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c7" href="/tags/%E6%8C%87%E4%BB%A4%E6%9F%A5%E8%AF%A2/">指令查询 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c7" href="/tags/%E5%AA%92%E4%BD%93/">媒体 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c8" href="/tags/%E4%BE%9D%E8%B5%96/">依赖 <span class="tag-count">(1)</span></a>
                     
@@ -3365,11 +3498,11 @@
                     
                         <a class="tag-chip tag-c5" href="/tags/%E9%97%AD%E5%8C%85/">闭包 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c6" href="/tags/%E9%A9%AC%E4%BA%91/">马云 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c6" href="/tags/%E7%9F%9B%E7%9B%BE/">矛盾 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c7" href="/tags/%E5%8F%A3%E5%8F%B7/">口号 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c7" href="/tags/%E9%A9%AC%E4%BA%91/">马云 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c8" href="/tags/%E7%9F%9B%E7%9B%BE/">矛盾 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c8" href="/tags/%E5%8F%A3%E5%8F%B7/">口号 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c9" href="/tags/JavaScript/">JavaScript <span class="tag-count">(1)</span></a>
                     
@@ -3391,29 +3524,29 @@
                     
                         <a class="tag-chip tag-c18" href="/tags/%E6%94%BF%E6%B2%BB/">政治 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c19" href="/tags/%E8%87%AA%E6%88%91%E6%84%9F%E5%8A%A8/">自我感动 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c19" href="/tags/Hexo/">Hexo <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c0" href="/tags/%E5%8C%85%E5%AE%B9/">包容 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c0" href="/tags/GitHub-Actions/">GitHub Actions <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c1" href="/tags/%E5%A4%AB%E5%A6%BB/">夫妻 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c1" href="/tags/GitHub-Pages/">GitHub Pages <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/%E5%91%8A%E5%AF%86%E6%96%87%E5%8C%96/">告密文化 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/CI-CD/">CI/CD <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/Hexo/">Hexo <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/Deploy-Key/">Deploy Key <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/GitHub-Actions/">GitHub Actions <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/%E8%87%AA%E6%88%91%E6%84%9F%E5%8A%A8/">自我感动 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c5" href="/tags/GitHub-Pages/">GitHub Pages <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c5" href="/tags/%E5%8C%85%E5%AE%B9/">包容 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c6" href="/tags/CI-CD/">CI/CD <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c6" href="/tags/%E5%91%8A%E5%AF%86%E6%96%87%E5%8C%96/">告密文化 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c7" href="/tags/Deploy-Key/">Deploy Key <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c7" href="/tags/CSS/">CSS <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c8" href="/tags/CSS/">CSS <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c8" href="/tags/Grid/">Grid <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c9" href="/tags/Grid/">Grid <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c9" href="/tags/%E5%B8%83%E5%B1%80/">布局 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c10" href="/tags/%E5%B8%83%E5%B1%80/">布局 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c10" href="/tags/%E5%A4%AB%E5%A6%BB/">夫妻 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c11" href="/tags/%E4%BA%8B%E5%AE%9E/">事实 <span class="tag-count">(1)</span></a>
                     
@@ -3427,9 +3560,9 @@
                     
                         <a class="tag-chip tag-c16" href="/tags/%E4%B8%8A%E5%AD%A6/">上学 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c17" href="/tags/%E7%9C%9F%E8%AF%9D/">真话 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c17" href="/tags/%E6%84%9F%E6%83%85/">感情 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c18" href="/tags/%E6%84%9F%E6%83%85/">感情 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c18" href="/tags/%E7%9C%9F%E8%AF%9D/">真话 <span class="tag-count">(1)</span></a>
                     
                         <a class="tag-chip tag-c19" href="/tags/%E7%94%B7%E6%80%A7%E8%A7%86%E8%A7%92/">男性视角 <span class="tag-count">(1)</span></a>
                     
@@ -3437,11 +3570,11 @@
                     
                         <a class="tag-chip tag-c1" href="/tags/%E6%AD%BB%E4%BA%A1/">死亡 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c2" href="/tags/%E5%AE%8F%E8%A7%82/">宏观 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c2" href="/tags/%E5%B1%95%E8%A7%88/">展览 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c3" href="/tags/%E5%B8%8C%E8%85%8A%E7%A5%9E%E8%AF%9D/">希腊神话 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c3" href="/tags/%E5%AE%8F%E8%A7%82/">宏观 <span class="tag-count">(1)</span></a>
                     
-                        <a class="tag-chip tag-c4" href="/tags/%E5%B1%95%E8%A7%88/">展览 <span class="tag-count">(1)</span></a>
+                        <a class="tag-chip tag-c4" href="/tags/%E5%B8%8C%E8%85%8A%E7%A5%9E%E8%AF%9D/">希腊神话 <span class="tag-count">(1)</span></a>
                     
                 
             </div>
@@ -3471,10 +3604,10 @@
     // URL 记 #tags 这类锚点，刷新/分享能回到当前标签
     var tabs = document.querySelectorAll('.directory-page .category-tab');
     var panes = document.querySelectorAll('.directory-pane');
-    var names = ['archive', 'categories', 'tags', 'summary'];
+    var names = ['index', 'archive', 'categories', 'tags', 'summary'];
 
     function show(name) {
-        if (names.indexOf(name) === -1) name = 'archive';
+        if (names.indexOf(name) === -1) name = 'index';
         tabs.forEach(function(t) {
             t.classList.toggle('active', t.getAttribute('data-pane') === 'pane-' + name);
         });
