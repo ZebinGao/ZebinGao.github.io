@@ -507,42 +507,52 @@ body {
 ========================================================= */
 .link-navigation {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
 }
 .link-card-wrap {
     text-decoration: none;
     display: block;
 }
+/* 2026-11-03 由竖排居中改为横排紧凑卡：头像左置缩小、文字左对齐，单卡高度 ~200px → ~60px */
 .card {
     border: 1px solid var(--border-color);
-    padding: 20px 15px;
-    border-radius: 12px;
+    padding: 8px 12px;
+    border-radius: 10px;
     transition: all 0.3s;
-    text-align: center;
+    text-align: left;
     background: var(--bg-card);
     height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 .card:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    transform: translateY(-5px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
     border-color: var(--accent);
 }
 .card img {
-    width: 70px;
-    height: 70px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    margin-bottom: 15px;
+    margin-bottom: 0;
     object-fit: cover;
+    flex-shrink: 0;
+}
+.card-text {
+    min-width: 0; /* flex 子项默认不收缩，不给 0 的话长简介会撑破卡片 */
+    flex: 1;
 }
 .card-text h4 {
-    margin: 0 0 5px;
+    margin: 0 0 2px;
     color: var(--text-main);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 .card-text p {
-    font-size: 0.85rem;
+    font-size: 0.78rem;
+    line-height: 1.4;
     color: var(--text-muted);
     margin: 0;
     /* 超出两行显示省略号 */
@@ -607,6 +617,17 @@ body {
 .directory-tabs a.category-tab {
     text-decoration: none;
     text-align: center;
+}
+
+/* 「朝华章」三语标签条 + 中文古典/现代子轴（poem-daily.ejs）：真链接复用
+   .category-tab 胶囊，同样去掉浏览器默认下划线；子轴复用友链的
+   .link-subcategory-tabs（margin-top:0 紧贴主行），只收窄与正文的间距 */
+.poem-daily-page a.category-tab {
+    text-decoration: none;
+}
+
+.poem-daily-page .poem-daily-subtabs {
+    margin-bottom: 22px; /* 主行 margin-top:25px 已撑开页顶，子轴下方留出正文呼吸感 */
 }
 
 /* 工具页：卡片复用 wiki-category-card，平台小标 + 标签筛选的隐藏态 */
