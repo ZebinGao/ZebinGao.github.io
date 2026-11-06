@@ -1,0 +1,394 @@
+/* =========================================================
+   博客宠物"团子"：左下角悬浮团子 + 对话面板
+   （配合 js/pet-chat.js 使用；颜色尽量走主题变量，自动适配明暗）
+   ========================================================= */
+
+/* —— 锚点：固定在左下角 —— */
+.pet-root {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 950; /* 高于正文，低于音乐播放条(1000)和灯箱(9999) */
+    font-family: inherit;
+}
+
+/* —— 团子本体：奶油小饭团 —— */
+.pet-dango {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 54px;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: linear-gradient(160deg, #fffef9 0%, #ffe9c9 68%, #ffd9a8 100%);
+    border-radius: 48% 48% 52% 52% / 58% 58% 44% 44%;
+    box-shadow:
+        0 6px 14px rgba(0, 0, 0, 0.14),
+        inset 0 -4px 8px rgba(255, 150, 60, 0.20),
+        inset 0 3px 6px rgba(255, 255, 255, 0.9);
+    animation: pet-breathe 3.6s ease-in-out infinite;
+    transition: filter 0.2s;
+    touch-action: none;  /* 触屏上拖团子时不带动页面滚动 */
+    cursor: grab;
+}
+.pet-dango:active {
+    cursor: grabbing;
+}
+.pet-dango:hover {
+    filter: brightness(1.04) drop-shadow(0 8px 16px rgba(var(--accent-rgb), 0.35));
+}
+.pet-dango:active {
+    filter: brightness(0.97);
+    animation-play-state: paused;
+}
+@keyframes pet-breathe {
+    0%, 100% { transform: scale(1, 1); }
+    50%      { transform: scale(1.045, 0.955); }
+}
+
+/* —— 脸 —— */
+.pet-face {
+    position: absolute;
+    inset: 0;
+}
+.pet-eye {
+    position: absolute;
+    top: 22px;
+    width: 6.5px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4b3a2f;
+    animation: pet-blink 4.4s infinite;
+}
+.pet-eye-l { left: 16px; }
+.pet-eye-r { right: 16px; }
+@keyframes pet-blink {
+    0%, 93%, 100% { transform: scaleY(1); }
+    96%           { transform: scaleY(0.08); }
+}
+.pet-blush {
+    position: absolute;
+    top: 30px;
+    width: 9px;
+    height: 5.5px;
+    border-radius: 50%;
+    background: rgba(var(--accent-rgb), 0.32);
+}
+.pet-blush-l { left: 8px; }
+.pet-blush-r { right: 8px; }
+.pet-mouth {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    width: 8px;
+    height: 5px;
+    margin-left: -4px;
+    border-bottom: 2px solid #4b3a2f;
+    border-radius: 0 0 8px 8px;
+}
+
+/* 开心脸（面板打开时）：眼睛变 ^，嘴变大 */
+.pet-root.open .pet-eye {
+    height: 5px;
+    background: transparent;
+    border-top: 2.5px solid #4b3a2f;
+    border-radius: 8px 8px 0 0;
+    animation: none;
+}
+.pet-root.open .pet-mouth {
+    width: 12px;
+    height: 7px;
+}
+
+/* 思考脸（等模型回话时）：眼睛闭成 – –，嘴变 o */
+.pet-root.thinking .pet-eye {
+    width: 8px;
+    height: 2.5px;
+    border-radius: 2px;
+    background: #4b3a2f;
+    animation: none;
+}
+.pet-root.thinking .pet-mouth {
+    width: 5px;
+    height: 5px;
+    margin-left: -2.5px;
+    border: 2px solid #4b3a2f;
+    border-radius: 50%;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    transform: rotate(-45deg);
+}
+
+/* —— 拖拽中：呼吸暂停、团子绷紧 —— */
+.pet-root.pet-dragging {
+    z-index: 960;
+}
+.pet-root.pet-dragging .pet-dango {
+    animation: none;
+    transform: scale(1.1);
+    filter: brightness(1.06);
+}
+
+/* —— 拖到屏幕右半边：面板/气泡改为朝左开，避免超出视口 —— */
+.pet-root.pet-flip .pet-chat {
+    left: auto;
+    right: 0;
+    transform-origin: calc(100% - 24px) 100%;
+}
+.pet-root.pet-flip .pet-hint {
+    left: auto;
+    right: 4px;
+}
+.pet-root.pet-flip .pet-hint::after {
+    left: auto;
+    right: 18px;
+}
+
+/* —— 拖到屏幕高处：面板/气泡改为朝下开 —— */
+.pet-root.pet-top .pet-chat {
+    bottom: auto;
+    top: 72px;
+    transform-origin: 24px 0;
+}
+.pet-root.pet-top.pet-flip .pet-chat {
+    transform-origin: calc(100% - 24px) 0;
+}
+.pet-root.pet-top .pet-hint {
+    bottom: auto;
+    top: 72px;
+}
+
+/* —— 进场提示气泡 —— */
+.pet-hint {
+    position: absolute;
+    left: 4px;
+    bottom: 72px;
+    max-width: 190px;
+    padding: 7px 12px;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-main);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+    pointer-events: none;
+}
+.pet-hint::after { /* 小尾巴 */
+    content: '';
+    position: absolute;
+    left: 18px;
+    bottom: -5px;
+    width: 10px;
+    height: 10px;
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transform: rotate(45deg);
+}
+.pet-hint.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* —— 对话面板 —— */
+.pet-chat {
+    position: absolute;
+    left: 0;
+    bottom: 72px;
+    width: 330px;
+    max-height: min(70vh, 480px);
+    display: none;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transform-origin: 24px 100%;
+}
+.pet-root.open .pet-chat {
+    display: flex;
+    animation: pet-pop 0.22s ease-out;
+}
+@keyframes pet-pop {
+    from { opacity: 0; transform: scale(0.72) translateY(10px); }
+}
+
+/* 头部 */
+.pet-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border-color);
+}
+.pet-title b {
+    font-size: 14.5px;
+    color: var(--text-strong);
+    margin-right: 6px;
+}
+.pet-title em {
+    font-style: normal;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+.pet-head-btns {
+    display: flex;
+    gap: 4px;
+}
+.pet-icon-btn {
+    width: 26px;
+    height: 26px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+}
+.pet-icon-btn:hover {
+    background: var(--bg-button);
+    color: var(--text-main);
+}
+
+/* 消息区 */
+.pet-msgs {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    scrollbar-width: thin;
+}
+.pet-msg {
+    max-width: 84%;
+    padding: 8px 12px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    word-break: break-word;
+    white-space: normal;
+}
+.pet-msg.u {
+    align-self: flex-end;
+    background: var(--accent);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+}
+.pet-msg.a {
+    align-self: flex-start;
+    background: var(--bg-button);
+    color: var(--text-main);
+    border-bottom-left-radius: 4px;
+}
+.pet-msg .pet-link {
+    display: inline-block;
+    margin-top: 4px;
+    color: var(--accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+}
+
+/* 输入中：三个跳动的小点 */
+.pet-typing .pet-dots {
+    display: inline-flex;
+    gap: 4px;
+    padding: 2px 0;
+}
+.pet-dots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: pet-dot 1.2s infinite;
+}
+.pet-dots i:nth-child(2) { animation-delay: 0.15s; }
+.pet-dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes pet-dot {
+    0%, 60%, 100% { transform: translateY(0); }
+    30%           { transform: translateY(-5px); }
+}
+
+/* 输入行 */
+.pet-input-row {
+    display: flex;
+    gap: 8px;
+    padding: 10px 10px 6px;
+    border-top: 1px solid var(--border-color);
+}
+.pet-input-row input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-body);
+    color: var(--text-main);
+    font-size: 13.5px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.pet-input-row input:focus {
+    border-color: var(--accent);
+}
+.pet-input-row button {
+    min-width: 58px;
+    padding: 0 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+.pet-input-row button:hover {
+    filter: brightness(0.94);
+}
+
+.pet-foot {
+    padding: 2px 0 7px;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-align: center;
+    user-select: none;
+}
+
+/* —— 移动端 —— */
+@media (max-width: 768px) {
+    .pet-root {
+        left: 14px;
+        bottom: 14px;
+    }
+    .pet-chat {
+        width: calc(100vw - 28px);
+        max-width: 330px;
+    }
+    .pet-hint,
+    .pet-chat {
+        bottom: 66px;
+    }
+}
+
+/* —— 减少动态效果偏好 —— */
+@media (prefers-reduced-motion: reduce) {
+    .pet-dango,
+    .pet-eye,
+    .pet-root.open .pet-chat,
+    .pet-dots i {
+        animation: none;
+    }
+}

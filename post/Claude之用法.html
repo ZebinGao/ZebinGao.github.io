@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 之用法 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Claude 之用法</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月06日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-none-link" href="/tags/Claude-Code/" rel="tag">Claude Code</a>, <a class="tag-none-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="它是什么"><a href="#它是什么" class="headerlink" title="它是什么"></a>它是什么</h2><p>Claude Code 是一个编程代理：不只是回答问题，它还会读文件、改代码、执行命令，每个有风险的动作都先经过你的批准才会执行。它可以运行在终端（名字里的 Code 就来自命令行工具）、VS Code 扩展、桌面应用和网页版里，指令基本通用——少数只在终端可用的操作，在指令清单一节单独列出。上一篇《Claude 之思考》讲的是内部原理——ReAct 循环、三层提示词、KV 缓存；这一篇讲怎么使用：怎么输入、权限怎么设置、有哪些指令、上下文怎么管理。指令清单对照过官方文档（2026 年 11 月）；这个工具迭代很快，某条指令还在不在，以 <code>/help</code> 的输出为准——<code>/vim</code> 就是这期间刚被移除的。</p>
+<h2 id="三种输入"><a href="#三种输入" class="headerlink" title="三种输入"></a>三种输入</h2><ul>
+<li><strong>自然语言</strong>。默认方式：直接描述任务，剩下的它自己决定——先读哪个文件、执行哪条命令，都是它的动作。</li>
+<li><strong><code>!</code> 前缀</strong>（仅终端）。进入 shell 模式：<code>!git status</code> 直接执行命令，输出进入上下文，它看到结果后接着处理。适合自己想执行一条命令、同时希望 AI 看到结果的场景——VS Code 扩展的聊天框里 <code>!</code> 不生效，会被当作普通消息发送出去。</li>
+<li><strong><code>@</code> 引用</strong>。输入 @ 会弹出文件路径补全，选中后文件内容进入对话，省得再描述”就是那个改过的配置文件”。</li>
+</ul>
+<p>它干活的时候你不必等着：随时可以输入并回车，消息会显示为灰色、排进队列，它做完手头的事会自动接上。</p>
+<h2 id="权限：先确认，再执行"><a href="#权限：先确认，再执行" class="headerlink" title="权限：先确认，再执行"></a>权限：先确认，再执行</h2><p>它的动作分两类：只读操作（读文件、搜索）直接执行；写操作（修改文件、执行命令）先经过权限确认。确认的频率用 <strong>Shift+Tab</strong> 轮换：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>默认</td>
+<td>编辑和命令逐条询问</td>
+</tr>
+<tr>
+<td>自动接受编辑</td>
+<td>文件改动放行，命令仍询问</td>
+</tr>
+<tr>
+<td>计划模式</td>
+<td>只读调查，先出完整计划，批准后才动手</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>计划模式适合大改动：先看它打算怎么改，比改完再撤销便宜得多。还有一档完全放行（bypass permissions），一般只在沙箱或容器环境里才考虑使用。逐条的规则用 <code>/permissions</code> 配置——把安全命令（<code>git status</code> 这类）设为不再询问，把危险命令设为必须确认或直接拒绝；配置好之后，日常几乎不会被弹窗打断。<code>/plan</code> 可以不按 Shift+Tab、直接进入计划模式。</p>
+<h2 id="指令清单"><a href="#指令清单" class="headerlink" title="指令清单"></a>指令清单</h2><p>输入框敲 / 会弹出补全。按用途分组：</p>
+<h3 id="会话与上下文"><a href="#会话与上下文" class="headerlink" title="会话与上下文"></a>会话与上下文</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/clear</code></td>
+<td>清空上下文、开始新会话，可以给旧会话命名存档</td>
+</tr>
+<tr>
+<td><code>/compact</code></td>
+<td>把历史压缩成摘要、延长会话，可以附带指示（”保留方案对比，丢弃调试输出”）</td>
+</tr>
+<tr>
+<td><code>/context</code></td>
+<td>列出上下文占用明细：系统提示词、工具、记忆、对话各占多少 token，还剩多少空闲</td>
+</tr>
+<tr>
+<td><code>/resume</code></td>
+<td>恢复历史会话</td>
+</tr>
+<tr>
+<td><code>/rewind</code></td>
+<td>回滚到检查点，对话和文件一起恢复（按两次 Esc 呼出菜单）</td>
+</tr>
+<tr>
+<td><code>/export</code></td>
+<td>导出对话为文本</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="模型与设置"><a href="#模型与设置" class="headerlink" title="模型与设置"></a>模型与设置</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/model</code></td>
+<td>切换模型，方向键同时调整思考力度</td>
+</tr>
+<tr>
+<td><code>/effort</code></td>
+<td>单独调整思考力度，low 到 max 五档</td>
+</tr>
+<tr>
+<td><code>/fast</code></td>
+<td>快速模式：加快输出速度，不换成小模型</td>
+</tr>
+<tr>
+<td><code>/config</code></td>
+<td>设置面板，也可以直接设置一项（如 <code>/config theme=dark</code>）</td>
+</tr>
+<tr>
+<td><code>/output-style</code></td>
+<td>切换输出风格：<code>/output-style 风格名</code>（concise、proactive 等；不带参数只列出可选风格，恢复默认用 default）</td>
+</tr>
+<tr>
+<td><code>/terminal-setup</code></td>
+<td>给终端设置 Shift+Enter 换行快捷键</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="项目与集成"><a href="#项目与集成" class="headerlink" title="项目与集成"></a>项目与集成</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/init</code></td>
+<td>通读项目，生成 CLAUDE.md 初稿</td>
+</tr>
+<tr>
+<td><code>/memory</code></td>
+<td>编辑各层级的记忆文件</td>
+</tr>
+<tr>
+<td><code>/add-dir</code></td>
+<td>给会话添加一个工作目录</td>
+</tr>
+<tr>
+<td><code>/mcp</code></td>
+<td>管理 MCP 服务器（接入外部工具）</td>
+</tr>
+<tr>
+<td><code>/hooks</code></td>
+<td>配置钩子：在指定事件发生时自动执行脚本</td>
+</tr>
+<tr>
+<td><code>/ide</code></td>
+<td>连接 IDE，共享选中内容和诊断信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="信息与审查"><a href="#信息与审查" class="headerlink" title="信息与审查"></a>信息与审查</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/status</code></td>
+<td>版本、账号、连接状态</td>
+</tr>
+<tr>
+<td><code>/usage</code></td>
+<td>用量与花费（<code>/cost</code> 是它的旧别名）</td>
+</tr>
+<tr>
+<td><code>/doctor</code></td>
+<td>检查安装是否有问题</td>
+</tr>
+<tr>
+<td><code>/release-notes</code></td>
+<td>查看更新日志</td>
+</tr>
+<tr>
+<td><code>/code-review</code></td>
+<td>审查当前改动、找 bug（别名 <code>/review</code>）</td>
+</tr>
+<tr>
+<td><code>/security-review</code></td>
+<td>检查当前分支相对默认分支的改动有没有安全漏洞</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="终端和插件（VS-Code-扩展）的差异"><a href="#终端和插件（VS-Code-扩展）的差异" class="headerlink" title="终端和插件（VS Code 扩展）的差异"></a>终端和插件（VS Code 扩展）的差异</h3><p>绝大多数斜杠指令两边通用，例外是这些：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令 / 操作</th>
+<th>终端</th>
+<th>VS Code 插件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>上表其余指令</td>
+<td>可用</td>
+<td>可用</td>
+</tr>
+<tr>
+<td><code>!</code> shell 模式</td>
+<td>可用</td>
+<td>不可用，会作为普通消息发出</td>
+</tr>
+<tr>
+<td><code>?</code> 帮助面板、Ctrl+O/R/T/B 快捷键</td>
+<td>可用</td>
+<td>不可用</td>
+</tr>
+<tr>
+<td><code>/terminal-setup</code></td>
+<td>可用，设置 Shift+Enter 绑定</td>
+<td>不适用</td>
+</tr>
+<tr>
+<td><code>/ide</code></td>
+<td>可用，连接 VS Code（共享选中、诊断、diff）</td>
+<td>不可用——扩展里连接已经内置，不需要再连</td>
+</tr>
+<tr>
+<td><code>/bug</code></td>
+<td>文本报告</td>
+<td>打开扩展自己的反馈对话框</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>各版本之间指令变动不小，完整清单在官方文档（code.claude.com/docs）。</p>
+<h2 id="上下文怎么管理"><a href="#上下文怎么管理" class="headerlink" title="上下文怎么管理"></a>上下文怎么管理</h2><p>上下文窗口是稀缺资源，而且不是全部留给对话——系统提示词、工具定义、记忆文件会先占掉一部分。<code>/context</code> 列出这份明细（下面是一次实际输出，做了合并和删减）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>token</th>
+<th>占比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统提示词 + 工具定义</td>
+<td>14.1k</td>
+<td>1.4%</td>
+</tr>
+<tr>
+<td>记忆与技能</td>
+<td>3.3k</td>
+<td>0.3%</td>
+</tr>
+<tr>
+<td>对话消息</td>
+<td>25.3k</td>
+<td>2.5%</td>
+</tr>
+<tr>
+<td>自动压缩缓冲</td>
+<td>33k</td>
+<td>3.3%</td>
+</tr>
+<tr>
+<td>空闲</td>
+<td>929.2k</td>
+<td>92.9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这张表正好对应上一篇的三层提示词：第一行是第一层的固定内核，第二行是第二层的注入前缀，第三行是第三层的交互记录——也就是 ReAct 循环本体，是唯一随会话变长的一行；前两行是每次开场的固定开销（本例约 17k）。空闲空间和压缩缓冲不属于任何一层。这个分层同时也是缓存分层：第一、二层是稳定的前缀，KV 缓存最容易命中；第三层只在末尾追加——「稳定的放前，易变的放后」，说的就是这张表的排法。</p>
+<p>表末尾那项”自动压缩缓冲”是预留的余量：历史接近上限时，框架会自动把旧对话压缩成摘要，会话不会因为窗口用满而突然中断。</p>
+<p>什么时候用哪个：<strong>换任务就用 <code>/clear</code></strong>——旧的历史会残留下来，把新任务的方向带偏，还白白消耗 token；<strong>同一个长任务、窗口快满了才用 <code>/compact</code></strong>。压缩的代价是前缀被重写、KV 缓存全部失效，下一个请求要按全价重新计算，原理见上一篇的缓存一节。<code>/rewind</code> 解决另一类问题：回滚到之前的检查点，对话和文件一起恢复——配合计划模式使用，批准计划之前和之后的状态都留着，随时可以回去。</p>
+<h2 id="收尾"><a href="#收尾" class="headerlink" title="收尾"></a>收尾</h2><p>清单看着杂，设计逻辑只有两条：让模型自主行动（agent 循环），同时用框架的硬约束兜底（权限确认、检查点、沙箱、压缩缓冲）。用得熟练的标志不是背下全部指令，而是知道每项约束该放到多松或多紧——权限放开多少、上下文什么时候压缩、哪些命令放进沙箱执行。</p>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/%E6%B6%88%E5%A4%B1%E7%9A%84%E6%95%99%E4%BC%9A%E5%A4%A7%E5%AD%A6.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">消失的教会大学</span>
+    </a>
+    
+    
+    <a class="post-nav-item post-nav-next" href="/post/Claude%E4%B9%8B%E5%B7%A5%E5%85%B7.html">
+        <span class="post-nav-direction">下一篇 &rarr;</span>
+        <span class="post-nav-title">Claude 之工具</span>
+    </a>
+    
+</nav>
+
+
+
+
+<section class="comments-section">
+    <h2 data-i18n="comments">评论</h2>
+    <div id="gitalk-container"></div>
+    
+<script src="/js/gitalk.min.js"></script>
+
+    <script>
+    (function () {
+        var legacy = {"/post/九月过半.html":"/post/2026/9/九月过半.html","/post/年终总结-2025年的年终总结.html":"/post/年终总结/2025年的年终总结.html"};
+        var path = decodeURI(window.location.pathname);
+        var gitalk = new Gitalk({
+            clientID: 'Ov23liUMUoQLKTPswJDK',
+            clientSecret: 'c46b751f5cbe796f506b01288d1c07f0446a45ef',
+            repo: 'blog-comments',
+            owner: 'ZebinGao',
+            admin: ["ZebinGao"],
+            id: legacy[path] || path, // 文章挪过目录时用老 id 匹配老 issue
+            distractionFreeMode: false,
+            proxy: 'https://cors.isomorphic-git.org/https://github.com/login/oauth/access_token'
+        });
+        gitalk.render('gitalk-container');
+    })();
+    </script>
+</section>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%83%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">它是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E8%BE%93%E5%85%A5"><span class="toc-text">三种输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%83%E9%99%90%EF%BC%9A%E5%85%88%E7%A1%AE%E8%AE%A4%EF%BC%8C%E5%86%8D%E6%89%A7%E8%A1%8C"><span class="toc-text">权限：先确认，再执行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%B8%85%E5%8D%95"><span class="toc-text">指令清单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%9A%E8%AF%9D%E4%B8%8E%E4%B8%8A%E4%B8%8B%E6%96%87"><span class="toc-text">会话与上下文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%AE%BE%E7%BD%AE"><span class="toc-text">模型与设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%B8%8E%E9%9B%86%E6%88%90"><span class="toc-text">项目与集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E6%81%AF%E4%B8%8E%E5%AE%A1%E6%9F%A5"><span class="toc-text">信息与审查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%88%E7%AB%AF%E5%92%8C%E6%8F%92%E4%BB%B6%EF%BC%88VS-Code-%E6%89%A9%E5%B1%95%EF%BC%89%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="toc-text">终端和插件（VS Code 扩展）的差异</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8A%E4%B8%8B%E6%96%87%E6%80%8E%E4%B9%88%E7%AE%A1%E7%90%86"><span class="toc-text">上下文怎么管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E5%B0%BE"><span class="toc-text">收尾</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/record/" style="font-size: 20px;">记录</a> <a href="/tags/life/" style="font-size: 18.86px;">生活</a> <a href="/tags/%E4%B8%A4%E6%80%A7/" style="font-size: 17.71px;">两性</a> <a href="/tags/reflection/" style="font-size: 16.57px;">反思</a> <a href="/tags/self/" style="font-size: 15.43px;">自我</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 14.29px;">旅行</a> <a href="/tags/Germany/" style="font-size: 13.14px;">德国</a> <a href="/tags/critic/" style="font-size: 13.14px;">批判</a> <a href="/tags/repost/" style="font-size: 12px;">转载</a> <a href="/tags/marriage/" style="font-size: 12px;">婚姻</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

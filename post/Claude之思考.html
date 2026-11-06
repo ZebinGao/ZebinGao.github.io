@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="/css/style.css">
 
     
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
     
 <link rel="stylesheet" href="/css/gitalk.css">
 
@@ -126,9 +129,9 @@
             <h2 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;system&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;【第一层：Agent 底层内核】固定 ReAct 范式、Tool-Use JSON Schema 与安全规则&quot;</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;tools&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;bash&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;description&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;在终端执行 shell 命令，如 git status、npm test&quot;</span><span class="hljs-punctuation">,</span><br>      <span class="hljs-attr">&quot;input_schema&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>        <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;object&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;properties&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span> <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;string&quot;</span> <span class="hljs-punctuation">&#125;</span> <span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-attr">&quot;required&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;command&quot;</span><span class="hljs-punctuation">]</span> <span class="hljs-punctuation">&#125;</span> <span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span><br>  <span class="hljs-attr">&quot;messages&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>    <span class="hljs-comment">// 【第二层：框架自动注入的静态项目前缀】（实际以 system-reminder 块夹带，非普通用户消息）</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;user&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;【来自 CLAUDE.md + MEMORY.md 的项目架构、硬性规约与历史经验】&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br><br>    <span class="hljs-comment">// 【第三层：动态交互链】</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;user&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;帮我运行单元测试并修复报错&quot;</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;assistant&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> ... tool_use<span class="hljs-punctuation">:</span> bash ... <span class="hljs-punctuation">]</span><span class="hljs-punctuation">&#125;</span><span class="hljs-punctuation">,</span>   <span class="hljs-comment">// 执行前先过 harness 权限门</span><br>    <span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;role&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;user&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;content&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span> ... tool_result<span class="hljs-punctuation">:</span> Traceback ... <span class="hljs-punctuation">]</span><span class="hljs-punctuation">&#125;</span><br>  <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 <ul>
 <li>CLAUDE.md：团队手写的静态项目规约（构建命令、代码规范、禁止写法），属于人注入的硬性约束。</li>
-<li>MEMORY.md：Agent 在过往工作中用 Write 工具自动沉淀的经验库（踩过的坑、纠正过的错误、技术决策），属于模型自发沉淀的软记忆。且记忆不全量进上下文：每次会话只载入这份目录，具体文件用到才读——索引常驻，明细按需召回。</li>
+<li>MEMORY.md：Agent 在过往工作中用 Write 工具自动沉淀的经验库（踩过的坑、纠正过的错误、技术决策），是模型自己积累下来的记忆。而且记忆不会全部进入上下文：每次会话只载入这份索引，具体的记忆文件用到哪个才读哪个。</li>
 </ul>
-<p>第三层里 assistant 与 user 的你往我来，展开看正是 ReAct 循环，只是论文里的三个环节成了 API 协议里的三种消息块：</p>
+<p>第三层里 assistant 和 user 消息的一来一回，展开看正是 ReAct 循环，只是论文里的三个环节成了 API 协议里的三种消息块：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -153,14 +156,14 @@
 </tbody>
 </table>
 </div>
-<p>还有一点 JSON 里看不出来：模型并不能真的执行命令。它只是输出一段 tool_use <strong>请求</strong>，真正执行的是框架，且执行前要过权限门——哪类命令免询问、哪类必须用户确认，都在这层拦截。安全因此是双保险：system prompt 里的安全规则是软约束（靠模型自觉），权限门是硬约束（不批准就执行不了）。</p>
-<p>三层结构也不是铁板一块：第三层随交互一直变长，逼近上下文上限（约 200k token）时需要压缩——把历史总结成摘要、丢弃原文重启会话（Claude Code 的 /compact）。代价是前缀改变、KV 缓存整体失效，下一请求从头重算，详见后文缓存一节。</p>
-<p>顺带一个回环：记忆的“索引常驻 + 按需召回”本身就是一次 ReAct 循环——判断需要哪条记忆（思考）→ 读文件（行动）→ 内容进上下文（观察）。内核在自己吃自己的狗粮。</p>
-<h2 id="姚顺宇"><a href="#姚顺宇" class="headerlink" title="姚顺宇"></a>姚顺宇</h2><p>在 ReAct 出现之前，思考与行动是两条平行线：纯思考一派是 CoT（思维链，Wei et al.，2022.01），只靠模型内部知识推理，容易幻觉；行动一派是 WebGPT（2021.12）、SayCan（2022.04），只预测下一步动作，不做高层规划。两者无法闭环。弥合它们的核心论文：《ReAct: Synergizing Reasoning and Acting in Language Models》（2022.10，ICLR 2023）。作者姚顺宇，论文发表时是普林斯顿大学博士生，在 Google Brain 实习。</p>
-<p>该论文首次系统实证（而非数学证明——全文没有一个定理，靠的是少样本示例引导 PaLM-540B 加消融实验）：让大模型交替进行“思考（Thought）- 行动（Action）- 观察（Observation）”的循环，可以大幅减少幻觉，并使模型具备自主解决复杂多步骤任务的能力。论文对 100 条轨迹的人工误差分析给出了硬数字：幻觉导致的失败，CoT 占 56%，ReAct 占 0%；成功案例中的假阳性 6% vs 14%。但接地有代价：推理错误率从 16% 升到 47%——外部知识增强了事实性，却束缚了推理灵活性。论文的最优解是两者互补：ReAct 失败时回退到 CoT 多数投票，反之亦然，3-5 个样本就能达到 CoT-SC 21 个样本的准确率。</p>
+<p>还有一点 JSON 里看不出来：模型并不能真的执行命令。它只是输出一段 tool_use <strong>请求</strong>，真正执行的是框架，而且执行前要先经过权限确认——哪类命令免询问、哪类必须用户确认，都在这一层拦截。安全因此是双保险：system prompt 里的安全规则是软约束（靠模型自觉遵守），权限确认是硬约束（不批准就执行不了）。</p>
+<p>三层结构也不是一成不变的：第三层随交互一直变长，逼近上下文上限（约 200k token）时需要压缩——把历史总结成摘要、丢弃原文重启会话（Claude Code 的 /compact）。代价是前缀改变、KV 缓存整体失效，下一请求从头重算，详见后文缓存一节。</p>
+<p>顺带一提，记忆的”索引常在、用到才读”本身就是一次 ReAct 循环——判断需要哪条记忆（思考）→ 读文件（行动）→ 内容进入上下文（观察）。这套机制自己也在按 ReAct 循环运转。</p>
+<h2 id="姚顺宇"><a href="#姚顺宇" class="headerlink" title="姚顺宇"></a>姚顺宇</h2><p>在 ReAct 出现之前，思考与行动是两条平行线：纯思考一派是 CoT（思维链，Wei et al.，2022.01），只靠模型内部知识推理，容易幻觉；行动一派是 WebGPT（2021.12）、SayCan（2022.04），只预测下一步动作，不做高层规划。两者衔接不起来。弥合两者的核心论文：《ReAct: Synergizing Reasoning and Acting in Language Models》（2022.10，ICLR 2023）。作者姚顺宇，论文发表时是普林斯顿大学博士生，在 Google Brain 实习。</p>
+<p>该论文首次系统实证（而非数学证明——全文没有一个定理，靠的是少样本示例引导 PaLM-540B 加消融实验）：让大模型交替进行”思考（Thought）- 行动（Action）- 观察（Observation）”的循环，可以大幅减少幻觉，并使模型具备自主解决复杂多步骤任务的能力。论文对 100 条轨迹的人工误差分析给出了明确的数字：幻觉导致的失败，CoT 占 56%，ReAct 占 0%；成功案例中的假阳性 6% vs 14%。但接入外部知识有代价：推理错误率从 16% 升到 47%——外部知识增强了事实性，却束缚了推理灵活性。论文的最优解是两者互补：ReAct 失败时回退到 CoT 多数投票，反之亦然，3-5 个样本就能达到 CoT-SC 21 个样本的准确率。</p>
 <p>这正是今天所有 Agent（包括 Claude Code）底层工作循环的理论鼻祖。后续谱系也基本是姚顺宇一条线串下来的：ReAct（2022.10）→ Reflexion（自我反思，2023.03）→ Tree of Thoughts（2023.05）→ SWE-agent（2024.05）。</p>
-<p>顺带一提：论文当年靠 few-shot 示例固定行为范式，今天的 Agent 框架则把这些示例固化成了 system prompt 指令（即本文第一节三层提示词里的“固定 ReAct 范式”）——同一个东西的两种形态。</p>
-<h2 id="DeepSeek-R1：喂出来还是激励出来"><a href="#DeepSeek-R1：喂出来还是激励出来" class="headerlink" title="DeepSeek R1：喂出来还是激励出来"></a>DeepSeek R1：喂出来还是激励出来</h2><p>DeepSeek 的破圈（2025 年 1 月的 R1）常被归因于思维链，但 CoT 是 2022 年的技术，o1（2024.09）也早是推理模型——真正的引爆点是可见性：o1 把思维链藏起来只给摘要，R1 完整裸露，普通用户第一次实时“看见”AI 自我怀疑、推翻重来。叠加“560 万美元训练成本”叙事与 MIT 开源免费（1 月 27 日 NVIDIA 单日蒸发约 5890 亿美元市值），思维链截图本身成了传播素材。</p>
+<p>顺带一提：论文当年靠 few-shot 示例固定行为范式，今天的 Agent 框架则把这些示例固化成了 system prompt 指令（即本文第一节三层提示词里的”固定 ReAct 范式”）——同一个东西的两种形态。</p>
+<h2 id="DeepSeek-R1：教出来还是激励出来"><a href="#DeepSeek-R1：教出来还是激励出来" class="headerlink" title="DeepSeek R1：教出来还是激励出来"></a>DeepSeek R1：教出来还是激励出来</h2><p>DeepSeek 的走红（2025 年 1 月的 R1）常被归因于思维链，但 CoT 是 2022 年的技术，o1（2024.09）也早是推理模型——真正的引爆点是可见性：o1 把思维链藏起来只给摘要，R1 完整展示，普通用户第一次实时”看见”AI 自我怀疑、推翻重来。叠加”560 万美元训练成本”叙事与 MIT 开源免费（1 月 27 日 NVIDIA 单日蒸发约 5890 亿美元市值），思维链截图本身成了传播素材。</p>
 <div class="table-container">
 <table>
 <thead>
@@ -184,36 +187,36 @@
 <tr>
 <td>2025.01</td>
 <td>R1</td>
-<td>完整裸露，破圈引爆点</td>
+<td>完整展示，引爆点</td>
 </tr>
 <tr>
 <td>2025 至今</td>
 <td>Claude</td>
-<td>extended thinking + 思考与工具调用交替——绕回 ReAct</td>
+<td>extended thinking + 思考与工具调用交替——又回到了 ReAct</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>学界震动则在另一件事：R1-Zero 证明了推理能力可以被<strong>激励</strong>出来，而不是<strong>喂</strong>出来的。喂出来（SFT）是用几十万条高质量思维链样本逐 token 模仿，模型学的是“好思维的形”，上限就是样本质量；激励出来（RL）则零示范，奖励只有两条程序判定规则——答案对加分、过程写进 <code>&lt;think&gt;</code> 标签加分。训练推进后，模型自发涌现出回溯与自我修正：写到一半“等等，这不对”，推倒重来，即论文表 2 的 “aha moment”。没人教过“回头检查”，这类行为本来以极低概率存在于基座分布里，RL 只放大统计上与高分相关的行为——检查不是被教的，是被选择出来的，像进化筛出眼睛。（训练算法 GRPO 则是砍掉 PPO 的 value model，改为同一道题采样一组输出互相当 baseline，成本大降。）</p>
-<p>两个注脚：“涌现”并非无中生有，RL 是放大器不是造物主；R1-Zero 本身可读性差、中英混杂，最终产品 R1 还是加了少量冷启动 SFT——“零数据”是真的，产品喂了一点引子。</p>
-<p>回到主线：ReAct 时代思维链是 prompt 出来的，R1 时代是 RL 激励出来的——同一个东西，获取方式的范式转移，Claude 的 extended thinking 正是合流后的形态。</p>
-<h2 id="自发建立多agent任务"><a href="#自发建立多agent任务" class="headerlink" title="自发建立多agent任务"></a>自发建立多agent任务</h2><p>在多 Agent 系统中，顶层的“主 Agent”（Orchestrator）在初始化时，会被赋予一套极其详尽的元提示词（Meta-prompt）。这套指令明确告诉它：</p>
+<p>学界震动则在另一件事：R1-Zero 证明了推理能力可以被<strong>激励</strong>出来，而不是被<strong>手把手教</strong>出来的。教（SFT）是用几十万条高质量思维链样本逐 token 模仿，模型学到的是好的思维形式，上限就是样本的质量；激励（RL）则零示范，奖励只有两条程序判定规则——答案对加分、过程写进 <code>&lt;think&gt;</code> 标签加分。训练推进后，模型自发涌现出回溯与自我修正：写到一半”等等，这不对”，推倒重来，即论文表 2 的 “aha moment”。没人教过”回头检查”，这类行为本来以极低概率存在于基座分布里，RL 只是放大统计上与高分相关的行为——检查不是被教出来的，是被选择出来的，和自然选择留下有利性状是同一个过程：没有谁去设计它，筛选把它留了下来。（训练算法 GRPO 则是去掉 PPO 的 value model，改为同一道题采样一组输出互相当作 baseline，成本大幅下降。）</p>
+<p>两点补充：”涌现”并非无中生有——强化学习只能放大模型里已有的行为，不能创造模型里没有的能力；R1-Zero 本身可读性差、中英混杂，最终产品 R1 还是加了少量冷启动 SFT——“零数据”是真的，产品里加了一点起步用的示范数据。</p>
+<p>回到主线：ReAct 时代思维链是 prompt 出来的，R1 时代是 RL 激励出来的——同一个东西，获取方式发生了范式转移，Claude 的 extended thinking 正是合流后的形态。</p>
+<h2 id="自发建立多agent任务"><a href="#自发建立多agent任务" class="headerlink" title="自发建立多agent任务"></a>自发建立多agent任务</h2><p>在多 Agent 系统中，顶层的”主 Agent”（Orchestrator）在初始化时，会被赋予一套极其详尽的元提示词（Meta-prompt）。这套指令明确告诉它：</p>
 <ul>
 <li>角色定位：你是一个项目管理者/架构师，而不是单纯的问答助手。</li>
 <li>能力边界：你有权调用某些特定的工具（Tools），或者在内部模拟不同的专家角色（如代码编写员、测试员、代码审查员）。</li>
 <li>工作流协议：面对复杂任务时，必须先规划（Plan），再分解（Decompose），最后分发和聚合。</li>
 </ul>
-<p>“自发”体现在派生时机：不需要用户指定，主 Agent 判断任务适合并行或隔离时，自己决定派生子 Agent——派生本身就是它的一个 Action，子 Agent 内部再跑完整的 ReAct 循环，循环套循环，像分形。</p>
-<p>多 Agent 真正的动机是上下文隔离：子任务（比如通读几十个文件）在子 Agent 自己的上下文窗口里烧掉，主 Agent 只收回一份摘要报告，自己的 200k 预算不被动穿——这是第一节滚动缓冲区压力的解药。但代价是信息双向流失：子 Agent 只知道主 Agent 写给它的提示词，主 Agent 只拿回它的总结，细节两头丢。所以派生并不免费，滥用会得到一堆自信但缺细节的结论。</p>
-<h2 id="关于使用命令工具"><a href="#关于使用命令工具" class="headerlink" title="关于使用命令工具"></a>关于使用命令工具</h2><p>工具的定义（JSON Schema）第一节已经见过，这里看一次完整的循环怎么走。以“帮我运行单元测试并修复报错”为例：</p>
+<p>“自发”体现在派生时机：不需要用户指定，主 Agent 判断任务适合并行或隔离时，自己决定派生子 Agent——派生本身就是它的一个 Action，子 Agent 内部再跑完整的 ReAct 循环，循环里面套循环。</p>
+<p>多 Agent 真正的动机是上下文隔离：子任务（比如通读几十个文件）在子 Agent 自己的上下文窗口里消耗掉，主 Agent 只收回一份摘要报告，自己的 200k 窗口不会被占满——这正是第一节说的上下文压力的解决办法。但代价是信息双向流失：子 Agent 只知道主 Agent 写给它的提示词，主 Agent 只拿回它的总结，细节两头丢。所以派生并不免费，滥用会得到一堆自信但缺细节的结论。</p>
+<h2 id="关于使用命令工具"><a href="#关于使用命令工具" class="headerlink" title="关于使用命令工具"></a>关于使用命令工具</h2><p>工具的定义（JSON Schema）第一节已经见过，这里看一次完整的循环怎么走。以”帮我运行单元测试并修复报错”为例：</p>
 <ol>
 <li>用户消息进上下文，模型决定跑测试，发出 tool_use：bash(npm test)；</li>
-<li>框架过权限门、执行命令，把 Traceback 原文包成 tool_result 回填——这是 Observation；</li>
+<li>框架过权限确认、执行命令，把 Traceback 原文包成 tool_result 回填——这是 Observation；</li>
 <li>模型读 Traceback，定位到出错的那一行——这是 Thought；</li>
 <li>发出 tool_use 改文件，再跑一次测试验证——又是 Action；</li>
 <li>测试通过，输出总结答复，循环结束。</li>
 </ol>
-<p>命令工具的价值就在这一步步回流里：模型的每个行动都被真实环境校正，而不是靠猜。这也是第一节 JSON 里那三条消息的展开。</p>
+<p>命令工具的价值就在这个循环里：模型的每个行动都被真实环境校正，而不是靠猜。这也是第一节 JSON 里那三条消息的展开。</p>
 <h3 id="缓存命中率"><a href="#缓存命中率" class="headerlink" title="缓存命中率"></a>缓存命中率</h3><p>Claude 的缓存机制：<strong>把输入上下文里靠前、稳定不变的 token 段（system prompt、工具定义、固定的角色指令、长文档前置部分），在第一次传入后，在 Anthropic 侧的服务器上缓存这个 KV Cache（键值缓存，Transformer 注意力的 KV）</strong>。</p>
 <ul>
 <li>重点：它不是普通 HTTP 缓存（缓存完整响应文本），是 <strong>Transformer 内部的 KV 缓存</strong>。</li>
@@ -222,9 +225,9 @@
 </ul>
 <p>失效规则和命中同样重要，三条：</p>
 <ul>
-<li><strong>断点是 token 级的</strong>：不是全有全无——从第一个不同的 token 起，之后全部重算。所以内容排布要精确：稳定的放前，易变的放后，一处抖动毁掉后面整段。</li>
-<li><strong>/compact 是最大杀器</strong>：压缩用摘要重写了历史，前缀全变，缓存整体报废——第一节说的代价在这里兑现。</li>
-<li><strong>价差给动机</strong>：缓存写约 1.25 倍、命中读约 0.1 倍于普通输入价。三层结构把规约放最前、交互放最后，本质是被 10 倍价差规定的经济学。</li>
+<li><strong>断点是 token 级的</strong>：不是全有全无——从第一个不同的 token 起，之后全部重算。所以内容排布要精确：稳定的放前，易变的放后，一处不同，后面整段就要重算。</li>
+<li><strong>/compact 的影响最大</strong>：压缩用摘要重写了历史，前缀全变，缓存全部失效——第一节说的代价就是这件事。</li>
+<li><strong>价差是动力</strong>：缓存写入约 1.25 倍、命中读取约 0.1 倍于普通输入的价格。三层结构把规约放最前、交互放最后，本质上是由这个价格差决定的排法。</li>
 </ul>
 
         
@@ -291,7 +294,7 @@
         <div class="widget toc-widget">
             <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
             <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-text">提示词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%9A%E9%A1%BA%E5%AE%87"><span class="toc-text">姚顺宇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DeepSeek-R1%EF%BC%9A%E5%96%82%E5%87%BA%E6%9D%A5%E8%BF%98%E6%98%AF%E6%BF%80%E5%8A%B1%E5%87%BA%E6%9D%A5"><span class="toc-text">DeepSeek R1：喂出来还是激励出来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8F%91%E5%BB%BA%E7%AB%8B%E5%A4%9Aagent%E4%BB%BB%E5%8A%A1"><span class="toc-text">自发建立多agent任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E5%B7%A5%E5%85%B7"><span class="toc-text">关于使用命令工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD%E7%8E%87"><span class="toc-text">缓存命中率</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%E8%AF%8D"><span class="toc-text">提示词</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A7%9A%E9%A1%BA%E5%AE%87"><span class="toc-text">姚顺宇</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DeepSeek-R1%EF%BC%9A%E6%95%99%E5%87%BA%E6%9D%A5%E8%BF%98%E6%98%AF%E6%BF%80%E5%8A%B1%E5%87%BA%E6%9D%A5"><span class="toc-text">DeepSeek R1：教出来还是激励出来</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%8F%91%E5%BB%BA%E7%AB%8B%E5%A4%9Aagent%E4%BB%BB%E5%8A%A1"><span class="toc-text">自发建立多agent任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E5%B7%A5%E5%85%B7"><span class="toc-text">关于使用命令工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%91%BD%E4%B8%AD%E7%8E%87"><span class="toc-text">缓存命中率</span></a></li></ol></li></ol>
             </div>
         </div>
     
@@ -480,6 +483,9 @@
 
     
 <script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
 
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"

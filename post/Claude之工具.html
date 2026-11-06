@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude 之工具 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+<link rel="stylesheet" href="/css/gitalk.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Claude 之工具</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月06日</span>
+            
+                <span>📂 <a class="category-link" href="/categories/tech-notes/">技术笔记</a></span>
+            
+            
+                <span class="tags">
+                    🏷️ <a class="tag-none-link" href="/tags/AI/" rel="tag">AI</a>, <a class="tag-none-link" href="/tags/Claude-Code/" rel="tag">Claude Code</a>, <a class="tag-none-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a>
+                </span>
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h2 id="先分清三个概念"><a href="#先分清三个概念" class="headerlink" title="先分清三个概念"></a>先分清三个概念</h2><p>先说一件我自己遇到的事：在输入框敲 <code>/webfetch www.baidu.com</code>，回车，系统提示没有这个命令。WebFetch 明明存在，但它不是命令，是工具——命令是敲给 Claude Code 这个程序看的，由程序在本地处理；工具是模型在干活过程中自己调用的。两份清单互不相通。这件小事正好暴露了几个容易混淆的概念：提示词（prompt）、工具（tool）、技能（skill），以及和它们形似却不同的命令（command）。</p>
+<p>用 <code>/context</code> 的实际输出给它们划清边界（本会话数据，glm-5.3[1m]，1M 窗口）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>概念</th>
+<th>是什么</th>
+<th>谁发起</th>
+<th>占用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统提示词</td>
+<td>固定的行为规范：角色、纪律、环境</td>
+<td>框架拼装，会话全程不变</td>
+<td>2.1k</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>用 JSON Schema 定义的函数</td>
+<td>模型调用，先过权限</td>
+<td>常驻 15 个共 7.2k；延迟 14 个只挂名字，不占</td>
+</tr>
+<tr>
+<td>技能</td>
+<td>某类任务的完整指令包</td>
+<td>用户敲 <code>/</code> 或模型自行判断</td>
+<td>13 个共 2k，只挂名字和一行触发条件</td>
+</tr>
+<tr>
+<td>（命令）</td>
+<td>框架本地处理的用户指令</td>
+<td>用户敲 <code>/</code></td>
+<td>不经过模型，不占上下文</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>提示词</strong>从会话一开始就固定加载，内容不变：模型是什么（编程代理）、遵守什么（安全规则、汇报纪律）、环境如何（工作目录、操作系统）。它不增加能力，只约束行为。</p>
+<p><strong>工具</strong>是模型可以调用的函数，每个都有名字、参数和类型约束，另外配一篇很长的说明。这篇说明是写给模型看的——普通软件的 API 文档写给人看，这里的 API 文档写给模型看，同时承担三件事：说明用法、规定使用时机、提醒已知的坑，一份动辄上千 token。工具分两档：Bash、Read、Edit 这类高频工具的 Schema 一直加载着；Monitor、WebFetch 这类低频工具只挂一个名字，模型需要时先用 ToolSearch 把 Schema 拉进来才能调用。这笔账在 <code>/context</code> 里能看到：延迟工具的 4.9k 列在表里，但不计入已用的 12.4k——因为还没加载；拉取之后才变成实际占用。开销跟着使用频率走。</p>
+<p><strong>技能</strong>解决”怎么做”的问题。<code>/code-review</code>、<code>/dataviz</code> 这些，平时只保留名字和一行触发描述，调用时才把完整指令注入对话。技能不给模型新能力——能用的工具还是那些——只提供做某类任务的方法和步骤。</p>
+<p><strong>命令</strong>在用户这一侧，框架自己处理，比如 <code>/clear</code>、<code>/context</code>，完全不经过模型。技能是两边之间的桥梁：用户敲 <code>/code-review</code>，框架把技能的指令注入对话，再由模型照着执行。所以”没有 /webfetch”很正常：WebFetch 登记在模型的工具表里，从来没有登记在用户的命令表里。</p>
+<p>概念清楚了，下面逐个分析五个工具：AskUserQuestion 用来向用户提问，Bash 用来执行命令，Grep 用来搜索，Monitor 用来监视后台任务，WebFetch 用来抓网页。引文全部逐字来自导出的工具说明原文。</p>
+<h2 id="AskUserQuestion：把提问变成选择题"><a href="#AskUserQuestion：把提问变成选择题" class="headerlink" title="AskUserQuestion：把提问变成选择题"></a>AskUserQuestion：把提问变成选择题</h2><p>模型遇到拿不准的岔路可以问用户，但直接问是开放式问题，用户要打一段字回答。AskUserQuestion 把提问变成选择题：一次最多 4 个问题，每题 2-4 个选项，系统自动附赠一个 “Other” 自由输入，支持多选，支持预览。</p>
+<p>它的说明第一句就划了门槛：”Use this tool only when you are blocked on a decision that is genuinely the user’s to make”——只在卡住、而且这个决定必须由用户来做的时候才用。什么算必须由用户做？后面给了标准：答案会改变下一步行动的才问；有惯例默认值的、或者模型自己能在代码里查到的事实，选一个合理的、说一声、继续做。打断用户是有成本的，要划算——这条思路来自 1999 年 Horvitz 关于混合主动权界面的研究。</p>
+<p>三个细节值得注意：</p>
+<ul>
+<li><strong>问题要能独立读懂</strong>。”The user may see only the question dialog”——弹窗打开时，本轮更早的输出可能已经不在屏幕上。所以问题本身要带上下文：依赖什么就简述什么，问哪个文件就写明文件名。这是一条界面约束，但写在了给模型看的行为规范里。</li>
+<li><strong>预览（preview）</strong>。比较界面草图、代码片段、配置写法时，每个选项可以带一块等宽显示的内容，界面变成左右对照——用户直接看到差别，而不是听模型描述差别。只有单选题支持。</li>
+<li><strong>工具之间有分工</strong>。计划模式下想问”这个计划行不行”？说明里明确禁止——这件事归 ExitPlanMode 管。工具之间的边界像函数签名一样不重叠。</li>
+</ul>
+<p>还有一条惯例：模型倾向哪个选项，就把它排在第一位并标注 “(Recommended)”——弹窗里的第一个选项常常就是模型的倾向。</p>
+<h2 id="Bash：规矩最多的工具"><a href="#Bash：规矩最多的工具" class="headerlink" title="Bash：规矩最多的工具"></a>Bash：规矩最多的工具</h2><p>Bash 能执行任意命令，是能力最强、也最危险的工具，所以它的说明最长、限制最密。整篇说明大致五个部分：</p>
+<p><strong>环境声明。</strong> 它跑的是 Git Bash（POSIX sh），不是 PowerShell，所以先规定语法：<code>/dev/null</code> 不是 <code>NUL</code>，<code>$VAR</code> 不是 <code>%VAR%</code>。跨平台的通用性需要用条款来换。</p>
+<p><strong>劝退清单。</strong> 说明明确要求不要用 Bash 跑 find、grep、cat、head、tail、sed、awk、echo——不是这些命令不好，而是存在只读的专用工具（Grep、Glob、Read）。专用工具是只读的，可以安全地设置成免询问；Bash 什么都能干，每次都得过权限。结果是最通用的工具反而被自己的说明劝退——权限制度反过来影响了工具的使用方式。</p>
+<p><strong>输出归属。</strong> “Command output is displayed to you, not reliably to the user”——命令输出给模型看，用户不一定看得见。所以结论要转述，不能默认用户已经看到。</p>
+<p><strong>后台任务。</strong> 后台任务退出时会收到通知，说明特意加了句”不要轮询输出文件”；前台 sleep 被禁止，等待条件应该用 Monitor。整个体系都在坚持同一个原则：等通知，不要反复查看。</p>
+<p><strong>Git 部分的事故记录。</strong> PR 里的 @名字 会触发真实通知，所以示例里的占位符（<code>@reviewer</code>、<code>@types/node</code>）一律加反引号或去掉 @，防止从项目文件里抄来的写法误伤真人。这类条款没有理论出处，只有事故出处。</p>
+<p>最值得注意的是它的必填参数 <code>description</code>：一句给用户看的、主动语态的命令说明，还禁用 “complex”、”risk” 这类词。命令为什么还需要一段描述？因为权限弹窗里用户看到的就是它。这不是给模型的备注，是给用户做决定用的说明——用户看懂了才知道该不该批准；看不懂的话，要么一律拒绝，要么一律放行，两种结果都偏离了权限制度本来的目的。安全设计里有个原则叫”心理可接受性”：安全机制必须好理解，否则用户会想办法绕过它，落点就在这个字段上。</p>
+<p>参数里还有一个不加掩饰的名字：<code>dangerouslyDisableSandbox</code>——危险操作连修饰都不做，直接把 dangerous 写在名字里。</p>
+<h2 id="Grep：重点是控制拿回多少"><a href="#Grep：重点是控制拿回多少" class="headerlink" title="Grep：重点是控制拿回多少"></a>Grep：重点是控制拿回多少</h2><p>Grep 表面上是 ripgrep 的包装，但看参数表会发现，它的设计重心不在搜索本身，而在控制输出——每个参数都在防止搜索结果把上下文撑爆：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>设计</th>
+<th>参数</th>
+<th>意图</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>三档输出</td>
+<td><code>output_mode</code>：content / files_with_matches / count，默认只列文件名</td>
+<td>最常见的问题是”哪些文件里有”，不是”每行内容是什么”</td>
+</tr>
+<tr>
+<td>默认限额</td>
+<td><code>head_limit</code> 默认 250 条</td>
+<td>一次搜索返回上万行等于把上下文撑爆；原文写明 “0 = 不限，慎用——大结果集浪费上下文”</td>
+</tr>
+<tr>
+<td>分页</td>
+<td><code>offset</code> 跳过前 N 条</td>
+<td>结果太多就分批取</td>
+</tr>
+<tr>
+<td>只取命中部分</td>
+<td><code>-o</code> 只输出匹配到的文本</td>
+<td>行里其余部分多半不需要</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>一个搜索工具，四个参数全在省 token。背景是 Lost in the Middle（Liu et al., 2023）的发现：长上下文里位于中间部分的内容，模型的检索表现明显差于首尾，呈 U 型曲线。既然窗口里的注意力是稀缺的，每次取回就应该尽量少。这也解释了 Bash 里那条”别跑 grep 命令，用 Grep 工具”的劝退：专用工具只读、输出可控、可以免询问，值得单独做一个。</p>
+<p>还有一个细节：说明特意提醒这是 ripgrep 的语法、不是 grep 的——字面量的花括号要转义（<code>interface\&#123;\&#125;</code>）。同一个名字，两套工具，语法有差别，得先纠正过来。</p>
+<h2 id="Monitor：后台监视和它的三条教训"><a href="#Monitor：后台监视和它的三条教训" class="headerlink" title="Monitor：后台监视和它的三条教训"></a>Monitor：后台监视和它的三条教训</h2><p>Monitor 的说明是全部工具里最长的一份，内容密度也最高，读下来接近一份运维值班手册。它是延迟工具，要用时才加载——说明书太重，常驻不划算。</p>
+<p>基本机制：脚本在后台运行，stdout 每一行是一个事件、对应一条通知；脚本退出，监视结束；每个监视器都有时限（默认 5 分钟，最长 30 分钟），到期可以重新布置。200 毫秒内的多行输出合并成一条通知。</p>
+<p>使用前先做选择，说明给了一个三分法：</p>
+<ul>
+<li>只要<strong>一次</strong>通知（”构建完成时告诉我”）→ 不用 Monitor，用 Bash 后台任务加 until 循环，条件满足自动退出；</li>
+<li><strong>每次发生</strong>都要通知、直到监视过期（”每出现一行 ERROR 就叫我”）→ Monitor 配不会退出的命令；</li>
+<li>每次都要、<strong>到某个终点为止</strong>（”逐个报告 CI 步骤，跑完结束”）→ Monitor 配会退出的命令。</li>
+</ul>
+<p>选错的后果也写了：拿 tail -f 配”只要一次通知”，事件发生之后监视器不会停，会一直挂到超时。</p>
+<p>真正有价值的是三条事故教训：</p>
+<p><strong>第一，SIGPIPE 陷阱。</strong> <code>tail -f log | grep -m 1 &quot;Ready&quot;</code> 看起来命中一条就会停，实际上如果日志随后安静下来，tail 永远收不到 SIGPIPE 信号，整条管道就挂在那里——看似可用的命令，实际是死的。</p>
+<p><strong>第二，行缓冲。</strong> 管道的每一级都要逐行刷新：grep 要加 <code>--line-buffered</code>，awk 要调 <code>fflush()</code>，head 根本不支持刷新。过滤器不刷新，事件就一直憋在缓冲区里——监视器什么都没报，不是没出事，是没看见。</p>
+<p><strong>第三，沉默不等于成功。</strong> “silence is not success”——过滤器必须覆盖所有可能的结束状态，不能只盯着成功路径。只匹配成功标记的监视器，在崩溃循环、进程挂死、意外退出时全程安静，而安静和正常运行看起来一模一样。原文给了对照：</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs gherkin"><span class="hljs-comment"># 错——崩溃、挂死、任何非成功退出时都不会有输出</span><br>tail -f run.log |<span class="hljs-string"> grep --line-buffered &quot;elapsed_steps=&quot;</span><br><span class="hljs-string"># 对——同时覆盖进度和所有失败特征</span><br><span class="hljs-string">tail -f run.log </span>|<span class="hljs-string"> grep -E --line-buffered &quot;elapsed_steps=</span>|<span class="hljs-string">Traceback</span>|<span class="hljs-string">Error</span>|<span class="hljs-string">FAILED</span>|<span class="hljs-string">assert</span>|<span class="hljs-string">Killed</span>|<span class="hljs-string">OOM&quot;</span><br></code></pre></td></tr></table></figure>
+<p>布置前的自检只有一句话：”if this process crashed right now, would my filter emit anything?”——如果进程现在崩了，过滤器会有输出吗？不会，就把条件放宽。</p>
+<p>另外还有一笔经济账：stdout 每行都是一条会话消息，事件本身也消耗 token，所以过滤器要挑”你会据它行动的行”——挑得准指的是把该行动的挑出来，不是只报好消息。事件太频繁的监视器会被自动停掉。</p>
+<h2 id="WebFetch：让小模型代读网页"><a href="#WebFetch：让小模型代读网页" class="headerlink" title="WebFetch：让小模型代读网页"></a>WebFetch：让小模型代读网页</h2><p>WebFetch 的说明最短，机制却最值得拆开看。流程：抓取 URL → 转成 Markdown → 一个小而快的模型根据你的 prompt 阅读内容并作答 → 主模型只看到答案，看不到原文。</p>
+<p>这是”按任务难度分配模型”的一个缩影：网页动辄几万 token，整页放进主模型的上下文非常浪费；让便宜的小模型读页面、只返回答案，主模型的窗口基本不受影响。代价有两个：答案质量取决于 prompt 写得是否具体；小模型可能漏掉你没有问到的内容。</p>
+<p>边界条件都是明确的工程判断，每条都有原因：</p>
+<ul>
+<li>需要登录的页面直接失败——不要让工具碰运气，改用带凭证的 MCP 工具；</li>
+<li>localhost 和不带点号的主机名失败——本地服务器用 Bash 里的 curl；</li>
+<li>HTTP 自动升级成 HTTPS；</li>
+<li><strong>跨主机重定向不自动跟随</strong>，而是把重定向地址返回给模型、要求再调一次——防止一条重定向链把请求带到意想不到的地方，每次跳转都要确认；</li>
+<li>同一个 URL 的结果缓存 15 分钟。</li>
+</ul>
+<p>WebFetch 和 WebSearch 各管一头：WebFetch 抓一个页面，WebSearch 搜一批结果（支持域名黑白名单，要求答案附来源清单）。WebFetch 常见的失败场景也很实际：靠 JavaScript 渲染的页面、登录墙、反爬。这些时候的替代路线是 Bash 里的 curl，或者专门的抓取 MCP。</p>
+<h2 id="收尾"><a href="#收尾" class="headerlink" title="收尾"></a>收尾</h2><p>五个工具，五种典型设计：AskUserQuestion 管提问——把打断收敛成选择题，只在真正的岔路口用；Bash 管执行——能力最强所以限制最多，连给用户看的说明都是必填项；Grep 管搜索——难点不在找到，而在少拿；Monitor 管等待——通知系统最危险的故障是毫无声音；WebFetch 管外部世界——用小模型挡在主模型和网页之间。</p>
+<p>它们共同应对三个前提：模型会犯错（所以要权限、要审查）；上下文有限（所以要按需加载、要限额分页）；外部环境不可全信（所以要确认重定向、要防路径劫持）。所谓 agent 框架，不只是换一个更聪明的模型，而是围绕这三个前提搭起来的一整套工程。提示词、工具、技能的分层，本质是把行为规范、能力和方法分开管理——《Claude 之用法》里那些指令的奇怪设计，到这里就都能对上了。</p>
+
+        
+    </div>
+</article>
+
+
+
+<nav class="post-nav">
+    
+    <a class="post-nav-item post-nav-prev" href="/post/Claude%E4%B9%8B%E7%94%A8%E6%B3%95.html">
+        <span class="post-nav-direction">&larr; 上一篇</span>
+        <span class="post-nav-title">Claude 之用法</span>
+    </a>
+    
+    
+</nav>
+
+
+
+
+<section class="comments-section">
+    <h2 data-i18n="comments">评论</h2>
+    <div id="gitalk-container"></div>
+    
+<script src="/js/gitalk.min.js"></script>
+
+    <script>
+    (function () {
+        var legacy = {"/post/九月过半.html":"/post/2026/9/九月过半.html","/post/年终总结-2025年的年终总结.html":"/post/年终总结/2025年的年终总结.html"};
+        var path = decodeURI(window.location.pathname);
+        var gitalk = new Gitalk({
+            clientID: 'Ov23liUMUoQLKTPswJDK',
+            clientSecret: 'c46b751f5cbe796f506b01288d1c07f0446a45ef',
+            repo: 'blog-comments',
+            owner: 'ZebinGao',
+            admin: ["ZebinGao"],
+            id: legacy[path] || path, // 文章挪过目录时用老 id 匹配老 issue
+            distractionFreeMode: false,
+            proxy: 'https://cors.isomorphic-git.org/https://github.com/login/oauth/access_token'
+        });
+        gitalk.render('gitalk-container');
+    })();
+    </script>
+</section>
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+        <div class="widget toc-widget">
+            <h3><i class="iconfont icon-list"></i> <span data-i18n="toc">文章目录</span></h3>
+            <div class="toc-content">
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%88%E5%88%86%E6%B8%85%E4%B8%89%E4%B8%AA%E6%A6%82%E5%BF%B5"><span class="toc-text">先分清三个概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AskUserQuestion%EF%BC%9A%E6%8A%8A%E6%8F%90%E9%97%AE%E5%8F%98%E6%88%90%E9%80%89%E6%8B%A9%E9%A2%98"><span class="toc-text">AskUserQuestion：把提问变成选择题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bash%EF%BC%9A%E8%A7%84%E7%9F%A9%E6%9C%80%E5%A4%9A%E7%9A%84%E5%B7%A5%E5%85%B7"><span class="toc-text">Bash：规矩最多的工具</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grep%EF%BC%9A%E9%87%8D%E7%82%B9%E6%98%AF%E6%8E%A7%E5%88%B6%E6%8B%BF%E5%9B%9E%E5%A4%9A%E5%B0%91"><span class="toc-text">Grep：重点是控制拿回多少</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Monitor%EF%BC%9A%E5%90%8E%E5%8F%B0%E7%9B%91%E8%A7%86%E5%92%8C%E5%AE%83%E7%9A%84%E4%B8%89%E6%9D%A1%E6%95%99%E8%AE%AD"><span class="toc-text">Monitor：后台监视和它的三条教训</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WebFetch%EF%BC%9A%E8%AE%A9%E5%B0%8F%E6%A8%A1%E5%9E%8B%E4%BB%A3%E8%AF%BB%E7%BD%91%E9%A1%B5"><span class="toc-text">WebFetch：让小模型代读网页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%94%B6%E5%B0%BE"><span class="toc-text">收尾</span></a></li></ol>
+            </div>
+        </div>
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/record/" style="font-size: 20px;">记录</a> <a href="/tags/life/" style="font-size: 18.86px;">生活</a> <a href="/tags/%E4%B8%A4%E6%80%A7/" style="font-size: 17.71px;">两性</a> <a href="/tags/reflection/" style="font-size: 16.57px;">反思</a> <a href="/tags/self/" style="font-size: 15.43px;">自我</a> <a href="/tags/%E6%97%85%E8%A1%8C/" style="font-size: 14.29px;">旅行</a> <a href="/tags/Germany/" style="font-size: 13.14px;">德国</a> <a href="/tags/critic/" style="font-size: 13.14px;">批判</a> <a href="/tags/repost/" style="font-size: 12px;">转载</a> <a href="/tags/marriage/" style="font-size: 12px;">婚姻</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>
