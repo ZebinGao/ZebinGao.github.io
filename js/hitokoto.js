@@ -1,11 +1,12 @@
 // 左栏一言：头像简介下面随机一句话，点击换一句
 // v1.hitokoto.cn 现在带 CORS 头，fetch 直取（老主题 diaspora 时代可没这待遇）。
-// 分类只取文学/诗词/哲学（c=d/i/k），限长 24 字——左栏就那么宽，句子长了折成四五行就毁了。
+// 分类取网易云/抖机灵/游戏/动画/漫画（c=j/l/c/a/b），限长 24 字——左栏就那么宽，句子长了折成四五行就毁了。
 // 句子缓存在 sessionStorage：同一趟浏览翻页不换句也不重复请求，
 // 重开浏览器/新标签页才拉新；点击仍然立刻换。
 // 失败不提示、不占位：签名行拿不到句子就整行隐藏，下次进页面再试。
 (function() {
-    var API = 'https://v1.hitokoto.cn/?c=d&c=i&c=k&max_length=24';
+    // c= 分类全表：a动画 b漫画 c游戏 d文学 e原创 f来自网络 g其他 h影视 i诗词 j网易云 k哲学 l抖机灵；不传 c 则全分类混抽
+    var API = 'https://v1.hitokoto.cn/?c=j&c=l&c=c&c=a&c=b&max_length=24';
     var CACHE_KEY = 'hitokoto-sentence';
     var box = document.getElementById('hitokoto-line');
     if (!box) return;
