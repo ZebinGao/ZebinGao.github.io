@@ -1,76 +1,76 @@
 {
   "site": "与买桂花同载酒",
   "url": "https://www.zebin-yue.top",
-  "generatedAt": "2026-11-16T02:25:15.727Z",
+  "generatedAt": "2026-11-16T03:06:38.147Z",
   "posts": 252,
   "encrypted": 25,
-  "totalWords": 551151,
-  "readingTimeMinutes": 1378,
+  "totalWords": 550353,
+  "readingTimeMinutes": 1376,
   "byYear": [
     {
       "year": 2026,
       "posts": 160,
-      "words": 352815
+      "words": 352286
     },
     {
       "year": 2025,
       "posts": 21,
-      "words": 41150
+      "words": 41098
     },
     {
       "year": 2024,
       "posts": 7,
-      "words": 13841
+      "words": 13815
     },
     {
       "year": 2023,
       "posts": 9,
-      "words": 31757
+      "words": 31729
     },
     {
       "year": 2022,
       "posts": 10,
-      "words": 40032
+      "words": 39994
     },
     {
       "year": 2021,
       "posts": 3,
-      "words": 6585
+      "words": 6580
     },
     {
       "year": 2020,
       "posts": 25,
-      "words": 39833
+      "words": 39766
     },
     {
       "year": 2019,
       "posts": 9,
-      "words": 12376
+      "words": 12354
     },
     {
       "year": 2018,
       "posts": 1,
-      "words": 1675
+      "words": 1671
     },
     {
       "year": 2017,
       "posts": 2,
-      "words": 1495
+      "words": 1487
     },
     {
       "year": 2016,
       "posts": 1,
-      "words": 1949
+      "words": 1942
     },
     {
       "year": 2015,
       "posts": 1,
-      "words": 2884
+      "words": 2880
     },
     {
       "year": 2012,
       "posts": 1,
-      "words": 975
+      "words": 969
     },
     {
       "year": 2010,
@@ -80,55 +80,55 @@
     {
       "year": 2009,
       "posts": 1,
-      "words": 1306
+      "words": 1304
     }
   ],
   "byCategory": [
     {
       "name": "生活随笔",
       "posts": 62,
-      "words": 93953
+      "words": 93736
     },
     {
       "name": "转载",
       "posts": 49,
-      "words": 183060
+      "words": 182919
     },
     {
       "name": "社会观察",
       "posts": 40,
-      "words": 86532
+      "words": 86382
     },
     {
       "name": "情感与心理",
       "posts": 34,
-      "words": 57811
+      "words": 57739
     },
     {
       "name": "技术笔记",
       "posts": 28,
-      "words": 44489
+      "words": 44428
     },
     {
       "name": "读书与思考",
       "posts": 21,
-      "words": 48114
+      "words": 48017
     },
     {
       "name": "旅行",
       "posts": 18,
-      "words": 37192
+      "words": 37132
     }
   ],
   "longest": [
     {
       "title": "置身钉内",
-      "words": 22108,
+      "words": 22106,
       "minutes": 55
     },
     {
       "title": "暴力破解的文章-2",
-      "words": 17279,
+      "words": 17275,
       "minutes": 43
     },
     {
