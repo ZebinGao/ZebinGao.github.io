@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电磁波与传输线：行波、驻波与介质中的传播 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">电磁波与传输线：行波、驻波与介质中的传播</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="电磁波与传输线：行波、驻波与介质中的传播"><a href="#电磁波与传输线：行波、驻波与介质中的传播" class="headerlink" title="电磁波与传输线：行波、驻波与介质中的传播"></a>电磁波与传输线：行波、驻波与介质中的传播</h1><p>RF 的一切从两个问题开始：<strong>交变电磁场怎么在介质与导体里传播</strong>，以及<strong>怎么用一根导线对（传输线）把它从 A 搬到 B</strong>。这张卡片把波的物理讲清，「阻抗匹配」「Smith圆图」两张卡片接着讲怎么把它送到位。</p>
+<h2 id="1-电磁波：场以光速跑"><a href="#1-电磁波：场以光速跑" class="headerlink" title="1. 电磁波：场以光速跑"></a>1. 电磁波：场以光速跑</h2><p>1865 年麦克斯韦方程组预言：交变的电场生磁场、磁场再生电场，相互激发成为自持的波，速度 $c = 1/\sqrt{\mu_0\varepsilon_0}$（1887 年赫兹实验证实）。从长波到伽马射线是同一个东西的不同频率：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>频段</th>
+<th>典型频率</th>
+<th>与 RF 设备的关联</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>工频</td>
+<td>50/60 Hz</td>
+<td>AC input（见「RF发生器」卡片）</td>
+</tr>
+<tr>
+<td>无线电/RF</td>
+<td>kHz–GHz</td>
+<td>13.56 MHz 等离子体激励（ISM 频段）</td>
+</tr>
+<tr>
+<td>微波</td>
+<td>GHz</td>
+<td>2.45 GHz 微波放电、通信</td>
+</tr>
+<tr>
+<td>红外–可见–紫外</td>
+<td>10¹²–10¹⁶ Hz</td>
+<td>退火灯、光学监测</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-交变场在介质中的传播"><a href="#2-交变场在介质中的传播" class="headerlink" title="2. 交变场在介质中的传播"></a>2. 交变场在介质中的传播</h2><p>电磁波进入介质，驱动介质中的电荷（电子云、极性分子、离子）跟着振荡——极化跟不上就产生损耗与色散：</p>
+<ul>
+<li><strong>传播速度变慢</strong>：$v = c/\sqrt{\varepsilon_r}$，折射率 $n=\sqrt{\varepsilon_r}$</li>
+<li><strong>介质损耗</strong>：用损耗角正切 $\tan\delta$ 表征，频率越高越严重——同轴电缆介质发热、微波窗口发热都由此而来</li>
+<li><strong>频率不同速度不同</strong>：色散——信号包络会展宽、畸变</li>
+<li><strong>穿透还是反射</strong>由材料电导与频率共同决定：良导体全反射（屏蔽的原理），绝缘介质透射（窗口的原理），等离子体有自己的截止频率 $\omega_p$（低于它全反射——电离层反射短波、卫星通信用高频穿过去的道理）</li>
+</ul>
+<h2 id="3-趋肤效应（Skin-Effect）"><a href="#3-趋肤效应（Skin-Effect）" class="headerlink" title="3. 趋肤效应（Skin Effect）"></a>3. 趋肤效应（Skin Effect）</h2><p>交变电流趋向导体<strong>表面</strong>流动：交变磁场在导体内感生涡流，涡流在内部抵消原电流、在表面加强——电流被”挤”进一层<strong>趋肤深度</strong>：</p>
+<script type="math/tex; mode=display">\delta = \sqrt{\frac{2}{\omega\mu\sigma}}</script><ul>
+<li>铜在 13.56 MHz：$\delta \approx 18\ \mu m$；在 50 Hz 工频：约 9 mm；2.45 GHz：约 1.3 μm</li>
+<li>频率越高、磁导率越高、电导率越高，电流层越薄——<strong>RF 电流只活在导体表面</strong></li>
+</ul>
+<p><strong>工程后果</strong>：</p>
+<ul>
+<li>RF 导体损耗全部集中在表面——同轴电缆内导体、腔体内壁<strong>镀银</strong>（高频下银的电导优势体现在表面层）</li>
+<li>大电流绕组用<strong>利兹线</strong>（多股相互绝缘细线）均摊电流</li>
+<li>接头氧化层哪怕几微米也直接吃功率——RF 接头要清洁、要力矩到位</li>
+<li>半导体腔体里的 RF 路径设计，趋肤深度决定了”电流走哪条缝”——拐角处电流挤内侧（拐角效应），边缘最热</li>
+</ul>
+<h2 id="4-传输线：不能再用”导线”思维"><a href="#4-传输线：不能再用”导线”思维" class="headerlink" title="4. 传输线：不能再用”导线”思维"></a>4. 传输线：不能再用”导线”思维</h2><p>频率高了以后，导线长度与波长可比（13.56 MHz 的波长约 22 m，机房电缆 1–5 m 已达 $\lambda/10$ 量级；GHz 下几厘米就够），<strong>沿线各点的电压电流不再相同</strong>——必须用”分布参数”的传输线模型：单位长度电感 L’、电容 C’、电阻 R’、电导 G’ 一路排开。</p>
+<p><strong>特性阻抗</strong>（无限长线上行波遇到的”impedance”）：</p>
+<script type="math/tex; mode=display">Z_0 = \sqrt{\frac{R' + j\omega L'}{G' + j\omega C'}} \xrightarrow{\text{低损耗}} \sqrt{\frac{L'}{C'}} \qquad (\text{纯阻性，与长度无关})</script><p>同轴电缆（内径 a、外径 b、介质 $\varepsilon_r$）：</p>
+<script type="math/tex; mode=display">Z_0 = \frac{60}{\sqrt{\varepsilon_r}}\ln\frac{b}{a}</script><p><strong>同轴电缆为什么是 RF 的标准载体</strong>：外导体是包裹整条线的法拉第笼——场全封在介质里，不辐射、不受扰；信号以 $v=c/\sqrt{\varepsilon_r}$ 传播（PTFE 约 0.66c）。</p>
+<p><strong>50 Ω 从哪来</strong>：空气同轴线功率容量最优约 30 Ω、损耗最优约 77 Ω——<strong>50 Ω 是功率与损耗的折中</strong>（视频/电信走损耗优先的 75 Ω）。整个 RF 生态（发生器、电缆、接头、匹配器）都统一在这个数上，好东西直接互换。</p>
+<h2 id="5-行波与驻波"><a href="#5-行波与驻波" class="headerlink" title="5. 行波与驻波"></a>5. 行波与驻波</h2><p>线上任意一点的电压 = <strong>入射波 + 反射波</strong>叠加。负载不匹配处，波打回来：</p>
+<script type="math/tex; mode=display">\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0} \qquad (\text{复数：幅度 + 相位})</script><ul>
+<li><strong>$Z_L = Z_0$（匹配）</strong>：$\Gamma=0$，纯<strong>行波</strong>——波沿一个方向跑，电压电流处处等幅，功率全部送达，这是链路的理想态</li>
+<li><strong>全反射（开路 $|\Gamma|=1$、短路 $\Gamma=-1$）</strong>：入射与反射等幅叠加成<strong>驻波</strong>——波原地”站住”，节点处电压恒为零、腹点处恒最大，每隔 $\lambda/4$ 电压电流的角色互换，<strong>净传输功率为零</strong>（能量在相邻 λ/4 段之间来回摆）</li>
+<li><strong>部分反射</strong>：行波上叠一个驻波包络——线上电压最大最小值之比就是驻波比 VSWR（详见「阻抗匹配」卡片）</li>
+</ul>
+<p><strong>驻波的三宗罪</strong>：反射功率烧发生器（触发保护降功率）；沿线电压腹点有击穿风险；实际送达负载的功率打折。</p>
+<p><strong>$\lambda/4$ 的魔法</strong>：四分之一波长短路线在接入点等效串联谐振；$\lambda/4$ 阻抗变换器 $Z_{in} = Z_0^2/Z_L$（ $\lambda/4$ 处阻抗”翻转”）——stub 调谐与谐振腔的全部几何感来自这里。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

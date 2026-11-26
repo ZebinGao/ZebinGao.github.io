@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smith 圆图：阻抗匹配的地图 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Smith 圆图：阻抗匹配的地图</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="Smith-圆图：阻抗匹配的地图"><a href="#Smith-圆图：阻抗匹配的地图" class="headerlink" title="Smith 圆图：阻抗匹配的地图"></a>Smith 圆图：阻抗匹配的地图</h1><p>1939 年，贝尔实验室的 <strong>Philip H. Smith</strong> 发明这张图，把复阻抗匹配的复数运算压缩成”在图上走路”。九十年来它没被计算机取代——每台网络分析仪屏幕上仍默认叠着它，RF 工程师调匹配时脑中的”地图”就是它。这张卡片讲怎么读、怎么走。</p>
+<h2 id="1-构造：把阻抗塞进一个圆"><a href="#1-构造：把阻抗塞进一个圆" class="headerlink" title="1. 构造：把阻抗塞进一个圆"></a>1. 构造：把阻抗塞进一个圆</h2><p><strong>核心思想</strong>：直接画阻抗平面（0 到 ∞ 半平面）没法用——把它映射到<strong>反射系数 $\Gamma$ 的复平面</strong>上，所有阻抗就都落进单位圆内了（$|\Gamma| \le 1$）。</p>
+<p>归一化阻抗 $z = Z/Z_0 = r + jx$，与反射系数的关系：</p>
+<script type="math/tex; mode=display">\Gamma = \frac{z-1}{z+1} \quad\Longleftrightarrow\quad z = \frac{1+\Gamma}{1-\Gamma}</script><p><strong>地标</strong>：</p>
+<ul>
+<li><strong>圆心</strong>：$z = 1$（即 $Z = Z_0 = 50\ \Omega$），$\Gamma = 0$——匹配点，所有匹配的目的地</li>
+<li><strong>左端点</strong>：$\Gamma = -1$，$z=0$——短路</li>
+<li><strong>右端点</strong>：$\Gamma = +1$，$z=\infty$——开路</li>
+<li><strong>上半平面</strong>：$x&gt;0$ <strong>感性</strong>；<strong>下半平面</strong>：$x&lt;0$ <strong>容性</strong>——看负载点落在哪半边，立刻知道该补电感还是电容</li>
+<li><strong>实轴</strong>：纯电阻线；单位圆边界：纯电抗（无损 LC）</li>
+</ul>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 560" width="600" height="560" role="img" aria-label="Smith chart" style="max-width:100%;height:auto;display:block;margin:0 auto;background:#fff;border-radius:8px;">
+  <rect x="0" y="0" width="600" height="560" fill="#ffffff" rx="8"/>
+  <defs>
+    <clipPath id="smith-unit"><circle cx="300.0" cy="280.0" r="220.0"/></clipPath>
+  </defs>
+  <line x1="80.0" y1="280.0" x2="520.0" y2="280.0" stroke="#95a5a6" stroke-width="1"/>
+  <g clip-path="url(#smith-unit)" fill="none" stroke="#2980b9" stroke-width="1.1" opacity="0.9">
+    <circle cx="520.0" cy="-820.0" r="1100.0"/>
+    <circle cx="520.0" cy="-160.0" r="440.0"/>
+    <circle cx="520.0" cy="60.0" r="220.0"/>
+    <circle cx="520.0" cy="170.0" r="110.0"/>
+    <circle cx="520.0" cy="236.0" r="44.0"/>
+    <circle cx="520.0" cy="1380.0" r="1100.0"/>
+    <circle cx="520.0" cy="720.0" r="440.0"/>
+    <circle cx="520.0" cy="500.0" r="220.0"/>
+    <circle cx="520.0" cy="390.0" r="110.0"/>
+    <circle cx="520.0" cy="324.0" r="44.0"/>
+  </g>
+  <g fill="none" stroke="#c0392b" stroke-width="1.1" opacity="0.9">
+    <circle cx="336.7" cy="280.0" r="183.3"/>
+    <circle cx="373.3" cy="280.0" r="146.7"/>
+    <circle cx="410.0" cy="280.0" r="110.0"/>
+    <circle cx="446.7" cy="280.0" r="73.3"/>
+    <circle cx="483.3" cy="280.0" r="36.7"/>
+  </g>
+  <circle cx="300.0" cy="280.0" r="220.0" fill="none" stroke="#34495e" stroke-width="2"/>
+  <g font-family="sans-serif" font-size="12" fill="#c0392b" text-anchor="middle">
+    <text x="153.3" y="297.0">0.2</text>
+    <text x="226.7" y="297.0">0.5</text>
+    <text x="300.0" y="297.0">1</text>
+    <text x="373.3" y="297.0">2</text>
+    <text x="446.7" y="297.0">5</text>
+  </g>
+  <g font-family="sans-serif" font-size="13" fill="#2980b9" text-anchor="middle">
+    <text x="120.9" y="209.4">+j0.2</text>
+    <text x="183.6" y="128.8">+j0.5</text>
+    <text x="300.0" y="90.0">+j1</text>
+    <text x="416.4" y="128.8">+j2</text>
+    <text x="479.1" y="209.4">+j5</text>
+    <text x="120.9" y="364.6">−j0.2</text>
+    <text x="183.6" y="445.2">−j0.5</text>
+    <text x="300.0" y="484.0">−j1</text>
+    <text x="416.4" y="445.2">−j2</text>
+    <text x="479.1" y="364.6">−j5</text>
+  </g>
+  <g font-family="sans-serif" font-size="12" fill="#2c3e50">
+    <text x="74.0" y="284.0" text-anchor="end">短路 0</text>
+    <text x="526.0" y="284.0" text-anchor="start">开路 &#8734;</text>
+    <circle cx="300.0" cy="280.0" r="3.5" fill="#2c3e50"/>
+    <text x="300.0" y="268.0" text-anchor="middle">匹配点 z=1</text>
+  </g>
+  <g font-family="sans-serif" font-size="12" fill="#7f8c8d" text-anchor="middle">
+    <text x="150" y="66">上半圆：感性 +jx</text>
+    <text x="150" y="510">下半圆：容性 &#8722;jx</text>
+  </g>
+</svg>
+
+<p><strong>图</strong>：标准 Smith 圆图。红色为等电阻圆（r = 0.2、0.5、1、2、5，全部汇聚于右侧开路点），蓝色为等电抗圆（x = ±0.2、±0.5、±1、±2、±5，同样汇聚于开路点）；左端为短路、圆心为匹配点，上半圆感性、下半圆容性。</p>
+<h2 id="2-两个圆族：读出任一点的阻抗"><a href="#2-两个圆族：读出任一点的阻抗" class="headerlink" title="2. 两个圆族：读出任一点的阻抗"></a>2. 两个圆族：读出任一点的阻抗</h2><ul>
+<li><strong>等电阻圆</strong>：$r$ 相同的点连成的圆，圆心都在实轴上，与 $x=0$ 轴相切于右端点——$r=0$ 是外边界大圆，$r=1$ 过圆心，$r\to\infty$ 缩成右端点</li>
+<li><strong>等电抗圆</strong>：$x$ 相同的点连成的圆弧，圆心在与实轴垂直的线上，弧两端都落在边界上——上半弧为感（+x）、下半为容（−x）</li>
+</ul>
+<p>任意负载点读法：找到它所在的等 r 圆与等 x 圆，交点即 $(r, x)$，乘以 $Z_0$ 得真实阻抗。例：点落在 $r=0.5$、$x=-1$ → $Z = 25 - j50\ \Omega$——一个偏小带容性的负载。</p>
+<h2 id="3-在图上”走路”：三类标准动作"><a href="#3-在图上”走路”：三类标准动作" class="headerlink" title="3. 在图上”走路”：三类标准动作"></a>3. 在图上”走路”：三类标准动作</h2><p><strong>（1）沿线移动（转圈）</strong>：沿传输线移动距离 $l$，$\Gamma$ 的幅度不变、相位旋转 $-2\beta l$——绕圆心<strong>顺时针</strong>（向源方向）转，每 $\lambda/2$ 转满一圈（阻抗沿线周期性重复）。半波长传输线 = 回到原点；<strong>$\lambda/4$ = 关于圆心镜像</strong>（$Z_{in}=Z_0^2/Z_L$ 的圆图版本）。</p>
+<p><strong>（2）加串联元件（沿等电阻圆走）</strong>：串 L（感抗 +x）→ 沿等 r 圆<strong>逆时针</strong>（上半圆内移动）；串 C（容抗 −x）→ 沿等 r 圆<strong>顺时针</strong>。</p>
+<p><strong>（3）加并联元件（沿等电导圆走）</strong>：并 L → 沿等电导圆顺时针（导纳图语言：感纳 −b）；并 C → 逆时针（容纳 +b）。<strong>并联分析用导纳圆图</strong>——同一张图转 180°（以圆心为中心），电阻圆变电导圆、电抗圆变电纳圆。</p>
+<h2 id="4-L-型匹配：从负载走回圆心的路"><a href="#4-L-型匹配：从负载走回圆心的路" class="headerlink" title="4. L 型匹配：从负载走回圆心的路"></a>4. L 型匹配：从负载走回圆心的路</h2><p>最简匹配网络：一个电感 + 一个电容，两种拓扑（负载先串后并 / 先并后串）。<strong>设计过程就是在圆图上规划路线</strong>：</p>
+<ol>
+<li>标出归一化负载点 $z_L$</li>
+<li>选一条两步路线：先沿等 r 圆（串联）走到 $r=1$ 圆上，再沿 $g=1$ 圆（并联）回到圆心——或反过来</li>
+<li>两段弧长直接读出所需 $X$ 与 $B$ → 换算成 L 值 C 值：</li>
+</ol>
+<script type="math/tex; mode=display">L = \frac{X Z_0}{\omega}，\qquad C = \frac{1}{\omega B Z_0} \quad (X, B \text{为归一化电抗/电纳})</script><ol>
+<li>频率已知（如 13.56 MHz）、$Z_0=50\ \Omega$ 代入即得元件值——<strong>圆图上量出来的就是元件值</strong></li>
+</ol>
+<p>两条路线对应两个解（高 Q / 低 Q 各一），按带宽要求选用（Q 与带宽见「阻抗匹配」卡片第 5 节）。</p>
+<h2 id="5-快捷读图经验"><a href="#5-快捷读图经验" class="headerlink" title="5. 快捷读图经验"></a>5. 快捷读图经验</h2><ul>
+<li>负载点在下半圆（容性）→ 两条路都从”串 L 或并 L”开始——<strong>补感抗</strong></li>
+<li>点离圆心越远（$|\Gamma|$ 越大），路线越长、Q 越高、带宽越窄</li>
+<li>频率扫描 = 负载点在图上描出一条小轨迹——看轨迹绕哪个方向、离圆心多远，负载的频率特性一目了然（谐振点 = 轨迹穿过实轴处）</li>
+<li>实操口诀：<strong>串联沿电阻圆、并联沿电导圆、向源顺时针、每半波长一圈</strong>——记住这四句，圆图就废不了</li>
+</ul>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

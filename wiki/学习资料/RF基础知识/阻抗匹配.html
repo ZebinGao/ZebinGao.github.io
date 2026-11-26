@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻抗匹配：最大输出功率、共轭与 VSWR | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">阻抗匹配：最大输出功率、共轭与 VSWR</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="阻抗匹配：最大输出功率、共轭与-VSWR"><a href="#阻抗匹配：最大输出功率、共轭与-VSWR" class="headerlink" title="阻抗匹配：最大输出功率、共轭与 VSWR"></a>阻抗匹配：最大输出功率、共轭与 VSWR</h1><p>匹配（matching）是 RF 工程的第一课：让源与负载”对上暗号”，功率才能痛快交出去。这张卡片讲清它的三个支柱——<strong>L/C 的能量语言</strong>、<strong>共轭匹配定理</strong>、<strong>VSWR 度量</strong>；具体怎么”算着走”见「Smith圆图」卡片，工程现场见「RF功率链路」卡片。</p>
+<h2 id="1-L-与-C：两种能量仓库"><a href="#1-L-与-C：两种能量仓库" class="headerlink" title="1. L 与 C：两种能量仓库"></a>1. L 与 C：两种能量仓库</h2><p>匹配网络里只有两种基本元件，各管一种能量：</p>
+<ul>
+<li><strong>电感 L——磁场的能量</strong>：电流建立磁场，储能 $W_L = \frac{1}{2}LI^2$。电流想变，L 反对（$v_L = L\,di/dt$）——电压<strong>超前</strong>电流 90°</li>
+<li><strong>电容 C——电场的能量</strong>：电压建立电场，储能 $W_C = \frac{1}{2}CV^2$。电压想变，C 反对（$i_C = C\,dv/dt$）——电流<strong>超前</strong>电压 90°</li>
+</ul>
+<p><strong>正负号相反的”抵抗”</strong>：感抗 $X_L = +\omega L$、容抗 $X_C = -1/\omega C$——一个正一个负，正好抵消。LC 并联或串联谐振时磁场能与电场能周期性互换（$\omega_0 = 1/\sqrt{LC}$），对外不再吞吐无功——<strong>谐振就是两种能量仓库的对口交换达到平衡</strong>。匹配网络的全部魔法，就是用 L 和 C 搭一个能量中转站，把负载的”能量口味”改造成源想要的 50 Ω 纯电阻。</p>
+<h2 id="2-共轭匹配：输出功率最大的条件"><a href="#2-共轭匹配：输出功率最大的条件" class="headerlink" title="2. 共轭匹配：输出功率最大的条件"></a>2. 共轭匹配：输出功率最大的条件</h2><p><strong>定理</strong>：源内阻抗 $Z_S = R_S + jX_S$，负载 $Z_L = R_L + jX_L$，当</p>
+<script type="math/tex; mode=display">Z_L = Z_S^* \quad\Longleftrightarrow\quad R_L = R_S,\ X_L = -X_S</script><p>时，负载获得<strong>最大功率</strong>：</p>
+<script type="math/tex; mode=display">P_{max} = \frac{|V_{oc}|^2}{8R_S}</script><p><strong>物理拆解</strong>（两步都少不了）：</p>
+<ol>
+<li><strong>虚部抵消（$X_L = -X_S$）</strong>：感抗容抗正负抵消，回路只剩纯电阻——电流不被无功分量拖后腿，功率因数为 1，能量不再在源负载间空跑</li>
+<li><strong>实部相等（$R_L = R_S$）</strong>：电阻分压最均衡的Point——负载电阻太大电流上不去、太小电压上不去，$R_L = R_S$ 时乘积 $I^2R_L$ 最大</li>
+</ol>
+<p><strong>从反射波看同一件事</strong>：共轭匹配时 $\Gamma = 0$——源看到的负载就是它的复共轭，入射波无反射地被吸收；内阻上损耗恰为一半（50% 效率上限正是最大功率传输的代价）。</p>
+<p><strong>工程语言</strong>：发生器内阻 50 Ω 纯阻 → 负载也要 50 Ω 纯阻。负载若带电抗（等离子体就是”几欧电阻串几百 pF 电容”），就用匹配网络把它变换成 50 Ω——<strong>匹配器的本质是一台”阻抗变压器”</strong>（见「RF功率链路」卡片）。</p>
+<h2 id="3-VSWR：匹配质量的温度计"><a href="#3-VSWR：匹配质量的温度计" class="headerlink" title="3. VSWR：匹配质量的温度计"></a>3. VSWR：匹配质量的温度计</h2><p><strong>驻波比（Voltage Standing Wave Ratio）</strong>：部分反射时，线上电压包络的最大值与最小值之比：</p>
+<script type="math/tex; mode=display">\mathrm{VSWR} = \frac{|V|_{max}}{|V|_{min}} = \frac{1+|\Gamma|}{1-|\Gamma|}</script><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>VSWR</th>
+<th>$</th>
+<th>\Gamma</th>
+<th>$</th>
+<th>反射功率</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0</td>
+<td>0</td>
+<td>0%</td>
+<td>完美匹配（理想）</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>0.20</td>
+<td>4%</td>
+<td>良好</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>0.33</td>
+<td>11%</td>
+<td>可接受</td>
+</tr>
+<tr>
+<td>3.0</td>
+<td>0.5</td>
+<td>25%</td>
+<td>差——该修了</td>
+</tr>
+<tr>
+<td>∞</td>
+<td>1</td>
+<td>100%</td>
+<td>全反射（开路/短路）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>回波损耗</strong> $RL = -20\log_{10}|\Gamma|$（dB）与 VSWR 一一对应：VSWR 1.5 ↔ RL 14 dB</li>
+<li>工程惯例：VSWR &lt; 1.5 为良好，&gt; 2 触发多数发生器的降功率保护</li>
+<li><strong>注意 VSWR 只看幅度</strong>，不含相位——它告诉你”有多不匹配”，不告诉你”往哪边调”。往哪边调要看相位（Smith 圆图或阻抗显示），这正是下一张卡片的主题</li>
+</ul>
+<h2 id="4-为什么匹配这么重要（三本账）"><a href="#4-为什么匹配这么重要（三本账）" class="headerlink" title="4. 为什么匹配这么重要（三本账）"></a>4. 为什么匹配这么重要（三本账）</h2><ol>
+<li><strong>功率账</strong>：反射功率在源内阻上变成热——VSWR 3 时 1/4 的功率白烧</li>
+<li><strong>安全账</strong>：反射叠加的电压腹点可能击穿电缆/接头/腔体绝缘；源末级功率管直接面对反射功率，寿命骤减——发生器 VSWR 保护就是保命电路</li>
+<li><strong>工艺账</strong>（等离子体设备）：入腔功率不稳 = 等离子体密度不稳 = 工艺漂移。auto-match 的秒级响应是刻蚀重复性的隐形支柱</li>
+</ol>
+<h2 id="5-Q-值与带宽：匹配的代价"><a href="#5-Q-值与带宽：匹配的代价" class="headerlink" title="5. Q 值与带宽：匹配的代价"></a>5. Q 值与带宽：匹配的代价</h2><p>匹配网络 sharp（高 Q）则带宽窄、对负载漂移敏感；Q 低则带宽宽但变换”力度”分散——窄带大变换比天然高 Q。等离子体点火时负载剧变，匹配器要能被”拽着走”——为什么 auto-match 电机要快、网络 Q 不能太高，根源都在这。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>气体放电：启辉、射频放电与 CCP/ICP | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">气体放电：启辉、射频放电与 CCP/ICP</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="气体放电：启辉、射频放电与-CCP-ICP"><a href="#气体放电：启辉、射频放电与-CCP-ICP" class="headerlink" title="气体放电：启辉、射频放电与 CCP/ICP"></a>气体放电：启辉、射频放电与 CCP/ICP</h1><h2 id="1-启辉：从绝缘气体到导电气体"><a href="#1-启辉：从绝缘气体到导电气体" class="headerlink" title="1. 启辉：从绝缘气体到导电气体"></a>1. 启辉：从绝缘气体到导电气体</h2><p>气体本是优良绝缘体，”启辉”就是让它导电的瞬间（breakdown/击穿）。链式过程（汤森，1900 年代）：</p>
+<ol>
+<li><strong>种子电子</strong>：宇宙射线与天然放射性总有本底电离，气体里永远飘着少量自由电子</li>
+<li><strong>雪崩</strong>：电子在电场中加速，能量超过电离阈值后撞出第二个电子——1 变 2、2 变 4，指数增殖</li>
+<li><strong>自持条件</strong> $\gamma\left(e^{\alpha d}-1\right)=1$：每次雪崩打到阴极产生的二次电子（系数 $\gamma$）足以再引发一轮新雪崩——放电不再需要外界电离源，<strong>击穿发生，气体”点燃”</strong></li>
+</ol>
+<p><strong>帕邢定律</strong>：击穿电压 $V_b$ 是 $p\cdot d$（压强×极间距）乘积的函数，呈 U 形曲线——</p>
+<ul>
+<li>$pd$ 太大：碰撞太频繁，电子两次碰撞间攒不够电离能 → 需要更强电场</li>
+<li>$pd$ 太小：碰撞机会太少，雪崩长不起来 → 同样需要更高电压</li>
+<li>空气的帕邢最低点约 <strong>330 V</strong>（$pd\approx0.57$ Torr·cm）</li>
+</ul>
+<p><strong>日常的”启辉器”</strong>：日光灯座里的小氖泡——双金属片在辉光放电加热下闭合又弹开，镇流器电感瞬间产生高压脉冲击穿灯管：一个家用帕邢定律装置。</p>
+<p><strong>击穿之后的放电区段</strong>（电流从大到小）：暗放电（汤森区）→ <strong>辉光放电</strong>（正常/异常辉光——等离子体工艺的工作点）→ 电弧放电（大电流、低电压、热阴极）。工艺腔工作在<strong>异常辉光段</strong>：气压 0.1–100 Pa，电流密度增大电压随之上升，稳定可控。上面的雪崩-自持图像既适用于直流也适用于交流放电——区别只在电场是否换向。</p>
+<h2 id="2-DC-plasma：直流放电"><a href="#2-DC-plasma：直流放电" class="headerlink" title="2. DC plasma：直流放电"></a>2. DC plasma：直流放电</h2><p>两块电极加直流高压（数百~数千伏），是<strong>最古老、最直观</strong>的等离子体：阴极发射的二次电子被鞘层加速，在气体里繁衍雪崩，正离子则轰击阴极再打出二次电子维持循环——直流辉光放电的自持机制。</p>
+<ul>
+<li><strong>电极极性固定</strong>：阴极侧鞘层承担几乎全部压降（阴极位降区最亮），正离子以鞘层电压轰击阴极——<strong>这是直流溅射/磁控溅射的物理基础</strong>（靶材做阴极，见「等离子体工艺」卡片）</li>
+<li><strong>结构简单、电源便宜</strong>：不需要匹配器（见「射频功率进腔」卡片），一根高压电源线直连</li>
+<li><strong>局限</strong>：<ul>
+<li><strong>绝缘表面打不了</strong>——正离子电荷在绝缘靶/器壁上不断积累，电场被抵消，放电熄灭；绝缘材料必须换 RF</li>
+<li><strong>密度较低</strong>（$10^8$–$10^{10}\ \mathrm{cm^{-3}}$），离子能量与放电电流耦合、难独立调节</li>
+<li>阳极侧也有一层鞘层，但压降远小于阴极——不对称的电压分配</li>
+</ul>
+</li>
+<li><strong>典型应用</strong>：直流磁控溅射（金属膜：Al、Ti、Cu 及其氮化物）、直流辉光表面处理/渗氮、气体激光器、霓虹灯（限流镇流维持稳定）</li>
+<li><strong>变体</strong>：<strong>脉冲直流（pulsed DC）</strong>——周期性反向或关断，让绝缘表面积累的电荷在脉冲间歇泄放，兼得直流的高速率与对反应性/绝缘工艺的兼容性，反应溅射（如反应溅射 TiO₂、Al₂O₃）的主流方案</li>
+</ul>
+<h2 id="3-为什么用-RF（射频放电）"><a href="#3-为什么用-RF（射频放电）" class="headerlink" title="3. 为什么用 RF（射频放电）"></a>3. 为什么用 RF（射频放电）</h2><p>直流放电的两个死穴（上节局限的延伸）：</p>
+<ul>
+<li><strong>绝缘表面失能</strong>：离子打上绝缘电极/靶材后电荷无法泄放，积累的电荷把电场顶回去，放电熄灭——绝缘靶（氧化物）直流下根本打不动</li>
+<li><strong>密度低</strong>：直流辉光放电密度只有 $10^8$–$10^9\ \mathrm{cm^{-3}}$，鞘层电压还高</li>
+</ul>
+<p>改用 <strong>13.56 MHz</strong> 射频（ISM 工业科研医疗频段，全行业统一，见「射频功率进腔」卡片）：</p>
+<ul>
+<li><strong>电子跟得上、离子跟不上</strong>：一个 RF 周期 74 ns，电子（质量小）随场振荡，离子（重几个数量级）惯性太大基本不动——平均下来离子”看见”的是直流电场</li>
+<li><strong>自偏压（self-bias）</strong>：鞘层整流效应 + 电极面积不对称，绝缘电极表面自动建立一个直流负偏压——靶面被持续的正离子轰击，绝缘靶也能溅射</li>
+<li><strong>低气压也能维持</strong>：电子在振荡鞘层边界来回”摆动加热”（stochastic heating），不用靠碰撞也能获取能量</li>
+</ul>
+<h2 id="4-CCP：电容耦合等离子体"><a href="#4-CCP：电容耦合等离子体" class="headerlink" title="4. CCP：电容耦合等离子体"></a>4. CCP：电容耦合等离子体</h2><p><strong>结构</strong>：两块平行板电极，其中一块常做成喷淋头（showerhead）兼供气；RF 功率经匹配器接在电极上，等离子体像夹在两极间的”非线性电阻+电容”。</p>
+<ul>
+<li>密度：$10^9$–$10^{10}\ \mathrm{cm^{-3}}$</li>
+<li>鞘层电压高（数百伏）→ 离子能量高——<strong>但离子能量与等离子体密度都由同一台电源决定，耦合在一起调不开</strong></li>
+<li><strong>双频 CCP</strong>：两路频率叠加——高频（27/60/100 MHz）管密度、低频（13.56/2 MHz）管离子能量，把耦合拆开一半。介质刻蚀的标配</li>
+<li>用途：PECVD 沉积、氧化硅/氮化硅刻蚀</li>
+</ul>
+<h2 id="5-ICP：电感耦合等离子体"><a href="#5-ICP：电感耦合等离子体" class="headerlink" title="5. ICP：电感耦合等离子体"></a>5. ICP：电感耦合等离子体</h2><p><strong>结构</strong>：腔体顶部的介电窗上方绕 2–3 匝线圈，RF 电流在线圈里流动 → 感应出轴向交变磁场 → 磁场再感生环向电场驱动等离子体电流。</p>
+<ul>
+<li><strong>变压器模型</strong>：线圈是初级，等离子体里的感应电流环是单匝次级——功率不经鞘层、直接在等离子体体内沉积</li>
+<li>密度：$10^{11}$–$10^{12}\ \mathrm{cm^{-3}}$，比 CCP 高 1–2 个量级</li>
+<li><strong>能量解耦彻底</strong>：晶圆台另接一路偏压电源（bias），离子能量独立可调——高密度 + 低损伤兼得</li>
+<li><strong>E→H 跃迁</strong>：点火初期是容性 E 模式（弱、亮斑在窗下），功率超阈值后跳变到感性 H 模式（亮、密度陡增一个量级）——ICP 点火时能看到的”闪一下”</li>
+<li>用途：硅/金属刻蚀、高深宽比刻蚀（Bosch 工艺）</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CCP</th>
+<th>ICP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>耦合方式</td>
+<td>鞘层容性（平行板）</td>
+<td>线圈感性（经介电窗）</td>
+</tr>
+<tr>
+<td>密度</td>
+<td>$10^9$–$10^{10}$ cm⁻³</td>
+<td>$10^{11}$–$10^{12}$ cm⁻³</td>
+</tr>
+<tr>
+<td>离子能量</td>
+<td>高，与密度耦合</td>
+<td>低且可用偏压独立调节</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>PECVD、介质刻蚀</td>
+<td>硅/金属刻蚀、高深宽比</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>延伸</strong>：ECR（电子回旋共振）——2.45 GHz 微波 + 875 G 磁场，电子回旋频率与微波频率共振高效吸收能量（$\omega_c=qB/m$，见「电磁学基础」卡片）；螺旋波（helicon）放电密度更高。</p>
+<h2 id="6-鞘层：工艺的”最后一公里”"><a href="#6-鞘层：工艺的”最后一公里”" class="headerlink" title="6. 鞘层：工艺的”最后一公里”"></a>6. 鞘层：工艺的”最后一公里”</h2><p>等离子体碰到任何器壁，都会先盖一层<strong>正离子鞘层</strong>：电子跑得快先离开界面，留下正电荷区把电子挡回去——自发形成，厚度几个德拜长度到几毫米。</p>
+<ul>
+<li>鞘层压降（数百伏）就是离子获得的加速电压——<strong>离子能量分布（IEDF）由鞘层决定</strong></li>
+<li>悬浮电位、自偏压都是鞘层语言</li>
+<li>射频鞘层里，离子在不同相位穿过鞘层得到不同能量 → 能量分布呈双峰——刻蚀工艺工程师天天盯着它</li>
+</ul>
+<p>晶圆就泡在鞘层边上：等离子体怎么产生（CCP/ICP）决定”有多少离子”，鞘层怎么变形（偏压）决定”离子砸多重”——两大旋钮合起来才是完整的刻蚀/沉积菜单。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

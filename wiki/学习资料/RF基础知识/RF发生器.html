@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RF 发生器解剖：从 AC input 到 RF out | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">RF 发生器解剖：从 AC input 到 RF out</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="RF-发生器解剖：从-AC-input-到-RF-out"><a href="#RF-发生器解剖：从-AC-input-到-RF-out" class="headerlink" title="RF 发生器解剖：从 AC input 到 RF out"></a>RF 发生器解剖：从 AC input 到 RF out</h1><p>RF generator（射频功率源）是整条链路的心脏：吃进三相/单相市电，吐出 13.56 MHz 的千瓦级干净功率。沿信号流向拆开它，每一级都是一门独立课程的知识点。</p>
+<h2 id="1-方框图（信号流向）"><a href="#1-方框图（信号流向）" class="headerlink" title="1. 方框图（信号流向）"></a>1. 方框图（信号流向）</h2><script type="math/tex; mode=display">\text{AC input} \to \text{EMI filter} \to \text{rectifier + soft start} \to \text{DC bus} \to \text{RF oscillator + PA} \to \text{output filter} \to \text{RF out (50 Ω)}</script><p>旁挂一路 <strong>digital control unit</strong>（数字控制单元）监视全部环节：功率设定/回读、反射监测、联锁保护、通信总线。</p>
+<h2 id="2-AC-input（交流输入）"><a href="#2-AC-input（交流输入）" class="headerlink" title="2. AC input（交流输入）"></a>2. AC input（交流输入）</h2><ul>
+<li>三相 380/400 V 或单相 200/230 V 市电，视功率等级而定（千瓦级多用三相）</li>
+<li>功率因数校正（PFC）级：让市电侧电流波形跟着电压走——大功率设备不校正会被电网罚款</li>
+<li>输入侧保险、浪涌保护（MOV）、断路器</li>
+</ul>
+<h2 id="3-EMI-filter（电磁干扰滤波器）"><a href="#3-EMI-filter（电磁干扰滤波器）" class="headerlink" title="3. EMI filter（电磁干扰滤波器）"></a>3. EMI filter（电磁干扰滤波器）</h2><p><strong>双向门卫</strong>：不让开关电源的高频噪声漏回电网污染邻居，也不让电网浪涌/尖峰进来打坏自己。</p>
+<ul>
+<li>结构：共模扼流圈（一个磁环上反向绕的双线——工频电流磁场抵消、共模噪声磁场叠加被拦截）+ X 电容（跨接火零，滤差模）+ Y 电容（线对地，滤共模）</li>
+<li>安规认证（CISPR/ FCC 工业限值、漏电流上限）是半导体设备的准入门槛</li>
+<li>与”被干扰”的对照：等离子体腔体与电缆的屏蔽（法拉第笼）防的是同一族噪声——见「电磁波与传输线」卡片的趋肤效应一节</li>
+</ul>
+<h2 id="4-Soft-start（软启动）"><a href="#4-Soft-start（软启动）" class="headerlink" title="4. Soft start（软启动）"></a>4. Soft start（软启动）</h2><p>直接合闸给整流后的巨大电容充电，浪涌电流可达正常值几十倍——跳闸、烧保险、打火接点。软启动的层层手法：</p>
+<ul>
+<li><strong>NTC 热敏电阻</strong>：冷态电阻大限流，热了自动变小（简单，但重启需冷却）</li>
+<li><strong>电阻+旁路继电器</strong>：先经电阻限流充电，电容快满时继电器短接电阻</li>
+<li><strong>可控硅相控/有源限流</strong>：数字化控制充电曲线，最精细</li>
+<li>软启动属”上电次序管理”：DC bus 稳了才允许 RF 放大级使能——数字控制单元编排的启机时序</li>
+</ul>
+<h2 id="5-DC（直流母线）"><a href="#5-DC（直流母线）" class="headerlink" title="5. DC（直流母线）"></a>5. DC（直流母线）</h2><p>整流+PFC 后的直流母线（数百 V）是 RF 功率级的能量池。为什么先变 DC：<strong>放大级要的是稳定的”水库”</strong>——市电波动、负载扰动都被 DC 环节隔离，RF 输出才稳。这一级就是开关电源课程的主场（ buck/boost、LLC 谐振变换、同步整流），追求效率与纹波。</p>
+<h2 id="6-RF-振荡器与功率放大（RF-PA）"><a href="#6-RF-振荡器与功率放大（RF-PA）" class="headerlink" title="6. RF 振荡器与功率放大（RF PA）"></a>6. RF 振荡器与功率放大（RF PA）</h2><ul>
+<li><strong>振荡器</strong>：晶体振荡器锁相（PLL/DDS）合成 13.56 MHz——频率精度 ±7 kHz 内（ISM 规定），长期稳定</li>
+<li><strong>驱动级</strong>：把振荡信号放大到能推动末级</li>
+<li><strong>功率放大级</strong>：MOSFET（VMOS/LDMOS）推挽或 D 类/E 类开关放大——现代 RF 源主流是<strong>开关模式</strong>（效率 70%+，老式线性 A/AB 类只有 30–50%）</li>
+<li>末级经<strong>平衡-不平衡变换器（balun）与功率合成</strong>输出，定向耦合器在出口实时采正/反射功率</li>
+<li>末级功率管是全机最贵的寿命件：反射功率全由它消化（VSWR 保护本质是保它，见「阻抗匹配」卡片）</li>
+</ul>
+<h2 id="7-Output-filter（输出滤波器）"><a href="#7-Output-filter（输出滤波器）" class="headerlink" title="7. Output filter（输出滤波器）"></a>7. Output filter（输出滤波器）</h2><p>开关放大输出的是方波（含丰富的谐波 27.12、40.68 MHz…），必须滤成干净正弦：</p>
+<ul>
+<li><strong>低通滤波器</strong>（常为 7 阶椭圆或切比雪夫）：通带 13.56 MHz 平坦、谐波处深衰减——EMC 法规对谐波辐射有硬指标</li>
+<li>兼做 50 Ω 定阻接口：滤波器设计进 50 Ω 系统（见「电磁波与传输线」卡片）</li>
+<li>滤波器的 L 与 C 就是”磁场仓库/电场仓库”的组合拳（能量语言见「阻抗匹配」卡片第 1 节）</li>
+</ul>
+<h2 id="8-Digital-control-unit（数字控制单元）"><a href="#8-Digital-control-unit（数字控制单元）" class="headerlink" title="8. Digital control unit（数字控制单元）"></a>8. Digital control unit（数字控制单元）</h2><p>现代 RF 源的”大脑”：MCU/DSP + FPGA 一线贯通——</p>
+<ul>
+<li><strong>功率闭环</strong>：定向耦合器采样的入射/反射功率实时回读，PID 调节驱动级增益，稳住设定功率（脉冲功率模式：占空比/电平可编程）</li>
+<li><strong>保护联锁</strong>：VSWR 超限降功率/关断、过温、过流、DC bus 过压、负载打火（arc detect：反射突增判据）毫秒级切断</li>
+<li><strong>遥测通信</strong>：DeviceNet / EtherCAT / RS-485 接设备主机，工艺配方里的功率参数从这里下发；日志与自诊断</li>
+<li><strong>校准</strong>：功率表系数存非易失存储器，现场可溯源标定</li>
+</ul>
+<h2 id="9-整机指标一张表"><a href="#9-整机指标一张表" class="headerlink" title="9. 整机指标一张表"></a>9. 整机指标一张表</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>典型值</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>频率</td>
+<td>13.56 MHz ±0.01%</td>
+<td>ISM 频段法规</td>
+</tr>
+<tr>
+<td>输出功率</td>
+<td>300 W ~ 10 kW</td>
+<td>按工艺选档</td>
+</tr>
+<tr>
+<td>功率稳定度</td>
+<td>±1% 量级</td>
+<td>工艺重复性</td>
+</tr>
+<tr>
+<td>VSWR 保护</td>
+<td>&gt;2~3 降额/关断</td>
+<td>保末级功率管</td>
+</tr>
+<tr>
+<td>谐波抑制</td>
+<td>&gt;50 dBc</td>
+<td>EMC 合规</td>
+</tr>
+<tr>
+<td>效率</td>
+<td>&gt;70%（开关式）</td>
+<td>机柜散热与电费</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>到这一级为止，发生器输出的是”标准 50 Ω 的干净功率”——怎么把它交给”又阻又容还会漂”的等离子体，是「RF功率链路」卡片里匹配器的故事。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

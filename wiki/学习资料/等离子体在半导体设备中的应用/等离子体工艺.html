@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>半导体工艺中的等离子体：溅射、刻蚀、沉积与注入 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">半导体工艺中的等离子体：溅射、刻蚀、沉积与注入</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="半导体工艺中的等离子体：溅射、刻蚀、沉积与注入"><a href="#半导体工艺中的等离子体：溅射、刻蚀、沉积与注入" class="headerlink" title="半导体工艺中的等离子体：溅射、刻蚀、沉积与注入"></a>半导体工艺中的等离子体：溅射、刻蚀、沉积与注入</h1><p>先进制程一半以上的工序泡在等离子体里。原因有三：<strong>低温</strong>（本需上千度的反应降到几十~几百度，晶圆经不起高温）、<strong>方向性</strong>（离子沿鞘层电场垂直入射，纳米级各向异性加工）、<strong>可调</strong>（离子能量与自由基浓度都是旋钮）。四大工艺逐一展开。</p>
+<h2 id="1-直流物理沉积：磁控溅射（DC-Magnetron-Sputtering）"><a href="#1-直流物理沉积：磁控溅射（DC-Magnetron-Sputtering）" class="headerlink" title="1. 直流物理沉积：磁控溅射（DC Magnetron Sputtering）"></a>1. 直流物理沉积：磁控溅射（DC Magnetron Sputtering）</h2><p><strong>原理</strong>：腔内充氩气（约 0.1–1 Pa）维持辉光放电，靶材是阴极（−300 ~ −600 V），Ar⁺ 被鞘层加速轰击靶面，动量传递把靶原子”打”出来，飞越真空室凝结在晶圆上成膜——纯物理过程，靶是什么膜就是什么。</p>
+<ul>
+<li><strong>“磁控”二字</strong>：靶后方布置磁体，磁场平行于靶面——电子被锁在靶面上方绕磁力线螺旋运动（见「电磁学基础」卡片），滞留时间大增 → 电离率提高一个量级 → 低气压下也能高速率放电</li>
+<li><strong>跑道（racetrack）</strong>：磁控约束的电子密度环对应靶面被溅蚀出环形沟槽——磁控溅射的印记，靶材利用率只有 ~30%</li>
+<li><strong>直流的边界</strong>：靶必须导电。绝缘靶（氧化物）在直流下正离子电荷不断积累、电场被顶回、放电熄灭——改用 RF 溅射（自偏压，见「气体放电」卡片）或脉冲直流</li>
+<li><strong>腔体环境</strong>：本底高真空 + 氩气由 MFC 控制 + 分子泵/低温泵机组（见《真空技术概论》的「真空泵与MFC」卡片）</li>
+<li><strong>典型薄膜</strong>：金属互连的阻挡层/种子层（Ta/TaN、Cu seed）、Al、TiN、ITO 透明电极</li>
+</ul>
+<h2 id="2-射频刻蚀：反应离子刻蚀（RIE）"><a href="#2-射频刻蚀：反应离子刻蚀（RIE）" class="headerlink" title="2. 射频刻蚀：反应离子刻蚀（RIE）"></a>2. 射频刻蚀：反应离子刻蚀（RIE）</h2><p>纯化学刻蚀各向同性（侧壁钻蚀）、纯物理溅射损伤大——<strong>离子辅助化学反应</strong>是两者的合体：</p>
+<script type="math/tex; mode=display">\text{反应气体} \xrightarrow{\text{等离子体裂解}} \text{自由基} \xrightarrow{\text{吸附}} \text{表面} \xrightarrow{\text{离子垂直轰击活化}} \text{挥发性产物} \xrightarrow{\text{抽走}}</script><ul>
+<li><strong>结构</strong>：CCP 腔（见「气体放电」卡片），晶圆电极接 RF → 鞘层自偏压 → 离子垂直入射</li>
+<li><strong>气体按材料选</strong>：多晶硅栅（Cl₂/HBr+O₂）、SiO₂ 接触孔（CF₄/CHF₃+Ar）、金属（BCl₃/Cl₂）、硅深孔（SF₆）</li>
+<li><strong>三大指标</strong>：刻蚀速率、选择比（对掩膜和下层材料）、各向异性（侧壁形貌）</li>
+<li><strong>侧壁钝化</strong>：含碳氟自由基在侧壁聚合成保护膜，只有底面被离子轰开——垂直剖面的关键；<strong>Bosch 工艺</strong>（SF₆ 刻蚀 / C₄F₈ 钝化交替切换）做出高深宽比硅结构（MEMS、TSV 硅通孔）</li>
+<li>光刻胶是掩膜，刻完去掉——“光刻定图形、刻蚀做加工”的分工（见「光刻机与EUV」卡片）</li>
+</ul>
+<h2 id="3-等离子体增强化学气相沉积（PECVD）"><a href="#3-等离子体增强化学气相沉积（PECVD）" class="headerlink" title="3. 等离子体增强化学气相沉积（PECVD）"></a>3. 等离子体增强化学气相沉积（PECVD）</h2><p>传统 CVD 靠高温热解前驱体（LPCVD 要 600–800 °C）；<strong>PECVD 把裂解的活儿交给等离子体里的高能电子</strong>——衬底温度降到 200–400 °C，已经有铝互连的晶圆也能再沉积介质层。</p>
+<ul>
+<li><strong>典型反应</strong>：SiH₄+NH₃ → SiNₓ（钝化层/隔层）；SiH₄ → a-Si:H（液晶 TFT、薄膜太阳能）；TEOS+O₂ → SiO₂</li>
+<li><strong>结构</strong>：CCP 平行板腔，上电极喷淋头供气，下电极（晶圆台）加热控温、接 RF</li>
+<li><strong>膜质旋钮</strong>：RF 功率/频率比、压强、温度——调节薄膜的氢含量与应力（应力过大晶圆会翘曲）</li>
+<li><strong>对比</strong>：LPCVD 温度高膜质致密（前道）、PECVD 温度低速度快（后道钝化）、ALD 逐层自限制（最薄最匀）</li>
+</ul>
+<h2 id="4-离子注入（Ion-Implantation）"><a href="#4-离子注入（Ion-Implantation）" class="headerlink" title="4. 离子注入（Ion Implantation）"></a>4. 离子注入（Ion Implantation）</h2><p>掺杂的”手术刀”：把掺杂离子（B⁺、P⁺、As⁺）直接打进晶格。与高温扩散相比，<strong>剂量与深度两个旋钮完全独立</strong>——剂量 $10^{11}$–$10^{16}\ \mathrm{cm^{-2}}$ 决定掺杂浓度，能量（keV–MeV）决定注入深度。</p>
+<p>设备是一条物理课流水线，每一步都是前面卡片的直接应用：</p>
+<ol>
+<li><strong>离子源</strong>：放电生成等离子体（Bernas 源，见「气体放电」卡片）</li>
+<li><strong>引出</strong>：数十 kV 把离子拉成束</li>
+<li><strong>分析磁铁</strong>：90° 偏转，$r = mv/qB$——不同荷质比的离子拐不同半径的弯，狭缝只放行所需的离子（见「电磁学基础」卡片的螺旋运动；双电荷离子、分子离子在此被剔除）</li>
+<li><strong>加速管</strong>：串联高压把束流加速到目标能量</li>
+<li><strong>扫描</strong>：静电偏转板 XY 扫描（或机械扫描），法拉第杯实时积分束流监测剂量</li>
+<li><strong>靶室</strong>：晶圆倾斜 7°——避开晶格”沟道效应”（离子沿晶格通道直穿太深）；装片用静电卡盘（见「静电卡盘」卡片）</li>
+</ol>
+<p><strong>后处理</strong>：注入打得晶格千疮百孔，退火（RTP 激光/灯管毫秒级千度）修复损伤并激活杂质。<strong>延伸</strong>：等离子体浸没注入（PIII）——晶圆直接浸入等离子体加脉冲负偏压，无束流无需扫描，适合超浅结。</p>
+<h2 id="5-四工艺对比"><a href="#5-四工艺对比" class="headerlink" title="5. 四工艺对比"></a>5. 四工艺对比</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>溅射（PVD）</th>
+<th>RIE 刻蚀</th>
+<th>PECVD</th>
+<th>离子注入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用途</td>
+<td>金属/导体成膜</td>
+<td>去料成图形</td>
+<td>介质成膜</td>
+<td>掺杂</td>
+</tr>
+<tr>
+<td>关键粒子</td>
+<td>Ar⁺（物理动量）</td>
+<td>自由基 + 离子</td>
+<td>电子裂解 + 中性前驱体</td>
+<td>掺杂离子束</td>
+</tr>
+<tr>
+<td>放电形式</td>
+<td>直流磁控（RF 备选）</td>
+<td>CCP（RF）</td>
+<td>CCP（RF）</td>
+<td>源区放电 + 高压束流</td>
+</tr>
+<tr>
+<td>前序工艺</td>
+<td>—</td>
+<td>光刻（掩膜）</td>
+<td>—</td>
+<td>光刻（区域注入）</td>
+</tr>
+<tr>
+<td>温度</td>
+<td>低温</td>
+<td>中低温</td>
+<td>200–400 °C</td>
+<td>低温 + 退火</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>
