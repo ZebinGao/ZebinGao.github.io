@@ -131,7 +131,7 @@
 <tr>
 <td>工频</td>
 <td>50/60 Hz</td>
-<td>AC input（见「RF发生器」卡片）</td>
+<td>AC input（见<a href="/wiki/学习资料/RF基础知识/RF发生器.html">「RF发生器」卡片</a>）</td>
 </tr>
 <tr>
 <td>无线电/RF</td>
@@ -179,7 +179,7 @@
 <script type="math/tex; mode=display">\Gamma = \frac{Z_L - Z_0}{Z_L + Z_0} \qquad (\text{复数：幅度 + 相位})</script><ul>
 <li><strong>$Z_L = Z_0$（匹配）</strong>：$\Gamma=0$，纯<strong>行波</strong>——波沿一个方向跑，电压电流处处等幅，功率全部送达，这是链路的理想态</li>
 <li><strong>全反射（开路 $|\Gamma|=1$、短路 $\Gamma=-1$）</strong>：入射与反射等幅叠加成<strong>驻波</strong>——波原地”站住”，节点处电压恒为零、腹点处恒最大，每隔 $\lambda/4$ 电压电流的角色互换，<strong>净传输功率为零</strong>（能量在相邻 λ/4 段之间来回摆）</li>
-<li><strong>部分反射</strong>：行波上叠一个驻波包络——线上电压最大最小值之比就是驻波比 VSWR（详见「阻抗匹配」卡片）</li>
+<li><strong>部分反射</strong>：行波上叠一个驻波包络——线上电压最大最小值之比就是驻波比 VSWR（详见<a href="/wiki/学习资料/RF基础知识/阻抗匹配.html">「阻抗匹配」卡片</a>）</li>
 </ul>
 <p><strong>驻波的三宗罪</strong>：反射功率烧发生器（触发保护降功率）；沿线电压腹点有击穿风险；实际送达负载的功率打折。</p>
 <p><strong>$\lambda/4$ 的魔法</strong>：四分之一波长短路线在接入点等效串联谐振；$\lambda/4$ 阻抗变换器 $Z_{in} = Z_0^2/Z_L$（ $\lambda/4$ 处阻抗”翻转”）——stub 调谐与谐振腔的全部几何感来自这里。</p>

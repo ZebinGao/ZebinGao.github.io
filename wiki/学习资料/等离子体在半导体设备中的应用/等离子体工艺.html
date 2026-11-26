@@ -119,19 +119,19 @@
             <h1 id="半导体工艺中的等离子体：溅射、刻蚀、沉积与注入"><a href="#半导体工艺中的等离子体：溅射、刻蚀、沉积与注入" class="headerlink" title="半导体工艺中的等离子体：溅射、刻蚀、沉积与注入"></a>半导体工艺中的等离子体：溅射、刻蚀、沉积与注入</h1><p>先进制程一半以上的工序泡在等离子体里。原因有三：<strong>低温</strong>（本需上千度的反应降到几十~几百度，晶圆经不起高温）、<strong>方向性</strong>（离子沿鞘层电场垂直入射，纳米级各向异性加工）、<strong>可调</strong>（离子能量与自由基浓度都是旋钮）。四大工艺逐一展开。</p>
 <h2 id="1-直流物理沉积：磁控溅射（DC-Magnetron-Sputtering）"><a href="#1-直流物理沉积：磁控溅射（DC-Magnetron-Sputtering）" class="headerlink" title="1. 直流物理沉积：磁控溅射（DC Magnetron Sputtering）"></a>1. 直流物理沉积：磁控溅射（DC Magnetron Sputtering）</h2><p><strong>原理</strong>：腔内充氩气（约 0.1–1 Pa）维持辉光放电，靶材是阴极（−300 ~ −600 V），Ar⁺ 被鞘层加速轰击靶面，动量传递把靶原子”打”出来，飞越真空室凝结在晶圆上成膜——纯物理过程，靶是什么膜就是什么。</p>
 <ul>
-<li><strong>“磁控”二字</strong>：靶后方布置磁体，磁场平行于靶面——电子被锁在靶面上方绕磁力线螺旋运动（见「电磁学基础」卡片），滞留时间大增 → 电离率提高一个量级 → 低气压下也能高速率放电</li>
+<li><strong>“磁控”二字</strong>：靶后方布置磁体，磁场平行于靶面——电子被锁在靶面上方绕磁力线螺旋运动（见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/电磁学基础.html">「电磁学基础」卡片</a>），滞留时间大增 → 电离率提高一个量级 → 低气压下也能高速率放电</li>
 <li><strong>跑道（racetrack）</strong>：磁控约束的电子密度环对应靶面被溅蚀出环形沟槽——磁控溅射的印记，靶材利用率只有 ~30%</li>
-<li><strong>直流的边界</strong>：靶必须导电。绝缘靶（氧化物）在直流下正离子电荷不断积累、电场被顶回、放电熄灭——改用 RF 溅射（自偏压，见「气体放电」卡片）或脉冲直流</li>
-<li><strong>腔体环境</strong>：本底高真空 + 氩气由 MFC 控制 + 分子泵/低温泵机组（见《真空技术概论》的「真空泵与MFC」卡片）</li>
+<li><strong>直流的边界</strong>：靶必须导电。绝缘靶（氧化物）在直流下正离子电荷不断积累、电场被顶回、放电熄灭——改用 RF 溅射（自偏压，见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/气体放电.html">「气体放电」卡片</a>）或脉冲直流</li>
+<li><strong>腔体环境</strong>：本底高真空 + 氩气由 MFC 控制 + 分子泵/低温泵机组（见<a href="/wiki/学习资料/真空技术概论/真空泵与MFC.html">《真空技术概论》的「真空泵与MFC」卡片</a>）</li>
 <li><strong>典型薄膜</strong>：金属互连的阻挡层/种子层（Ta/TaN、Cu seed）、Al、TiN、ITO 透明电极</li>
 </ul>
 <h2 id="2-射频刻蚀：反应离子刻蚀（RIE）"><a href="#2-射频刻蚀：反应离子刻蚀（RIE）" class="headerlink" title="2. 射频刻蚀：反应离子刻蚀（RIE）"></a>2. 射频刻蚀：反应离子刻蚀（RIE）</h2><p>纯化学刻蚀各向同性（侧壁钻蚀）、纯物理溅射损伤大——<strong>离子辅助化学反应</strong>是两者的合体：</p>
 <script type="math/tex; mode=display">\text{反应气体} \xrightarrow{\text{等离子体裂解}} \text{自由基} \xrightarrow{\text{吸附}} \text{表面} \xrightarrow{\text{离子垂直轰击活化}} \text{挥发性产物} \xrightarrow{\text{抽走}}</script><ul>
-<li><strong>结构</strong>：CCP 腔（见「气体放电」卡片），晶圆电极接 RF → 鞘层自偏压 → 离子垂直入射</li>
+<li><strong>结构</strong>：CCP 腔（见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/气体放电.html">「气体放电」卡片</a>），晶圆电极接 RF → 鞘层自偏压 → 离子垂直入射</li>
 <li><strong>气体按材料选</strong>：多晶硅栅（Cl₂/HBr+O₂）、SiO₂ 接触孔（CF₄/CHF₃+Ar）、金属（BCl₃/Cl₂）、硅深孔（SF₆）</li>
 <li><strong>三大指标</strong>：刻蚀速率、选择比（对掩膜和下层材料）、各向异性（侧壁形貌）</li>
 <li><strong>侧壁钝化</strong>：含碳氟自由基在侧壁聚合成保护膜，只有底面被离子轰开——垂直剖面的关键；<strong>Bosch 工艺</strong>（SF₆ 刻蚀 / C₄F₈ 钝化交替切换）做出高深宽比硅结构（MEMS、TSV 硅通孔）</li>
-<li>光刻胶是掩膜，刻完去掉——“光刻定图形、刻蚀做加工”的分工（见「光刻机与EUV」卡片）</li>
+<li>光刻胶是掩膜，刻完去掉——“光刻定图形、刻蚀做加工”的分工（见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/光刻机与EUV.html">「光刻机与EUV」卡片</a>）</li>
 </ul>
 <h2 id="3-等离子体增强化学气相沉积（PECVD）"><a href="#3-等离子体增强化学气相沉积（PECVD）" class="headerlink" title="3. 等离子体增强化学气相沉积（PECVD）"></a>3. 等离子体增强化学气相沉积（PECVD）</h2><p>传统 CVD 靠高温热解前驱体（LPCVD 要 600–800 °C）；<strong>PECVD 把裂解的活儿交给等离子体里的高能电子</strong>——衬底温度降到 200–400 °C，已经有铝互连的晶圆也能再沉积介质层。</p>
 <ul>
@@ -143,12 +143,12 @@
 <h2 id="4-离子注入（Ion-Implantation）"><a href="#4-离子注入（Ion-Implantation）" class="headerlink" title="4. 离子注入（Ion Implantation）"></a>4. 离子注入（Ion Implantation）</h2><p>掺杂的”手术刀”：把掺杂离子（B⁺、P⁺、As⁺）直接打进晶格。与高温扩散相比，<strong>剂量与深度两个旋钮完全独立</strong>——剂量 $10^{11}$–$10^{16}\ \mathrm{cm^{-2}}$ 决定掺杂浓度，能量（keV–MeV）决定注入深度。</p>
 <p>设备是一条物理课流水线，每一步都是前面卡片的直接应用：</p>
 <ol>
-<li><strong>离子源</strong>：放电生成等离子体（Bernas 源，见「气体放电」卡片）</li>
+<li><strong>离子源</strong>：放电生成等离子体（Bernas 源，见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/气体放电.html">「气体放电」卡片</a>）</li>
 <li><strong>引出</strong>：数十 kV 把离子拉成束</li>
-<li><strong>分析磁铁</strong>：90° 偏转，$r = mv/qB$——不同荷质比的离子拐不同半径的弯，狭缝只放行所需的离子（见「电磁学基础」卡片的螺旋运动；双电荷离子、分子离子在此被剔除）</li>
+<li><strong>分析磁铁</strong>：90° 偏转，$r = mv/qB$——不同荷质比的离子拐不同半径的弯，狭缝只放行所需的离子（见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/电磁学基础.html">「电磁学基础」卡片</a>的螺旋运动；双电荷离子、分子离子在此被剔除）</li>
 <li><strong>加速管</strong>：串联高压把束流加速到目标能量</li>
 <li><strong>扫描</strong>：静电偏转板 XY 扫描（或机械扫描），法拉第杯实时积分束流监测剂量</li>
-<li><strong>靶室</strong>：晶圆倾斜 7°——避开晶格”沟道效应”（离子沿晶格通道直穿太深）；装片用静电卡盘（见「静电卡盘」卡片）</li>
+<li><strong>靶室</strong>：晶圆倾斜 7°——避开晶格”沟道效应”（离子沿晶格通道直穿太深）；装片用静电卡盘（见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/静电卡盘.html">「静电卡盘」卡片</a>）</li>
 </ol>
 <p><strong>后处理</strong>：注入打得晶格千疮百孔，退火（RTP 激光/灯管毫秒级千度）修复损伤并激活杂质。<strong>延伸</strong>：等离子体浸没注入（PIII）——晶圆直接浸入等离子体加脉冲负偏压，无束流无需扫描，适合超浅结。</p>
 <h2 id="5-四工艺对比"><a href="#5-四工艺对比" class="headerlink" title="5. 四工艺对比"></a>5. 四工艺对比</h2><div class="table-container">

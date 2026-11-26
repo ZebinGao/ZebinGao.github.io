@@ -116,7 +116,7 @@
 
     <div class="content markdown">
         
-            <h1 id="真空技术的理论基石：气体方程、自然底数-e-与立体角"><a href="#真空技术的理论基石：气体方程、自然底数-e-与立体角" class="headerlink" title="真空技术的理论基石：气体方程、自然底数 e 与立体角"></a>真空技术的理论基石：气体方程、自然底数 e 与立体角</h1><p>真空计算的整套数学工具箱其实只有三件：<strong>理想气体方程</strong>把压强、温度与分子数联系起来；<strong>自然底数 e</strong> 统管一切”按比例衰减”的过程（碰撞、抽气、放气）；<strong>立体角</strong>是描述分子飞行方向、推导通量公式的几何语言。三件工具在「托里拆利」卡片的历史起点之后，撑起本系列其余全部卡片。</p>
+            <h1 id="真空技术的理论基石：气体方程、自然底数-e-与立体角"><a href="#真空技术的理论基石：气体方程、自然底数-e-与立体角" class="headerlink" title="真空技术的理论基石：气体方程、自然底数 e 与立体角"></a>真空技术的理论基石：气体方程、自然底数 e 与立体角</h1><p>真空计算的整套数学工具箱其实只有三件：<strong>理想气体方程</strong>把压强、温度与分子数联系起来；<strong>自然底数 e</strong> 统管一切”按比例衰减”的过程（碰撞、抽气、放气）；<strong>立体角</strong>是描述分子飞行方向、推导通量公式的几何语言。三件工具在<a href="/wiki/学习资料/真空技术概论/托里拆利.html">「托里拆利」卡片</a>的历史起点之后，撑起本系列其余全部卡片。</p>
 <h2 id="1-理想气体方程：真空计算的地基"><a href="#1-理想气体方程：真空计算的地基" class="headerlink" title="1. 理想气体方程：真空计算的地基"></a>1. 理想气体方程：真空计算的地基</h2><h3 id="方程"><a href="#方程" class="headerlink" title="方程"></a>方程</h3><script type="math/tex; mode=display">pV = nRT = NkT</script><ul>
 <li>$n$：摩尔数，$R = 8.314\ \mathrm{J/(mol\cdot K)}$（普适气体常数）</li>
 <li>$N$：分子数，$k = 1.381\times10^{-23}\ \mathrm{J/K}$（玻尔兹曼常数），$R = N_A k$</li>
@@ -161,7 +161,7 @@
 </table>
 </div>
 <p>理想气体假设：分子是质点、除碰撞外无相互作用、碰撞完全弹性。高压低温下失效，范德华方程修正：</p>
-<script type="math/tex; mode=display">\left(p+\frac{a}{V_m^2}\right)(V_m-b)=RT</script><p>$a$ 修正分子间引力（这正是气体能被液化的根源，见「蒸气与临界温度」卡片），$b$ 修正分子自身体积。</p>
+<script type="math/tex; mode=display">\left(p+\frac{a}{V_m^2}\right)(V_m-b)=RT</script><p>$a$ 修正分子间引力（这正是气体能被液化的根源，见<a href="/wiki/学习资料/真空技术概论/蒸气与临界温度.html">「蒸气与临界温度」卡片</a>），$b$ 修正分子自身体积。</p>
 <h3 id="真空技术中的用法"><a href="#真空技术中的用法" class="headerlink" title="真空技术中的用法"></a>真空技术中的用法</h3><p><strong>（1）分子数密度换算——“真空不空”</strong>（空气，20 °C，$n = p/kT$）：</p>
 <div class="table-container">
 <table>
@@ -227,8 +227,8 @@
 <script type="math/tex; mode=display">P = \left(1-\frac{l}{N\lambda}\right)^{N} \xrightarrow{N\to\infty} e^{-l/\lambda}</script><p>这正是复利极限的”衰减版”。结论：自由程服从指数分布 $f(l)=\frac{1}{\lambda}e^{-l/\lambda}$；飞过 $\lambda$ 仍无碰撞的分子占 $1/e\approx37\%$，飞过 $3\lambda$ 的只剩 $5\%$。</p>
 <h3 id="真空技术里的其它-e"><a href="#真空技术里的其它-e" class="headerlink" title="真空技术里的其它 e"></a>真空技术里的其它 e</h3><ul>
 <li><strong>抽气曲线</strong>：容器 $V$、泵速 $S$，气量平衡 $\dfrac{dp}{dt} = -\dfrac{S}{V}p$，解得 $p(t)=p_0 e^{-St/V}$。时间常数 $\tau = V/S$：每过一个 $\tau$，压强降为 $1/e$。</li>
-<li><strong>气压公式</strong>：等温大气 $p(h) = p_0 e^{-Mgh/RT}$——帕斯卡多姆山实验的理论对应（见「托里拆利」卡片）。</li>
-<li><strong>放气衰减</strong>：材料出气率随抽气时间近似指数下降，这正是超高真空需要长时间烘烤的原因（见「真空分区」卡片）。</li>
+<li><strong>气压公式</strong>：等温大气 $p(h) = p_0 e^{-Mgh/RT}$——帕斯卡多姆山实验的理论对应（见<a href="/wiki/学习资料/真空技术概论/托里拆利.html">「托里拆利」卡片</a>）。</li>
+<li><strong>放气衰减</strong>：材料出气率随抽气时间近似指数下降，这正是超高真空需要长时间烘烤的原因（见<a href="/wiki/学习资料/真空技术概论/真空分区.html">「真空分区」卡片</a>）。</li>
 </ul>
 <p><strong>一句话总结</strong>：只要”单位时间按固定比例衰减”，极限就是 e 的指数；分子碰撞、抽气、放气全是这类过程，所以真空技术中 e 无处不在。</p>
 <h2 id="3-立体角：描述分子飞行方向的几何"><a href="#3-立体角：描述分子飞行方向的几何" class="headerlink" title="3. 立体角：描述分子飞行方向的几何"></a>3. 立体角：描述分子飞行方向的几何</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>平面角（弧度）度量”张开的宽度”，立体角（steradian，球面度 sr）度量”张开的锥角”：</p>
@@ -243,10 +243,10 @@
 <script type="math/tex; mode=display">d\Phi = \frac{n\bar v}{4\pi}\cos\theta\, d\Omega</script><ul>
 <li>对整个半球积分（利用 $\int_{半球}\cos\theta\, d\Omega = \pi$）：</li>
 </ul>
-<script type="math/tex; mode=display">\Phi = \frac{n\bar v}{4\pi}\cdot\pi = \frac{1}{4}n\bar v</script><p>这就是真空技术中最重要的公式之一：<strong>壁面碰撞流（泻流流率）$\Phi = \frac{1}{4}n\bar v$</strong>——平均速率 $\bar v$ 的来历见「三种速率」卡片。</p>
+<script type="math/tex; mode=display">\Phi = \frac{n\bar v}{4\pi}\cdot\pi = \frac{1}{4}n\bar v</script><p>这就是真空技术中最重要的公式之一：<strong>壁面碰撞流（泻流流率）$\Phi = \frac{1}{4}n\bar v$</strong>——平均速率 $\bar v$ 的来历见<a href="/wiki/学习资料/真空技术概论/三种速率.html">「三种速率」卡片</a>。</p>
 <h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ul>
 <li><strong>分子束的角分布</strong>：克努森池（MBE 分子束外延的束源炉）喷出的分子束沿轴向按余弦定律分布，衬底上的厚度分布是”余弦定律 × $1/r^2$”的几何结果——镀膜均匀性设计的出发点。</li>
-<li><strong>导管的传输概率（克劳辛因子）</strong>：分子流下导管对分子的”导通能力”，本质是分子经多次余弦反射后从另一端逃出的概率，用立体角分析或蒙特卡洛方法计算（见「气体流态」卡片）。</li>
+<li><strong>导管的传输概率（克劳辛因子）</strong>：分子流下导管对分子的”导通能力”，本质是分子经多次余弦反射后从另一端逃出的概率，用立体角分析或蒙特卡洛方法计算（见<a href="/wiki/学习资料/真空技术概论/气体流态.html">「气体流态」卡片</a>）。</li>
 <li><strong>抽速的面积极限</strong>：泵口面积 $A$ 若把到达的分子全部吞掉，抽速 $S_{max} = \frac{1}{4}A\bar v$——同一积分的另一个出口（空气约 11.6 L/s 每 cm²）。</li>
 </ul>
 

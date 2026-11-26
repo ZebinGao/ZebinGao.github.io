@@ -117,7 +117,7 @@
     <div class="content markdown">
         
             <h1 id="气体流态：粘滞流、过渡流与分子流"><a href="#气体流态：粘滞流、过渡流与分子流" class="headerlink" title="气体流态：粘滞流、过渡流与分子流"></a>气体流态：粘滞流、过渡流与分子流</h1><h2 id="1-判据：克努森数"><a href="#1-判据：克努森数" class="headerlink" title="1. 判据：克努森数"></a>1. 判据：克努森数</h2><p>气体在管道里的流态由<strong>克努森数</strong>——平均自由程与管径之比——唯一决定：</p>
-<script type="math/tex; mode=display">\mathrm{Kn} = \frac{\lambda}{d}</script><script type="math/tex; mode=display">\mathrm{Kn} \lesssim 0.01 \;\Rightarrow\; \text{粘滞流}，\qquad 0.01 \lesssim \mathrm{Kn} \lesssim 1 \;\Rightarrow\; \text{过渡流}，\qquad \mathrm{Kn} \gtrsim 1 \;\Rightarrow\; \text{分子流}</script><p>这三条分界线就是稀薄气体动力学的全部地形图：<strong>Kn &lt; 0.01 粘滞流，Kn &gt; 1 分子流，中间全是过渡流</strong>。它们与真空分区一一对应——粗真空管道是粘滞流，低真空是过渡流，高真空/超高真空是分子流（见「真空分区」卡片）。</p>
+<script type="math/tex; mode=display">\mathrm{Kn} = \frac{\lambda}{d}</script><script type="math/tex; mode=display">\mathrm{Kn} \lesssim 0.01 \;\Rightarrow\; \text{粘滞流}，\qquad 0.01 \lesssim \mathrm{Kn} \lesssim 1 \;\Rightarrow\; \text{过渡流}，\qquad \mathrm{Kn} \gtrsim 1 \;\Rightarrow\; \text{分子流}</script><p>这三条分界线就是稀薄气体动力学的全部地形图：<strong>Kn &lt; 0.01 粘滞流，Kn &gt; 1 分子流，中间全是过渡流</strong>。它们与真空分区一一对应——粗真空管道是粘滞流，低真空是过渡流，高真空/超高真空是分子流（见<a href="/wiki/学习资料/真空技术概论/真空分区.html">「真空分区」卡片</a>）。</p>
 <h2 id="2-粘滞流：气体像液体一样流动"><a href="#2-粘滞流：气体像液体一样流动" class="headerlink" title="2. 粘滞流：气体像液体一样流动"></a>2. 粘滞流：气体像液体一样流动</h2><p>自由程远小于管径：分子间碰撞远多于分子-壁碰撞，气体是<strong>连续介质</strong>，宏观流体力学（黏性、压差驱动）适用。</p>
 <p>按雷诺数再分两种（$Re = \rho v d / \eta$）：常取 $Re \lesssim 2000$ 为层流、$Re \gtrsim 2200$ 为湍流。稳态真空管道几乎总是层流；湍流只在大流量粗抽的开始一瞬间短暂出现（噪声、振动可闻）。</p>
 <p><strong>层流的泊肃叶公式</strong>。不可压缩流体的泊肃叶（Poiseuille）公式（体积流率）：</p>
@@ -142,7 +142,7 @@
 </ul>
 <h2 id="4-分子流：分子只与管壁碰撞"><a href="#4-分子流：分子只与管壁碰撞" class="headerlink" title="4. 分子流：分子只与管壁碰撞"></a>4. 分子流：分子只与管壁碰撞</h2><p>自由程远大于管径：分子间几乎不相遇，宏观量（黏性、压强梯度）失去意义，气体输运靠<strong>分子撞壁—按余弦定律再发射—随机游走</strong>完成。这是高真空/超高真空的流态。</p>
 <ul>
-<li>再发射服从<strong>余弦定律</strong>：从壁面飞出的分子，方向落在与法线成 $\theta$ 角的立体角内的概率 $\propto \cos\theta$（推导见「理论基石」卡片）</li>
+<li>再发射服从<strong>余弦定律</strong>：从壁面飞出的分子，方向落在与法线成 $\theta$ 角的立体角内的概率 $\propto \cos\theta$（推导见<a href="/wiki/学习资料/真空技术概论/理论基石.html">「理论基石」卡片</a>）</li>
 <li>导通能力 $C$ <strong>与压强无关</strong>，只由几何形状与气体种类决定——分子流最反直觉也最好用的性质</li>
 </ul>
 <p><strong>核心公式</strong>（空气 20 °C 实用版）：</p>
@@ -171,7 +171,7 @@
 </div>
 <p><strong>（4）串并联</strong>：与电阻网络完全同形</p>
 <script type="math/tex; mode=display">\frac{1}{C_{串}} = \sum_i \frac{1}{C_i}，\qquad C_{并} = \sum_i C_i</script><p><strong>气体种类依赖</strong>：$C \propto \bar v \propto 1/\sqrt{M}$：同一根管道，氢的导通是空气的 $\sqrt{29/2}\approx3.8$ 倍。分子流下”轻分子跑得快”直接写进导通——这也是高真空系统对氢的抽气阻抗小、极限压强常受氢限制的原因之一。</p>
-<p><strong>为什么高真空泵都在分子流下工作</strong>：扩散泵、涡轮分子泵、低温泵、溅射离子泵的抽气机理都建立在”分子一个一个到达”的前提上；粘滞流下成团气体的载荷会把它们冲垮。所以高真空系统必须先用前级泵降到 10⁻¹~10 Pa 量级、主阀切换后主泵才”接管”（见「真空泵与MFC」卡片）。</p>
+<p><strong>为什么高真空泵都在分子流下工作</strong>：扩散泵、涡轮分子泵、低温泵、溅射离子泵的抽气机理都建立在”分子一个一个到达”的前提上；粘滞流下成团气体的载荷会把它们冲垮。所以高真空系统必须先用前级泵降到 10⁻¹~10 Pa 量级、主阀切换后主泵才”接管”（见<a href="/wiki/学习资料/真空技术概论/真空泵与MFC.html">「真空泵与MFC」卡片</a>）。</p>
 <h2 id="5-对比小结"><a href="#5-对比小结" class="headerlink" title="5. 对比小结"></a>5. 对比小结</h2><div class="table-container">
 <table>
 <thead>

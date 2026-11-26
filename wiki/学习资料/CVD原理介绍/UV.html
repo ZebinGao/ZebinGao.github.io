@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UV：光子化学——DBD、汞灯、光子切断与固化 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">UV：光子化学——DBD、汞灯、光子切断与固化</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="UV：光子化学——DBD、汞灯、光子切断与固化"><a href="#UV：光子化学——DBD、汞灯、光子切断与固化" class="headerlink" title="UV：光子化学——DBD、汞灯、光子切断与固化"></a>UV：光子化学——DBD、汞灯、光子切断与固化</h1><p>等离子体给化学供能靠<strong>电子碰撞</strong>；平行路线是<strong>光子（UV）直接打断化学键</strong>（光解/光子切断）。这条卡片把三件事串成线：UV 从哪来（DBD 与汞灯）、光子怎么断键（按能量切断）、断键之后干什么（UV 固化调应力）。</p>
+<h2 id="1-UV-源之一：DBD（介质阻挡放电）"><a href="#1-UV-源之一：DBD（介质阻挡放电）" class="headerlink" title="1. UV 源之一：DBD（介质阻挡放电）"></a>1. UV 源之一：DBD（介质阻挡放电）</h2><p><strong>气体放电</strong>按气压与结构演化出许多形态（辉光、电弧，见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/气体放电.html">《等离子体在半导体设备中的应用》的「气体放电」卡片</a>）。要在<strong>大气压</strong>下稳定维持非平衡等离子体（不放成电弧），经典手法是 <strong>DBD（Dielectric Barrier Discharge）</strong>：</p>
+<ul>
+<li><strong>结构</strong>：两电极间至少一面覆盖<strong>介质层</strong>（石英、陶瓷、玻璃），气隙 0.1–几 mm</li>
+<li><strong>介质的作用</strong>：微放电（流注）一旦导通，电荷沉积在介质表面、局部电场被抵消——放电<strong>自动熄灭</strong>；电压换向后又在别处击穿。宏观是均匀”冷等离子体”，微观是每秒成千上万个微放电脉冲——<strong>介质就是自动保险丝，把电弧掐死在摇篮里</strong></li>
+<li><strong>特点</strong>：1 atm 工作（无需真空泵）、气体近室温、大面积</li>
+<li><strong>应用</strong>：臭氧发生器（O₂ DBD → O₃）、材料表面活化/亲水处理、大尺寸基板清洗；激发态退激还发出 <strong>UV</strong>——DBD 准分子灯（Xe₂* 发 172 nm 真空紫外）本身就是 UV 源</li>
+</ul>
+<h2 id="2-UV-源之二：汞灯"><a href="#2-UV-源之二：汞灯" class="headerlink" title="2. UV 源之二：汞灯"></a>2. UV 源之二：汞灯</h2><p><strong>低压汞灯（汞蒸气放电灯）</strong>是经典”光子工厂”——本质也是<strong>气体放电</strong>（汞蒸气辉光放电，帕邢区间工作），只是把放电发光用足：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>谱线</th>
+<th>光子能量</th>
+<th>能打断什么</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>253.7 nm</strong></td>
+<td>4.9 eV</td>
+<td>N–H、O–H、C–H、Si–H 等大多数键</td>
+</tr>
+<tr>
+<td><strong>184.9 nm</strong></td>
+<td>6.7 eV</td>
+<td>几乎所有有机键；还能光解 O₂ 产 O₃</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><strong>光子能量换算</strong>：$E = hc/\lambda = \dfrac{1240}{\lambda\,[\mathrm{nm}]}\ \mathrm{eV}$</li>
+<li>184.9 nm 被空气强吸收，只在真空/纯氮中用；253.7 nm 是工业 UV 主力</li>
+<li><strong>UV-Ozone 清洗</strong>：185 nm 产 O₃、254 nm 激发有机分子，协同把表面有机污染氧化成 CO₂+H₂O 挥发——晶圆/光学件装片前最后一道洁净工序，可达”原子级清洁”（接触角 &lt;5°）</li>
+</ul>
+<h2 id="3-光子切断：按能量断键"><a href="#3-光子切断：按能量断键" class="headerlink" title="3. 光子切断：按能量断键"></a>3. 光子切断：按能量断键</h2><p><strong>光解（photolysis / 光子切断）</strong>：光子能量 $h\nu \ge$ 键能时键被直接打断——与电子碰撞断键不同，光子过程<strong>选择性强</strong>（波长挑键）、不带电荷损伤：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>键能</th>
+<th>254 nm（4.9 eV）能否切断</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Si–H</td>
+<td>~3.0 eV</td>
+<td>✓ 轻松</td>
+</tr>
+<tr>
+<td>N–H</td>
+<td>~4.0 eV</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>C–H</td>
+<td>~4.3 eV</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Si–N</td>
+<td>~4.5 eV</td>
+<td>✓ 勉强</td>
+</tr>
+<tr>
+<td>Si–O</td>
+<td>~8.3 eV</td>
+<td>✗ 需深紫外（&lt;150 nm）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>对 PECVD 膜的意义</strong>：SixNyHz 里的 <strong>Si–H、N–H 键正是紫外光子的软柿子</strong>（膜成分见<a href="/wiki/学习资料/CVD原理介绍/PECVD.html">「PECVD」卡片</a>）——光子切断打开了不加热改性的大门。</p>
+<h2 id="4-UV-固化：把应力拉向高张应力"><a href="#4-UV-固化：把应力拉向高张应力" class="headerlink" title="4. UV 固化：把应力拉向高张应力"></a>4. UV 固化：把应力拉向高张应力</h2><p><strong>UV cure（紫外固化/退火）</strong>：对刚沉积的含氢膜（SiN、SiCN、low-k）做 UV 辐照，链式反应：</p>
+<ol>
+<li>光子切断 Si–H、N–H（及 C–H、Si–C）键</li>
+<li>释放的 H 复合成 <strong>H₂ 扩散逸出</strong>（膜变薄变密）</li>
+<li>悬挂键重新交联成更强骨架键（Si–N、Si–O、Si–C）</li>
+<li>体积收缩 + 网络致密化 → 膜应力向<strong>张应力（tensile）方向移动</strong></li>
+</ol>
+<p><strong>工程价值——应力是可”光调”的旋钮</strong>：</p>
+<ul>
+<li>PECVD SiN 沉积态偏压应力（低频轰击”锤”出来的，见<a href="/wiki/学习资料/CVD原理介绍/PECVD.html">「PECVD」卡片</a>第 4 节）；<strong>UV 固化把应力大幅拉向高张应力（high tensile）</strong>——与低频旋钮配合，可精确落点零应力或指定应力值</li>
+<li><strong>为什么要高张应力</strong>：钝化 SiN 要压应力封住芯片防潮；而柔性封装应力缓冲、晶圆翘曲补偿等应用要<strong>高张应力膜</strong>对冲叠层里的压应力——UV 固化是获得高张应力最温和的手段（不加热、不轰击）</li>
+<li>low-k 介质：UV 切断 Si–CH₃/CH 基团致密化骨架同时保住纳米孔隙——机械强度与低 k 值的平衡术</li>
+<li>光源选择：<strong>汞灯</strong>（宽谱成熟）、准分子灯（172/222 nm 单色）、UV-LED（365/395 nm，只能断最弱的键）——按目标键能选波长</li>
+</ul>
+<h2 id="5-三条供能路线的合流"><a href="#5-三条供能路线的合流" class="headerlink" title="5. 三条供能路线的合流"></a>5. 三条供能路线的合流</h2><p>同一个目标（改材料），三条物理路线：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>路线</th>
+<th>能量载体</th>
+<th>激活方式</th>
+<th>损伤</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>热</td>
+<td>分子热运动</td>
+<td>高温</td>
+<td>热预算大（LPCVD/SACVD，见<a href="/wiki/学习资料/CVD原理介绍/SACVD.html">「SACVD」卡片</a>）</td>
+</tr>
+<tr>
+<td>电子碰撞</td>
+<td>等离子体电子（1–20 eV）</td>
+<td>非弹性碰撞</td>
+<td>离子轰击损伤（PECVD，见<a href="/wiki/学习资料/CVD原理介绍/PECVD.html">「PECVD」卡片</a>）</td>
+</tr>
+<tr>
+<td><strong>光子</strong></td>
+<td>UV 光子（3–10 eV）</td>
+<td>光吸收断键</td>
+<td>几乎无电荷损伤（本卡片）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>电子与光子是”近亲”——1 eV 电子与 1240 nm 光子是同一份能量，只是 delivery 方式不同；DBD 与汞灯这对放电兄弟，一个偏重碰撞化学、一个偏重发光——<strong>放电物理与光化学在薄膜工艺里殊途同归</strong>。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

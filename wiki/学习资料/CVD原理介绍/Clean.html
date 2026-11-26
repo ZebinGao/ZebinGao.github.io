@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clean：腔体清洁，NF3、RPS 与 SiF4 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">Clean：腔体清洁，NF3、RPS 与 SiF4</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="Clean：腔体清洁，NF3、RPS-与-SiF4"><a href="#Clean：腔体清洁，NF3、RPS-与-SiF4" class="headerlink" title="Clean：腔体清洁，NF3、RPS 与 SiF4"></a>Clean：腔体清洁，NF3、RPS 与 SiF4</h1><h2 id="1-问题：沉积也在”镀脏”腔体"><a href="#1-问题：沉积也在”镀脏”腔体" class="headerlink" title="1. 问题：沉积也在”镀脏”腔体"></a>1. 问题：沉积也在”镀脏”腔体</h2><p>PECVD 沉积不挑地方——晶圆上长 SixNyHz，<strong>腔壁、电极、喷淋头上也长</strong>。几十炉后腔壁沉积膜厚到开裂剥落，掉在晶圆上就是致命颗粒。所以每沉积若干炉必须 <strong>clean（清洁）</strong>：把整腔沉积物化学气化掉。清洁时长是纯损失——<strong>清洁速度直接等于产能</strong>，是 PECVD 设备厂的军备竞赛。</p>
+<h2 id="2-清洁化学：氟把一切变挥发"><a href="#2-清洁化学：氟把一切变挥发" class="headerlink" title="2. 清洁化学：氟把一切变挥发"></a>2. 清洁化学：氟把一切变挥发</h2><p>清洁的”溶剂”是<strong>氟自由基 F</strong>——连 Si–N、Si–O 骨架都能拆开，产物全是挥发物：</p>
+<script type="math/tex; mode=display">\mathrm{Si_xN_yH_z + F\cdot \rightarrow SiF_4\uparrow + HF\uparrow + N_2/H_2\uparrow}</script><ul>
+<li><strong>SiF₄（四氟化硅）</strong>：沸点 −86 °C，常温是气体——<strong>固态沉积物变成挥发性 gas 被真空泵抽走</strong>。清洁的全部化学就是这一句：不溶解、不剥落，直接气化</li>
+<li>SiO₂ 沉积同样被氟化：$\mathrm{SiO_2 + 4F\cdot \rightarrow SiF_4 + O_2}$</li>
+<li><strong>清洁终点</strong>：尾气里 SiF₄ 浓度突然跌落 = 腔壁沉积物耗尽——光学发射谱（OES）或四极质谱（RGA）在线监测 SiF₄ 信号，见好就收（RGA 见<a href="/wiki/学习资料/真空技术概论/真空分区.html">《真空技术概论》的「真空分区」卡片</a>）</li>
+</ul>
+<h2 id="3-氟从哪来：NF3"><a href="#3-氟从哪来：NF3" class="headerlink" title="3. 氟从哪来：NF3"></a>3. 氟从哪来：NF3</h2><p><strong>NF₃（三氟化氮）</strong>是现代清洁标准气源：</p>
+<ul>
+<li>对比 <strong>F₂</strong>（剧毒强腐蚀，无人敢用）与 <strong>CF₄/C₂F₆</strong>（F 释放率低、副产聚合粉尘、强温室）——NF₃ 的 N–F 键能适中，等离子体中易裂解出高浓度 F 自由基，速率快、无粉尘</li>
+<li>NF₃ 本身是强温室气体（GWP ≈ CO₂ 的 17000 倍），但用掉的即被裂解，残余由尾气 scrubber 拆解——行业考核”NF₃ 清洁利用率（CU）”</li>
+</ul>
+<h2 id="4-RPS：远程等离子体源"><a href="#4-RPS：远程等离子体源" class="headerlink" title="4. RPS：远程等离子体源"></a>4. RPS：远程等离子体源</h2><p><strong>关键矛盾</strong>：产 F 需要放电，但直接在工艺腔里放电清洁（in-situ clean），离子会<strong>轰击腔内所有暴露物</strong>——喷淋头的硅、铝部件被氟侵蚀，颗粒更糟。</p>
+<p><strong>RPS（Remote Plasma Source，远程等离子体源）的解法</strong>：把放电区挪到腔外——</p>
+<script type="math/tex; mode=display">\text{NF}_3 \xrightarrow[\text{腔外石英管}]{\text{RPS 放电}} \text{F}\cdot + \text{中性碎片} \xrightarrow{\text{只送自由基进腔}} \text{纯化学清洁}</script><ul>
+<li><strong>RPS 的放电类型</strong>：多为 <strong>ICP</strong>（电感耦合，腔外石英管绕线圈，功率经介电窗感应耦合，无内电极最理想）或微波源（ICP 原理见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/气体放电.html">《等离子体在半导体设备中的应用》的「气体放电」卡片</a>）</li>
+<li><strong>中性 F 自由基寿命够长</strong>（毫秒级），随气流漂进腔体；离子/电子在腔外已被壁面吸收——<strong>进腔的只有化学、没有物理轰击</strong>：喷淋头不腐蚀、颗粒剧减、石英件寿命延长</li>
+<li>RPS 是 PECVD 设备近代化的分水岭；清洁期间晶圆不在腔内</li>
+</ul>
+<h2 id="5-干跑一炉的完整节拍"><a href="#5-干跑一炉的完整节拍" class="headerlink" title="5. 干跑一炉的完整节拍"></a>5. 干跑一炉的完整节拍</h2><ol>
+<li><strong>沉积</strong>：SiH₄+NH₃ 按配方成膜（<a href="/wiki/学习资料/CVD原理介绍/PECVD.html">「PECVD」卡片</a>），腔壁同步积膜</li>
+<li><strong>抽空工艺气</strong>：切换管路吹扫，防 NF₃ 与残留硅烷直接反应</li>
+<li><strong>清洁</strong>（NF₃ via RPS）：F 自由基灌腔，SixNyHz → <strong>SiF₄/HF/N₂</strong> 抽走；OES 盯 SiF₄ 信号</li>
+<li><strong>吹扫恢复</strong>：排尽含氟气体，恢复沉积气氛</li>
+<li>回到 1——“沉积腔室数 : 清洁时长”（如 10:1）是产能模型核心参数</li>
+</ol>
+<p><strong>一句话</strong>：沉积的化学正向是”自由基搭积木”（<a href="/wiki/学习资料/CVD原理介绍/PECVD.html">「PECVD」卡片</a>），清洁就是<strong>同一套自由基工具换成氟、把积木整体拆成 SiF₄ 气体搬走</strong>。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

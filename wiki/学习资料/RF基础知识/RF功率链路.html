@@ -116,18 +116,18 @@
 
     <div class="content markdown">
         
-            <h1 id="RF-功率链路：发生器、电缆与匹配器的联调"><a href="#RF-功率链路：发生器、电缆与匹配器的联调" class="headerlink" title="RF 功率链路：发生器、电缆与匹配器的联调"></a>RF 功率链路：发生器、电缆与匹配器的联调</h1><script type="math/tex; mode=display">\boxed{\text{RF generator} \to \text{RF cable} \to \text{RF match} \to \text{load}}</script><p>四段各有分工：发生器出标准 50 Ω 干净功率（见「RF发生器」卡片）、电缆搬运（见「电磁波与传输线」卡片）、匹配器变换（原理见「阻抗匹配」「Smith圆图」卡片）、负载吸收。这张卡片讲它们<strong>作为一个系统</strong>怎么联调，以及最难伺候的负载——等离子体。</p>
+            <h1 id="RF-功率链路：发生器、电缆与匹配器的联调"><a href="#RF-功率链路：发生器、电缆与匹配器的联调" class="headerlink" title="RF 功率链路：发生器、电缆与匹配器的联调"></a>RF 功率链路：发生器、电缆与匹配器的联调</h1><script type="math/tex; mode=display">\boxed{\text{RF generator} \to \text{RF cable} \to \text{RF match} \to \text{load}}</script><p>四段各有分工：发生器出标准 50 Ω 干净功率（见<a href="/wiki/学习资料/RF基础知识/RF发生器.html">「RF发生器」卡片</a>）、电缆搬运（见<a href="/wiki/学习资料/RF基础知识/电磁波与传输线.html">「电磁波与传输线」卡片</a>）、匹配器变换（原理见「阻抗匹配」<a href="/wiki/学习资料/RF基础知识/Smith圆图.html">「Smith圆图」卡片</a>）、负载吸收。这张卡片讲它们<strong>作为一个系统</strong>怎么联调，以及最难伺候的负载——等离子体。</p>
 <h2 id="1-RF-cable（射频电缆）的现场课"><a href="#1-RF-cable（射频电缆）的现场课" class="headerlink" title="1. RF cable（射频电缆）的现场课"></a>1. RF cable（射频电缆）的现场课</h2><ul>
-<li><strong>选型三看</strong>：特性阻抗（50 Ω）、功率容量（趋肤+介质发热限制，见「电磁波与传输线」卡片）、柔性（腔体附近的拖链弯折寿命）</li>
+<li><strong>选型三看</strong>：特性阻抗（50 Ω）、功率容量（趋肤+介质发热限制，见<a href="/wiki/学习资料/RF基础知识/电磁波与传输线.html">「电磁波与传输线」卡片</a>）、柔性（腔体附近的拖链弯折寿命）</li>
 <li><strong>长度有讲究</strong>：13.56 MHz 波长 22 m，电缆 1–5 m 处于 $\lambda/20 \sim \lambda/4$ 之间——它本身就是传输线的一部分，长度变了，匹配器”看到”的负载相位也变（Smith 圆图上绕圆心转角）——<strong>换电缆长度 = 换匹配工作点</strong>，维修时不能随手加长</li>
 <li><strong>接头是薄弱点</strong>：氧化、松动、污染直接吃功率发热——VSWR 无故变差先查接头；力矩扳手是标配工具</li>
 <li>定向耦合器可做成接头级在线监测件：正向/反射功率随时可读</li>
 </ul>
 <h2 id="2-RF-match（匹配器）：阻抗变压器"><a href="#2-RF-match（匹配器）：阻抗变压器" class="headerlink" title="2. RF match（匹配器）：阻抗变压器"></a>2. RF match（匹配器）：阻抗变压器</h2><p><strong>为什么非要它</strong>：等离子体负载 ≈ “几欧电阻串几百 pF 电容”，点火前近似开路、点火瞬间骤降、随后缓慢漂移——一个活的负载；发生器却是固定 50 Ω、反射超限就降功率。<strong>匹配器的工作就是把任意负载实时变换成 50 Ω</strong>：</p>
 <ul>
-<li><strong>L 型网络</strong>（最常用）：一个电感 + 两个<strong>真空可变电容</strong>（Load 电容、Tune 电容）——真空电容耐高压大电流；匹配范围与 Q 的取舍见「阻抗匹配」卡片第 5 节</li>
+<li><strong>L 型网络</strong>（最常用）：一个电感 + 两个<strong>真空可变电容</strong>（Load 电容、Tune 电容）——真空电容耐高压大电流；匹配范围与 Q 的取舍见<a href="/wiki/学习资料/RF基础知识/阻抗匹配.html">「阻抗匹配」卡片</a>第 5 节</li>
 <li>π 型网络：三个可调元件，匹配范围更宽（阻抗变换比大时用）</li>
-<li>元件值的确定就是「Smith圆图」卡片第 4 节的”走路设计”——工程上由 auto-match 自动完成</li>
+<li>元件值的确定就是<a href="/wiki/学习资料/RF基础知识/Smith圆图.html">「Smith圆图」卡片</a>第 4 节的”走路设计”——工程上由 auto-match 自动完成</li>
 </ul>
 <p><strong>自动匹配器（auto-match）</strong>：</p>
 <script type="math/tex; mode=display">\text{定向耦合器测 } \Gamma \to \text{控制器寻优} \to \text{电机驱动真空电容} \to \Gamma \to 0</script><ul>
@@ -138,7 +138,7 @@
 <h2 id="3-等离子体负载：最难伺候的顾客"><a href="#3-等离子体负载：最难伺候的顾客" class="headerlink" title="3. 等离子体负载：最难伺候的顾客"></a>3. 等离子体负载：最难伺候的顾客</h2><ul>
 <li><strong>等效电路</strong>：等离子体 ≈ 电阻（吸收功率）+ 电容（鞘层与腔体几何）串联，典型 $R\sim$ 几 Ω、$C\sim$ 几百 pF（CCP 结构）</li>
 <li><strong>点火三部曲</strong>：开路（气体未击穿）→ 击穿瞬间阻抗骤降（功率猛灌）→ 随气压温度缓慢漂移——匹配器全程跟跑</li>
-<li><strong>功率去哪了</strong>：电子吸收（密度）、离子鞘层加速（能量）、中性气体加热（热负载）——匹配只管”送得进”，送进去怎么分是放电物理的事（等离子体系列见《等离子体在半导体设备中的应用》的「气体放电」卡片）</li>
+<li><strong>功率去哪了</strong>：电子吸收（密度）、离子鞘层加速（能量）、中性气体加热（热负载）——匹配只管”送得进”，送进去怎么分是放电物理的事（等离子体系列见<a href="/wiki/学习资料/等离子体在半导体设备中的应用/气体放电.html">《等离子体在半导体设备中的应用》的「气体放电」卡片</a>）</li>
 </ul>
 <h2 id="4-链路调试的现场逻辑"><a href="#4-链路调试的现场逻辑" class="headerlink" title="4. 链路调试的现场逻辑"></a>4. 链路调试的现场逻辑</h2><ol>
 <li><strong>冷态检查</strong>：关功率测链路 VSWR（网络分析仪走一遍）——排除接头/电缆/匹配器自身的硬件问题</li>

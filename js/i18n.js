@@ -116,6 +116,7 @@
                 '真空技术概论': 'Vacuum Technology', '真空物理与技术课程笔记：气体动理论、真空分区、流态与泵': 'Course notes on vacuum physics and technology: kinetic theory of gases, vacuum regions, flow regimes, and pumps',
                 '等离子体在半导体设备中的应用': 'Plasma in Semiconductor Equipment', '等离子体物理课程笔记：放电、工艺与应用': 'Course notes on plasma physics: discharges, processes, and applications',
                 'RF基础知识': 'RF Fundamentals', '射频技术课程笔记：传输线、阻抗匹配与功率源': 'Course notes on RF technology: transmission lines, impedance matching, and power sources',
+                'CVD原理介绍': 'CVD Principles', '化学气相沉积课程笔记：薄膜家族、PECVD、介质膜化学与腔体清洁': 'Course notes on chemical vapor deposition: thin-film family, PECVD, dielectric film chemistry, and chamber cleaning',
                 '学习资料': 'Learning Materials', '产业动态、深度学习数学与育儿要点': 'Industry updates, deep-learning math, and parenting key notes',
                 '生活随笔': 'Life Notes', '情感与心理': 'Emotions & Psychology', '社会观察': 'Social Observations', '技术笔记': 'Tech Notes', '读书与思考': 'Reading & Reflection', '转载': 'Reposts',
                 '前端': 'Frontend', '后端': 'Backend', '综合': 'General', '独立博客': 'Personal Blogs', '技术服务': 'Tech Services', '社区论坛': 'Community Forums', '效率工具': 'Productivity Tools'
@@ -233,6 +234,7 @@
                 '真空技术概论': 'Vakuumtechnik', '真空物理与技术课程笔记：气体动理论、真空分区、流态与泵': 'Vorlesungsnotizen zur Vakuumphysik und -technik: kinetische Gastheorie, Vakuumbereiche, Strömungsformen und Pumpen',
                 '等离子体在半导体设备中的应用': 'Plasma in der Halbleitertechnik', '等离子体物理课程笔记：放电、工艺与应用': 'Vorlesungsnotizen zur Plasmaphysik: Entladungen, Prozesse und Anwendungen',
                 'RF基础知识': 'HF-Grundlagen', '射频技术课程笔记：传输线、阻抗匹配与功率源': 'Vorlesungsnotizen zur HF-Technik: Leitungen, Impedanzanpassung und Leistungsquellen',
+                'CVD原理介绍': 'CVD-Grundlagen', '化学气相沉积课程笔记：薄膜家族、PECVD、介质膜化学与腔体清洁': 'Vorlesungsnotizen zur chemischen Gasphasenabscheidung: Dünnschichtfamilie, PECVD, Dielektrikum-Chemie und Kammerreinigung',
                 '学习资料': 'Lernmaterialien', '产业动态、深度学习数学与育儿要点': 'Branchenupdates, Deep-Learning-Mathematik und Kernpunkte der Kindererziehung',
                 '生活随笔': 'Lebensnotizen', '情感与心理': 'Gefühle & Psychologie', '社会观察': 'Gesellschaftsbeobachtungen', '技术笔记': 'Techniknotizen', '读书与思考': 'Lesen & Nachdenken', '转载': 'Reposts',
                 '前端': 'Frontend', '后端': 'Backend', '综合': 'Allgemein', '独立博客': 'Persönliche Blogs', '技术服务': 'Tech-Dienste', '社区论坛': 'Community-Foren', '效率工具': 'Produktivitätstools'

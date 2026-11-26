@@ -116,7 +116,7 @@
 
     <div class="content markdown">
         
-            <h1 id="阻抗匹配：最大输出功率、共轭与-VSWR"><a href="#阻抗匹配：最大输出功率、共轭与-VSWR" class="headerlink" title="阻抗匹配：最大输出功率、共轭与 VSWR"></a>阻抗匹配：最大输出功率、共轭与 VSWR</h1><p>匹配（matching）是 RF 工程的第一课：让源与负载”对上暗号”，功率才能痛快交出去。这张卡片讲清它的三个支柱——<strong>L/C 的能量语言</strong>、<strong>共轭匹配定理</strong>、<strong>VSWR 度量</strong>；具体怎么”算着走”见「Smith圆图」卡片，工程现场见「RF功率链路」卡片。</p>
+            <h1 id="阻抗匹配：最大输出功率、共轭与-VSWR"><a href="#阻抗匹配：最大输出功率、共轭与-VSWR" class="headerlink" title="阻抗匹配：最大输出功率、共轭与 VSWR"></a>阻抗匹配：最大输出功率、共轭与 VSWR</h1><p>匹配（matching）是 RF 工程的第一课：让源与负载”对上暗号”，功率才能痛快交出去。这张卡片讲清它的三个支柱——<strong>L/C 的能量语言</strong>、<strong>共轭匹配定理</strong>、<strong>VSWR 度量</strong>；具体怎么”算着走”见<a href="/wiki/学习资料/RF基础知识/Smith圆图.html">「Smith圆图」卡片</a>，工程现场见<a href="/wiki/学习资料/RF基础知识/RF功率链路.html">「RF功率链路」卡片</a>。</p>
 <h2 id="1-L-与-C：两种能量仓库"><a href="#1-L-与-C：两种能量仓库" class="headerlink" title="1. L 与 C：两种能量仓库"></a>1. L 与 C：两种能量仓库</h2><p>匹配网络里只有两种基本元件，各管一种能量：</p>
 <ul>
 <li><strong>电感 L——磁场的能量</strong>：电流建立磁场，储能 $W_L = \frac{1}{2}LI^2$。电流想变，L 反对（$v_L = L\,di/dt$）——电压<strong>超前</strong>电流 90°</li>
@@ -131,7 +131,7 @@
 <li><strong>实部相等（$R_L = R_S$）</strong>：电阻分压最均衡的Point——负载电阻太大电流上不去、太小电压上不去，$R_L = R_S$ 时乘积 $I^2R_L$ 最大</li>
 </ol>
 <p><strong>从反射波看同一件事</strong>：共轭匹配时 $\Gamma = 0$——源看到的负载就是它的复共轭，入射波无反射地被吸收；内阻上损耗恰为一半（50% 效率上限正是最大功率传输的代价）。</p>
-<p><strong>工程语言</strong>：发生器内阻 50 Ω 纯阻 → 负载也要 50 Ω 纯阻。负载若带电抗（等离子体就是”几欧电阻串几百 pF 电容”），就用匹配网络把它变换成 50 Ω——<strong>匹配器的本质是一台”阻抗变压器”</strong>（见「RF功率链路」卡片）。</p>
+<p><strong>工程语言</strong>：发生器内阻 50 Ω 纯阻 → 负载也要 50 Ω 纯阻。负载若带电抗（等离子体就是”几欧电阻串几百 pF 电容”），就用匹配网络把它变换成 50 Ω——<strong>匹配器的本质是一台”阻抗变压器”</strong>（见<a href="/wiki/学习资料/RF基础知识/RF功率链路.html">「RF功率链路」卡片</a>）。</p>
 <h2 id="3-VSWR：匹配质量的温度计"><a href="#3-VSWR：匹配质量的温度计" class="headerlink" title="3. VSWR：匹配质量的温度计"></a>3. VSWR：匹配质量的温度计</h2><p><strong>驻波比（Voltage Standing Wave Ratio）</strong>：部分反射时，线上电压包络的最大值与最小值之比：</p>
 <script type="math/tex; mode=display">\mathrm{VSWR} = \frac{|V|_{max}}{|V|_{min}} = \frac{1+|\Gamma|}{1-|\Gamma|}</script><div class="table-container">
 <table>
