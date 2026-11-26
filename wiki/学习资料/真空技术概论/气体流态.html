@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>气体流态：粘滞流、过渡流与分子流 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">气体流态：粘滞流、过渡流与分子流</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="气体流态：粘滞流、过渡流与分子流"><a href="#气体流态：粘滞流、过渡流与分子流" class="headerlink" title="气体流态：粘滞流、过渡流与分子流"></a>气体流态：粘滞流、过渡流与分子流</h1><h2 id="1-判据：克努森数"><a href="#1-判据：克努森数" class="headerlink" title="1. 判据：克努森数"></a>1. 判据：克努森数</h2><p>气体在管道里的流态由<strong>克努森数</strong>——平均自由程与管径之比——唯一决定：</p>
+<script type="math/tex; mode=display">\mathrm{Kn} = \frac{\lambda}{d}</script><script type="math/tex; mode=display">\mathrm{Kn} \lesssim 0.01 \;\Rightarrow\; \text{粘滞流}，\qquad 0.01 \lesssim \mathrm{Kn} \lesssim 1 \;\Rightarrow\; \text{过渡流}，\qquad \mathrm{Kn} \gtrsim 1 \;\Rightarrow\; \text{分子流}</script><p>这三条分界线就是稀薄气体动力学的全部地形图：<strong>Kn &lt; 0.01 粘滞流，Kn &gt; 1 分子流，中间全是过渡流</strong>。它们与真空分区一一对应——粗真空管道是粘滞流，低真空是过渡流，高真空/超高真空是分子流（见「真空分区」卡片）。</p>
+<h2 id="2-粘滞流：气体像液体一样流动"><a href="#2-粘滞流：气体像液体一样流动" class="headerlink" title="2. 粘滞流：气体像液体一样流动"></a>2. 粘滞流：气体像液体一样流动</h2><p>自由程远小于管径：分子间碰撞远多于分子-壁碰撞，气体是<strong>连续介质</strong>，宏观流体力学（黏性、压差驱动）适用。</p>
+<p>按雷诺数再分两种（$Re = \rho v d / \eta$）：常取 $Re \lesssim 2000$ 为层流、$Re \gtrsim 2200$ 为湍流。稳态真空管道几乎总是层流；湍流只在大流量粗抽的开始一瞬间短暂出现（噪声、振动可闻）。</p>
+<p><strong>层流的泊肃叶公式</strong>。不可压缩流体的泊肃叶（Poiseuille）公式（体积流率）：</p>
+<script type="math/tex; mode=display">\dot V = \frac{\pi r^4\, \Delta p}{8\,\eta\, l}</script><p>气体可压缩、稳态下沿管流量 $Q = p\dot V$ 不变，等温流动修正为：</p>
+<script type="math/tex; mode=display">Q = \frac{\pi r^4}{16\,\eta\, l}\left(p_1^2 - p_2^2\right) \qquad [\mathrm{Pa\cdot m^3/s}]</script><p><strong>导通能力</strong> $C \equiv Q/(p_1 - p_2)$：</p>
+<script type="math/tex; mode=display">C = \frac{\pi r^4\, \bar p}{8\,\eta\, l} \quad \text{——随平均压强 } \bar p \text{ 线性增长！}</script><p>空气 20 °C 的实用式（$d, l$ 取 cm，$\bar p$ 取 Torr，$C$ 得 L/s）：</p>
+<script type="math/tex; mode=display">C \approx 182\,\frac{d^4\, \bar p}{l}</script><p><strong>要点</strong>：</p>
+<ul>
+<li><strong>$C \propto d^4$</strong>：管径翻倍，导通×16。前级管道要短而粗，别加不必要的细接头与弯头</li>
+<li><strong>$C \propto \bar p$</strong>：压强越低导通越差——抽着抽着”管道变细”，最终滑入过渡流、分子流</li>
+<li>数量级感受：内径 1 cm、长 1 m 的管子，大气压下 $C \approx 1.4\times10^3$ L/s；同一根管子在分子流下只有约 0.1 L/s——跨越四个数量级，这就是”流态”这个概念存在的理由</li>
+<li>与抽速的串联关系（同电阻）：</li>
+</ul>
+<script type="math/tex; mode=display">\frac{1}{S_{eff}} = \frac{1}{S_{pump}} + \frac{1}{C}</script><p>泵再猛，管道太细也会把有效抽速拖死——真空系统设计的第一课。</p>
+<h2 id="3-过渡流：两种机制并存的灰色地带"><a href="#3-过渡流：两种机制并存的灰色地带" class="headerlink" title="3. 过渡流：两种机制并存的灰色地带"></a>3. 过渡流：两种机制并存的灰色地带</h2><p>自由程与管径可比：分子-分子碰撞和分子-壁碰撞<strong>频率相当</strong>——既不能当连续流体算，也不能忽略分子间作用。对应<strong>低真空</strong>区间的管道流动。</p>
+<ul>
+<li><strong>没有解析公式</strong>。粘滞层流 $C \propto \bar p\, d^4$ 与分子流 $C \propto d^3$（与压强无关）各管一端，过渡流的导通介于两者之间</li>
+<li><strong>克努森（1909）半经验插值公式</strong>把两条极限光滑连接，工程上用插值式或查曲线估算；现代更多用直接模拟蒙特卡洛（DSMC）数值计算</li>
+<li>经典现象——<strong>克努森极小</strong>：稀薄气体流过毛细管时，随平均压强降低，比流量先降后升，在过渡区出现极小值（自由程变大后分子沿壁面”滑移”的滑移流效应开始帮忙）</li>
+<li><strong>微细漏孔常工作在过渡流</strong>：漏孔特征尺寸与当地自由程可比，漏率与压强的关系介于线性与平方之间，检漏定量分析时要留意流态判断</li>
+<li>工程处理：过渡流最难算也最少算——要么让系统快速度过（加大泵速、缩短管道），要么用厂家实测曲线。课程要求一般是会判断流态、会用两端公式做数量级估计。</li>
+</ul>
+<h2 id="4-分子流：分子只与管壁碰撞"><a href="#4-分子流：分子只与管壁碰撞" class="headerlink" title="4. 分子流：分子只与管壁碰撞"></a>4. 分子流：分子只与管壁碰撞</h2><p>自由程远大于管径：分子间几乎不相遇，宏观量（黏性、压强梯度）失去意义，气体输运靠<strong>分子撞壁—按余弦定律再发射—随机游走</strong>完成。这是高真空/超高真空的流态。</p>
+<ul>
+<li>再发射服从<strong>余弦定律</strong>：从壁面飞出的分子，方向落在与法线成 $\theta$ 角的立体角内的概率 $\propto \cos\theta$（推导见「理论基石」卡片）</li>
+<li>导通能力 $C$ <strong>与压强无关</strong>，只由几何形状与气体种类决定——分子流最反直觉也最好用的性质</li>
+</ul>
+<p><strong>核心公式</strong>（空气 20 °C 实用版）：</p>
+<p><strong>（1）薄孔</strong>（孔的厚度可忽略）：</p>
+<script type="math/tex; mode=display">C = \frac{1}{4}\bar v A \approx 11.6\,A\ \ [\mathrm{L/s}，\ A\ \text{取 cm}^2]</script><p><strong>（2）长圆管</strong>（$l \gtrsim 20d$）：</p>
+<script type="math/tex; mode=display">C = \frac{\pi \bar v\, d^3}{12\, l} \approx 12.1\,\frac{d^3}{l}\ \ [\mathrm{L/s}，\ d, l\ \text{取 cm}]</script><p><strong>（3）短管</strong>：$C = 11.6\,A \times P$，$P$ 为传输概率（克劳辛因子，查表）：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>$l/d$</th>
+<th>1</th>
+<th>2</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$P$</td>
+<td>0.67</td>
+<td>0.51</td>
+<td>0.19</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>（4）串并联</strong>：与电阻网络完全同形</p>
+<script type="math/tex; mode=display">\frac{1}{C_{串}} = \sum_i \frac{1}{C_i}，\qquad C_{并} = \sum_i C_i</script><p><strong>气体种类依赖</strong>：$C \propto \bar v \propto 1/\sqrt{M}$：同一根管道，氢的导通是空气的 $\sqrt{29/2}\approx3.8$ 倍。分子流下”轻分子跑得快”直接写进导通——这也是高真空系统对氢的抽气阻抗小、极限压强常受氢限制的原因之一。</p>
+<p><strong>为什么高真空泵都在分子流下工作</strong>：扩散泵、涡轮分子泵、低温泵、溅射离子泵的抽气机理都建立在”分子一个一个到达”的前提上；粘滞流下成团气体的载荷会把它们冲垮。所以高真空系统必须先用前级泵降到 10⁻¹~10 Pa 量级、主阀切换后主泵才”接管”（见「真空泵与MFC」卡片）。</p>
+<h2 id="5-对比小结"><a href="#5-对比小结" class="headerlink" title="5. 对比小结"></a>5. 对比小结</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>粘滞流</th>
+<th>过渡流</th>
+<th>分子流</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>判据 Kn</td>
+<td>&lt; 0.01</td>
+<td>0.01~1</td>
+<td>&gt; 1</td>
+</tr>
+<tr>
+<td>导通规律</td>
+<td>$C \propto \bar p\, d^4/l$</td>
+<td>介于两者，插值</td>
+<td>$C \propto d^3/l$，与压强无关</td>
+</tr>
+<tr>
+<td>理论工具</td>
+<td>流体力学（泊肃叶）</td>
+<td>克努森插值 / DSMC</td>
+<td>分子动理论（克劳辛）</td>
+</tr>
+<tr>
+<td>对应区间</td>
+<td>粗真空</td>
+<td>低真空</td>
+<td>高真空/超高真空</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

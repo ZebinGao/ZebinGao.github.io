@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蒸气与临界温度 | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">蒸气与临界温度</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="蒸气与临界温度"><a href="#蒸气与临界温度" class="headerlink" title="蒸气与临界温度"></a>蒸气与临界温度</h1><h2 id="1-蒸气：临界温度以下的气体"><a href="#1-蒸气：临界温度以下的气体" class="headerlink" title="1. 蒸气：临界温度以下的气体"></a>1. 蒸气：临界温度以下的气体</h2><p><strong>蒸气（vapor）</strong>：处在临界温度以下的气体——仅靠加压即可使其液化（甚至凝固）。处在临界温度以上的气体称为<strong>永久气体</strong>，无论加多大压强都不会液化。</p>
+<p>室温下的水蒸气、汞蒸气、泵油蒸气都是蒸气（$T_c$ 高于室温）；室温下的氮气是永久气体（$T_c = -147\,^{\circ}\mathrm{C}$）。</p>
+<h2 id="2-饱和蒸气压"><a href="#2-饱和蒸气压" class="headerlink" title="2. 饱和蒸气压"></a>2. 饱和蒸气压</h2><p>密闭容器中液体（或固体）与其蒸气达到动态平衡时，蒸气的压强叫<strong>饱和蒸气压 $p_s$</strong>，<strong>只由温度和物质种类决定，与液体量、容器体积无关</strong>。温度越高 $p_s$ 越大，且按指数暴涨：</p>
+<script type="math/tex; mode=display">\ln p_s = -\frac{L}{RT} + C \qquad (\text{克劳修斯--克拉珀龙方程，} L \text{为汽化潜热})</script><p>水：20 °C 时 $p_s = 2.3$ kPa，100 °C 时 101 kPa。$T \geq T_c$ 时液气不分、$p_s$ 概念失效。</p>
+<h2 id="3-临界温度：气体与液体的分界线"><a href="#3-临界温度：气体与液体的分界线" class="headerlink" title="3. 临界温度：气体与液体的分界线"></a>3. 临界温度：气体与液体的分界线</h2><p><strong>临界温度 $T_c$</strong>：物质能被液化所允许的最高温度。$T &gt; T_c$ 时无论加多大压强都不会液化（液气界面消失，只剩超临界流体一个相）；$T &lt; T_c$ 时，加压到饱和蒸气压即开始液化。临界点 $(T_c, p_c, V_c)$ 是 $p$-$V$ 图上等温线气液两相区分界线的终点。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>气体</th>
+<th>$T_c$</th>
+<th>$p_c$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>氦 He</td>
+<td>5.2 K</td>
+<td>0.23 MPa</td>
+</tr>
+<tr>
+<td>氢 H₂</td>
+<td>33 K</td>
+<td>1.3 MPa</td>
+</tr>
+<tr>
+<td>氖 Ne</td>
+<td>44 K</td>
+<td>2.7 MPa</td>
+</tr>
+<tr>
+<td>氮 N₂</td>
+<td>126 K（−147 °C）</td>
+<td>3.4 MPa</td>
+</tr>
+<tr>
+<td>氩 Ar</td>
+<td>151 K</td>
+<td>4.9 MPa</td>
+</tr>
+<tr>
+<td>氧 O₂</td>
+<td>155 K（−119 °C）</td>
+<td>5.0 MPa</td>
+</tr>
+<tr>
+<td>二氧化碳 CO₂</td>
+<td>304 K（31 °C）</td>
+<td>7.4 MPa</td>
+</tr>
+<tr>
+<td>水 H₂O</td>
+<td>647 K（374 °C）</td>
+<td>22.1 MPa</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>历史与理论</strong>：1869年安德鲁斯（Andrews）做 CO₂ 等温压缩实验，发现 31 °C 以上压强再加 CO₂ 也不液化，命名”临界点”。1873年范德华用真实气体方程（见「理论基石」卡片）解释了等温线形状与临界点的存在：$a$（引力项）使分子”想”聚成液体，温度太高时热运动压过引力。液化技术史正是一场降温竞赛：法拉第 1823 年液化了氯等”易液化”气体；杜瓦 1898 年液氢（20 K）；昂内斯 1908 年液氦（4.2 K）——氦是 $T_c$ 最低的物质，最后被攻克。</p>
+<h2 id="4-真空技术为什么关心它们"><a href="#4-真空技术为什么关心它们" class="headerlink" title="4. 真空技术为什么关心它们"></a>4. 真空技术为什么关心它们</h2><p><strong>（1）水汽是头号气体负载。</strong> 暴露过大气的真空系统，内壁吸附的水分子会在抽气中持续脱附——不烘烤的系统，残余气体的主要成分就是水蒸气。对策：烘烤除气（见「真空分区」卡片）；低温泵一级冷板（约 80 K）对水汽有巨大抽速，水在该温度的蒸气压已低到可忽略。</p>
+<p><strong>（2）泵油蒸气 = 污染源。</strong> 油封机械泵、油扩散泵的油蒸气会返流（返油）进入腔体，污染样品与光学表面。无油系统因此普遍改用涡轮分子泵+干泵、低温泵组合；仍用油泵的管路则加挡油阱/冷阱。</p>
+<p><strong>（3）蒸气会在机械泵里凝结。</strong> 抽含大量水汽的湿空气时，压缩冲程中水蒸气分压一旦超过当时的 $p_s$ 就凝结成水、混入泵油，使极限压强恶化、泵油乳化。对策是<strong>气镇</strong>（Gas Ballast，盖德，1935）：压缩冲程掺入定量干燥空气，让可凝性蒸气在达到饱和之前，总压就先顶开排气阀，蒸气以气态排出（见「真空泵与MFC」卡片）。</p>
+<p><strong>（4）低温泵的原理就是蒸气压。</strong> 冷板温度越低、各气体的 $p_s$ 越低——冷凝捕集把”蒸气”冻成”冰”，冰的 $p_s$ 决定能抽到多低的压强。二级冷板选 10–15 K：除氦（$T_c$ = 5.2 K，冷板温度高于它的 $T_c$，完全无法冷凝）外，所有气体的 $T_c$ 都高于冷板温度，理论上一律可冷凝。但<strong>“能冷凝”不等于”蒸气压够低”</strong>：氢在 10 K 的饱和蒸气压仍高达约 $10^2$ Pa 量级，单靠冷凝抽不到高真空，必须靠活性炭低温吸附；氦同样只能吸附。</p>
+<p><strong>（5）气瓶与低温贮运</strong>：室温钢瓶里的氮永远是气态（$T \gg T_c$）；液氮杜瓦（77 K &lt; $T_c$）则利用液化态高密度贮存——实验室里一升液氮汽化得约 650 升标准状态氮气。31 °C、7.4 MPa 以上的 CO₂ 处于超临界态——像气体一样扩散、像液体一样溶解，超临界萃取（咖啡因脱除等）是临界现象在工业上的另一副面孔。</p>
+<h2 id="5-一句话"><a href="#5-一句话" class="headerlink" title="5. 一句话"></a>5. 一句话</h2><p>真空系统里的”气体”，一大半其实是各种<strong>蒸气</strong>（水、油、氢化物）；治真空，很大程度上是治蒸气。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>

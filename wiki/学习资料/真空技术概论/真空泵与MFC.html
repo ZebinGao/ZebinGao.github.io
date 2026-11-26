@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>真空的获得与控制：机械泵、涡轮分子泵、低温泵与 MFC | 与买桂花同载酒</title>
+    <meta name="keywords" content="Zebin, Blog, 编程, 生活, 技术">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/css/pet-chat.css">
+
+    
+    
+    
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml" title="与买桂花同载酒">
+    
+    <!-- Google Fonts: 字体切换功能所需 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Huninn&family=Long+Cang&family=Ma+Shan+Zheng&family=Klee+One&family=Noto+Serif+SC:wght@400;700&family=LXGW+WenKai&display=swap">
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <!-- 移动端顶栏（桌面端隐藏） -->
+<div class="mobile-header">
+    <button class="mobile-hamburger" id="mobile-hamburger">☰</button>
+    <span class="mobile-title">与买桂花同载酒</span>
+    <button class="mobile-widgets-btn" id="mobile-widgets-btn" title="小工具" aria-label="打开小工具栏">🧩</button>
+    <button class="mobile-search-btn" id="mobile-search-btn">🔍</button>
+    <a class="mobile-theme-toggle" id="mobile-theme-toggle" title="切换主题" style="cursor:pointer;">
+        <span id="mobile-theme-icon">🌙</span>
+    </a>
+</div>
+<div class="mobile-search-bar" id="mobile-search-bar">
+    <input type="text" id="mobile-search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+    <div class="mobile-search-results" id="mobile-search-results"></div>
+</div>
+<div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="main-container">
+        <aside class="sidebar-left">
+    <div class="avatar-box">
+        <div class="avatar-wrap" id="avatar-wrap" title="点击换一张">
+            <div class="avatar-letter">G</div>
+            <img class="avatar" id="avatar-img" alt="随机头像">
+        </div>
+        <h2 class="author-name">Nathan Gao</h2>
+        <div class="hitokoto-line" id="hitokoto-line">
+            <div class="hitokoto-text" id="hitokoto-text"></div>
+            <div class="hitokoto-from" id="hitokoto-from"></div>
+        </div>
+    </div>
+
+    <nav class="site-nav">
+        
+            <a href="/poem-daily">
+                <span></span>
+                朝华章
+            </a>
+        
+            <a href="/directory">
+                <span></span>
+                文章
+            </a>
+        
+            <a href="/moments">
+                <span></span>
+                此刻
+            </a>
+        
+            <a href="/podcast">
+                <span></span>
+                播客
+            </a>
+        
+            <a href="/about">
+                <span></span>
+                关于
+            </a>
+        
+            <a href="/news">
+                <span></span>
+                热点
+            </a>
+        
+            <a href="/links">
+                <span></span>
+                友链
+            </a>
+        
+            <a href="/wiki">
+                <span></span>
+                Wiki
+            </a>
+        
+            <a href="/settings">
+                <span></span>
+                设置
+            </a>
+        
+    </nav>
+</aside>
+        <main class="content-mid">
+            <article class="post-detail">
+    <header class="post-header">
+        <h1 class="post-title">真空的获得与控制：机械泵、涡轮分子泵、低温泵与 MFC</h1>
+        <div class="post-meta">
+            <span>📅 <span data-i18n="published_on">发布于：</span>2026年11月26日</span>
+            
+            
+        </div>
+    </header>
+
+    <div class="content markdown">
+        
+            <h1 id="真空的获得与控制：机械泵、涡轮分子泵、低温泵与-MFC"><a href="#真空的获得与控制：机械泵、涡轮分子泵、低温泵与-MFC" class="headerlink" title="真空的获得与控制：机械泵、涡轮分子泵、低温泵与 MFC"></a>真空的获得与控制：机械泵、涡轮分子泵、低温泵与 MFC</h1><h2 id="1-泵的分类鸟瞰"><a href="#1-泵的分类鸟瞰" class="headerlink" title="1. 泵的分类鸟瞰"></a>1. 泵的分类鸟瞰</h2><p>按抽气机理，真空泵分三大类：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>机理</th>
+<th>代表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>容积式</strong>（气体转移）</td>
+<td>周期性改变泵腔容积，吸气—压缩—排气</td>
+<td>旋片泵、滑阀泵、罗茨泵、干泵</td>
+</tr>
+<tr>
+<td><strong>动量传递式</strong>（气体转移）</td>
+<td>给分子定向动量，把它”打”向出口</td>
+<td>涡轮分子泵、扩散泵</td>
+</tr>
+<tr>
+<td><strong>捕集式</strong>（气体留存）</td>
+<td>把气体留在泵内，不外排</td>
+<td>低温泵、溅射离子泵</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>容积式与动量传递式泵把气体排到前级侧，需要<strong>前级泵</strong>接力（都不能从大气压直接抽到高真空）；捕集式泵没有排气口，装满要再生。高真空系统的标准动作：前级粗抽 → 主泵在分子流区接管（见「气体流态」「真空分区」卡片）。</p>
+<h2 id="2-机械泵：从大气压起步的容积式泵族"><a href="#2-机械泵：从大气压起步的容积式泵族" class="headerlink" title="2. 机械泵：从大气压起步的容积式泵族"></a>2. 机械泵：从大气压起步的容积式泵族</h2><p><strong>共同原理</strong>：全部靠”容积变化”——吸气腔容积变大 → 腔内压强降低、吸入气体；随后封闭 → 压缩 → 顶开排气阀排出。每转排开固定的几何容积，抽速 = 每转排量 × 转速，与被抽气体种类基本无关。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>泵型</th>
+<th>特点</th>
+<th>极限压强（典型）</th>
+<th>主用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>旋片泵</strong>（盖德，1905）</td>
+<td>油封，双级串联（2X 型）</td>
+<td>单级约 1 Pa；双级 10⁻² Pa 量级</td>
+<td>通用前级/粗抽</td>
+</tr>
+<tr>
+<td><strong>滑阀泵</strong></td>
+<td>坚固、大抽速</td>
+<td>Pa 量级</td>
+<td>冶金、大型粗抽</td>
+</tr>
+<tr>
+<td><strong>罗茨泵</strong>（源自1854年 Roots 鼓风机）</td>
+<td>双8字转子、泵腔无油、无内压缩</td>
+<td>需配前级，机组 10⁻²~10⁻¹ Pa</td>
+<td>低真空增压</td>
+</tr>
+<tr>
+<td><strong>爪式/螺杆干泵</strong></td>
+<td>全干式、耐蚀</td>
+<td>1~10 Pa</td>
+<td>半导体制程排气主流</td>
+</tr>
+<tr>
+<td><strong>涡旋泵</strong></td>
+<td>干式、安静</td>
+<td>~1 Pa</td>
+<td>分析仪器、分子泵前级</td>
+</tr>
+<tr>
+<td><strong>隔膜泵</strong></td>
+<td>干式、便携</td>
+<td>10² Pa 量级</td>
+<td>实验室粗抽</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>旋片泵解剖（课程重点）</strong>：偏心转子带动两片被弹簧压紧的旋片，把月牙形泵腔分成吸气—压缩—排气三段连续工作。<strong>泵油的三重作用</strong>：①密封旋片与缸壁间的微小间隙；②润滑；③填充排气死隙（死隙里的高压气若不清除，下一转会回膨胀、恶化极限压强）。</p>
+<p><strong>气镇（Gas Ballast，盖德，1935）</strong>：抽含大量水汽等可凝蒸气时，在压缩末段经单向阀掺入定量干燥空气，使蒸气分压还没达到饱和点，总压就先顶开排气阀——蒸气以气态排出而不凝入泵油（原理详见「蒸气与临界温度」卡片）。代价：极限压强变差约半个到一个数量级。</p>
+<p><strong>固有缺陷</strong>：油蒸气返流污染下游（挡油阱或改干泵缓解）、振动噪声、怕粉尘与腐蚀性气体。</p>
+<p><strong>罗茨泵：低真空的”倍增器”</strong>：泵腔内两个8字形转子互不接触、也不压缩（无内压缩），<strong>不能直接对大气排气</strong>——出口必须接前级泵。在 $10^2\sim10^{-1}$ Pa 区间，它以大容积排量把机组抽速放大几到几十倍，且泵腔无油。”前级泵 + 罗茨泵”双级机组是真空干燥、冻干、真空冶金的标准配置。</p>
+<p><strong>前级的角色</strong>：高真空泵都不能从大气压开始工作，必须由机械泵先把系统抽到前级压强（10⁻¹~10 Pa 量级）——“前级泵”之名由此而来。半导体产线出于洁净与耐蚀考虑，前级已全面干泵化。</p>
+<h2 id="3-涡轮分子泵：用叶片把分子”打”出去"><a href="#3-涡轮分子泵：用叶片把分子”打”出去" class="headerlink" title="3. 涡轮分子泵：用叶片把分子”打”出去"></a>3. 涡轮分子泵：用叶片把分子”打”出去</h2><p><strong>结构与原理</strong>（贝克尔 Becker，1958）：转子上一摞<strong>动叶轮</strong>、定子上一摞<strong>静叶轮</strong>，交替排列数十级；叶片带倾角，像一摞微型风扇叶。</p>
+<ul>
+<li>转速 3万~9万 rpm，<strong>叶尖线速度 250–400 m/s</strong>——刻意做到与分子热速率同量级（空气 $\bar v \approx 470$ m/s，见「三种速率」卡片）</li>
+<li>分子撞上运动叶片，被”打”向出口方向——<strong>动量传递</strong>；每级给一个小压缩比，数十级串联叠成大压缩比</li>
+<li>压缩比随叶速上升、随气体分子量增大而显著增大：</li>
+</ul>
+<script type="math/tex; mode=display">K(\mathrm{N_2}) > 10^{8}，\qquad K(\mathrm{H_2}) \approx 10^{2}\sim10^{3}</script><p><strong>氢最难压缩</strong>——轻分子速度与叶片同量级，叶片”追不上”它。所以极限压强由氢决定，残气谱里氢占主导是涡轮泵系统的标志。</p>
+<p><strong>只能工作在分子流区</strong>：叶片间隙处必须让分子”一个一个”撞叶。入口压强太高（进入粘滞流区），成团气体的阻力会让泵过载”憋死”。因此<strong>必须配前级泵</strong>：先抽到 1~10 Pa 再启动，加速到全速需几分钟。带分子牵引级的<strong>复合分子泵</strong>对前级压强的容忍度更高；安全标配：前级泵停转或断电时自动关闭前级阀，防止大气冲入顶弯叶片（大气冲击是分子泵的头号死因）。</p>
+<p><strong>性能与特色</strong>：抽速几~几千 L/s；有趣的是<strong>抽速对气体种类不敏感，压缩比却强烈依赖分子量</strong>——两者物理含义不同（抽速看”接得住”，压缩比看”推得动”）。极限压强 $10^{-8}\sim10^{-10}$ Pa（配合烘烤）。<strong>洁净</strong>（泵腔无油；轴承从油脂 → 气体轴承 → 磁悬浮，高端标配）。忌粉尘、大气冲击、强振动与强磁场。</p>
+<p><strong>典型应用</strong>：扫描/透射电镜、质谱仪、镀膜机、半导体 load-lock 与工艺腔、加速器束流线——一切需要”无油高真空 + 启动快 + 免维护窗口长”的地方。与低温泵相比：可连续工作、无再生周期，但抽速上限较低。</p>
+<h2 id="4-低温泵：把气体冻住的捕集式泵"><a href="#4-低温泵：把气体冻住的捕集式泵" class="headerlink" title="4. 低温泵：把气体冻住的捕集式泵"></a>4. 低温泵：把气体冻住的捕集式泵</h2><p><strong>原理：三种”冻法”</strong>——没有排气口，气体被冻结在泵内冷板上，直到”装满”再生：</p>
+<ol>
+<li><strong>低温冷凝</strong>：气体在冷板上凝结成冰。氮、氧、氩在 20 K 以下蒸气压已降到 10⁻⁸ Pa 量级或更低，冷凝即可有效抽除</li>
+<li><strong>低温吸附</strong>：氢在 10 K 冷凝的平衡蒸气压仍高达约 $10^2$ Pa，单靠冷凝不行——靠粘在二级冷板上的<strong>活性炭</strong>吸附抽除；氦完全不能冷凝，也只能走吸附</li>
+<li><strong>低温捕集</strong>（共沉积）：易凝气体冻结成冰时，把混在其中的难凝气体一起”埋”进冰层</li>
+</ol>
+<p><strong>结构：两级闭循环制冷机</strong>（G-M 制冷机，氦气闭循环压缩膨胀制冷，无消耗品）：</p>
+<ul>
+<li><strong>一级 50–80 K</strong>：辐射屏 + 人字形挡板——先把<strong>水汽</strong>（量大！）和 CO₂ 冻在挡板上，兼挡室温热辐射</li>
+<li><strong>二级 10–15 K</strong>：主冷板 + 活性炭——冷凝抽氮、氧、氩；吸附抽氢、氦、氖</li>
+</ul>
+<p><strong>工况</strong>：只能工作在<strong>分子流</strong>区（粘滞气流的热负荷会瞬间压垮冷板）：先用前级泵粗抽到 1~10 Pa 量级，再开主阀让低温泵接管。装载量有限（冰层越积越厚、活性炭逐渐饱和）→ 周期性<strong>再生</strong>：关阀、升温到室温以上，冻结的气体全部释放，用干泵抽走、干燥氮气吹扫，再降温——全程数小时，产线要为此排班。安全注意：冷凝富氧 + 泵油蒸气返流是燃爆组合，规范再生程序 + 无油前级是硬要求。</p>
+<p><strong>性能与应用</strong>：极限压强 $10^{-7}\sim10^{-8}$ Pa 量级（受氢吸附平衡限制）；抽速几十~几万 L/s。<strong>最洁净</strong>：全无油、无运动部件、无振动、耐腐蚀气体——“大抽速 + 清洁”使其成为<strong>溅射镀膜、光学镀膜、半导体刻蚀/注入、空间模拟舱、托卡马克</strong>的主力。缺点：不能连续抽大气量、需再生排班、氦抽速有限。</p>
+<h2 id="5-MFC：质量流量控制器"><a href="#5-MFC：质量流量控制器" class="headerlink" title="5. MFC：质量流量控制器"></a>5. MFC：质量流量控制器</h2><p><strong>是什么</strong>：Mass Flow Controller——同时完成气体质量流量的<strong>测量与闭环控制</strong>的气路元件：设定一个流量（如 200 sccm），内部阀 + PID 自动维持在这个值。只测不控的叫质量流量计（MFM）。</p>
+<p><strong>为什么是”质量”流量</strong>：工艺关心的是<strong>分子个数</strong>（配比、膜厚、化学计量比），质量流量直接对应分子数（$\dot N = \dot m \cdot N_A/M$），且不受温度压强影响——这是它碾压转子流量计（体积流量、随工况漂移、手动调节）的根本原因。</p>
+<p><strong>热式原理（主流构型）</strong>：结构 = <strong>毛细管传感管 + 层流旁路 + 控制阀</strong>。</p>
+<ol>
+<li>气流进入后按固定比例分流：小股（约百分之几）走毛细管，主流走旁路——层流保证分流比恒定</li>
+<li>毛细管外绕加热/测温电桥（铂电阻）：气流带走热量形成上下游<strong>温差 $\Delta T$</strong>，恒功率加热时（King 定律）</li>
+</ol>
+<script type="math/tex; mode=display">\Delta T \propto \dot m \cdot c_p</script><p>温差正比于<strong>质量流量 × 比热容</strong>——电桥输出直接线性于质量流量</p>
+<ol>
+<li>测量值与设定值比较，PID 驱动电磁/压电<strong>控制阀</strong>开合，闭环锁定流量</li>
+</ol>
+<p><strong>规格与选型</strong>：</p>
+<ul>
+<li><strong>单位</strong>：sccm（标准毫升/分）、slm（标准升/分）；”标准状态”通常指 0 °C、101.325 kPa——注意厂商有 0 °C 与 25 °C 两派，换算时要核对</li>
+<li><strong>量程</strong>：2 sccm ~ 300+ slm；经验：常用工艺点选在满量程的 10%~90%</li>
+<li><strong>指标</strong>：精度 ±1% FS 量级，重复性 ±0.2% FS——<strong>配比的重复性比绝对精度更重要</strong>（膜厚均匀性直接由它决定），响应时间 &lt;1 s</li>
+<li><strong>气体转换系数</strong>：出厂按氮气标定，通其它气体时乘以与比热容相关的转换系数（每种气体有表可查）</li>
+<li><strong>校准溯源</strong>：皂膜流量计、湿式流量计、钟罩式标准器，定期送检/自校</li>
+</ul>
+<p><strong>与真空技术的接口</strong>：半导体/镀膜工艺气路的心脏——CVD、刻蚀、扩散、外延的”配方”就是”MFC 通道 × 流量 × 时间”的组合；真空腔提供反应环境，MFC 决定”喂什么、喂多少”。常与<strong>压力控制器（PC）</strong>配合：MFC 控上游流量、PC 控腔压。安装位置在气源与腔体之间：MFC 工作需要一定的进出口压差（旁路要维持层流），不能直接放进高真空侧。</p>
+<p><strong>演进</strong>：机械式 → MEMS 芯片式（硅微桥热丝，响应快、成本低）→ 全数字化（RS-485 / 工业以太网、自诊断、多通道模块）。但”温差 ∝ 质量流量”这个物理内核，六十年未变。</p>
+
+        
+    </div>
+</article>
+
+
+
+
+
+
+        </main>
+        <aside class="sidebar-right">
+
+    <div class="widget search-widget">
+        <h3 data-i18n="search">搜索</h3>
+        <div class="search-box">
+            <input type="text" id="search-input" data-i18n-placeholder="search_placeholder" placeholder="搜索文章..." autocomplete="off">
+            <div class="search-results" id="search-results"></div>
+        </div>
+    </div>
+
+    
+
+    <div class="widget tags-widget">
+        <h3><i class="iconfont icon-tags"></i> <span data-i18n="hot_tags">热门标签</span></h3>
+        <div class="tags-cloud">
+            <a href="/tags/study-abroad/" style="font-size: 20px;">留学</a> <a href="/tags/ethics/" style="font-size: 19px;">伦理</a> <a href="/tags/marriage/" style="font-size: 18px;">婚姻</a> <a href="/tags/self/" style="font-size: 17px;">自我</a> <a href="/tags/history/" style="font-size: 16px;">历史</a> <a href="/tags/reflection/" style="font-size: 16px;">反思</a> <a href="/tags/growth/" style="font-size: 15px;">成长</a> <a href="/tags/literature/" style="font-size: 14px;">文学</a> <a href="/tags/%E8%89%BA%E6%9C%AF/" style="font-size: 13px;">艺术</a> <a href="/tags/centralization/" style="font-size: 12px;">中央集权</a>
+        </div>
+    </div>
+
+    <div class="widget calendar-widget">
+        <h3><i class="iconfont icon-calendar"></i> <span data-i18n="calendar">日历</span></h3>
+        <div class="calendar-container">
+            <div class="calendar-header">
+                <span class="month" id="calendar-month"></span>
+            </div>
+            <div class="calendar-days">
+                <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span>
+            </div>
+            <div class="calendar-grid" id="calendar-grid">
+            </div>
+        </div>
+    </div>
+
+    <div class="widget clock-widget">
+        <h3><span data-i18n="clock">世界时钟</span></h3>
+        <div class="clock-box">
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="berlin">柏林</span>
+                    <span class="clock-time" data-tz="Europe/Berlin">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Europe/Berlin"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="beijing">北京</span>
+                    <span class="clock-time" data-tz="Asia/Shanghai">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="Asia/Shanghai"></div>
+            </div>
+            <div class="clock-city-block">
+                <div class="clock-row">
+                    <span class="clock-city" data-i18n="newyork">纽约</span>
+                    <span class="clock-time" data-tz="America/New_York">--:--</span>
+                </div>
+                <div class="clock-sub" data-tz="America/New_York"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget weather-widget">
+        <h3><span data-i18n="weather">天气</span></h3>
+        <div class="weather-box" id="weather-box">
+            <div class="weather-loading">获取中…</div>
+        </div>
+    </div>
+
+    <div class="widget stock-widget">
+        <h3><span data-i18n="stock">行情</span></h3>
+        <div class="stock-box" id="stock-box">
+            <div class="stock-row" data-secid="sh000001">
+                <span class="stock-name" data-i18n="sse">上证指数</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh688836">
+                <span class="stock-name" data-i18n="unitree">宇树科技</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="hk02513">
+                <span class="stock-name" data-i18n="zhipu">智谱</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh600104">
+                <span class="stock-name" data-i18n="saic">上汽集团</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-row" data-secid="sh603259">
+                <span class="stock-name" data-i18n="wuxi">药明康德</span>
+                <span class="stock-price">--</span>
+                <span class="stock-chg">--</span>
+            </div>
+            <div class="stock-foot" id="stock-foot">
+                <span id="stock-time"></span>
+                <button class="stock-refresh" id="stock-refresh" type="button" title="刷新行情">↻</button>
+            </div>
+        </div>
+    </div>
+</aside>
+    </div>
+    <!-- ── 页脚：运行天数 · 总浏览量 · Powered by ──────────────────────
+ * 运行天数：前端用 theme.footer.since 实时算，静态站无需重新构建；
+ * 总浏览量：不蒜子计数（busuanzi.ibruce.info），从挂上脚本那天从 0 起数；
+ *   服务挂了时整段自动隐藏，页脚退化为「运行天数 • Powered by」。
+ * 改建站日期：themes/Zebin-Theme/_config.yml 里的 footer.since
+ -->
+<footer class="site-footer">
+    <span><span data-i18n="footer_run_prefix">网站运行</span> <span id="footer-days">…</span> <span data-i18n="footer_days_unit">天</span></span><span id="busuanzi_container_site_pv" style="display:none">&nbsp;•&nbsp;<span data-i18n="footer_views_prefix">总浏览量</span> <span id="busuanzi_value_site_pv"></span> <span data-i18n="footer_views_unit">次</span></span><span>&nbsp;•&nbsp;Powered by <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a></span>
+</footer>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+(function () {
+    var since = new Date('2025-06-29');
+    var el = document.getElementById('footer-days');
+    if (el && !isNaN(since.getTime())) {
+        el.textContent = Math.max(0, Math.floor((Date.now() - since.getTime()) / 86400000));
+    }
+})();
+</script>
+
+    <script>window.__i18n_default = "de";</script>
+    <script>
+    // 全局字体加载：从 localStorage 读取并立即应用，避免闪烁
+    (function(){
+        var fontMap = {
+            'kai': '"KaiTi", "STKaiti", "Kaiti SC", serif',
+            'huninn': '"Huninn", sans-serif',
+            'longchang': '"Long Cang", cursive',
+            'mashanzheng': '"Ma Shan Zheng", cursive',
+            'klee': '"Klee One", serif',
+            'lxgw': '"LXGW WenKai", serif',
+            'notoserif': '"Noto Serif SC", "PingFang SC", serif'
+        };
+        var f = localStorage.getItem('font');
+        if (f && f !== 'default' && fontMap[f]) {
+            document.documentElement.style.setProperty('--font-main', fontMap[f]);
+        }
+        var fs = localStorage.getItem('fontsize');
+        if (fs && fs !== '16') {
+            document.documentElement.style.setProperty('--font-size', fs + 'px');
+        }
+        // 色调加载
+        var tonePresets = {
+            'rose':   { accent: '#f0849a', rgb: '240, 132, 154',  accentDark: '#d84b6b', rgbDark: '216, 75, 107' },
+            'blue':   { accent: '#60a5fa', rgb: '96, 165, 250',   accentDark: '#3b82f6', rgbDark: '59, 130, 246' },
+            'purple': { accent: '#a78bfa', rgb: '167, 139, 250',  accentDark: '#8b5cf6', rgbDark: '139, 92, 246' },
+            'orange': { accent: '#fbbf24', rgb: '251, 191, 36',   accentDark: '#f59e0b', rgbDark: '245, 158, 11' },
+            'teal':   { accent: '#22d3ee', rgb: '34, 211, 238',   accentDark: '#06b6d4', rgbDark: '6, 182, 212' }
+        };
+        var t = localStorage.getItem('tone');
+        if (t && t !== 'rose' && tonePresets[t]) {
+            var p = tonePresets[t];
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            document.documentElement.style.setProperty('--accent', isDark ? p.accentDark : p.accent);
+            document.documentElement.style.setProperty('--accent-rgb', isDark ? p.rgbDark : p.rgb);
+        }
+    })();
+    </script>
+    
+<script src="/js/theme-toggle.js"></script>
+
+    
+<script src="/js/calendar.js"></script>
+
+    
+<script src="/js/weather.js"></script>
+
+    
+<script src="/js/clock.js"></script>
+
+    
+<script src="/js/stock.js"></script>
+
+    
+<script src="/js/hitokoto.js"></script>
+
+    
+<script src="/js/avatar.js"></script>
+
+    
+<script src="/js/search.js"></script>
+
+    
+<script src="/js/mobile.js"></script>
+
+    
+<script src="/js/widgets.js"></script>
+
+    
+<script src="/js/i18n.js"></script>
+
+    
+<script src="/js/post-tools.js"></script>
+
+    
+<script src="/js/pet-chat.js"></script>
+
+    <script>
+/* kramed 渲染器把 $$..$$ 输出成 <script type="math/tex">（MathJax 风格），
+   KaTeX auto-render 不识别这类标签（默认忽略 script），显示公式会整体不可见。
+   这里在 auto-render 运行前把它们转回 $$..$$ / $..$ 文本节点。 */
+(function () {
+    var nodes = document.querySelectorAll('script[type="math/tex; mode=display"], script[type="math/tex"]');
+    for (var i = 0; i < nodes.length; i++) {
+        var el = nodes[i];
+        var isDisplay = (el.getAttribute('type') || '').indexOf('mode=display') > -1;
+        var wrap = document.createElement(isDisplay ? 'div' : 'span');
+        var d = isDisplay ? '$$' : '$';
+        wrap.textContent = d + el.textContent + d;
+        el.parentNode.replaceChild(wrap, el);
+    }
+})();
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true},{left: '$', right: '$', display: false}]});"></script>
+    
+    
+    
+    
+    
+</body>
+</html>
